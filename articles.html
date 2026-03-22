@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Articles — Dr. A.R.Y. Toronata Tambun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:        #1a1a2e;
+      --muted:      #5a5a7a;
+      --accent:     #c8a96e;
+      --accent2:    #0f4c81;
+      --bg:         #faf9f6;
+      --surface:    #ffffff;
+      --border:     #e8e4dc;
+      --hover-bg:   #f5f0e8;
+      --radius:     4px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--accent2);
+      color: #fff;
+      padding: 48px 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(200,169,110,0.15);
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 20%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(200,169,110,0.08);
+      pointer-events: none;
+    }
+    .back-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    .back-link:hover { opacity: 1; text-decoration: underline; }
+    header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    header .subtitle {
+      font-size: 15px;
+      opacity: 0.75;
+      font-weight: 300;
+      font-style: italic;
+    }
+    .article-count {
+      display: inline-block;
+      margin-top: 20px;
+      background: rgba(200,169,110,0.25);
+      border: 1px solid rgba(200,169,110,0.4);
+      color: var(--accent);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CONTROLS ── */
+    .controls {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 12px; top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    #search {
+      width: 100%;
+      padding: 10px 16px 10px 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #search:focus { border-color: var(--accent2); }
+    #year-filter {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--ink);
+      outline: none;
+      cursor: pointer;
+    }
+    #year-filter:focus { border-color: var(--accent2); }
+    #result-count {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+      font-style: italic;
+    }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      padding: 32px 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead th {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 16px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--accent);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:hover {
+      background: var(--hover-bg);
+    }
+    tbody tr.hidden { display: none; }
+    td {
+      padding: 14px 16px;
+      vertical-align: top;
+    }
+    .date-col {
+      white-space: nowrap;
+      font-size: 13px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      width: 120px;
+      padding-top: 16px;
+    }
+    .title-col {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .title-col a {
+      color: var(--accent2);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .title-col a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    /* ── NO RESULTS ── */
+    #no-results {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      header, .controls, .table-wrap { padding-left: 20px; padding-right: 20px; }
+      .date-col { width: 90px; font-size: 12px; }
+      .title-col { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="back-link" href="https://torotambun.github.io">← Back to CV</a>
+  <h1>LinkedIn Articles</h1>
+  <p class="subtitle">Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Published 2016–2026</p>
+  <span class="article-count">0 articles</span>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="search" placeholder="Search by keyword, title, topic…" autocomplete="off">
+  </div>
+  <select id="year-filter">
+    <option value="">All years</option>
+
+  </select>
+  <span id="result-count">0 articles</span>
+</div>
+
+<div class="table-wrap">
+  <table id="articles-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+  <div id="no-results">No articles match your search.</div>
+</div>
+
+<footer>
+  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a> &nbsp;·&nbsp; All articles originally published on LinkedIn</p>
+</footer>
+
+<script>
+  const searchInput  = document.getElementById('search');
+  const yearFilter   = document.getElementById('year-filter');
+  const resultCount  = document.getElementById('result-count');
+  const noResults    = document.getElementById('no-results');
+  const rows         = document.querySelectorAll('#articles-table tbody tr');
+
+  function filter() {
+    const q    = searchInput.value.toLowerCase().trim();
+    const year = yearFilter.value;
+    let visible = 0;
+
+    rows.forEach(row => {
+      const title    = row.dataset.title || '';
+      const rowYear  = row.dataset.year  || '';
+      const matchQ   = !q    || title.includes(q);
+      const matchY   = !year || rowYear === year;
+
+      if (matchQ && matchY) {
+        row.classList.remove('hidden');
+        visible++;
+      } else {
+        row.classList.add('hidden');
+      }
+    });
+
+    resultCount.textContent = visible === 1 ? '1 article' : `${visible} articles`;
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', filter);
+  yearFilter.addEventListener('change', filter);
+</script>
+
+</body>
+</html>
