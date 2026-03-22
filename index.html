@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toronata Tambun</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #222;
+    background: #fff;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .header img {
+    width: 130px;
+    height: 160px;
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
+    border: 1px solid #ddd;
+  }
+
+  .header-text { flex: 1; }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+    color: #111;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .nav a {
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .nav a:hover { color: #111; border-color: #111; }
+
+  /* ── BIO ── */
+  .bio {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 36px;
+    line-height: 1.75;
+  }
+
+  .bio p { margin-bottom: 12px; }
+
+  .bio a { color: #333; text-decoration: underline; }
+  .bio a:hover { color: #000; }
+
+  /* ── SECTION ── */
+  h2 {
+    font-size: 1.15rem;
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    margin-top: 48px;
+    color: #111;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #444;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .pub-list { list-style: none; }
+
+  .pub-list li {
+    margin-bottom: 18px;
+    padding-left: 0;
+  }
+
+  .pub-title {
+    font-weight: bold;
+    color: #111;
+    font-size: 0.98rem;
+  }
+
+  .pub-title a {
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .pub-title a:hover { border-color: #111; }
+
+  .pub-meta {
+    font-size: 0.88rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 2px;
+    font-family: Arial, sans-serif;
+  }
+
+  .pub-note {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 2px;
+    font-family: Arial, sans-serif;
+  }
+
+  /* ── COLUMNS ── */
+  .arc-block { margin-bottom: 24px; }
+
+  .arc-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 6px;
+  }
+
+  .arc-desc {
+    font-size: 0.93rem;
+    color: #444;
+    margin-bottom: 4px;
+  }
+
+  .arc-count {
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+    color: #888;
+  }
+
+  /* ── BOOKS ── */
+  .book-list { list-style: none; }
+
+  .book-list li {
+    margin-bottom: 14px;
+    font-size: 0.97rem;
+  }
+
+  .book-title {
+    font-style: italic;
+    color: #111;
+  }
+
+  .book-status {
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+    color: #888;
+    margin-left: 6px;
+  }
+
+  /* ── TEACHING ── */
+  .teach-block { margin-bottom: 20px; }
+
+  .teach-inst {
+    font-size: 0.97rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 6px;
+  }
+
+  .teach-list { list-style: none; }
+
+  .teach-list li {
+    font-size: 0.93rem;
+    color: #444;
+    margin-bottom: 4px;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .teach-list li::before {
+    content: '–';
+    position: absolute; left: 0;
+    color: #aaa;
+  }
+
+  /* ── AWARDS ── */
+  .award-list { list-style: none; }
+
+  .award-list li {
+    font-size: 0.93rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .award-list li::before {
+    content: '–';
+    position: absolute; left: 0;
+    color: #aaa;
+  }
+
+  .award-year {
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+    color: #888;
+    margin-left: 6px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-block {
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  .contact-block p { margin-bottom: 6px; }
+
+  .contact-block a {
+    color: #333;
+    text-decoration: underline;
+  }
+
+  .contact-block a:hover { color: #000; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 72px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    color: #aaa;
+  }
+
+  @media (max-width: 560px) {
+    .header { flex-direction: column; }
+    .header img { width: 100px; height: 124px; }
+    body { padding: 36px 18px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img src="profile.jpg" alt="Toronata Tambun">
+  <div class="header-text">
+    <h1>A.R.Y. Toronata Tambun</h1>
+    <div class="nav">
+      <a href="#publications">Publications</a>
+      <a href="#columns">Columns</a>
+      <a href="#books">Books</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact">Contact</a>
+      <a href="https://linkedin.com/in/toronatatambun" target="_blank">CV</a>
+      <a href="https://linkedin.com/in/toronatatambun" target="_blank">LinkedIn</a>
+      <a href="https://muckrack.com/toronata-tambun-1/portfolio" target="_blank">Jakarta Post Archive</a>
+    </div>
+  </div>
+</div>
+
+<!-- BIO -->
+<div class="bio">
+  <p>
+    I am Executive Director of <a href="https://yayasanmensetmanus.org" target="_blank">Yayasan Mens et Manus</a>, a Jakarta-based foundation committed to unlocking Indonesia's regional economic potential through innovation and entrepreneurship. I am also Founder and Director of <a href="#">Aren Energy Investment Pte Ltd</a>, a corporate-backed, university-based accelerator in Singapore.
+  </p>
+  <p>
+    I completed my Doctor of Philosophy in Science in Management at <a href="https://www.itb.ac.id" target="_blank">Institut Teknologi Bandung</a> (2023–2026) — summa cum laude, 4.0, minimum period, Best Student award. My doctoral theory — the <em>Dynamic Feedback Theory of Entrepreneurial Formation in Loss-Averse, Short-Horizon Cultures</em> — explains why innovation ecosystems in Indonesia fail not from resource scarcity, but from suppressed feedback loops, cultural risk-aversion, and institutional conformity.
+  </p>
+  <p>
+    I bring over 24 years of executive experience in the oil and gas sector, including assignments across 52 countries. Thirteen of those years were spent with Schlumberger, where I held regional and global roles spanning operations, technology deployment, and organizational leadership.
+  </p>
+  <p>
+    I am an Industrial Lecturer at <a href="https://www.itb.ac.id" target="_blank">STEI-ITB</a> (course EL-4244, Technology-Based Entrepreneurship, 2022–present) and an NIDK Lecturer at the Faculty of Agriculture, <a href="https://www.ugm.ac.id" target="_blank">Universitas Gadjah Mada</a> (Communication and Entrepreneurship, 2023–present). I am a member of the <a href="https://hbr.org" target="_blank">Harvard Business Review Advisory Council</a> and an MIT En-Roads Climate Simulation Ambassador.
+  </p>
+  <p>
+    I am available for board advisory, research collaboration, and speaking engagements. I am Manadonese — from North Sulawesi, Indonesia. I am based across Jakarta, Singapore, and Bandung.
+  </p>
+</div>
+
+<!-- PUBLICATIONS -->
+<h2 id="publications">Publications</h2>
+
+<h3>Scopus-Indexed (Q2)</h3>
+<ul class="pub-list">
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.1007/s13158-025-00449-x" target="_blank">Neural Development in Early Childhood and the Emergence of Moral Cognition: A Developmental Perspective</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>International Journal of Early Childhood</em>, 2025. Springer Nature.</div>
+    <div class="pub-note">Scopus Q2 · Part of doctoral research programme, ITB — Best Student Award 2024, Ganesa Widya Jasa Utama 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.1007/s41959-025-00153-w" target="_blank">Assessing Entrepreneurial Proneness in University-Based Accelerator Programs: A Five-Year Study Across 16 Programs</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Entrepreneurship Education</em>, 8, 533–584, 2025. Springer Nature.</div>
+    <div class="pub-note">Scopus Q2 · Five-year empirical study across 16 accelerator programs.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.3390/systems13050351" target="_blank">Mapping Workplace Inclusion in Hierarchical Collectivist Societies: A Causal Loop Diagram Approach</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Systems</em>, 13(5), 351, 2025. MDPI/Scopus.</div>
+    <div class="pub-note">Scopus Q2 · Applies causal loop diagram methodology to hierarchical collectivist workplace settings.</div>
+  </li>
+</ul>
+
+<h3>Conference Proceedings</h3>
+<ul class="pub-list">
+  <li>
+    <div class="pub-title">Exploring Shared Values in Innovation and Tourism: A Case Study Approach from Japan, Norway, and Vietnam</div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Proceedings of the 2023 MAG Scholar Conference in Business, Marketing & Tourism</em>, 198–198. Keynote Speaker.</div>
+  </li>
+</ul>
+
+<h3>EBSCO / Crossref / DOAJ</h3>
+<ul class="pub-list">
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.30560/hssr.v7n3p23" target="_blank">A Comparative Analysis of Twelve Research Paradigms Across Six Knowledge Acquisitions and Twelve Sources of Knowledge: A Philosophical Discourse</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Humanities and Social Science Research</em>, 7(3), 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.29034/ijmra.v16n2a1" target="_blank">Qual-Quant-Quant/Qual-Qual Mixed Method: Autoethnography in Building System Dynamics' Causal Loop Diagram</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>International Journal of Multiple Research Approaches</em>, 16(2), 132–154, 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.24940/theijbm/2024/v12/i7/BM2407-001" target="_blank">Evaluating the Impact of Disciplined Storytelling on Student Communication Skills: Integrating Cultural Sensitivities in Educational Interventions</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>The International Journal of Business & Management</em>, 12(7), 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.24940/ijird/2024/v13/i11/NOV24006" target="_blank">Neuroticism Levels among Entrepreneurial Students in University-Based Accelerator Programs at Selected Indonesian Institutions</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>International Journal of Innovation Research & Development</em>, 13(11), 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.internationaljournalcorner.com/index.php/theijbm/article/view/173910" target="_blank">The Cognitive Costs of Multitasking: A Critical Examination of Its Impacts on Learning, Brain Structure, and Long-Term Cognitive Function</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>The International Journal of Business & Management</em>, 12(9), 2024.</div>
+  </li>
+</ul>
+
+<h3>Elsevier eJournals (SSRN)</h3>
+<ul class="pub-list">
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5486526" target="_blank">Constructing Entrepreneurial Identity in Indonesia: Cultural Constraints, Hybrid Pathways, and the Challenge for Multicultural Education</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Entrepreneurship, Innovation, and Growth eJournal</em>, 20(112), 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5480767" target="_blank">Motivating Entrepreneur Educators: A Simulation-Based Approach to Faculty Evaluation and Role Alignment</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Entrepreneurship, Innovation, and Growth eJournal</em>, 20(111), 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5539458" target="_blank">Quantifying Retention Across Pedagogical Combinations in University-Based Entrepreneurship Accelerators: A Simulation-Based Evaluation</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Entrepreneurship, Innovation, and Growth Journal</em>, 20(117), 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5480786" target="_blank">The Insult Cascade: Elite Contempt, Neural Fragility, and Collective Disorder</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Political Behavior: Cognition, Psychology, and Behavior eJournal</em>, 18(74), 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5403675" target="_blank">Strategy and Innovation in AI Oversight: Fiduciary Duties of Banking Boards</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>SSRN Electronic Journal</em>, 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5495278" target="_blank">Theory-Tiered Literature Review: A Pragmatist Method for Structuring Research Design in Entrepreneurial Ecosystem Studies</a></div>
+    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>SSRN Electronic Journal</em>, 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5554199" target="_blank">We Built It Anyway: Autoethnographic Reflections on Innovation, Risk, and Institutional Apathy</a></div>
+    <div class="pub-meta"><em>SSRN Electronic Journal</em>, 2024.</div>
+  </li>
+</ul>
+
+<h3>Sinta-Indexed</h3>
+<ul class="pub-list">
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.21776/ub.apmba.2023.012.02.1" target="_blank">Value Driven Growth Mindset and Value Driven Fixed Mindset?</a></div>
+    <div class="pub-meta">With D. W. Irawanto. <em>Asia Pacific Management and Business Application</em>, 12(2), 137–142, 2023.</div>
+  </li>
+</ul>
+
+<!-- COLUMNS -->
+<h2 id="columns">Jakarta Post Columns</h2>
+
+<p style="font-size:0.95rem; color:#444; margin-bottom:20px;">
+  76 published opinion columns in <em>The Jakarta Post</em> (2014–present). Full archive: <a href="https://muckrack.com/toronata-tambun-1/portfolio" target="_blank">Muckrack Portfolio</a>.
+</p>
+
+<ul class="pub-list">
+  <li>
+    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/07/03/innovation-paradox-when-the-loop-fails-before-it-begins.html" target="_blank">Innovation Paradox: When the Loop Fails Before It Begins</a></div>
+    <div class="pub-meta"><em>The Jakarta Post</em>, July 3, 2025. With L. Aldianto.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/10/03/faith-and-corruption-why-morality-starts-in-early-childhood.html" target="_blank">Faith and Corruption: Why Morality Starts in Early Childhood</a></div>
+    <div class="pub-meta"><em>The Jakarta Post</em>, October 3, 2025. With N. Munir.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/12/10/ai-is-not-the-risk-our-habits-are.html" target="_blank">AI Is Not the Risk. Our Habits Are.</a></div>
+    <div class="pub-meta"><em>The Jakarta Post</em>, December 10, 2025. With J. Kallman.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/12/20/why-the-usual-approach-to-corruption-keeps-failing.html" target="_blank">Why the Usual Approach to Corruption Keeps Failing</a></div>
+    <div class="pub-meta"><em>The Jakarta Post</em>, December 20, 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2024/11/16/mits-blueprint-and-indonesias-cultural-challenges-to-achieve-the-2045-vision.html" target="_blank">MIT's Blueprint and Indonesia's Cultural Challenges to Achieve the 2045 Vision</a></div>
+    <div class="pub-meta"><em>The Jakarta Post</em>, November 16, 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/01/18/can-indonesia-thrive-when-meritocracy-is-under-threat.html" target="_blank">Can Indonesia Thrive When Meritocracy Is Under Threat?</a></div>
+    <div class="pub-meta"><em>The Jakarta Post</em>, January 18, 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2023/10/28/meritocracy-is-key-to-democracy-national-unity.html" target="_blank">Meritocracy Is Key to Democracy, National Unity</a></div>
+    <div class="pub-meta"><em>The Jakarta Post</em>, October 28, 2023.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/11/15/why-enterprise-struggles-in-a-nation-that-rewards-titles.html" target="_blank">Why Enterprise Struggles in a Nation That Rewards Titles</a></div>
+    <div class="pub-meta"><em>The Jakarta Post</em>, November 15, 2025.</div>
+  </li>
+</ul>
+<p style="font-size:0.88rem; color:#888; margin-top:8px; font-family:Arial,sans-serif;">Selected columns shown. <a href="https://muckrack.com/toronata-tambun-1/portfolio" target="_blank">Full archive on Muckrack →</a></p>
+
+<!-- BOOKS -->
+<h2 id="books">Books</h2>
+
+<ul class="book-list">
+  <li>
+    <span class="book-title">Disciplined Storytelling?: Manual for Teaching Communications to Introvert and Extrovert, Co-Learning with My Students</span><br>
+    <span class="book-status">Kindle Direct Publishing, 2024. ISBN 979-8-3208-4195-3</span>
+  </li>
+  <li>
+    <span class="book-title">Pre-Summit Clarity: Understanding the Research Journey through Saunders' Onion (Do The Right Thing Right In the First Time: Philosophy, Research Philosophy, Science and Its Research Methodology)</span><br>
+    <span class="book-status">Kindle Direct Publishing, 2023. ISBN 979-8867984533</span>
+  </li>
+  <li>
+    <span class="book-title">Exploring Shared Values in Innovation — A Case Study Approach in Japan, Norway, and Vietnam: Applying Edgar Schein's Framework</span><br>
+    <span class="book-status">Kindle Direct Publishing, 2023. ASIN B0CNK693T4</span>
+  </li>
+</ul>
+
+<!-- TEACHING -->
+<h2 id="teaching">Teaching</h2>
+
+<div class="teach-block">
+  <div class="teach-inst">Institut Teknologi Bandung (STEI-ITB)</div>
+  <ul class="teach-list">
+    <li><strong>Technology-Based Entrepreneurship</strong> (EL-4244) — Lecturer from Industry, 2022–present</li>
+    <li>Recipient of Ganesa Widya Jasa Utama — ITB's highest external contributor award, July 2025</li>
+  </ul>
+</div>
+
+<div class="teach-block">
+  <div class="teach-inst">Universitas Gadjah Mada — Faculty of Agriculture</div>
+  <ul class="teach-list">
+    <li><strong>Communication and Entrepreneurship</strong> — NIDK Lecturer, 2023–present</li>
+  </ul>
+</div>
+
+<div class="teach-block">
+  <div class="teach-inst">MIT En-Roads Climate Simulation</div>
+  <ul class="teach-list">
+    <li>Ambassador — workshops in Morocco, Vietnam, China, Singapore, Jakarta, Bandung, Yogyakarta (2020–present)</li>
+  </ul>
+</div>
+
+<!-- AWARDS -->
+<h2 id="awards">Awards & Recognition</h2>
+
+<ul class="award-list">
+  <li>
+    Best Student Award — Doctor of Philosophy in Science in Management, SBM-ITB Jakarta
+    <span class="award-year">2024</span>
+  </li>
+  <li>
+    Ganesa Widya Jasa Utama — ITB's highest award for external contributors
+    <span class="award-year">July 2025</span>
+  </li>
+  <li>
+    Harvard Business Review Advisory Council — Member
+    <span class="award-year">2024–present</span>
+  </li>
+  <li>
+    Best Foreign Employee of the Year — BGP President's Award, BGP Marine CNPC, Tianjin
+    <span class="award-year">2007–2017 period</span>
+  </li>
+  <li>
+    2 Million Free LTI Man-Hours Safety Award — PT Schlumberger Geophysics Nusantara
+    <span class="award-year">1994–2007 period</span>
+  </li>
+  <li>
+    National Seriosa Classical Singing Champion — Juara I, DI Yogyakarta & national level
+    <span class="award-year">1989–1991</span>
+  </li>
+  <li>
+    National Science Writing Contest Finalist — age 17
+    <span class="award-year">1987</span>
+  </li>
+</ul>
+
+<!-- CONTACT -->
+<h2 id="contact">Contact</h2>
+
+<div class="contact-block">
+  <p>Email: <a href="/cdn-cgi/l/email-protection#71051e031e05101c13041f31101d041c1f185f191003071003155f141504"><span class="__cf_email__" data-cfemail="9eeaf1ecf1eafff3fcebf0defff2ebf3f0f7b0f6ffece8ffecfab0fbfaeb">[email&#160;protected]</span></a></p>
+  <p>LinkedIn: <a href="https://linkedin.com/in/toronatatambun" target="_blank">linkedin.com/in/toronatatambun</a></p>
+  <p>Jakarta Post Archive: <a href="https://muckrack.com/toronata-tambun-1/portfolio" target="_blank">Muckrack Portfolio</a></p>
+  <p>Foundation: <a href="https://yayasanmensetmanus.org" target="_blank">Yayasan Mens et Manus</a></p>
+</div>
+
+<!-- FOOTER -->
+<
