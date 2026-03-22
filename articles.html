@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Articles — Dr. A.R.Y. Toronata Tambun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:      #1a1a2e;
+      --muted:    #5a5a7a;
+      --accent:   #c8a96e;
+      --accent2:  #0f4c81;
+      --bg:       #faf9f6;
+      --surface:  #ffffff;
+      --border:   #e8e4dc;
+      --hover-bg: #f5f0e8;
+      --radius:   4px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    header {
+      background: var(--accent2);
+      color: #fff;
+      padding: 48px 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(200,169,110,0.15);
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 20%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(200,169,110,0.08);
+      pointer-events: none;
+    }
+    .back-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    .back-link:hover { opacity: 1; text-decoration: underline; }
+    header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    header .subtitle {
+      font-size: 15px;
+      opacity: 0.75;
+      font-weight: 300;
+      font-style: italic;
+    }
+    .article-count {
+      display: inline-block;
+      margin-top: 20px;
+      background: rgba(200,169,110,0.25);
+      border: 1px solid rgba(200,169,110,0.4);
+      color: var(--accent);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+    .controls {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 12px; top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    #search {
+      width: 100%;
+      padding: 10px 16px 10px 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #search:focus { border-color: var(--accent2); }
+    #year-filter {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--ink);
+      outline: none;
+      cursor: pointer;
+    }
+    #result-count {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+      font-style: italic;
+    }
+    .table-wrap {
+      padding: 32px 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 16px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--accent);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:hover { background: var(--hover-bg); }
+    tbody tr.hidden { display: none; }
+    td { padding: 14px 16px; vertical-align: top; }
+    .date-col {
+      white-space: nowrap;
+      font-size: 13px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      width: 120px;
+      padding-top: 16px;
+    }
+    .title-col { font-size: 15px; line-height: 1.5; }
+    .title-col a {
+      color: var(--accent2);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .title-col a:hover { color: var(--accent); text-decoration: underline; }
+    #no-results {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    @media (max-width: 600px) {
+      header, .controls, .table-wrap { padding-left: 20px; padding-right: 20px; }
+      .date-col { width: 90px; font-size: 12px; }
+      .title-col { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="back-link" href="https://torotambun.github.io">← Back to CV</a>
+  <h1>LinkedIn Articles</h1>
+  <p class="subtitle">Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Published 2017–2026</p>
+  <span class="article-count">304 articles</span>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="search" placeholder="Search by keyword, title, topic…" autocomplete="off">
+  </div>
+  <select id="year-filter">
+    <option value="">All years</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+  </select>
+  <span id="result-count">304 articles</span>
+</div>
+
+<div class="table-wrap">
+  <table id="articles-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr data-title="structure before language: why i start my academic english course with mind mapping" data-year="2026">
+          <td class="date-col">2026-03-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/structure-before-language-why-i-start-my-academic-english-tambun-gd1sc" target="_blank" rel="noopener">Structure Before Language: Why I Start My Academic English Course with Mind Mapping</a></td>
+        </tr>
+        <tr data-title="why i stayed with en-roads" data-year="2026">
+          <td class="date-col">2026-02-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/why-i-stayed-en-roads-toronata-tambun-dstxc" target="_blank" rel="noopener">Why I Stayed with En-ROADS</a></td>
+        </tr>
+        <tr data-title="for lifelong learners. not everything called a “theory” is one" data-year="2026">
+          <td class="date-col">2026-01-31</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/lifelong-learners-everything-called-theory-one-toronata-tambun-g98qc" target="_blank" rel="noopener">For Lifelong Learners. Not Everything Called a “Theory” Is One</a></td>
+        </tr>
+        <tr data-title="a self-note before the defense: on generalizability, positivist reflexes, and a basic misunderstanding of auto-ethnography" data-year="2026">
+          <td class="date-col">2026-01-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/self-note-before-defense-generalizability-positivist-reflexes-tambun-tlltc" target="_blank" rel="noopener">A self-note before the defense: On generalizability, positivist reflexes, and a basic misunderstanding of auto-ethnography</a></td>
+        </tr>
+        <tr data-title="making the analytical spine visible earlier" data-year="2026">
+          <td class="date-col">2026-01-01</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/making-analytical-spine-visible-earlier-toronata-tambun-zvfrc" target="_blank" rel="noopener">Making the Analytical Spine Visible Earlier</a></td>
+        </tr>
+        <tr data-title="singapore’s ai push shows that systems, not hardware, decide outcomes" data-year="2025">
+          <td class="date-col">2025-12-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/singapores-ai-push-shows-systems-hardware-decide-outcomes-tambun-6j1vc" target="_blank" rel="noopener">Singapore’s AI Push Shows That Systems, Not Hardware, Decide Outcomes</a></td>
+        </tr>
+        <tr data-title="when universities prioritize buildings over capability, the system pays" data-year="2025">
+          <td class="date-col">2025-12-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/when-universities-prioritize-buildings-over-system-pays-tambun-6cecc" target="_blank" rel="noopener">When Universities Prioritize Buildings Over Capability, the System Pays</a></td>
+        </tr>
+        <tr data-title="part iii – the quiet resistance" data-year="2025">
+          <td class="date-col">2025-11-14</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/part-iii-quiet-resistance-toronata-tambun-uqwsc" target="_blank" rel="noopener">Part III – The Quiet Resistance</a></td>
+        </tr>
+        <tr data-title="beyond survival" data-year="2025">
+          <td class="date-col">2025-11-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/beyond-survival-toronata-tambun-hkzmc" target="_blank" rel="noopener">Beyond Survival</a></td>
+        </tr>
+        <tr data-title="the fast life and the quiet truth" data-year="2025">
+          <td class="date-col">2025-11-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/fast-life-quiet-truth-toronata-tambun-pp3tc" target="_blank" rel="noopener">The Fast Life and The Quiet Truth</a></td>
+        </tr>
+        <tr data-title="early childhood exposure in focus: when an interview becomes a learning journey" data-year="2025">
+          <td class="date-col">2025-09-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/early-childhood-exposure-focus-when-interview-becomes-toronata-tambun-81nrc" target="_blank" rel="noopener">Early Childhood Exposure in Focus: When an Interview Becomes a Learning Journey</a></td>
+        </tr>
+        <tr data-title="🇮🇩 eighty years of independence" data-year="2025">
+          <td class="date-col">2025-08-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/eighty-years-independence-toronata-tambun-hxltc" target="_blank" rel="noopener">🇮🇩 Eighty Years of Independence</a></td>
+        </tr>
+        <tr data-title="using en-road simulation to see whether a corporate innovation initiative can be a savior  to bring the country to the &quot;richest&quot;?" data-year="2025">
+          <td class="date-col">2025-08-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/using-en-road-simulation-see-whether-corporate-can-savior-tambun-jrwrc" target="_blank" rel="noopener">Using En-Road Simulation to see whether a corporate innovation initiative can be a savior  to bring the country to the "richest"?</a></td>
+        </tr>
+        <tr data-title="managing the unready: technology, dependency, and the illusion of progress in indonesia[1][2][3]" data-year="2025">
+          <td class="date-col">2025-08-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/managing-unready-technology-dependency-illusion-progress-tambun-qgusc" target="_blank" rel="noopener">Managing the Unready: Technology, Dependency, and the Illusion of Progress in Indonesia[1][2][3]</a></td>
+        </tr>
+        <tr data-title="you never know the outcome: by the mercy of the scopus gods (small g)" data-year="2025">
+          <td class="date-col">2025-07-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/you-never-know-outcome-mercy-scopus-gods-small-g-toronata-tambun-bdbmc" target="_blank" rel="noopener">You Never Know the Outcome: By the Mercy of the Scopus gods (small g)</a></td>
+        </tr>
+        <tr data-title="sacrifice and ritual were never about performance. they were about grace." data-year="2025">
+          <td class="date-col">2025-07-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/sacrifice-ritual-were-never-performance-grace-toronata-tambun-b2hgc" target="_blank" rel="noopener">Sacrifice and Ritual Were Never About Performance. They Were About Grace.</a></td>
+        </tr>
+        <tr data-title="how many times can you say the same thing before it’s clear you never meant it?" data-year="2025">
+          <td class="date-col">2025-07-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/how-many-times-can-you-say-same-thing-before-its-clear-tambun-h0ybc" target="_blank" rel="noopener">How Many Times Can You Say the Same Thing Before It’s Clear You Never Meant It?</a></td>
+        </tr>
+        <tr data-title="a reflection of psalm 69: facing rejections in scopus race" data-year="2025">
+          <td class="date-col">2025-07-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/i-still-count-rejection-prayer-search-meaning-toronata-tambun-j9qhc" target="_blank" rel="noopener">A Reflection of Psalm 69: Facing Rejections in Scopus Race</a></td>
+        </tr>
+        <tr data-title="fall in love with the problem, listening and primary market research: biblical roots perhaps?" data-year="2025">
+          <td class="date-col">2025-06-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/fall-love-problem-listening-primary-market-research-biblical-tambun-spq7c" target="_blank" rel="noopener">Fall in Love with the Problem, Listening and Primary Market Research: Biblical Roots Perhaps?</a></td>
+        </tr>
+        <tr data-title="innovation requires commercialization: schumpeter, roberts, and indonesian law are unambiguous" data-year="2025">
+          <td class="date-col">2025-06-18</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/innovation-requires-commercialization-schumpeter-roberts-tambun-eyetc" target="_blank" rel="noopener">Innovation Requires Commercialization: Schumpeter, Roberts, and Indonesian Law Are Unambiguous</a></td>
+        </tr>
+        <tr data-title="even the raven: when god sends what you don’t like" data-year="2025">
+          <td class="date-col">2025-06-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/even-raven-when-god-sends-what-you-dont-like-toronata-tambun-d9vlc" target="_blank" rel="noopener">Even the Raven: When God Sends What You Don’t Like</a></td>
+        </tr>
+        <tr data-title="when the loop fails before it begins: culture, feedback, and the inhibition of innovation ecosystems" data-year="2025">
+          <td class="date-col">2025-06-15</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/when-loop-fails-before-begins-culture-feedback-toronata-tambun-cq5zc" target="_blank" rel="noopener">When the Loop Fails Before It Begins: Culture, Feedback, and the Inhibition of Innovation Ecosystems</a></td>
+        </tr>
+        <tr data-title="when internships become a detour instead of a bridge" data-year="2025">
+          <td class="date-col">2025-06-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/when-internships-become-detour-instead-bridge-toronata-tambun-gqayc" target="_blank" rel="noopener">When Internships Become a Detour Instead of a Bridge</a></td>
+        </tr>
+        <tr data-title="the deception of fame" data-year="2025">
+          <td class="date-col">2025-06-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/deception-fame-toronata-tambun-eramc" target="_blank" rel="noopener">The Deception of Fame</a></td>
+        </tr>
+        <tr data-title="integrity in ambition: questioning the ethics of funding" data-year="2025">
+          <td class="date-col">2025-06-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/integrity-ambition-questioning-ethics-funding-toronata-tambun-pgwxc" target="_blank" rel="noopener">Integrity in Ambition: Questioning the Ethics of Funding</a></td>
+        </tr>
+        <tr data-title="when the road narrows: paul, sun tzu, and the ethics that don’t flinch" data-year="2025">
+          <td class="date-col">2025-06-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/when-road-narrows-paul-sun-tzu-ethics-dont-flinch-toronata-tambun-z9cdc" target="_blank" rel="noopener">When the Road Narrows: Paul, Sun Tzu, and the Ethics That Don’t Flinch</a></td>
+        </tr>
+        <tr data-title="“why are you still looking up?” – a midrashic homiletic on the ascension of christ for vocational witness" data-year="2025">
+          <td class="date-col">2025-05-30</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/why-you-still-looking-up-midrashic-homiletic-ascension-tambun-xvjic" target="_blank" rel="noopener">“Why Are You Still Looking Up?” – A Midrashic Homiletic on the Ascension of Christ for Vocational Witness</a></td>
+        </tr>
+        <tr data-title="what the world is now discovering—indonesia already understood" data-year="2025">
+          <td class="date-col">2025-05-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/what-world-now-discoveringindonesia-already-toronata-tambun-up25c" target="_blank" rel="noopener">What the World Is Now Discovering—Indonesia Already Understood</a></td>
+        </tr>
+        <tr data-title="when you feel left behind: rediscovering the strength of trusting the unseen" data-year="2025">
+          <td class="date-col">2025-04-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/when-you-feel-left-behind-rediscovering-power-let-others-tambun-2lvac" target="_blank" rel="noopener">When You Feel Left Behind: Rediscovering the Strength of Trusting the Unseen</a></td>
+        </tr>
+        <tr data-title="mid-term directive el-4062: reflective assessment on entrepreneurial retention and market research" data-year="2025">
+          <td class="date-col">2025-04-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mid-term-directive-el-4062-reflective-assessment-retention-tambun-yqh1c" target="_blank" rel="noopener">Mid-Term Directive EL-4062: Reflective Assessment on Entrepreneurial Retention and Market Research</a></td>
+        </tr>
+        <tr data-title="the empty tomb and the full life: what still rises today" data-year="2025">
+          <td class="date-col">2025-04-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/empty-tomb-full-life-what-still-rises-today-toronata-tambun-lmmwc" target="_blank" rel="noopener">The Empty Tomb and the Full Life: What Still Rises Today</a></td>
+        </tr>
+        <tr data-title="the courage to love wastefully: a good friday reflection" data-year="2025">
+          <td class="date-col">2025-04-18</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/love-stays-poetic-rendering-john-spongs-good-friday-sermon-tambun-iiq6c" target="_blank" rel="noopener">The Courage to Love Wastefully: A Good Friday Reflection</a></td>
+        </tr>
+        <tr data-title="why does this story still live while empires collapse?" data-year="2025">
+          <td class="date-col">2025-04-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/why-does-story-still-live-while-empires-collapse-toronata-tambun-gjz6c" target="_blank" rel="noopener">Why does this story still live while empires collapse?</a></td>
+        </tr>
+        <tr data-title="(5 of 5) hallowed be thy name" data-year="2025">
+          <td class="date-col">2025-04-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/4-5-hallowed-thy-name-toronata-tambun-vldac" target="_blank" rel="noopener">(5 of 5) Hallowed Be Thy Name</a></td>
+        </tr>
+        <tr data-title="(3 of 5) abba and disruption: one word that redefined access at infinite cost" data-year="2025">
+          <td class="date-col">2025-04-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/abba-disruption-one-word-redefined-access-infinite-cost-tambun-0nbsc" target="_blank" rel="noopener">(3 of 5) Abba and Disruption: One Word That Redefined Access at Infinite Cost</a></td>
+        </tr>
+        <tr data-title="(2 of 5) why the brain returns to ritual – a series: why i borrow the ancient prayer?" data-year="2025">
+          <td class="date-col">2025-04-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/why-i-borrow-ancient-prayer-toronata-tambun-zuwnf" target="_blank" rel="noopener">(2 of 5) Why the Brain Returns to Ritual – A Series: Why I borrow the ancient prayer?</a></td>
+        </tr>
+        <tr data-title="(4 of 5) not of this world, yet near: the phenomenon of &#39;who is in the heavens&#39;" data-year="2025">
+          <td class="date-col">2025-04-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/world-yet-near-phenomenon-who-heavens-toronata-tambun-plwdc" target="_blank" rel="noopener">(4 of 5) Not of This World, Yet Near: The Phenomenon of 'Who Is in the Heavens'</a></td>
+        </tr>
+        <tr data-title="after action report (aar) manual" data-year="2025">
+          <td class="date-col">2025-04-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/after-action-report-aar-manual-toronata-tambun-vptvc" target="_blank" rel="noopener">After Action Report (AAR) Manual</a></td>
+        </tr>
+        <tr data-title="choosing your beachhead: ideas are cheap, paying customers are gold, execution wins the ground" data-year="2025">
+          <td class="date-col">2025-04-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/choosing-your-beachhead-ideas-cheap-paying-customers-gold-tambun-4axtc" target="_blank" rel="noopener">Choosing Your Beachhead: Ideas Are Cheap, Paying Customers Are Gold, Execution Wins the Ground</a></td>
+        </tr>
+        <tr data-title="peer assessment in hierarchical, high-context classrooms" data-year="2025">
+          <td class="date-col">2025-04-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/why-peer-assessment-among-young-students-often-failsand-tambun-4kjnc" target="_blank" rel="noopener">Peer Assessment in Hierarchical, High-Context Classrooms</a></td>
+        </tr>
+        <tr data-title="(3 of 3) owning the moment when the system corrupts: a call to walk with moral clarity" data-year="2025">
+          <td class="date-col">2025-04-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/owning-moment-when-system-corrupts-call-walk-moral-clarity-tambun-sc3lc" target="_blank" rel="noopener">(3 of 3) Owning the Moment When the System Corrupts: A Call to Walk with Moral Clarity</a></td>
+        </tr>
+        <tr data-title="(1 of 2) neuroscience, and mindfulness: rewiring the adult brain" data-year="2025">
+          <td class="date-col">2025-04-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/1-2-neuroscience-mindfulness-rewiring-adult-brain-toronata-tambun-mgkyc" target="_blank" rel="noopener">(1 of 2) Neuroscience, and Mindfulness: Rewiring the Adult Brain</a></td>
+        </tr>
+        <tr data-title="(2 of 2) entrenched pathways, renewed hearts: neuroscience, pauline grace, and the limits of self-change" data-year="2025">
+          <td class="date-col">2025-04-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/2-entrenched-pathways-renewed-hearts-neuroscience-pauline-tambun-fz90c" target="_blank" rel="noopener">(2 of 2) Entrenched Pathways, Renewed Hearts: Neuroscience, Pauline Grace, and the Limits of Self-Change</a></td>
+        </tr>
+        <tr data-title="(2 of 3) what sacred texts say about corruption—for those who begin with religion as their framework" data-year="2025">
+          <td class="date-col">2025-04-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/what-sacred-texts-say-corruptionfor-those-who-begin-religion-tambun-k41fc" target="_blank" rel="noopener">(2 of 3) What Sacred Texts Say About Corruption—for Those Who Begin with Religion as Their Framework</a></td>
+        </tr>
+        <tr data-title="(3 of 5 part 2) philosophy &quot;desktop&quot; exercise: &quot;i wish i could return to our childhood?&quot;" data-year="2025">
+          <td class="date-col">2025-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/2-3-part-philosophy-desktop-exercise-can-we-return-our-tambun-q4lyc" target="_blank" rel="noopener">(3 of 5 Part 2) Philosophy "desktop" exercise: "I wish I could return to our childhood?"</a></td>
+        </tr>
+        <tr data-title="(4 of 5) “can we return to childhood?” - borrowing theology as one of six knowledge acquisitions to answer" data-year="2025">
+          <td class="date-col">2025-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/4-can-we-return-childhood-borrowing-theology-knowledge-tambun-ihn2c" target="_blank" rel="noopener">(4 of 5) “Can we return to childhood?” - Borrowing theology as one of Six Knowledge Acquisitions to answer</a></td>
+        </tr>
+        <tr data-title="(5 of 5) reference lakon:  mandaraka without wind - the reign of prabu jarasandha" data-year="2025">
+          <td class="date-col">2025-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/5-reference-lakon-mandaraka-without-wind-reign-prabu-tambun-eonnc" target="_blank" rel="noopener">(5 of 5) Reference Lakon:  Mandaraka Without Wind - The Reign of Prabu Jarasandha</a></td>
+        </tr>
+        <tr data-title="(3 of 5 part 1) to wish to return to childhood: a philosophical reckoning" data-year="2025">
+          <td class="date-col">2025-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/wish-return-childhood-philosophical-reckoning-toronata-tambun-h7quc" target="_blank" rel="noopener">(3 of 5 Part 1) To Wish to Return to Childhood: A Philosophical Reckoning</a></td>
+        </tr>
+        <tr data-title="(1 of 5) can we go back: a journey through time, entropy, and meaning" data-year="2025">
+          <td class="date-col">2025-03-25</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/1-3-journey-through-time-entropy-meaning-toronata-tambun-heztc" target="_blank" rel="noopener">(1 of 5) Can we go back: A Journey Through Time, Entropy, and Meaning</a></td>
+        </tr>
+        <tr data-title="(2 of 5) reversing time: a technical return to entropy, arrows, and memory" data-year="2025">
+          <td class="date-col">2025-03-25</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/article-2-technical-reversing-time-return-entropy-arrows-tambun-socuc" target="_blank" rel="noopener">(2 of 5) Reversing Time: A Technical Return to Entropy, Arrows, and Memory</a></td>
+        </tr>
+        <tr data-title="why climate simulation in an entrepreneurship class?" data-year="2025">
+          <td class="date-col">2025-03-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/why-climate-simulation-entrepreneurship-class-toronata-tambun-5a7kc" target="_blank" rel="noopener">Why Climate Simulation in an Entrepreneurship Class?</a></td>
+        </tr>
+        <tr data-title="(1 of 5) “give us this day our daily bread” - reminder from eli sharabi&#39;s fridge allegory" data-year="2025">
+          <td class="date-col">2025-03-23</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/give-us-day-our-daily-bread-personal-interpretation-toronata-tambun-c8fac" target="_blank" rel="noopener">(1 of 5) “Give Us This Day Our Daily Bread” - Reminder from Eli Sharabi's Fridge Allegory</a></td>
+        </tr>
+        <tr data-title="(1 of 3) religion is not to blame. moral void behind ritual obedience, perhaps?" data-year="2025">
+          <td class="date-col">2025-03-23</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/primitive-roots-modern-masks-why-religiosity-doesnt-guarantee-tambun-p9nqc" target="_blank" rel="noopener">(1 of 3) Religion Is Not to Blame. Moral Void Behind Ritual Obedience, Perhaps?</a></td>
+        </tr>
+        <tr data-title="(4 of 6) purim: venahafoch hu (וְנַהֲפוֹךְ הוּא) – the reversal of destiny" data-year="2025">
+          <td class="date-col">2025-03-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/4-6-purim-venahafoch-hu-%D7%95%D7%A0%D7%94%D7%A4%D7%95%D7%9A-%D7%94%D7%95%D7%90-reversal-destiny-toronata-tambun-kpvac" target="_blank" rel="noopener">(4 of 6) Purim: Venahafoch Hu (וְנַהֲפוֹךְ הוּא) – The Reversal of Destiny</a></td>
+        </tr>
+        <tr data-title="(5 of 6) purim: favor - sought, granted, and lived" data-year="2025">
+          <td class="date-col">2025-03-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/5-6-purim-favor-sought-granted-lived-toronata-tambun-bwddc" target="_blank" rel="noopener">(5 of 6) Purim: Favor - Sought, Granted, and Lived</a></td>
+        </tr>
+        <tr data-title="(6 of 6) purim: axiology question - responsibility and weight of divine favor in the book of esther" data-year="2025">
+          <td class="date-col">2025-03-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/6-purim-axiology-question-responsibility-weight-divine-tambun-v4nec" target="_blank" rel="noopener">(6 of 6) Purim: Axiology Question - Responsibility and Weight of Divine Favor in the Book of Esther</a></td>
+        </tr>
+        <tr data-title="(1 of 6) the scroll of esther (megillah): the strength behind the silence" data-year="2025">
+          <td class="date-col">2025-03-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/1-6-scroll-esther-megillah-strength-behind-silence-toronata-tambun-96eac" target="_blank" rel="noopener">(1 of 6) The Scroll of Esther (Megillah): The Strength Behind the Silence</a></td>
+        </tr>
+        <tr data-title="(2 of 6) purim: not an overnight event - patience over 10 years!" data-year="2025">
+          <td class="date-col">2025-03-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/2-6-purim-overnight-event-patience-over-10-years-toronata-tambun-2cjzc" target="_blank" rel="noopener">(2 of 6) Purim: Not an overnight event - patience over 10 years!</a></td>
+        </tr>
+        <tr data-title="(3 of 6) purim: hiding and the four layers of concealment" data-year="2025">
+          <td class="date-col">2025-03-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/3-6-purim-hiding-four-layers-concealment-toronata-tambun-mydkc" target="_blank" rel="noopener">(3 of 6) Purim: Hiding and the Four Layers of Concealment</a></td>
+        </tr>
+        <tr data-title="(3 of 3) warranted intimacy – the speech of the chosen: encountered with philip yancey" data-year="2025">
+          <td class="date-col">2025-03-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/3-warranted-intimacy-speech-chosen-encountered-philip-toronata-tambun-falfc" target="_blank" rel="noopener">(3 of 3) Warranted Intimacy – The Speech of the Chosen: Encountered with Philip Yancey</a></td>
+        </tr>
+        <tr data-title="(2 of 3) warranted intimacy: the speech of the chosen" data-year="2025">
+          <td class="date-col">2025-03-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/2-warranted-intimacy-speech-chosen-toronata-tambun-tfu6c" target="_blank" rel="noopener">(2 of 3) Warranted Intimacy: The Speech of the Chosen</a></td>
+        </tr>
+        <tr data-title="vice president general (ret) try sutrisno: early childhood firing neuron" data-year="2025">
+          <td class="date-col">2025-03-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/meeting-vice-president-general-ret-try-sutrisno-toronata-tambun-42dhc" target="_blank" rel="noopener">Vice President General (Ret) Try Sutrisno: Early Childhood Firing Neuron</a></td>
+        </tr>
+        <tr data-title="class timeline and pmr intensive" data-year="2025">
+          <td class="date-col">2025-03-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/class-timeline-pmr-intensive-toronata-tambun-xie1c" target="_blank" rel="noopener">Class Timeline and PMR INTENSIVE</a></td>
+        </tr>
+        <tr data-title="structured weekly mentor meetings" data-year="2025">
+          <td class="date-col">2025-03-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/structured-weekly-mentor-meetings-toronata-tambun-9w5lc" target="_blank" rel="noopener">Structured Weekly Mentor Meetings</a></td>
+        </tr>
+        <tr data-title="motivational diversity in startup teams: why it matters" data-year="2025">
+          <td class="date-col">2025-03-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/motivational-diversity-startup-teams-why-matters-toronata-tambun-r7ljc" target="_blank" rel="noopener">Motivational Diversity in Startup Teams: Why It Matters</a></td>
+        </tr>
+        <tr data-title="beyond fiscal policy: structural barriers, cultural transformation, and indonesia’s economic future" data-year="2025">
+          <td class="date-col">2025-03-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/state-budget-crossroads-17-percent-amid-fiscal-cultural-tambun-yxiqc" target="_blank" rel="noopener">Beyond Fiscal Policy: Structural Barriers, Cultural Transformation, and Indonesia’s Economic Future</a></td>
+        </tr>
+        <tr data-title="what i learned from observing female students in male-dominated classes" data-year="2025">
+          <td class="date-col">2025-03-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/what-i-learned-from-observing-female-students-classes-toronata-tambun-k16xc" target="_blank" rel="noopener">What I Learned from Observing Female Students in Male-Dominated Classes</a></td>
+        </tr>
+        <tr data-title="speech, identity, and ethics: why &#39;ada apa, pak?&#39; feels off in indonesian contexts" data-year="2025">
+          <td class="date-col">2025-03-01</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/speech-identity-ethics-why-ada-apa-pak-feels-off-contexts-tambun-zvupc" target="_blank" rel="noopener">Speech, Identity, and Ethics: Why 'Ada Apa, Pak?' Feels Off in Indonesian Contexts</a></td>
+        </tr>
+        <tr data-title="alignment between el4062 objectives and student reflections: thematic analysis" data-year="2025">
+          <td class="date-col">2025-02-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/alignment-between-el4062-objectives-student-toronata-tambun-l4rec" target="_blank" rel="noopener">Alignment Between EL4062 Objectives and Student Reflections: Thematic Analysis</a></td>
+        </tr>
+        <tr data-title="7x7 speed dating el-4026 stei-itb" data-year="2025">
+          <td class="date-col">2025-02-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/7x7-speed-dating-el-4026-stei-itb-toronata-tambun-jfsxc" target="_blank" rel="noopener">7x7 Speed Dating EL-4026 STEI-ITB</a></td>
+        </tr>
+        <tr data-title="which options to choose? that is a premature question! a lot of prerequisites to deliver prior" data-year="2025">
+          <td class="date-col">2025-02-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/which-schools-choose-premature-question-lot-deliver-prior-tambun-elymc" target="_blank" rel="noopener">Which options to choose? That is a premature question! A lot of prerequisites to deliver prior</a></td>
+        </tr>
+        <tr data-title="🚀 quick guide: transcribing audio with whisper on macos" data-year="2025">
+          <td class="date-col">2025-02-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/quick-guide-transcribing-audio-whisper-macos-toronata-tambun-uv70c" target="_blank" rel="noopener">🚀 Quick Guide: Transcribing Audio with Whisper on macOS</a></td>
+        </tr>
+        <tr data-title="teaching note: the efishery case and the application of darvo in corporate crisis communication" data-year="2025">
+          <td class="date-col">2025-02-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/teaching-note-efishery-case-application-darvo-corporate-tambun-vkrqc" target="_blank" rel="noopener">Teaching Note: The eFishery Case and the Application of DARVO in Corporate Crisis Communication</a></td>
+        </tr>
+        <tr data-title="shared assumptions, espoused values, and institutional artifacts in education policy: a response to a (former) minister&#39;s keynote speech" data-year="2025">
+          <td class="date-col">2025-02-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/prioritizing-shared-assumptions-espoused-values-artifacts-tambun-f5efc" target="_blank" rel="noopener">Shared Assumptions, Espoused Values, and Institutional Artifacts in Education Policy: A Response to A (former) Minister's Keynote Speech</a></td>
+        </tr>
+        <tr data-title="using chatgpt in my classroom" data-year="2025">
+          <td class="date-col">2025-02-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/using-chatgpt-my-classroom-toronata-tambun-wbfxc" target="_blank" rel="noopener">Using ChatGPT in my classroom</a></td>
+        </tr>
+        <tr data-title="mementos from hbs gmp annual meeting: predictions for 2025" data-year="2025">
+          <td class="date-col">2025-02-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mementos-from-hbs-gmp-annual-meeting-predictions-2025-toronata-tambun-cu3pc" target="_blank" rel="noopener">Mementos from HBS GMP Annual Meeting: Predictions for 2025</a></td>
+        </tr>
+        <tr data-title="(5 of 7) teaching note: calculations behind vc earnings - revealing the pandora box" data-year="2025">
+          <td class="date-col">2025-02-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/venture-capital-mechanics-fund-allocation-check-sizes-toronata-tambun-iavgc" target="_blank" rel="noopener">(5 of 7) Teaching Note: Calculations Behind VC Earnings - Revealing the Pandora Box</a></td>
+        </tr>
+        <tr data-title="(4 of 7) the role of early childhood economic background in shaping corrupt behavior" data-year="2025">
+          <td class="date-col">2025-02-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/part-2-3-my-reflection-efishery-founders-biases-toronata-tambun-m1wmc" target="_blank" rel="noopener">(4 of 7) The Role of Early Childhood Economic Background in Shaping Corrupt Behavior</a></td>
+        </tr>
+        <tr data-title="indonesia’s free meals program: a great idea, but… is it culturally fit?" data-year="2025">
+          <td class="date-col">2025-02-05</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/indonesias-free-meals-program-great-idea-culturally-fit-tambun-9vwbc" target="_blank" rel="noopener">Indonesia’s Free Meals Program: A Great Idea, But… Is It Culturally Fit?</a></td>
+        </tr>
+        <tr data-title="(5 of 5) the beautitudes: my beginning - commencement speech in ipmi 2001 &quot;blessed are  the meek .. &quot;" data-year="2025">
+          <td class="date-col">2025-02-05</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/my-commencement-speech-happiness-toronata-tambun-senpc" target="_blank" rel="noopener">(5 of 5) The Beautitudes: My Beginning - Commencement Speech in IPMI 2001 "Blessed are  the meek .. "</a></td>
+        </tr>
+        <tr data-title="is your company multinational, transnational, international, regional or something else? lessons from schlumberger’s shift" data-year="2025">
+          <td class="date-col">2025-02-05</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/schlumberger-shifted-from-transnational-multinational-toronata-tambun-6hw4c" target="_blank" rel="noopener">Is Your Company Multinational, Transnational, International, Regional Or something else? Lessons from Schlumberger’s Shift</a></td>
+        </tr>
+        <tr data-title="(2 of 2) “if in the unrighteous mammon you are not amina (faithful), who will yatmin (entrust) to you the amen (true riches)?&quot;" data-year="2025">
+          <td class="date-col">2025-02-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/2-unrighteous-mammon-you-amina-faithful-who-yatmin-entrust-tambun-zp6zc" target="_blank" rel="noopener">(2 of 2) “If in the unrighteous Mammon you are not Amina (faithful), who will Yatmin (entrust) to you the Amen (true riches)?"</a></td>
+        </tr>
+        <tr data-title="(3 of 7) what biases involved when founders commit fraud ?" data-year="2025">
+          <td class="date-col">2025-02-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/what-biases-involve-when-startup-founders-commits-fraud-tambun-hunlc" target="_blank" rel="noopener">(3 of 7) What biases involved when founders commit fraud ?</a></td>
+        </tr>
+        <tr data-title="(2 of 5): the typology of the beatitudes" data-year="2025">
+          <td class="date-col">2025-02-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/2-4-typology-beatitudes-toronata-tambun-1kjec" target="_blank" rel="noopener">(2 of 5): The Typology of The Beatitudes</a></td>
+        </tr>
+        <tr data-title="(3 of 5) the beautitudes: its literary style" data-year="2025">
+          <td class="date-col">2025-02-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/3-4-more-makarios-its-literary-style-toronata-tambun-fsiac" target="_blank" rel="noopener">(3 of 5) The Beautitudes: Its Literary Style</a></td>
+        </tr>
+        <tr data-title="(4 of 5): the beautitudes: through the lense of  tradition (one of 6 ways of knowledge acquisitions)" data-year="2025">
+          <td class="date-col">2025-02-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/4-more-makarios-from-tradition-lense-toronata-tambun-hmy6c" target="_blank" rel="noopener">(4 of 5): The Beautitudes: Through the Lense of  Tradition (one of 6 ways of knowledge acquisitions)</a></td>
+        </tr>
+        <tr data-title="mindfulness as a means to living meaningfully" data-year="2025">
+          <td class="date-col">2025-02-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mindfulness-means-living-meaningfully-toronata-tambun-o61wc" target="_blank" rel="noopener">Mindfulness as a Means to Living Meaningfully</a></td>
+        </tr>
+        <tr data-title="(4 of 4) are you making the right career decisions, applying bourdieu&#39;s capitals framework" data-year="2025">
+          <td class="date-col">2025-01-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/you-making-right-career-decisions-applying-bourdieus-capitals-tambun-fvwfc" target="_blank" rel="noopener">(4 of 4) Are You Making the Right Career Decisions, applying Bourdieu's Capitals Framework</a></td>
+        </tr>
+        <tr data-title="(3 of 4) addressing broken meritocracy? pierre bourdieu and culture" data-year="2025">
+          <td class="date-col">2025-01-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/addressing-broken-meritocracy-pierre-bourdieu-culture-toronata-tambun-vjiuc" target="_blank" rel="noopener">(3 of 4) Addressing Broken Meritocracy? Pierre Bourdieu and Culture</a></td>
+        </tr>
+        <tr data-title="(2 of 4) pierre bourdieu’s theory of capitals and meritocracy - mathematical model" data-year="2025">
+          <td class="date-col">2025-01-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/pierre-bourdieus-theory-capitals-meritocracy-model-1-tambun-5oe2c" target="_blank" rel="noopener">(2 of 4) Pierre Bourdieu’s Theory of Capitals and Meritocracy - Mathematical Model</a></td>
+        </tr>
+        <tr data-title="(1 of 4) rushing won’t get you there: what padi farmers teach about long-term success" data-year="2025">
+          <td class="date-col">2025-01-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/rushing-wont-get-you-what-padi-farmers-teach-long-term-tambun-zfmjc" target="_blank" rel="noopener">(1 of 4) Rushing Won’t Get You There: What Padi Farmers Teach About Long-Term Success</a></td>
+        </tr>
+        <tr data-title="(1 of 2) parables of the shrewd manager: a childlike trust in the unqualified mercy of god as their only hope for salvation" data-year="2025">
+          <td class="date-col">2025-01-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/learning-from-parable-shrewd-manager-luke-16113-eradicate-tambun-bmpyc" target="_blank" rel="noopener">(1 of 2) Parables of the Shrewd Manager: a childlike trust in the unqualified mercy of God as their only hope for salvation</a></td>
+        </tr>
+        <tr data-title="staying true to core values: lessons on career and life from my steadfast friend amran, a member of jemaah tabligh" data-year="2025">
+          <td class="date-col">2025-01-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/from-corporate-success-purposeful-living-lessons-jemaah-tambun-yjxmc" target="_blank" rel="noopener">Staying True to Core Values: Lessons on Career and Life from My Steadfast Friend Amran, a Member of Jemaah Tabligh</a></td>
+        </tr>
+        <tr data-title="philosophy as a path to knowledge: insights from nietzsche, plato, and beyond" data-year="2025">
+          <td class="date-col">2025-01-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/philosophy-path-knowledge-insights-from-nietzsche-plato-tambun-7aalc" target="_blank" rel="noopener">Philosophy as a Path to Knowledge: Insights from Nietzsche, Plato, and Beyond</a></td>
+        </tr>
+        <tr data-title="trained like chatgpt: lessons from starting a career abroad in schlumberger wireline, 1994" data-year="2025">
+          <td class="date-col">2025-01-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/trained-like-chatgpt-lesson-from-1994-toronata-tambun-7dlcc" target="_blank" rel="noopener">Trained Like ChatGPT: Lessons from Starting a Career Abroad in Schlumberger Wireline, 1994</a></td>
+        </tr>
+        <tr data-title="d-day end 2024" data-year="2024">
+          <td class="date-col">2024-12-31</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/d-day-end-2024-reflection-2025-toronata-tambun-955yc" target="_blank" rel="noopener">D-Day End 2024</a></td>
+        </tr>
+        <tr data-title="d-1 from sharing to seeking: how validation risks undermine writing purpose" data-year="2024">
+          <td class="date-col">2024-12-30</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/d-1-from-sharing-seeking-how-validation-risks-undermine-tambun-vflnc" target="_blank" rel="noopener">D-1 From Sharing to Seeking: How Validation Risks Undermine Writing Purpose</a></td>
+        </tr>
+        <tr data-title="d-3 linear thinking still? see system dynamics for complex, interconnected, delayed, feedback and policy resistance wicked problems" data-year="2024">
+          <td class="date-col">2024-12-28</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/system-dynamics-masterclass-14-minute-introduction-none-tambun-eabtc" target="_blank" rel="noopener">D-3 Linear Thinking Still? See System Dynamics for Complex, Interconnected, Delayed, Feedback and Policy Resistance Wicked Problems</a></td>
+        </tr>
+        <tr data-title="d-6 breaking free: liberating yourself from others&#39; measures" data-year="2024">
+          <td class="date-col">2024-12-25</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/breaking-free-liberating-yourself-from-others-measures-tambun-wrvxc" target="_blank" rel="noopener">D-6 Breaking Free: Liberating Yourself from Others' Measures</a></td>
+        </tr>
+        <tr data-title="d-5 mit&#39;s shift from christmas to newtonmas: a cultural/art expression?" data-year="2024">
+          <td class="date-col">2024-12-25</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mits-shift-from-christmas-newtonmas-culturalart-doesnt-tambun-qoumc" target="_blank" rel="noopener">D-5 MIT's Shift from Christmas to Newtonmas: A Cultural/Art Expression?</a></td>
+        </tr>
+        <tr data-title="d-7 betrayal: there is nothing new under the sun" data-year="2024">
+          <td class="date-col">2024-12-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/forgive-me-my-reflection-christmas-nothing-new-under-sun-tambun-y8ouc" target="_blank" rel="noopener">D-7 Betrayal: There Is Nothing New Under the Sun</a></td>
+        </tr>
+        <tr data-title="the weary tiger: a story of mantaka the tiger" data-year="2024">
+          <td class="date-col">2024-12-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/weary-tiger-story-mantaka-toronata-tambun-pjgec" target="_blank" rel="noopener">The Weary Tiger: A Story of Mantaka the Tiger</a></td>
+        </tr>
+        <tr data-title="who thrives in today’s competitions?" data-year="2024">
+          <td class="date-col">2024-12-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/who-thrives-todays-competitions-toronata-tambun-45rfc" target="_blank" rel="noopener">Who Thrives in Today’s Competitions?</a></td>
+        </tr>
+        <tr data-title="durna: a revered wayang figure and his echo in leadership, parenting, and society" data-year="2024">
+          <td class="date-col">2024-12-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/durna-revered-wayang-figure-his-echo-leadership-parenting-tambun-twjfc" target="_blank" rel="noopener">Durna: A Revered Wayang Figure and His Echo in Leadership, Parenting, and Society</a></td>
+        </tr>
+        <tr data-title="examining the phrase &#39;rakyat jelata&#39;: through mcluhan’s and derrida’s framework - &quot;quick to hear, slow to speak, slow to anger&quot;" data-year="2024">
+          <td class="date-col">2024-12-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/communication-missteps-lessons-public-figures-through-toronata-tambun-otwsc" target="_blank" rel="noopener">Examining the Phrase 'Rakyat Jelata': through McLuhan’s and Derrida’s Framework - "Quick to hear, slow to speak, slow to anger"</a></td>
+        </tr>
+        <tr data-title="design thinking as a generic tool: the cultural prerequisites" data-year="2024">
+          <td class="date-col">2024-12-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/design-thinking-generic-tool-cultural-prerequisites-toronata-tambun-cujwc" target="_blank" rel="noopener">Design Thinking as a Generic Tool: The Cultural Prerequisites</a></td>
+        </tr>
+        <tr data-title="what is your raison d&#39;être? when addressing climate change, when becoming an entrepreneur, or when simply to live?" data-year="2024">
+          <td class="date-col">2024-12-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/my-closing-entrepreneurial-class-why-you-here-answer-your-tambun-4e2ac" target="_blank" rel="noopener">What is your raison d'être? When Addressing Climate Change, When Becoming an Entrepreneur, Or When Simply To Live?</a></td>
+        </tr>
+        <tr data-title="lucas’ leaps - is it your leap? the class memo" data-year="2024">
+          <td class="date-col">2024-12-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/lucas-leaps-through-24-disciplined-entrepreneurship-de-tambun-kuygc" target="_blank" rel="noopener">Lucas’ Leaps - Is it your leap? The Class Memo</a></td>
+        </tr>
+        <tr data-title="when collectivism gave comfort:  during grief and faced with loneliness" data-year="2024">
+          <td class="date-col">2024-11-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/when-collectivism-gave-me-comfort-my-mother-in-law-passed-tambun-czjzc" target="_blank" rel="noopener">When Collectivism Gave Comfort:  During Grief and Faced with Loneliness</a></td>
+        </tr>
+        <tr data-title="(1 of 5) the beautitudes: not just hedone or eudaemonia happiness, but divine one - makarios" data-year="2024">
+          <td class="date-col">2024-11-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/hidden-truth-happiness-digital-world-toronata-tambun-cmsac" target="_blank" rel="noopener">(1 of 5) The Beautitudes: Not just hedone or eudaemonia happiness, but divine one - Makarios</a></td>
+        </tr>
+        <tr data-title="reflexive reflections on life and future through my 2nd self-marathon journey" data-year="2024">
+          <td class="date-col">2024-11-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/reflexive-reflections-life-future-through-my-2nd-journey-tambun-ojlyc" target="_blank" rel="noopener">Reflexive Reflections on Life and Future Through My 2nd Self-Marathon Journey</a></td>
+        </tr>
+        <tr data-title="full circle: from my first mit class to sharing my work with president sally kornbluth &quot;disciplined storytelling&quot; in singapore" data-year="2024">
+          <td class="date-col">2024-11-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/full-circle-from-my-first-mit-class-sharing-work-president-tambun-tlmvc" target="_blank" rel="noopener">Full Circle: From My First MIT Class to Sharing My Work with President Sally Kornbluth "Disciplined Storytelling" in Singapore</a></td>
+        </tr>
+        <tr data-title="master or slave? rethinking power dynamics in land ownership through hegel&#39;s lens" data-year="2024">
+          <td class="date-col">2024-11-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/master-slave-rethinking-power-dynamics-land-ownership-toronata-tambun-cegic" target="_blank" rel="noopener">Master or Slave? Rethinking Power Dynamics in Land Ownership Through Hegel's Lens</a></td>
+        </tr>
+        <tr data-title="(1 of 3) warranted intimacy: the speech of the chosen" data-year="2024">
+          <td class="date-col">2024-11-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/warranted-intimacy-speech-chosen-toronata-tambun-8bn3c" target="_blank" rel="noopener">(1 of 3) Warranted Intimacy: The Speech of the Chosen</a></td>
+        </tr>
+        <tr data-title="learning from president donald trump&#39;s mental health management through the lens of my cld" data-year="2024">
+          <td class="date-col">2024-11-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/learning-from-president-donald-trumps-mental-health-through-tambun-06vxc" target="_blank" rel="noopener">Learning from President Donald Trump's Mental Health Management Through the Lens of My CLD</a></td>
+        </tr>
+        <tr data-title="disheartened after the lecture: a reflection on lost impact and exhaustion" data-year="2024">
+          <td class="date-col">2024-11-05</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/disheartened-after-lecture-reflection-lost-impact-toronata-tambun-tepcc" target="_blank" rel="noopener">Disheartened After the Lecture: A Reflection on Lost Impact and Exhaustion</a></td>
+        </tr>
+        <tr data-title="(2 of 5) methods for acquiring knowledge: science is only one of so many others" data-year="2024">
+          <td class="date-col">2024-10-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/article-1-4-methods-acquiring-knowledge-just-science-toronata-tambun-rvgjc" target="_blank" rel="noopener">(2 of 5) Methods for Acquiring Knowledge: Science is Only One of So Many Others</a></td>
+        </tr>
+        <tr data-title="(5 of 5) autoethnography as a research strategy: scientific? of course!!" data-year="2024">
+          <td class="date-col">2024-10-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/autoethnography-research-strategy-scientific-course-toronata-tambun-o7ikc" target="_blank" rel="noopener">(5 of 5) Autoethnography as a Research Strategy: Scientific? Of Course!!</a></td>
+        </tr>
+        <tr data-title="(1 of 5) humility in learning: embracing the role of a lifelong student" data-year="2024">
+          <td class="date-col">2024-10-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/breaking-chains-challenging-academic-arrogance-embracing-tambun-fgigc" target="_blank" rel="noopener">(1 of 5) Humility in Learning: Embracing the Role of a Lifelong Student</a></td>
+        </tr>
+        <tr data-title="(4 of 5) empiricism is just one of many sources of knowledge: let’s respect them all" data-year="2024">
+          <td class="date-col">2024-10-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/empiricism-just-one-many-sources-knowledge-lets-respect-tambun-0m5uc" target="_blank" rel="noopener">(4 of 5) Empiricism is just one of many sources of knowledge: let’s respect them all</a></td>
+        </tr>
+        <tr data-title="(3 of 5) understanding twelve sources of knowledge: empiricism is only one of many others!" data-year="2024">
+          <td class="date-col">2024-10-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/understanding-twelve-sources-knowledge-empiricism-only-tambun-chukc" target="_blank" rel="noopener">(3 of 5) Understanding Twelve Sources of Knowledge: empiricism is only one of many others!</a></td>
+        </tr>
+        <tr data-title="(3 of 3) causal loop diagram (cld): performance under pressure - running down maria joão pires&#39; triumph over shock" data-year="2024">
+          <td class="date-col">2024-10-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/causal-loop-diagram-cld-performance-under-pressure-running-tambun-a8bwc" target="_blank" rel="noopener">(3 of 3) Causal Loop Diagram (CLD): Performance Under Pressure - Running Down Maria João Pires' Triumph Over Shock</a></td>
+        </tr>
+        <tr data-title="(2 of 2) how a bad apple can spread—or stay contained? exploring group dynamics and the importance of one-on-group mentoring" data-year="2024">
+          <td class="date-col">2024-10-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/how-bad-apple-can-spreador-stay-contained-exploring-group-tambun-yepcc" target="_blank" rel="noopener">(2 of 2) How a Bad Apple Can Spread—or Stay Contained? Exploring Group Dynamics and the Importance of One-on-Group Mentoring</a></td>
+        </tr>
+        <tr data-title="(2 of 3) kübler-ross model: transforming fear into strength, lessons from maria joão pires’ 1999 concertgebouw performance" data-year="2024">
+          <td class="date-col">2024-10-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/kubler-ross-model-transforming-fear-strength-lessons-from-tambun-hfc2c" target="_blank" rel="noopener">(2 of 3) Kübler-Ross Model: Transforming Fear into Strength, Lessons from Maria João Pires’ 1999 Concertgebouw Performance</a></td>
+        </tr>
+        <tr data-title="(1 of 2) mapping neuroticism and narcissism in academic settings: a causal loop approach to student behavior and mental health" data-year="2024">
+          <td class="date-col">2024-10-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mapping-neuroticism-narcissism-academic-settings-causal-tambun-qrdmc" target="_blank" rel="noopener">(1 of 2) Mapping Neuroticism and Narcissism in Academic Settings: A Causal Loop Approach to Student Behavior and Mental Health</a></td>
+        </tr>
+        <tr data-title="(1 of 3) when anti-fragility emerges - lessons from maria joão pires&#39; experience" data-year="2024">
+          <td class="date-col">2024-10-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/easily-giving-up-when-anti-fragility-emerges-lessons-tambun-7n9jc" target="_blank" rel="noopener">(1 of 3) When Anti-Fragility Emerges - Lessons from Maria João Pires' Experience</a></td>
+        </tr>
+        <tr data-title="(2 of 2) what about teachers&#39; mental health: anybody cares?" data-year="2024">
+          <td class="date-col">2024-10-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/what-teachers-mental-health-anybody-cares-toronata-tambun-nrjgc" target="_blank" rel="noopener">(2 of 2) What About Teachers' Mental Health: Anybody Cares?</a></td>
+        </tr>
+        <tr data-title="(4 of 4) applying system dynamics causal loop diagrams to dissect story of a neurosurgeon" data-year="2024">
+          <td class="date-col">2024-10-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/applying-system-dynamics-causal-loop-diagrams-dissect-toronata-tambun-be46c" target="_blank" rel="noopener">(4 of 4) Applying System Dynamics Causal Loop Diagrams to dissect story of a neurosurgeon</a></td>
+        </tr>
+        <tr data-title="(3 of 4) balancing mental health support and anti-fragility: lessons from biblical figures" data-year="2024">
+          <td class="date-col">2024-10-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/balancing-mental-health-support-resilience-lessons-from-tambun-bsltc" target="_blank" rel="noopener">(3 of 4) Balancing Mental Health Support and Anti-Fragility: Lessons from Biblical Figures</a></td>
+        </tr>
+        <tr data-title="(1 of 2) a conversation on mental health and its balance: reflections from a thoughtful evening" data-year="2024">
+          <td class="date-col">2024-10-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/conversation-mental-health-its-balance-reflections-from-tambun-n5lpc" target="_blank" rel="noopener">(1 of 2) A Conversation on Mental Health and Its Balance: Reflections from a Thoughtful Evening</a></td>
+        </tr>
+        <tr data-title="(2 of 4) addressing the growing mental health crisis and building anti-fragility using system dynamics" data-year="2024">
+          <td class="date-col">2024-10-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/addressing-growing-mental-health-crisis-building-using-tambun-arejc" target="_blank" rel="noopener">(2 of 4) Addressing the Growing Mental Health Crisis and Building Anti-Fragility Using System Dynamics</a></td>
+        </tr>
+        <tr data-title="roots of autoethnography in my &quot;i&quot;: derry habir, clair de lune, and the unfolding coincidences" data-year="2024">
+          <td class="date-col">2024-10-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/roots-autoethnography-my-i-derry-habir-clair-de-lune-unfolding-ss0hc" target="_blank" rel="noopener">Roots of Autoethnography in My "I": Derry Habir, Clair de Lune, and the Unfolding Coincidences</a></td>
+        </tr>
+        <tr data-title="help me: chatgpt&#39;s accuracy in solving math?" data-year="2024">
+          <td class="date-col">2024-10-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/help-me-chatgpts-accuracy-solving-math-toronata-tambun-mslqf" target="_blank" rel="noopener">Help me: ChatGPT's accuracy in solving math?</a></td>
+        </tr>
+        <tr data-title="indonesia’s energy dilemma: the gas price crisis facing java’s manufacturers" data-year="2024">
+          <td class="date-col">2024-09-29</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/indonesias-energy-dilemma-gas-price-crisis-facing-javas-tambun-rhkec" target="_blank" rel="noopener">Indonesia’s Energy Dilemma: The Gas Price Crisis Facing Java’s Manufacturers</a></td>
+        </tr>
+        <tr data-title="tithing through the years: a reflexive and theoretical journey of faith, culture, and neuroscience" data-year="2024">
+          <td class="date-col">2024-09-28</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/tithing-through-years-reflexive-theoretical-journey-faith-tambun-1xeoc" target="_blank" rel="noopener">Tithing Through the Years: A Reflexive and Theoretical Journey of Faith, Culture, and Neuroscience</a></td>
+        </tr>
+        <tr data-title="lucas’ leaps  through the 24 disciplined entrepreneurship (de) framework: note for co-learners" data-year="2024">
+          <td class="date-col">2024-09-25</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/lucas-leaps-through-24-disciplined-entrepreneurship-de-tambun-vllec" target="_blank" rel="noopener">Lucas’ Leaps  Through the 24 Disciplined Entrepreneurship (DE) Framework: NOTE FOR CO-LEARNERS</a></td>
+        </tr>
+        <tr data-title="(1 of 4) anti-fragile in adversity: embracing individuality and not-hyped mental health" data-year="2024">
+          <td class="date-col">2024-09-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/anti-fragile-adversity-embracing-individuality-not-hyped-tambun-xqnwc" target="_blank" rel="noopener">(1 of 4) Anti-Fragile in Adversity: Embracing Individuality and Not-Hyped Mental Health</a></td>
+        </tr>
+        <tr data-title="sharing disciplined storytelling with those who inspired my journey" data-year="2024">
+          <td class="date-col">2024-09-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/sharing-disciplined-storytelling-those-who-inspired-my-tambun-lbcrc" target="_blank" rel="noopener">Sharing Disciplined Storytelling with Those Who Inspired My Journey</a></td>
+        </tr>
+        <tr data-title="what’s the most promising climate solution? a personal journey through public discussions, en-roads, and theories of multi-solving" data-year="2024">
+          <td class="date-col">2024-09-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/whats-most-promising-climate-solution-personal-journey-tambun-pebac" target="_blank" rel="noopener">What’s the Most Promising Climate Solution? A Personal Journey through Public Discussions, En-ROADS, and Theories of Multi-Solving</a></td>
+        </tr>
+        <tr data-title="building an a-team: the cultural shift in harvard&#39;s $53.1 billion endowment" data-year="2024">
+          <td class="date-col">2024-09-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/building-a-team-cultural-shift-harvards-531-billion-endowment-tambun-qfruc" target="_blank" rel="noopener">Building an A-Team: The Cultural Shift in Harvard's $53.1 Billion Endowment</a></td>
+        </tr>
+        <tr data-title="pacing life: lessons from my first non-compete marathon" data-year="2024">
+          <td class="date-col">2024-09-15</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/pacing-life-lessons-from-my-first-marathon-toronata-tambun-pti3c" target="_blank" rel="noopener">Pacing Life: Lessons from My First Non-Compete Marathon</a></td>
+        </tr>
+        <tr data-title="singapore&#39;s electric vehicle transition: a tactical approach to reducing global temperatures" data-year="2024">
+          <td class="date-col">2024-09-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/singapores-urban-mobility-electric-vehicle-transition-toronata-tambun-un66c" target="_blank" rel="noopener">Singapore's Electric Vehicle Transition: A Tactical Approach to Reducing Global Temperatures</a></td>
+        </tr>
+        <tr data-title="behind my own story: a journey of challenges and reflection post-retirement" data-year="2024">
+          <td class="date-col">2024-09-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/crafting-life-meaning-aligning-values-practicality-toronata-tambun-ve17c" target="_blank" rel="noopener">Behind My Own Story: A Journey of Challenges and Reflection Post-Retirement</a></td>
+        </tr>
+        <tr data-title="shared values of an innovative country: singapore case, learning from his excellency george yeo" data-year="2024">
+          <td class="date-col">2024-09-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/shared-values-innovative-country-singapore-case-learning-tambun-lemvc" target="_blank" rel="noopener">Shared Values of an Innovative Country: Singapore Case, Learning from His Excellency George Yeo</a></td>
+        </tr>
+        <tr data-title="from woods to world-changing ideas: personal discipline meets mit’s ecosystem" data-year="2024">
+          <td class="date-col">2024-09-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/from-woods-world-changing-ideas-personal-discipline-meets-tambun-trsac" target="_blank" rel="noopener">From Woods to World-Changing Ideas: Personal Discipline Meets MIT’s Ecosystem</a></td>
+        </tr>
+        <tr data-title="i-e ecosystems and pope&#39;s visit 2024: peace, diversity, and inclusivity as foundations for a thriving innovation ecosystem" data-year="2024">
+          <td class="date-col">2024-09-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/popes-visit-2024-peace-diversity-inclusivity-thriving-toronata-tambun-wo5kc" target="_blank" rel="noopener">i-e Ecosystems and Pope's Visit 2024: Peace, Diversity, and Inclusivity as Foundations for a Thriving Innovation Ecosystem</a></td>
+        </tr>
+        <tr data-title="plato’s myth of hades and its influence on the concept of the sheol: personal reflection" data-year="2024">
+          <td class="date-col">2024-09-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/platos-myth-hades-its-influence-concept-sheol-personal-tambun-t56xc" target="_blank" rel="noopener">Plato’s Myth of Hades and Its Influence on the Concept of the Sheol: Personal Reflection</a></td>
+        </tr>
+        <tr data-title="a reflection on mental health and anti-fragility: learning from innovation bootcamp of microbiology department faperta ugm" data-year="2024">
+          <td class="date-col">2024-09-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/reflection-mental-health-anti-fragility-learning-from-toronata-tambun-it5uc" target="_blank" rel="noopener">A Reflection on Mental Health and Anti-Fragility: Learning from Innovation Bootcamp of Microbiology Department Faperta UGM</a></td>
+        </tr>
+        <tr data-title="relearning sustainability: multisolving and equity as core tenets for lifelong educators and students" data-year="2024">
+          <td class="date-col">2024-09-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/relearning-sustainability-multisolving-equity-core-tenets-tambun-ji7cc" target="_blank" rel="noopener">Relearning Sustainability: Multisolving and Equity as Core Tenets for Lifelong Educators and Students</a></td>
+        </tr>
+        <tr data-title="reflecting on the books that shaped my intellectual journey prior to entering nuclear engineering - an autoethnography attempt" data-year="2024">
+          <td class="date-col">2024-09-01</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/reflecting-books-shaped-my-intellectual-journey-prior-toronata-tambun-ip7fc" target="_blank" rel="noopener">Reflecting on the Books That Shaped My Intellectual Journey Prior to entering Nuclear Engineering - An autoethnography attempt</a></td>
+        </tr>
+        <tr data-title="the cognitive costs of multitasking: a critical examination of its impacts on learning, brain structure, and long-term cognitive function - linkedin" data-year="2024">
+          <td class="date-col">2024-08-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/cognitive-costs-multitasking-implications-learning-toronata-tambun-o1tpc" target="_blank" rel="noopener">The Cognitive Costs of Multitasking: A Critical Examination of Its Impacts on Learning, Brain Structure, and Long-Term Cognitive Function - LinkedIn</a></td>
+        </tr>
+        <tr data-title="osawa san’s secret: how a small restaurant and a simple life keep him going -an autoethnographic attempt" data-year="2024">
+          <td class="date-col">2024-08-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/osawa-sans-secret-how-small-restaurant-simple-life-keep-tambun-mrgqc" target="_blank" rel="noopener">Osawa San’s Secret: How a Small Restaurant and a Simple Life Keep Him Going -An autoethnographic attempt</a></td>
+        </tr>
+        <tr data-title="from &quot;running&quot; to foundational institution: startups on sustainability (or on any other industries) - an autoethnographic note" data-year="2024">
+          <td class="date-col">2024-08-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/running-through-innovation-autoethnographic-its-startups-tambun-metuf" target="_blank" rel="noopener">From "Running" to Foundational Institution: Startups on Sustainability (or on any other industries) - An Autoethnographic Note</a></td>
+        </tr>
+        <tr data-title="celebrating connections: how our bonds with caring people keep us tied to our alma mater" data-year="2024">
+          <td class="date-col">2024-08-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/celebrating-connections-how-our-bonds-caring-people-keep-tambun-dbxwc" target="_blank" rel="noopener">Celebrating Connections: How Our Bonds with Caring People Keep Us Tied to Our Alma Mater</a></td>
+        </tr>
+        <tr data-title="experimenting with chatgpt in preparing case study teaching plan" data-year="2024">
+          <td class="date-col">2024-08-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/experimenting-chatgpt-preparing-teaching-plan-toronata-tambun-fu61c" target="_blank" rel="noopener">Experimenting with ChatGPT in Preparing Case Study Teaching Plan</a></td>
+        </tr>
+        <tr data-title="questioning, listening, and responding when facilitating case study" data-year="2024">
+          <td class="date-col">2024-08-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/questioning-listening-responding-when-facilitating-case-tambun-8lmuc" target="_blank" rel="noopener">Questioning, Listening, and Responding when facilitating Case Study</a></td>
+        </tr>
+        <tr data-title="learning to facilitate a case study class from a case study &quot;the case to be made&quot;" data-year="2024">
+          <td class="date-col">2024-08-15</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/learning-facilitate-case-study-class-from-made-toronata-tambun-wmfac" target="_blank" rel="noopener">Learning to facilitate a case study class from a case study "The Case to Be Made"</a></td>
+        </tr>
+        <tr data-title="lessons in case study teaching: insights from a case series on &quot;eb&quot;" data-year="2024">
+          <td class="date-col">2024-08-15</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/lessons-case-study-teaching-insights-from-series-eb-toronata-tambun-w2pwc" target="_blank" rel="noopener">Lessons in Case Study Teaching: Insights from a Case Series on "EB"</a></td>
+        </tr>
+        <tr data-title="beyond wealth: the true foundations of anti-fragility and success - autoethnography step by step (part 2 of 2)" data-year="2024">
+          <td class="date-col">2024-08-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/beyond-wealth-true-foundations-anti-fragility-success-toronata-tambun-yvwtc" target="_blank" rel="noopener">Beyond Wealth: The True Foundations of Anti-Fragility and Success - Autoethnography Step by Step (Part 2 of 2)</a></td>
+        </tr>
+        <tr data-title="celebrating small victories: an autoethnographic reflection on lifelong learning" data-year="2024">
+          <td class="date-col">2024-08-01</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/celebrating-small-victories-autoethnographic-lifelong-toronata-tambun-wyk4c" target="_blank" rel="noopener">Celebrating Small Victories: An Autoethnographic Reflection on Lifelong Learning</a></td>
+        </tr>
+        <tr data-title="autoethnographic lessons from a memorable meeting with fellow harvardians in jakarta (part 1 of 2)" data-year="2024">
+          <td class="date-col">2024-07-30</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/autoethnographic-lessons-from-memorable-meeting-fellow-tambun-zitqc" target="_blank" rel="noopener">Autoethnographic Lessons from a Memorable Meeting with fellow Harvardians in Jakarta (Part 1 of 2)</a></td>
+        </tr>
+        <tr data-title="from boston to madura: an autoethnographic journey of innovation and leadership" data-year="2024">
+          <td class="date-col">2024-07-28</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/from-mit-madura-autoethnographic-journey-innovation-toronata-tambun-oay1c" target="_blank" rel="noopener">From Boston to Madura: An Autoethnographic Journey of Innovation and Leadership</a></td>
+        </tr>
+        <tr data-title="celebrating mr. i wayan degeng: another mentor who shaped my career" data-year="2024">
+          <td class="date-col">2024-07-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/celebrating-mr-i-wayan-degeng-another-mentor-who-shaped-tambun-eypnc" target="_blank" rel="noopener">Celebrating Mr. I Wayan Degeng: Another Mentor Who Shaped My Career</a></td>
+        </tr>
+        <tr data-title="reflections on my research proposal exam: renewed hope for humanity" data-year="2024">
+          <td class="date-col">2024-07-23</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/reflections-my-research-proposal-exam-renewed-hope-humanity-tambun-ivuyc" target="_blank" rel="noopener">Reflections on My Research Proposal Exam: Renewed Hope for Humanity</a></td>
+        </tr>
+        <tr data-title="is customer really a king? (part 1 of 2)" data-year="2024">
+          <td class="date-col">2024-07-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/customer-really-king-part-1-2-toronata-tambun-5wrrc" target="_blank" rel="noopener">Is Customer Really a King? (Part 1 of 2)</a></td>
+        </tr>
+        <tr data-title="is customer really a king ? - part 2 of 2" data-year="2024">
+          <td class="date-col">2024-07-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/tale-king-like-customer-unheeded-loyalty-part-2-toronata-tambun-ig1mc" target="_blank" rel="noopener">Is Customer really a King ? - Part 2 of 2</a></td>
+        </tr>
+        <tr data-title="a new hope: how bpjs-tk&#39;s innovations empower students, job seekers, and entrepreneurs in indonesia" data-year="2024">
+          <td class="date-col">2024-07-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/new-hope-how-bpjs-tks-innovations-empower-students-job-tambun-0nekc" target="_blank" rel="noopener">A New Hope: How BPJS-TK's Innovations Empower Students, Job Seekers, and Entrepreneurs in Indonesia</a></td>
+        </tr>
+        <tr data-title="driving startup success: key behaviors, traits, and frameworks for aspiring founders turn ceos" data-year="2024">
+          <td class="date-col">2024-07-01</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/driving-startup-success-key-behaviors-traits-aspiring-toronata-tambun-jjboc" target="_blank" rel="noopener">Driving Startup Success: Key Behaviors, Traits, and Frameworks for Aspiring Founders turn CEOs</a></td>
+        </tr>
+        <tr data-title="in memory of prof. reza ashari nasution (2 march 1976 - 12 may 2024)" data-year="2024">
+          <td class="date-col">2024-06-29</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/memory-prof-reza-ashari-nasution-2-march-1976-12-may-tambun-briuc" target="_blank" rel="noopener">In Memory of Prof. Reza Ashari Nasution (2 March 1976 - 12 May 2024)</a></td>
+        </tr>
+        <tr data-title="resilience and opportunity: indonesia&#39;s economic outlook and investment potential" data-year="2024">
+          <td class="date-col">2024-06-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/resilience-opportunity-indonesias-economic-outlook-potential-tambun-ue1dc" target="_blank" rel="noopener">Resilience and Opportunity: Indonesia's Economic Outlook and Investment Potential</a></td>
+        </tr>
+        <tr data-title="simple thematic analysis - empirical" data-year="2024">
+          <td class="date-col">2024-06-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/simple-thematic-analysis-empirical-toronata-tambun-olxgc" target="_blank" rel="noopener">Simple Thematic Analysis - Empirical</a></td>
+        </tr>
+        <tr data-title="embracing humility: lessons from dr. antonius tanan on balancing intelligence and likability" data-year="2024">
+          <td class="date-col">2024-06-14</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/embracing-humility-lessons-from-dr-antonius-tanan-balancing-tambun-sqvnc" target="_blank" rel="noopener">Embracing Humility: Lessons from Dr. Antonius Tanan on Balancing Intelligence and Likability</a></td>
+        </tr>
+        <tr data-title="&quot;in the blink of an eye: how vision sparked the big bang of evolution&quot; by andrew parker" data-year="2024">
+          <td class="date-col">2024-06-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/blink-eye-how-vision-sparked-big-bang-evolution-andrew-tambun-txzof" target="_blank" rel="noopener">"In the blink of an eye: How vision sparked the big bang of evolution" by Andrew Parker</a></td>
+        </tr>
+        <tr data-title="what to look for in evaluating a case-study?" data-year="2024">
+          <td class="date-col">2024-06-05</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/what-look-case-study-toronata-tambun-yk7jc" target="_blank" rel="noopener">What to look for in evaluating a Case-Study?</a></td>
+        </tr>
+        <tr data-title="innovation (invention x commercialization) in creative / art space" data-year="2024">
+          <td class="date-col">2024-05-18</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/innovation-invention-x-commercialization-creative-art-toronata-tambun-aldlc" target="_blank" rel="noopener">Innovation (invention X commercialization) in Creative / Art Space</a></td>
+        </tr>
+        <tr data-title="the power of community and mindfulness through ancient prayer" data-year="2024">
+          <td class="date-col">2024-05-14</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/power-community-mindfulness-through-ancient-prayer-toronata-tambun-boslc" target="_blank" rel="noopener">The Power of Community and Mindfulness Through Ancient Prayer</a></td>
+        </tr>
+        <tr data-title="why not becoming entrepreneurs, why not you, and why not now?" data-year="2024">
+          <td class="date-col">2024-05-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/why-becoming-entrepreneurs-you-now-toronata-tambun-4gpfc" target="_blank" rel="noopener">Why Not Becoming Entrepreneurs, Why Not You, and Why Not Now?</a></td>
+        </tr>
+        <tr data-title="eco-innovators: preparing china&#39;s youth for sustainable futures with interactive tools -my essay" data-year="2024">
+          <td class="date-col">2024-04-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/eco-innovators-preparing-chinas-youth-sustainable-futures-tambun-3dstc" target="_blank" rel="noopener">Eco-Innovators: Preparing China's Youth for Sustainable Futures with Interactive Tools -My Essay</a></td>
+        </tr>
+        <tr data-title="evaluation of my student&#39;s performance on agricultural assignments" data-year="2024">
+          <td class="date-col">2024-04-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/evaluation-my-students-performance-agricultural-toronata-tambun-3ze4c" target="_blank" rel="noopener">Evaluation of My Student's Performance on Agricultural Assignments</a></td>
+        </tr>
+        <tr data-title="a mid-term turns into a story book" data-year="2024">
+          <td class="date-col">2024-04-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mid-term-turns-story-book-75-students-toronata-tambun-bizcc" target="_blank" rel="noopener">A Mid-Term Turns into a Story Book</a></td>
+        </tr>
+        <tr data-title="x-team in javanese world view" data-year="2024">
+          <td class="date-col">2024-04-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/x-team-javanese-world-view-toronata-tambun-9izuc" target="_blank" rel="noopener">X-Team in Javanese World View</a></td>
+        </tr>
+        <tr data-title="x-team in the &quot;epic voyage of the endurance&quot; led by ernest shackleton: toro&#39;s case-study note" data-year="2024">
+          <td class="date-col">2024-04-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/x-team-epic-voyage-endurance-led-ernest-shackleton-toros-tambun-oc23c" target="_blank" rel="noopener">X-Team in the "Epic Voyage of the Endurance" led by Ernest Shackleton: Toro's Case-study Note</a></td>
+        </tr>
+        <tr data-title="x360 leadership development models (4caps +)" data-year="2024">
+          <td class="date-col">2024-04-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/x360-leadership-development-models-4caps-toronata-tambun-4bu8c" target="_blank" rel="noopener">X360 Leadership Development Models (4CAPS +)</a></td>
+        </tr>
+        <tr data-title="dreams as pathways: navigating the possible vanity of ends." data-year="2024">
+          <td class="date-col">2024-03-29</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/dreams-pathways-navigating-possible-vanity-ends-toronata-tambun-dgjsc" target="_blank" rel="noopener">Dreams as Pathways: Navigating the possible Vanity of Ends.</a></td>
+        </tr>
+        <tr data-title="6 dimensions values among china, indonesia, japan, south korea and vietnam" data-year="2024">
+          <td class="date-col">2024-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/6-dimensions-values-among-china-indonesia-japan-south-toronata-tambun-edwmc" target="_blank" rel="noopener">6 Dimensions values among China, Indonesia, Japan, South Korea and Vietnam</a></td>
+        </tr>
+        <tr data-title="agriculture tech and culture, ideas and pointers: a compilation (graded)" data-year="2024">
+          <td class="date-col">2024-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/discussion-ideas-pointers-agriculture-tech-culture-my-toronata-tambun-hatcc" target="_blank" rel="noopener">Agriculture Tech and Culture, Ideas and Pointers: A Compilation (GRADED)</a></td>
+        </tr>
+        <tr data-title="transforming teaching: addressing power distance and collectivism in the classroom - a manual" data-year="2024">
+          <td class="date-col">2024-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/intervention-teaching-high-pdi-super-low-so-afraid-very-tambun-sxzdc" target="_blank" rel="noopener">Transforming Teaching: Addressing Power Distance and Collectivism in the Classroom - A Manual</a></td>
+        </tr>
+        <tr data-title="winston&#39;s star, and vcr-n framework" data-year="2024">
+          <td class="date-col">2024-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/winstons-star-vcr-n-framework-toronata-tambun-5owyc" target="_blank" rel="noopener">Winston's Star, and VCR-N Framework</a></td>
+        </tr>
+        <tr data-title="mastering communication: inspired lessons from &#39;how to speak&#39;" data-year="2024">
+          <td class="date-col">2024-03-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mastering-communication-inspired-lessons-from-how-speak-tambun-e2n2c" target="_blank" rel="noopener">Mastering Communication: Inspired Lessons from 'How to Speak'</a></td>
+        </tr>
+        <tr data-title="&quot;the art of communication is the language of leadership&quot; - james humes" data-year="2024">
+          <td class="date-col">2024-03-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/communication-high-stake-moments-toronata-tambun-z9bdc" target="_blank" rel="noopener">"The art of communication is the language of leadership" - James Humes</a></td>
+        </tr>
+        <tr data-title="b. to speak or not to speak?" data-year="2024">
+          <td class="date-col">2024-03-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/speak-toronata-tambun-8uqwc" target="_blank" rel="noopener">B. To Speak or Not To Speak?</a></td>
+        </tr>
+        <tr data-title="storytelling mix in the making:" data-year="2024">
+          <td class="date-col">2024-03-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/storytelling-mix-making-toronata-tambun-b6npf" target="_blank" rel="noopener">Storytelling Mix in The Making:</a></td>
+        </tr>
+        <tr data-title="the symbiotic journey: cultivating mutual growth in mentor-mentee relationships" data-year="2024">
+          <td class="date-col">2024-03-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/symbiotic-journey-cultivating-mutual-growth-toronata-tambun-va8mf" target="_blank" rel="noopener">The Symbiotic Journey: Cultivating Mutual Growth in Mentor-Mentee Relationships</a></td>
+        </tr>
+        <tr data-title="week -5: reflection time" data-year="2024">
+          <td class="date-col">2024-03-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/week-5-reflection-time-toronata-tambun-xasvc" target="_blank" rel="noopener">Week -5: Reflection Time</a></td>
+        </tr>
+        <tr data-title="an illustration for time, efforts and resources: reminiscence of my regiment singing lessons" data-year="2024">
+          <td class="date-col">2024-03-18</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/illustration-time-efforts-resources-reminiscence-my-regiment-tambun-wisrc" target="_blank" rel="noopener">An Illustration for Time, Efforts and Resources: Reminiscence of my regiment singing lessons</a></td>
+        </tr>
+        <tr data-title="mastering communication skills: moving beyond authenticity and genuineness" data-year="2024">
+          <td class="date-col">2024-03-18</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mastery-communication-elevating-beyond-authenticity-toronata-tambun-gcl5c" target="_blank" rel="noopener">Mastering Communication Skills: Moving Beyond Authenticity and Genuineness</a></td>
+        </tr>
+        <tr data-title="&quot;travel is the fatal enemy of prejudice&quot; - mark twain, but what kind of travel?" data-year="2024">
+          <td class="date-col">2024-03-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/travel-fatal-enemy-prejudice-mark-twain-what-kind-toronata-tambun-caxbc" target="_blank" rel="noopener">"Travel is the fatal enemy of prejudice" - Mark Twain, but what kind of travel?</a></td>
+        </tr>
+        <tr data-title="from bajaj to philosophy: unveiling &#39;manut kersane gusti&#39;" data-year="2024">
+          <td class="date-col">2024-03-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/from-bajaj-philosophy-unveiling-manut-kersane-gusti-toronata-tambun-ppgmc" target="_blank" rel="noopener">From Bajaj to Philosophy: Unveiling 'Manut Kersane Gusti'</a></td>
+        </tr>
+        <tr data-title="conducting literature review and ethical studies" data-year="2024">
+          <td class="date-col">2024-03-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/conducting-literature-review-ethical-studies-toronata-tambun-ecfac" target="_blank" rel="noopener">Conducting Literature Review and Ethical Studies</a></td>
+        </tr>
+        <tr data-title="the value of academic writing: insights from larry mcenerney" data-year="2024">
+          <td class="date-col">2024-03-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/value-academic-writing-insights-from-larry-mcenerney-toronata-tambun-fu6dc" target="_blank" rel="noopener">The Value of Academic Writing: Insights from Larry McEnerney</a></td>
+        </tr>
+        <tr data-title="extroverted introverts,  introverted extroverts: digital anomaly?" data-year="2024">
+          <td class="date-col">2024-03-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/from-silence-expression-understanding-digital-toronata-tambun-pdiyc" target="_blank" rel="noopener">Extroverted Introverts,  Introverted Extroverts: Digital Anomaly?</a></td>
+        </tr>
+        <tr data-title="had you had a choice, why be a human instead of a jellyfish?" data-year="2024">
+          <td class="date-col">2024-03-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/had-you-choice-why-human-instead-jellyfish-toronata-tambun-ssi9c" target="_blank" rel="noopener">Had You Had a Choice, Why Be a Human Instead of a Jellyfish?</a></td>
+        </tr>
+        <tr data-title="quiet voices, loud ideas: the introvert’s guide to success" data-year="2024">
+          <td class="date-col">2024-03-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/quiet-voices-loud-ideas-introverts-guide-success-toronata-tambun-gxyyf" target="_blank" rel="noopener">Quiet Voices, Loud Ideas: The Introvert’s Guide to Success</a></td>
+        </tr>
+        <tr data-title="crafting compelling narratives: the art of thick description" data-year="2024">
+          <td class="date-col">2024-03-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/crafting-compelling-narratives-art-thick-description-toronata-tambun-mlioc" target="_blank" rel="noopener">Crafting Compelling Narratives: The Art of Thick Description</a></td>
+        </tr>
+        <tr data-title="eureka: using first pronoun in a dissertation is prevalent." data-year="2024">
+          <td class="date-col">2024-03-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/eureka-using-first-pronoun-dissertation-taboo-toronata-tambun-nzawc" target="_blank" rel="noopener">Eureka: Using First Pronoun in a Dissertation is prevalent.</a></td>
+        </tr>
+        <tr data-title="how to mind map ?" data-year="2024">
+          <td class="date-col">2024-03-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/how-mind-map-toronata-tambun-dvklc" target="_blank" rel="noopener">How to Mind Map ?</a></td>
+        </tr>
+        <tr data-title="hierarchy of grand, middle-range and low-range theories on innovation" data-year="2024">
+          <td class="date-col">2024-03-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/innovation-hierarchy-grand-middle-range-low-range-theories-tambun-eh2cc" target="_blank" rel="noopener">Hierarchy of Grand, Middle-Range and Low-Range Theories on Innovation</a></td>
+        </tr>
+        <tr data-title="success ?" data-year="2024">
+          <td class="date-col">2024-03-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/success-toronata-tambun-rehqc" target="_blank" rel="noopener">Success ?</a></td>
+        </tr>
+        <tr data-title="rediscovering silence and reflection in the digital age: introducing “among wektu”" data-year="2024">
+          <td class="date-col">2024-03-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/rediscovering-silence-reflection-digital-age-among-wektu-tambun-m5nvc" target="_blank" rel="noopener">Rediscovering Silence and Reflection in the Digital Age: Introducing “Among Wektu”</a></td>
+        </tr>
+        <tr data-title="life is like a box of chocolates" data-year="2024">
+          <td class="date-col">2024-02-28</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/life-like-box-chocolates-toronata-tambun-3nt5c" target="_blank" rel="noopener">Life is like a box of chocolates</a></td>
+        </tr>
+        <tr data-title="the role of entrepreneurship education in democratic engagement" data-year="2024">
+          <td class="date-col">2024-02-15</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/role-entrepreneurship-education-democratic-engagement-toronata-tambun-ueamc" target="_blank" rel="noopener">The Role of Entrepreneurship Education in Democratic Engagement</a></td>
+        </tr>
+        <tr data-title="wanted: leaders who uphold ethics and implement etiquettes" data-year="2024">
+          <td class="date-col">2024-01-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/ethics-etiquettes-philosophy-same-toronata-tambun-rt70c" target="_blank" rel="noopener">Wanted: Leaders who Uphold Ethics and Implement Etiquettes</a></td>
+        </tr>
+        <tr data-title="aid over empowerment?" data-year="2024">
+          <td class="date-col">2024-01-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/aid-over-empowerment-toronata-tambun-bda9c" target="_blank" rel="noopener">Aid Over Empowerment?</a></td>
+        </tr>
+        <tr data-title="what would she have done differently? is it possible though?" data-year="2024">
+          <td class="date-col">2024-01-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/what-would-she-have-done-differently-possible-though-toronata-tambun-qpmec" target="_blank" rel="noopener">What would she have done differently? Is it possible though?</a></td>
+        </tr>
+        <tr data-title="beyond the ivory tower: confronting intolerance in academic culture" data-year="2023">
+          <td class="date-col">2023-12-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/beyond-ivory-tower-confronting-intolerance-academic-culture-tambun-aezcc" target="_blank" rel="noopener">Beyond the Ivory Tower: Confronting Intolerance in Academic Culture</a></td>
+        </tr>
+        <tr data-title="bridging ideals and reality: the evolving role of educators in the university setting" data-year="2023">
+          <td class="date-col">2023-12-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/bridging-ideals-reality-evolving-role-educators-setting-tambun-ursbc" target="_blank" rel="noopener">Bridging Ideals and Reality: The Evolving Role of Educators in the University Setting</a></td>
+        </tr>
+        <tr data-title="what it feels to be a citizen ? (context: in a society marked by inequality and corruption)" data-year="2023">
+          <td class="date-col">2023-12-18</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/reevaluating-rousseaus-vision-societies-marked-toronata-tambun-rkpac" target="_blank" rel="noopener">What it Feels to be a Citizen ? (context: in a Society Marked by Inequality and Corruption)</a></td>
+        </tr>
+        <tr data-title="beyond marbles and fields: the role of childhood in shaping the leaders of tomorrow" data-year="2023">
+          <td class="date-col">2023-12-15</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/beyond-marbles-fields-role-childhood-shaping-leaders-tomorrow-tambun-dzvnf" target="_blank" rel="noopener">Beyond Marbles and Fields: The Role of Childhood in Shaping the Leaders of Tomorrow</a></td>
+        </tr>
+        <tr data-title="using supply demand framework to asses nuclear industry&#39;s dynamics with its context" data-year="2023">
+          <td class="date-col">2023-12-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/using-supply-demand-framework-asses-nuclear-industrys-toronata-tambun-4fmrc" target="_blank" rel="noopener">Using Supply Demand Framework to Asses Nuclear Industry's Dynamics with Its Context</a></td>
+        </tr>
+        <tr data-title="introduction to ethnography" data-year="2023">
+          <td class="date-col">2023-12-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/introduction-ethnography-toronata-tambun-yimhc" target="_blank" rel="noopener">Introduction to Ethnography</a></td>
+        </tr>
+        <tr data-title="beyond shame: ethical dimensions of mindsets in corruption" data-year="2023">
+          <td class="date-col">2023-12-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/beyond-shame-ethical-dimensions-mindsets-corruption-toronata-tambun-dzkxc" target="_blank" rel="noopener">Beyond Shame: Ethical Dimensions of Mindsets in Corruption</a></td>
+        </tr>
+        <tr data-title="sense-making: the foundation of strategy (and others)" data-year="2023">
+          <td class="date-col">2023-11-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/sense-making-foundation-strategy-toronata-tambun-quzec" target="_blank" rel="noopener">Sense-Making: The Foundation of Strategy (and others)</a></td>
+        </tr>
+        <tr data-title="strategy in startups: its relevance" data-year="2023">
+          <td class="date-col">2023-11-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/strategy-startups-its-relevance-toronata-tambun-l7bnc" target="_blank" rel="noopener">Strategy in Startups: Its Relevance</a></td>
+        </tr>
+        <tr data-title="validation of anthropological data: a four-aspect framework (one of many takeaways from my failed attempt)" data-year="2023">
+          <td class="date-col">2023-11-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/validation-anthropological-dataa-four-aspect-framework-tambun-rtuec" target="_blank" rel="noopener">Validation of Anthropological Data: A Four-Aspect Framework (One of many takeaways from my failed attempt)</a></td>
+        </tr>
+        <tr data-title="unraveling the cultural layers of corruption: an adaptation of edgar schein&#39;s model" data-year="2023">
+          <td class="date-col">2023-11-15</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/unraveling-cultural-layers-corruption-adaptation-edgar-tambun-sk8hc" target="_blank" rel="noopener">Unraveling the Cultural Layers of Corruption: An Adaptation of Edgar Schein's Model</a></td>
+        </tr>
+        <tr data-title="human activity, technology and environment: borrowing john sterman&#39;s clds" data-year="2023">
+          <td class="date-col">2023-11-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/human-activity-technology-environment-borrowing-john-stermans-tambun-uaqoc" target="_blank" rel="noopener">Human Activity, Technology and Environment: Borrowing John Sterman's CLDs</a></td>
+        </tr>
+        <tr data-title="tourism and climate change" data-year="2023">
+          <td class="date-col">2023-11-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/tourism-climate-change-toronata-tambun-r9ysc" target="_blank" rel="noopener">Tourism and Climate Change</a></td>
+        </tr>
+        <tr data-title="harry susilo: the man who turned shrimp crackers into a legacy of balance and integrity" data-year="2023">
+          <td class="date-col">2023-11-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/harry-susilo-man-who-turned-shrimp-crackers-legacy-balance-tambun-wo1gc" target="_blank" rel="noopener">Harry Susilo: The Man Who Turned Shrimp Crackers into a Legacy of Balance and Integrity</a></td>
+        </tr>
+        <tr data-title="meritocracy and democracy: insights through allegory" data-year="2023">
+          <td class="date-col">2023-10-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/meritocracy-democracy-insights-through-allegory-toronata-tambun-2sukc" target="_blank" rel="noopener">Meritocracy and Democracy: Insights through Allegory</a></td>
+        </tr>
+        <tr data-title="meritocracy&#39;s mirage: how scholarly excellence may conceal inequities and inequalities?" data-year="2023">
+          <td class="date-col">2023-10-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/meritocracys-mirage-how-scholarly-excellence-may-conceal-tambun-nx5jc" target="_blank" rel="noopener">Meritocracy's Mirage: How Scholarly Excellence May Conceal Inequities and Inequalities?</a></td>
+        </tr>
+        <tr data-title="traditional journalism: trustworthy anchor in the digital tide of elections" data-year="2023">
+          <td class="date-col">2023-10-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/traditional-journalism-trustworthy-anchor-digital-tide-tambun-ctwmc" target="_blank" rel="noopener">Traditional Journalism: Trustworthy Anchor in the Digital Tide of Elections</a></td>
+        </tr>
+        <tr data-title="part 2: brain formation, lifelong journeys and lessons from prof. sri margono: my testimony on entrepreneurship formation" data-year="2023">
+          <td class="date-col">2023-10-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/brain-formation-lifelong-journeys-part-2-lessons-from-toronata-tambun-0nzac" target="_blank" rel="noopener">Part 2: Brain Formation, Lifelong Journeys and Lessons from Prof. Sri Margono: My Testimony on Entrepreneurship Formation</a></td>
+        </tr>
+        <tr data-title="national culture, traits of innovation and youth brain formation" data-year="2023">
+          <td class="date-col">2023-10-15</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/national-culture-traits-innovation-youth-brain-formation-tambun-yartc" target="_blank" rel="noopener">National Culture, Traits of Innovation and Youth Brain Formation</a></td>
+        </tr>
+        <tr data-title="(poverty trap part 2) online loans: poverty alleviation or poverty reenforcement ?" data-year="2023">
+          <td class="date-col">2023-10-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/poverty-trap-part-2-online-loans-alleviation-toronata-tambun" target="_blank" rel="noopener">(Poverty Trap Part 2) Online Loans: Poverty Alleviation or Poverty Reenforcement ?</a></td>
+        </tr>
+        <tr data-title="caesar indra: the making of an entrepreneurial mindset" data-year="2023">
+          <td class="date-col">2023-09-29</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/caesar-indra-making-entrepreneurial-mindset-toronata-tambun" target="_blank" rel="noopener">Caesar Indra: The Making of an Entrepreneurial Mindset</a></td>
+        </tr>
+        <tr data-title="deeper into edgar schein&#39;s ob grand theory" data-year="2023">
+          <td class="date-col">2023-09-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/deeper-edgar-scheins-ob-grand-theory-toronata-tambun" target="_blank" rel="noopener">Deeper into Edgar Schein's OB Grand Theory</a></td>
+        </tr>
+        <tr data-title="edgar schein&#39;s and geert hofstede&#39;s hypothetical evolutionary anthropological path" data-year="2023">
+          <td class="date-col">2023-09-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/edgar-scheins-geert-hofstedes-hypothetical-theories-path-tambun" target="_blank" rel="noopener">Edgar Schein's and Geert Hofstede's hypothetical evolutionary anthropological path</a></td>
+        </tr>
+        <tr data-title="fostering a culturally ready of an innovative and a safe cyber nation: culture first" data-year="2023">
+          <td class="date-col">2023-09-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/fostering-culturally-ready-innovative-safe-cyber-nation-tambun" target="_blank" rel="noopener">Fostering a Culturally Ready of an Innovative and a Safe Cyber Nation: Culture First</a></td>
+        </tr>
+        <tr data-title="balancing structuralism & post structuralism: result of an open research" data-year="2023">
+          <td class="date-col">2023-09-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/hofstede-levi-strauss-geertz-schein-foucault-derrida-shared-tambun" target="_blank" rel="noopener">Balancing Structuralism & Post Structuralism: Result of an Open Research</a></td>
+        </tr>
+        <tr data-title="hofstede&#39;s theory and levi-strauss structuralism: any connections?" data-year="2023">
+          <td class="date-col">2023-09-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/hofstedes-theory-levi-strauss-structuralism-any-toronata-tambun" target="_blank" rel="noopener">Hofstede's Theory and Levi-Strauss Structuralism: Any connections?</a></td>
+        </tr>
+        <tr data-title="kahneman&#39;s theory and levi-strauss structuralism: any connections?" data-year="2023">
+          <td class="date-col">2023-09-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/levi-strauss-structuralism-daniel-kahneman-system-1-thinking-tambun" target="_blank" rel="noopener">Kahneman's Theory and Levi-Strauss Structuralism: Any connections?</a></td>
+        </tr>
+        <tr data-title="working among grand theories of two different social sciences!" data-year="2023">
+          <td class="date-col">2023-09-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/working-among-grand-theories-from-two-different-majors-tambun" target="_blank" rel="noopener">Working Among Grand Theories of Two Different Social Sciences!</a></td>
+        </tr>
+        <tr data-title="the yin and yang of business strategy: balancing external and internal views" data-year="2023">
+          <td class="date-col">2023-09-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/yin-yang-business-strategy-balancing-external-internal-tambun" target="_blank" rel="noopener">The Yin and Yang of Business Strategy: Balancing External and Internal Views</a></td>
+        </tr>
+        <tr data-title="echoes from the past: no traits of innovation, however ....." data-year="2023">
+          <td class="date-col">2023-09-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/echoes-from-past-shared-values-innovation-toronata-tambun" target="_blank" rel="noopener">Echoes from the Past: No Traits of Innovation, however .....</a></td>
+        </tr>
+        <tr data-title="poverty trap and innovation (part-1)" data-year="2023">
+          <td class="date-col">2023-09-14</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/poverty-trap-systematic-approach-learn-before-act-upon-tambun" target="_blank" rel="noopener">Poverty Trap and Innovation (Part-1)</a></td>
+        </tr>
+        <tr data-title="semi-final stop: saunders’ research onion" data-year="2023">
+          <td class="date-col">2023-09-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/semi-final-stop-saunders-research-onion-toronata-tambun" target="_blank" rel="noopener">Semi-Final Stop: Saunders’ Research Onion</a></td>
+        </tr>
+        <tr data-title="the undying art of storytelling: navigating 4,000 years of human connection" data-year="2023">
+          <td class="date-col">2023-09-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/undying-art-storytelling-navigating-4000-years-human-toronata-tambun" target="_blank" rel="noopener">The Undying Art of Storytelling: Navigating 4,000 Years of Human Connection</a></td>
+        </tr>
+        <tr data-title="stop 5: research methodology" data-year="2023">
+          <td class="date-col">2023-09-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/research-methodology-toronata-tambun" target="_blank" rel="noopener">Stop 5: Research Methodology</a></td>
+        </tr>
+        <tr data-title="stop 2: foundations in philosophy" data-year="2023">
+          <td class="date-col">2023-09-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/stop-1-branch-philosophy-toronata-tambun" target="_blank" rel="noopener">Stop 2: Foundations in Philosophy</a></td>
+        </tr>
+        <tr data-title="stop 3: core concepts in philosophy of science" data-year="2023">
+          <td class="date-col">2023-09-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/stop-2-core-concepts-philosophy-science-toronata-tambun" target="_blank" rel="noopener">Stop 3: Core Concepts in Philosophy of Science</a></td>
+        </tr>
+        <tr data-title="stop 4: core concepts in science" data-year="2023">
+          <td class="date-col">2023-09-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/stop-3-core-concepts-science-toronata-tambun" target="_blank" rel="noopener">Stop 4: Core Concepts in Science</a></td>
+        </tr>
+        <tr data-title="learn to crawl: science and philosophy of science, their positioning (stop 1 - introduction)" data-year="2023">
+          <td class="date-col">2023-09-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/learn-crawl-even-crawling-science-philosophy-toronata-tambun" target="_blank" rel="noopener">Learn to Crawl: Science and Philosophy of Science, Their Positioning (Stop 1 - Introduction)</a></td>
+        </tr>
+        <tr data-title="evolution of management thoughts: very personal reflection" data-year="2023">
+          <td class="date-col">2023-09-05</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/evolution-management-thoughts-personal-reflection-toronata-tambun" target="_blank" rel="noopener">Evolution of Management Thoughts: Very Personal Reflection</a></td>
+        </tr>
+        <tr data-title="understanding the hierarchy of management theories: from grand theories to low-range theories" data-year="2023">
+          <td class="date-col">2023-09-05</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/understanding-hierarchy-management-theories-from-grand-tambun" target="_blank" rel="noopener">Understanding the Hierarchy of Management Theories: From Grand Theories to Low-Range Theories</a></td>
+        </tr>
+        <tr data-title="reflections on &quot;philosophy for professionals&quot;" data-year="2023">
+          <td class="date-col">2023-09-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/reflections-philosophy-professionals-enrichment-journey-tambun" target="_blank" rel="noopener">Reflections on "Philosophy for Professionals"</a></td>
+        </tr>
+        <tr data-title="s1 -> s2 -> s3 (consuming -> developing -> creating knowledge)" data-year="2023">
+          <td class="date-col">2023-09-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/s1-s2-s3-consuming-developing-creating-knowledge-toronata-tambun" target="_blank" rel="noopener">S1 -> S2 -> S3 (Consuming -> Developing -> Creating Knowledge)</a></td>
+        </tr>
+        <tr data-title="claude lévi-strauss and structuralism: a philosophical journey, then arriving in post-structuralism" data-year="2023">
+          <td class="date-col">2023-08-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/claude-l%C3%A9vi-strauss-structuralism-philosophical-journey-tambun" target="_blank" rel="noopener">Claude Lévi-Strauss and Structuralism: A Philosophical Journey, then arriving in Post-Structuralism</a></td>
+        </tr>
+        <tr data-title="“berfilsafat” and ontology: charting the depths of existence and knowledge creation, starting an s3 journey" data-year="2023">
+          <td class="date-col">2023-08-25</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/berfilsafat-menuju-penciptaan-ilmu-toronata-tambun" target="_blank" rel="noopener">“Berfilsafat” and Ontology: Charting the Depths of Existence and Knowledge Creation, Starting an S3 Journey</a></td>
+        </tr>
+        <tr data-title="firing neurons: why entrepreneurship education must start early" data-year="2023">
+          <td class="date-col">2023-08-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/firing-neurons-why-entrepreneurship-education-must-start-tambun" target="_blank" rel="noopener">Firing Neurons: Why Entrepreneurship Education Must Start Early</a></td>
+        </tr>
+        <tr data-title="vietnam&#39;s innovation triumph: cultural foundations and leadership dynamics-a multifaceted exploration" data-year="2023">
+          <td class="date-col">2023-08-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/cultural-foundations-leadership-dynamics-multifaceted-toronata-tambun" target="_blank" rel="noopener">Vietnam's Innovation Triumph: Cultural Foundations and Leadership Dynamics-A Multifaceted Exploration</a></td>
+        </tr>
+        <tr data-title="culture and its stratification: schein, anthropologists, and the mind&#39;s underpinnings" data-year="2023">
+          <td class="date-col">2023-08-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/culture-its-stratification-schein-anthropologists-minds-tambun" target="_blank" rel="noopener">Culture and Its Stratification: Schein, Anthropologists, and the Mind's Underpinnings</a></td>
+        </tr>
+        <tr data-title="rebel talents: a cultural exploration – persecuted minority" data-year="2023">
+          <td class="date-col">2023-08-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/rebel-talent-indonesian-archipelago-cultural-why-yet-toronata-tambun" target="_blank" rel="noopener">Rebel Talents: A Cultural Exploration – Persecuted Minority</a></td>
+        </tr>
+        <tr data-title="the dual-edged sword of diverse mentorship: navigating the pros and cons for startup success" data-year="2023">
+          <td class="date-col">2023-08-18</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/dual-edged-sword-diverse-mentorship-navigating-pros-cons-tambun" target="_blank" rel="noopener">The Dual-Edged Sword of Diverse Mentorship: Navigating the Pros and Cons for Startup Success</a></td>
+        </tr>
+        <tr data-title="harnessing the power of inclusivity in diverse teams: a preliminary analysis" data-year="2023">
+          <td class="date-col">2023-08-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/harnessing-power-inclusivity-diverse-teams-analysis-toronata-tambun" target="_blank" rel="noopener">Harnessing the Power of Inclusivity in Diverse Teams: A Preliminary Analysis</a></td>
+        </tr>
+        <tr data-title="understanding the venn diagram &quot;paying customer, fit-value proposition, and operational excellence&quot;" data-year="2023">
+          <td class="date-col">2023-08-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/understanding-venn-diagram-paying-customer-fit-value-toronata-tambun" target="_blank" rel="noopener">Understanding the Venn Diagram "Paying Customer, Fit-Value Proposition, and Operational Excellence"</a></td>
+        </tr>
+        <tr data-title="fear of missing out: unmasking the hype and challenging misapplied managerial economics in celebrated platform matchmaking" data-year="2023">
+          <td class="date-col">2023-08-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/strained-balance-challenging-misapplied-managerial-economics-tambun" target="_blank" rel="noopener">Fear of Missing Out: Unmasking the Hype and Challenging Misapplied Managerial Economics in Celebrated Platform Matchmaking</a></td>
+        </tr>
+        <tr data-title="climate change simulation: revealing the noble and potential pool of leaders in the country" data-year="2023">
+          <td class="date-col">2023-08-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/climate-change-simulation-revealing-noble-potential-pool-tambun" target="_blank" rel="noopener">Climate Change Simulation: Revealing the Noble and Potential Pool of Leaders in the Country</a></td>
+        </tr>
+        <tr data-title="nurturing integrity: instilling anti-corruption values in indonesian youth" data-year="2023">
+          <td class="date-col">2023-08-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/title-nurturing-integrity-instilling-anti-corruption-values-tambun" target="_blank" rel="noopener">Nurturing Integrity: Instilling Anti-Corruption Values in Indonesian Youth</a></td>
+        </tr>
+        <tr data-title="the irreplaceable role of human salesmanship in the service industry: for now" data-year="2023">
+          <td class="date-col">2023-08-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/irreplaceable-role-human-salesmanship-service-industry-tambun" target="_blank" rel="noopener">The Irreplaceable Role of Human Salesmanship in the Service Industry: For Now</a></td>
+        </tr>
+        <tr data-title="managerial economics - refreshment" data-year="2023">
+          <td class="date-col">2023-07-28</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/several-basic-macro-economic-concepts-firm-my-1st-class-tambun" target="_blank" rel="noopener">Managerial Economics - Refreshment</a></td>
+        </tr>
+        <tr data-title="artificial intelligence in journalism: a threat or an opportunity?" data-year="2023">
+          <td class="date-col">2023-07-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/artificial-intelligence-journalism-threat-opportunity-toronata-tambun" target="_blank" rel="noopener">Artificial Intelligence in Journalism: A Threat Or An Opportunity?</a></td>
+        </tr>
+        <tr data-title="javanese’ espoused values on openness, conscientiousness, agreeableness and emotionally-stableness" data-year="2023">
+          <td class="date-col">2023-02-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/javanese-espoused-values-openness-conscientiousness-toronata-tambun" target="_blank" rel="noopener">Javanese’ Espoused Values on Openness, Conscientiousness, Agreeableness and Emotionally-stableness</a></td>
+        </tr>
+        <tr data-title="artifacts among higher innovation ecosystem countries: japan case study" data-year="2023">
+          <td class="date-col">2023-02-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/artifacts-among-higher-innovation-ecosystem-countries-toronata-tambun" target="_blank" rel="noopener">ARTIFACTS AMONG HIGHER INNOVATION ECOSYSTEM COUNTRIES: Japan Case Study</a></td>
+        </tr>
+        <tr data-title="not so often published: the other face of younger generation - brutal honest facts - what can we do?" data-year="2023">
+          <td class="date-col">2023-01-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/so-often-published-other-face-younger-generation-brutal-tambun" target="_blank" rel="noopener">Not So Often Published: The Other Face of Younger Generation - Brutal Honest Facts - What Can We Do?</a></td>
+        </tr>
+        <tr data-title="happiness? it is in the brain !" data-year="2021">
+          <td class="date-col">2021-06-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/bahagia-pendekatan-neuroscience-toronata-tambun" target="_blank" rel="noopener">Happiness? It is in the brain !</a></td>
+        </tr>
+        <tr data-title="one of my early milestones: afs exchange student in mombusho asean program 1988" data-year="2021">
+          <td class="date-col">2021-05-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/one-my-early-milestones-afs-exchange-student-mombusho-toronata-tambun" target="_blank" rel="noopener">One of My Early Milestones: AFS Exchange Student in Mombusho ASEAN Program 1988</a></td>
+        </tr>
+        <tr data-title="creating entrepreneurs won&#39;t just happen by simply providing hand-to-mouth seed funds intended for unemployed precarious people." data-year="2020">
+          <td class="date-col">2020-07-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/creating-entrepreneurs-wont-just-happen-simply-providing-tambun" target="_blank" rel="noopener">Creating Entrepreneurs won't just happen by simply providing hand-to-mouth seed funds intended for unemployed precarious people.</a></td>
+        </tr>
+        <tr data-title="applying the &quot;creating shared value (csv)&quot;​ concept during a pandemic or natural disaster." data-year="2020">
+          <td class="date-col">2020-04-25</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/applying-creating-shared-value-csv-concept-during-pandemic-tambun" target="_blank" rel="noopener">Applying the "Creating Shared Value (CSV)"​ Concept During a Pandemic or Natural Disaster.</a></td>
+        </tr>
+        <tr data-title="entrepreneur during crisis" data-year="2020">
+          <td class="date-col">2020-04-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/entrepreneur-during-crisis-toronata-tambun" target="_blank" rel="noopener">Entrepreneur During Crisis</a></td>
+        </tr>
+        <tr data-title="innovation driven enterprise : an approach where itb plays a pivotal role in escaping indonesia from middle income trap" data-year="2020">
+          <td class="date-col">2020-04-21</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/innovation-driven-enterprise-approach-where-itb-plays-toronata-tambun" target="_blank" rel="noopener">Innovation Driven Enterprise : An Approach Where ITB Plays a Pivotal Role In Escaping Indonesia from Middle Income Trap</a></td>
+        </tr>
+        <tr data-title="la vita é bella : embrace and manage both failures and successes as part of life .. a personal application of kübler-ross framework" data-year="2019">
+          <td class="date-col">2019-11-01</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/la-vita-e-belle-friendly-manage-both-failure-success-personal-tambun" target="_blank" rel="noopener">La Vita é Bella : embrace and manage both failures and successes as part of life .. a personal application of Kübler-Ross framework</a></td>
+        </tr>
+        <tr data-title="ukm vs “usaha berbasis inovasi (ide-innovation driven enterprise)”" data-year="2019">
+          <td class="date-col">2019-10-31</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/ukm-vs-usaha-berbasis-inovasi-ide-innovation-driven-toronata-tambun" target="_blank" rel="noopener">UKM vs “Usaha Berbasis Inovasi (IDE-Innovation Driven Enterprise)”</a></td>
+        </tr>
+        <tr data-title="it is time to tell startups to focus on: free cash flow. for the country : stop using number of unicorns as measure for entrepreneurial success." data-year="2019">
+          <td class="date-col">2019-10-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/using-number-unicorns-measure-entrepreneurial-success-toronata-tambun" target="_blank" rel="noopener">It is time to tell startups to focus on: free cash flow. For the country : Stop using number of unicorns as measure for entrepreneurial success.</a></td>
+        </tr>
+        <tr data-title="are the &quot;myths about venture capital&quot;​ -written in 1983- still the myths in 2019 ?" data-year="2019">
+          <td class="date-col">2019-10-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/myths-venture-capital-written-1983-still-2019-toronata-tambun" target="_blank" rel="noopener">Are the "Myths About Venture Capital"​ -written in 1983- still the myths in 2019 ?</a></td>
+        </tr>
+        <tr data-title="for start-ups: don&#39;t get owned by your valuation. focus on your paying customers, how you address their pain and the target addressable market." data-year="2019">
+          <td class="date-col">2019-09-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/start-ups-which-vcs-choose-toronata-tambun" target="_blank" rel="noopener">For Start-Ups: Don't get owned by your valuation. Focus on your paying customers, how you address their pain and the target addressable market.</a></td>
+        </tr>
+        <tr data-title="my vision on education in indonesia" data-year="2019">
+          <td class="date-col">2019-09-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/skills-needed-work-force-indonesia-2019-onwards-toronata-tambun" target="_blank" rel="noopener">My Vision on Education in Indonesia</a></td>
+        </tr>
+        <tr data-title="each city / region has its own unique innovation ecosystem and entrepreneurial ecosystem" data-year="2019">
+          <td class="date-col">2019-08-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/each-city-region-has-its-own-unique-innovation-ecosystem-tambun" target="_blank" rel="noopener">Each city / region has its own unique innovation ecosystem and entrepreneurial ecosystem</a></td>
+        </tr>
+        <tr data-title="an astronaut &quot;the universe humbles us, if we are willing to step back and realize our place in it. it make things like power and wealth seem silly&quot;​" data-year="2019">
+          <td class="date-col">2019-07-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/universe-humbles-us-we-willing-step-back-realize-our-place-tambun" target="_blank" rel="noopener">An astronaut "The universe humbles us, if we are willing to step back and realize our place in it. IT MAKE THINGS LIKE POWER AND WEALTH SEEM SILLY"​</a></td>
+        </tr>
+        <tr data-title="becoming a world-ready citizen : by acknowledging that human are irrational creatures, teams are necessary, system dynamics explains  life." data-year="2019">
+          <td class="date-col">2019-07-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/becoming-world-ready-citizen-acknowledging-human-creatures-tambun" target="_blank" rel="noopener">Becoming a world-ready citizen : by acknowledging that human are irrational creatures, teams are necessary, system dynamics explains  life.</a></td>
+        </tr>
+        <tr data-title="shifting to renewable : do the right thing right in the first time. trust the process, or else" data-year="2019">
+          <td class="date-col">2019-07-01</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/moving-renewable-do-right-thing-place-trust-process-else-tambun" target="_blank" rel="noopener">Shifting to Renewable : Do the Right Thing Right in The First Time. Trust the Process, or else</a></td>
+        </tr>
+        <tr data-title="&quot;​..  the failure of globalization and capitalism, what to offer next.. &quot;​ my unfinished speech during the closing of globalization class." data-year="2019">
+          <td class="date-col">2019-06-30</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/my-unfinished-speech-closing-class-globalization-failure-tambun" target="_blank" rel="noopener">"​..  the failure of globalization and capitalism, what to offer next.. "​ My unfinished speech during the closing of globalization class.</a></td>
+        </tr>
+        <tr data-title="each region has its own unique cluster ecosystems. how to find one ? don&#39;t emulate silicon valley!" data-year="2019">
+          <td class="date-col">2019-06-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/how-advanced-manufacturing-companies-look-offshore-case-tambun" target="_blank" rel="noopener">Each Region Has Its Own Unique Cluster Ecosystems. How to Find One ? Don't Emulate Silicon Valley!</a></td>
+        </tr>
+        <tr data-title="renewable industry to collaborate with oil and gas company (energy company) : not to shy away" data-year="2019">
+          <td class="date-col">2019-06-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/renewable-industry-collaborate-oil-gas-company-energy-toronata-tambun" target="_blank" rel="noopener">Renewable Industry to collaborate with Oil and Gas Company (Energy Company) : Not to shy away</a></td>
+        </tr>
+        <tr data-title="the hydrocarbon extractions in indonesia are still in demand" data-year="2019">
+          <td class="date-col">2019-06-18</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/hydrocarbon-extractions-still-demand-toronata-tambun" target="_blank" rel="noopener">The Hydrocarbon Extractions in Indonesia are Still in Demand</a></td>
+        </tr>
+        <tr data-title="hcl technologies hbs case : my takeaways - long-term reward for working smart vs working hard" data-year="2019">
+          <td class="date-col">2019-04-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/hcl-technologies-hbs-case-my-takeaways-long-term-vs-toronata" target="_blank" rel="noopener">HCL Technologies HBS Case : My Takeaways - Long-term Reward for Working Smart vs Working Hard</a></td>
+        </tr>
+        <tr data-title="for startups : high priority should be given in assembling founding team" data-year="2018">
+          <td class="date-col">2018-02-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/startups-high-priority-should-given-assembling-founding-tambun" target="_blank" rel="noopener">For Startups : High Priority Should be given in Assembling Founding Team</a></td>
+        </tr>
+        <tr data-title="reminiscence as an expatriate vp in a china state owned company :" data-year="2017">
+          <td class="date-col">2017-12-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/reminiscence-expatriate-vp-china-state-owned-company-toronata-tambun" target="_blank" rel="noopener">Reminiscence as an Expatriate VP in a China State Owned Company :</a></td>
+        </tr>
+        <tr data-title="renewable energy : not a cliche" data-year="2017">
+          <td class="date-col">2017-04-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/renewable-energy-cliche-toronata-tambun" target="_blank" rel="noopener">Renewable Energy : not a cliche</a></td>
+        </tr>
+        <tr data-title="a general set of recruitment criteria for your marketing team in this digital era" data-year="2017">
+          <td class="date-col">2017-04-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/general-set-recruitment-criteria-your-marketing-team-digital-tambun" target="_blank" rel="noopener">A General Set of Recruitment Criteria for Your Marketing Team in this Digital Era</a></td>
+        </tr>
+        <tr data-title="redefining your sales and marketing team" data-year="2017">
+          <td class="date-col">2017-04-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/redefining-your-sales-marketing-team-toronata-tambun" target="_blank" rel="noopener">Redefining Your Sales and Marketing Team</a></td>
+        </tr>
+        <tr data-title="criteria of the new marketer breed : d-a-r-c" data-year="2017">
+          <td class="date-col">2017-02-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/criteria-new-marketer-breed-d-a-r-c-toronata-tambun" target="_blank" rel="noopener">Criteria of the New Marketer Breed : D-A-R-C</a></td>
+        </tr>
+        <tr data-title="checklist of a star-performer sales manager" data-year="2017">
+          <td class="date-col">2017-02-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/checklist-star-performer-sales-manager-toronata-tambun" target="_blank" rel="noopener">Checklist of a star-performer Sales Manager</a></td>
+        </tr>
+        <tr data-title="simple steps to make crm to be embraced by the star-performer sales structured team." data-year="2017">
+          <td class="date-col">2017-02-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/simple-steps-make-crm-embraced-star-performer-sales-team-tambun" target="_blank" rel="noopener">Simple steps to make CRM to be embraced by the star-performer sales structured team.</a></td>
+        </tr>
+        <tr data-title="are you a star-performer sales person ?" data-year="2017">
+          <td class="date-col">2017-02-23</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/you-star-performer-sales-person-toronata-tambun" target="_blank" rel="noopener">Are you a star-performer sales person ?</a></td>
+        </tr>
+    </tbody>
+  </table>
+  <div id="no-results">No articles match your search.</div>
+</div>
+
+<footer>
+  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a> &nbsp;·&nbsp; All articles originally published on LinkedIn</p>
+</footer>
+
+<script>
+  const searchInput = document.getElementById('search');
+  const yearFilter  = document.getElementById('year-filter');
+  const resultCount = document.getElementById('result-count');
+  const noResults   = document.getElementById('no-results');
+  const rows        = document.querySelectorAll('#articles-table tbody tr');
+
+  function filter() {
+    const q    = searchInput.value.toLowerCase().trim();
+    const year = yearFilter.value;
+    let visible = 0;
+    rows.forEach(row => {
+      const title   = row.dataset.title || '';
+      const rowYear = row.dataset.year  || '';
+      const matchQ  = !q    || title.includes(q);
+      const matchY  = !year || rowYear === year;
+      if (matchQ && matchY) { row.classList.remove('hidden'); visible++; }
+      else                  { row.classList.add('hidden'); }
+    });
+    resultCount.textContent = visible === 1 ? '1 article' : `${visible} articles`;
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  searchInput.addEventListener('input', filter);
+  yearFilter.addEventListener('change', filter);
+</script>
+
+</body>
+</html>
