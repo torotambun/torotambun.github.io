@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jakarta Post Columns — Dr. A.R.Y. Toronata Tambun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:      #1a1a2e;
+      --muted:    #5a5a7a;
+      --accent:   #c0392b;
+      --accent2:  #1a1a2e;
+      --bg:       #faf9f6;
+      --surface:  #ffffff;
+      --border:   #e8e4dc;
+      --hover-bg: #f5f0e8;
+      --radius:   4px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    header { background: var(--accent2); color: #fff; padding: 48px 40px 36px; position: relative; overflow: hidden; }
+    header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: rgba(192,57,43,0.15); pointer-events: none; }
+    header::after { content: ''; position: absolute; bottom: -80px; left: 20%; width: 200px; height: 200px; border-radius: 50%; background: rgba(192,57,43,0.08); pointer-events: none; }
+    .back-link { display: inline-block; color: #e8a89e; font-size: 13px; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; margin-bottom: 20px; opacity: 0.9; }
+    .back-link:hover { opacity: 1; text-decoration: underline; }
+    header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 8px; }
+    header .subtitle { font-size: 15px; opacity: 0.75; font-weight: 300; font-style: italic; }
+    .article-count { display: inline-block; margin-top: 20px; background: rgba(192,57,43,0.25); border: 1px solid rgba(192,57,43,0.4); color: #e8a89e; padding: 4px 14px; border-radius: 20px; font-size: 13px; letter-spacing: 0.05em; }
+    .controls { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 40px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .search-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.4; pointer-events: none; }
+    #search { width: 100%; padding: 10px 16px 10px 38px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.2s; }
+    #search:focus { border-color: var(--accent); }
+    #year-filter { padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; cursor: pointer; }
+    #result-count { font-size: 13px; color: var(--muted); white-space: nowrap; font-style: italic; }
+    .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0 16px 14px; text-align: left; border-bottom: 2px solid var(--accent); }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    tbody tr:hover { background: var(--hover-bg); }
+    tbody tr.hidden { display: none; }
+    td { padding: 14px 16px; vertical-align: top; }
+    .date-col { white-space: nowrap; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; width: 120px; padding-top: 16px; }
+    .title-col { font-size: 15px; line-height: 1.5; }
+    .title-col a { color: var(--accent2); text-decoration: none; transition: color 0.15s; }
+    .title-col a:hover { color: var(--accent); text-decoration: underline; }
+    .co-badge { display: inline-block; font-size: 10px; font-family: Arial, sans-serif; background: #f0e8e8; color: var(--accent); border: 1px solid #e8c8c8; border-radius: 3px; padding: 1px 6px; margin-left: 8px; vertical-align: middle; }
+    #no-results { display: none; text-align: center; padding: 60px 20px; color: var(--muted); font-style: italic; }
+    footer { text-align: center; padding: 30px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    @media (max-width: 600px) {
+      header, .controls, .table-wrap { padding-left: 20px; padding-right: 20px; }
+      .date-col { width: 90px; font-size: 12px; }
+      .title-col { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a class="back-link" href="https://torotambun.github.io">← Back to CV</a>
+  <h1>The Jakarta Post Columns</h1>
+  <p class="subtitle">Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Published 2014–2026</p>
+  <span class="article-count">77 columns</span>
+</header>
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="search" placeholder="Search by keyword, title, topic…" autocomplete="off">
+  </div>
+  <select id="year-filter">
+    <option value="">All years</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2014">2014</option>
+  </select>
+  <span id="result-count">77 columns</span>
+</div>
+<div class="table-wrap">
+  <table id="articles-table">
+    <thead><tr><th>Date</th><th>Title</th></tr></thead>
+    <tbody>
+        <tr data-title="what if discrimination is not about religion?" data-year="2026">
+          <td class="date-col">2026-04-14</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2026/04/14/what-if-discrimination-is-not-about-religion.html" target="_blank" rel="noopener">What if discrimination is not about religion?</a></td>
+        </tr>
+        <tr data-title="reading easter through the lens of disruptive innovation" data-year="2026">
+          <td class="date-col">2026-04-06</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2026/04/06/reading-easter-through-the-lens-of-disruptive-innovation.html" target="_blank" rel="noopener">Reading Easter through the lens of disruptive innovation</a></td>
+        </tr>
+        <tr data-title="why vocational education struggles for respect in indonesia" data-year="2026">
+          <td class="date-col">2026-03-28</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2026/03/28/why-vocational-education-struggles-for-respect-in-indonesia.html" target="_blank" rel="noopener">Why vocational education struggles for respect in Indonesia</a></td>
+        </tr>
+        <tr data-title="feudalism, meritocracy and why innovation becomes performative" data-year="2026">
+          <td class="date-col">2026-03-14</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2026/03/14/feudalism-meritocracy-and-why-innovation-becomes-performative.html" target="_blank" rel="noopener">Feudalism, meritocracy and why innovation becomes performative</a></td>
+        </tr>
+        <tr data-title="why we keep building innovation that never innovates" data-year="2026">
+          <td class="date-col">2026-02-28</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2026/02/28/why-we-keep-building-innovation-that-never-innovates.html" target="_blank" rel="noopener">Why we keep building innovation that never innovates</a></td>
+        </tr>
+        <tr data-title="ngada tragedy: when paper prosperity meets children’s realities" data-year="2026">
+          <td class="date-col">2026-02-14</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2026/02/14/ngada-tragedy-when-paper-prosperity-meets-childrens-realities.html" target="_blank" rel="noopener">Ngada tragedy: When paper prosperity meets children’s realities</a></td>
+        </tr>
+        <tr data-title="when invention is mistaken for innovation" data-year="2026">
+          <td class="date-col">2026-01-24</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2026/01/24/when-invention-is-mistaken-for-innovation.html" target="_blank" rel="noopener">When invention is mistaken for innovation</a> <span class="co-badge">with co-author</span></td>
+        </tr>
+        <tr data-title="society relies on corporations and gen-z to build a privacy culture - academia" data-year="2026">
+          <td class="date-col">2026-01-03</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2026/01/04/society-relies-on-corporations-and-gen-z-to-build-a-privacy-culture.html" target="_blank" rel="noopener">Society relies on corporations and Gen-Z to build a privacy culture - Academia</a> <span class="co-badge">with co-author</span></td>
+        </tr>
+        <tr data-title="why the usual approach to corruption keeps failing" data-year="2025">
+          <td class="date-col">2025-12-20</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/12/20/why-the-usual-approach-to-corruption-keeps-failing.html" target="_blank" rel="noopener">Why the usual approach to corruption keeps failing</a></td>
+        </tr>
+        <tr data-title="ai is not the risk. our habits are" data-year="2025">
+          <td class="date-col">2025-12-10</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/12/10/ai-is-not-the-risk-our-habits-are.html" target="_blank" rel="noopener">AI is not the risk. Our habits are</a> <span class="co-badge">with co-author</span></td>
+        </tr>
+        <tr data-title="the one condition nuclear power cannot ignore" data-year="2025">
+          <td class="date-col">2025-11-29</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/11/29/the-one-condition-nuclear-power-cannot-ignore.html" target="_blank" rel="noopener">The one condition nuclear power cannot ignore</a></td>
+        </tr>
+        <tr data-title="the unfiltered leader: when confidence clashes with convention" data-year="2025">
+          <td class="date-col">2025-11-17</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/09/17/the-unfiltered-leader-when-confidence-clashes-with-convention.html" target="_blank" rel="noopener">The unfiltered leader: When confidence clashes with convention</a></td>
+        </tr>
+        <tr data-title="why enterprise struggles in a nation that rewards titles" data-year="2025">
+          <td class="date-col">2025-11-15</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/11/15/why-enterprise-struggles-in-a-nation-that-rewards-titles.html" target="_blank" rel="noopener">Why enterprise struggles in a nation that rewards titles</a></td>
+        </tr>
+        <tr data-title="mbg and the moral test of nourishing a nation" data-year="2025">
+          <td class="date-col">2025-10-17</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/10/17/mbg-and-the-moral-test-of-nourishing-a-nation.html" target="_blank" rel="noopener">MBG and the moral test of nourishing a nation</a> <span class="co-badge">with co-author</span></td>
+        </tr>
+        <tr data-title="faith and corruption: why morality starts in early childhood" data-year="2025">
+          <td class="date-col">2025-10-03</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/10/03/faith-and-corruption-why-morality-starts-in-early-childhood.html" target="_blank" rel="noopener">Faith and corruption: Why morality starts in early childhood</a> <span class="co-badge">with co-author</span></td>
+        </tr>
+        <tr data-title="nuclear power: secure it with proven technology" data-year="2025">
+          <td class="date-col">2025-08-30</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/08/30/nuclear-power-secure-it-with-proven-technology.html" target="_blank" rel="noopener">Nuclear power: Secure it with proven technology</a></td>
+        </tr>
+        <tr data-title="is indonesia today at its richest? ask children" data-year="2025">
+          <td class="date-col">2025-08-15</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/08/15/is-indonesia-today-at-its-richest-ask-children.html" target="_blank" rel="noopener">Is Indonesia today at its richest? Ask children</a></td>
+        </tr>
+        <tr data-title="indonesia’s ev momentum and the questions we forget to ask" data-year="2025">
+          <td class="date-col">2025-08-07</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/08/07/indonesias-ev-momentum-and-the-questions-we-forget-to-ask.html" target="_blank" rel="noopener">Indonesia’s EV momentum and the questions we forget to ask</a></td>
+        </tr>
+        <tr data-title="the real price of indonesia’s nuclear dependency" data-year="2025">
+          <td class="date-col">2025-07-26</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/07/26/the-real-price-of-indonesias-nuclear-dependency.html" target="_blank" rel="noopener">The real price of Indonesia’s nuclear dependency</a></td>
+        </tr>
+        <tr data-title="what the ri² flags might really be telling us" data-year="2025">
+          <td class="date-col">2025-07-12</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/07/12/what-the-ri-flags-might-really-be-telling-us.html" target="_blank" rel="noopener">What the RI² flags might really be telling us</a></td>
+        </tr>
+        <tr data-title="innovation paradox: when the loop fails before it begins" data-year="2025">
+          <td class="date-col">2025-07-03</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/07/03/innovation-paradox-when-the-loop-fails-before-it-begins.html" target="_blank" rel="noopener">Innovation paradox: When the loop fails before it begins</a> <span class="co-badge">with co-author</span></td>
+        </tr>
+        <tr data-title="what trump’s nuclear orders reveal about indonesia’s posture" data-year="2025">
+          <td class="date-col">2025-06-23</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/06/23/what-trumps-nuclear-orders-reveal-about-indonesias-posture.html" target="_blank" rel="noopener">What Trump’s nuclear orders reveal about Indonesia’s posture</a></td>
+        </tr>
+        <tr data-title="social media and the quiet return of imperialism" data-year="2025">
+          <td class="date-col">2025-06-07</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/06/07/social-media-and-the-quiet-return-of-imperialism.html" target="_blank" rel="noopener">Social media and the quiet return of imperialism</a></td>
+        </tr>
+        <tr data-title="innovation: what indonesia can learn from taiwan, china" data-year="2025">
+          <td class="date-col">2025-05-28</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/05/28/innovation-what-indonesia-can-learn-from-taiwan-china.html" target="_blank" rel="noopener">Innovation: What Indonesia can learn from Taiwan, China</a></td>
+        </tr>
+        <tr data-title="borrowed standards, buried sovereignty: indonesia’s nuclear dilemma" data-year="2025">
+          <td class="date-col">2025-05-19</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/05/19/borrowed-standards-buried-sovereignty-indonesias-nuclear-dilemma.html" target="_blank" rel="noopener">Borrowed standards, buried sovereignty: Indonesia’s nuclear dilemma</a></td>
+        </tr>
+        <tr data-title="nuclear technology without integrity is a risk, not progress" data-year="2025">
+          <td class="date-col">2025-05-06</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/05/06/nuclear-technology-without-integrity-is-a-risk-not-progress.html" target="_blank" rel="noopener">Nuclear technology without integrity is a risk, not progress</a></td>
+        </tr>
+        <tr data-title="rediscovering indonesia’s rhythm: a hope for 2045" data-year="2025">
+          <td class="date-col">2025-04-26</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/04/26/rediscovering-indonesias-rhythm-a-hope-for-2045.html" target="_blank" rel="noopener">Rediscovering Indonesia’s rhythm: A hope for 2045</a></td>
+        </tr>
+        <tr data-title="javanese sayings for a world losing its way" data-year="2025">
+          <td class="date-col">2025-04-10</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/04/19/javanese-sayings-for-a-world-losing-its-way.html" target="_blank" rel="noopener">Javanese sayings for a world losing its way</a></td>
+        </tr>
+        <tr data-title="start-ups deferred: entrepreneurial curriculum revisited" data-year="2025">
+          <td class="date-col">2025-04-09</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/04/09/start-ups-deferred-entrepreneurial-curriculum-revisited.html" target="_blank" rel="noopener">Start-ups deferred: Entrepreneurial curriculum revisited</a></td>
+        </tr>
+        <tr data-title="why corruption thrives in a religious society" data-year="2025">
+          <td class="date-col">2025-03-26</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/03/26/why-corruption-thrives-in-a-religious-society.html" target="_blank" rel="noopener">Why corruption thrives in a religious society</a></td>
+        </tr>
+        <tr data-title="prabowo’s test of governing in jokowi’s absence" data-year="2025">
+          <td class="date-col">2025-03-15</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/03/15/prabowos-test-of-governing-in-jokowis-absence.html" target="_blank" rel="noopener">Prabowo’s test of governing in Jokowi’s absence</a></td>
+        </tr>
+        <tr data-title="indonesia at its richest: strengthening governance for sustainable growth" data-year="2025">
+          <td class="date-col">2025-03-05</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/03/05/indonesia-at-its-richest-strengthening-governance-for-sustainable-growth.html" target="_blank" rel="noopener">Indonesia at its richest: Strengthening governance for sustainable growth</a></td>
+        </tr>
+        <tr data-title="indonesian start-ups: when valuations eclipse innovation" data-year="2025">
+          <td class="date-col">2025-02-17</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/02/17/indonesian-start-ups-when-valuations-eclipse-innovation.html" target="_blank" rel="noopener">Indonesian start-ups: When valuations eclipse innovation</a></td>
+        </tr>
+        <tr data-title="how investor biases can enable fraud in start-ups" data-year="2025">
+          <td class="date-col">2025-02-08</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/02/08/how-investor-biases-can-enable-fraud-in-start-ups.html" target="_blank" rel="noopener">How investor biases can enable fraud in start-ups</a></td>
+        </tr>
+        <tr data-title="the biases behind indonesian start-ups’ ethical pitfalls" data-year="2025">
+          <td class="date-col">2025-02-01</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/02/01/the-biases-behind-indonesian-start-ups-ethical-pitfalls.html" target="_blank" rel="noopener">The biases behind Indonesian start-ups’ ethical pitfalls</a></td>
+        </tr>
+        <tr data-title="can indonesia thrive when meritocracy is under threat?" data-year="2025">
+          <td class="date-col">2025-01-18</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/01/18/can-indonesia-thrive-when-meritocracy-is-under-threat.html" target="_blank" rel="noopener">Can Indonesia thrive when meritocracy is under threat?</a></td>
+        </tr>
+        <tr data-title="palm plantations cannot replace forests, mr. president" data-year="2025">
+          <td class="date-col">2025-01-08</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2025/01/08/palm-plantations-cannot-replace-forests-mr-president.html" target="_blank" rel="noopener">Palm plantations cannot replace forests, Mr. President</a></td>
+        </tr>
+        <tr data-title="‘rakyat jelata’ controversy shows how words can be a sword" data-year="2024">
+          <td class="date-col">2024-12-29</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/12/29/rakyat-jelata-controversy-shows-how-words-can-be-a-sword.html" target="_blank" rel="noopener">‘Rakyat jelata’ controversy shows how words can be a sword</a></td>
+        </tr>
+        <tr data-title="christmas reflection on climate crisis" data-year="2024">
+          <td class="date-col">2024-12-27</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/12/27/christmas-reflection-on-climate-crisis.html" target="_blank" rel="noopener">Christmas reflection on climate crisis</a></td>
+        </tr>
+        <tr data-title="reengineering culture to sustain prabowo’s leadership" data-year="2024">
+          <td class="date-col">2024-12-10</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/12/10/reengineering-culture-to-sustain-prabowos-leadership.html" target="_blank" rel="noopener">Reengineering culture to sustain Prabowo’s leadership</a></td>
+        </tr>
+        <tr data-title="‘wong urip urup’: transforming collectivism into innovation" data-year="2024">
+          <td class="date-col">2024-12-02</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/12/02/wong-urip-urup-transforming-collectivism-into-innovation.html" target="_blank" rel="noopener">‘Wong urip urup’: Transforming collectivism into innovation</a></td>
+        </tr>
+        <tr data-title="understanding national iqs and rejecting the indonesian mockery" data-year="2024">
+          <td class="date-col">2024-11-23</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/11/23/understanding-national-iqs-and-rejecting-the-indonesian-mockery.html" target="_blank" rel="noopener">Understanding national IQs and rejecting the Indonesian mockery</a></td>
+        </tr>
+        <tr data-title="mit&#39;s blueprint and indonesia&#39;s cultural challenges to achieve the 2045 vision" data-year="2024">
+          <td class="date-col">2024-11-16</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/11/16/mits-blueprint-and-indonesias-cultural-challenges-to-achieve-the-2045-vision.html" target="_blank" rel="noopener">MIT's blueprint and Indonesia's cultural challenges to achieve the 2045 vision</a></td>
+        </tr>
+        <tr data-title="a strong democracy will advance innovation-driven entrepreneurship" data-year="2024">
+          <td class="date-col">2024-11-09</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/11/09/a-strong-democracy-will-advance-innovation-driven-entrepreneurship.html" target="_blank" rel="noopener">A strong democracy will advance innovation-driven entrepreneurship</a></td>
+        </tr>
+        <tr data-title="the unseen toll: mental health challenges facing lecturers" data-year="2024">
+          <td class="date-col">2024-10-26</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/10/26/the-unseen-toll-mental-health-challenges-facing-lecturers.html" target="_blank" rel="noopener">The unseen toll: Mental health challenges facing lecturers</a></td>
+        </tr>
+        <tr data-title="transforming indonesia’s core values: lessons from the gas pricing challenge" data-year="2024">
+          <td class="date-col">2024-10-12</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/10/12/transforming-indonesias-core-values-lessons-from-the-gas-pricing-challenge.html" target="_blank" rel="noopener">Transforming Indonesia’s core values: Lessons from the gas pricing challenge</a></td>
+        </tr>
+        <tr data-title="singapore&#39;s ev transition could spark indonesia’s green evolution" data-year="2024">
+          <td class="date-col">2024-09-28</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/09/28/singapores-ev-transition-could-spark-indonesias-green-evolution.html" target="_blank" rel="noopener">Singapore's EV transition could spark Indonesia’s green evolution</a></td>
+        </tr>
+        <tr data-title="addressing mental health and building resilience in education" data-year="2024">
+          <td class="date-col">2024-09-14</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/09/14/addressing-mental-health-and-building-resilience-in-education.html" target="_blank" rel="noopener">Addressing mental health and building resilience in education</a></td>
+        </tr>
+        <tr data-title="beyond simple fixes in the fight against climate change" data-year="2024">
+          <td class="date-col">2024-09-07</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/09/07/beyond-simple-fixes-in-the-fight-against-climate-change.html" target="_blank" rel="noopener">Beyond simple fixes in the fight against climate change</a></td>
+        </tr>
+        <tr data-title="empowering energy engineers: indonesia’s path to renewable solutions" data-year="2024">
+          <td class="date-col">2024-08-19</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/08/19/empowering-energy-engineers-indonesias-path-to-renewable-solutions.html" target="_blank" rel="noopener">Empowering energy engineers: Indonesia’s path to renewable solutions</a></td>
+        </tr>
+        <tr data-title="small reactors, the future of indonesia’s nuclear energy" data-year="2024">
+          <td class="date-col">2024-08-03</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/08/03/small-reactors-the-future-of-indonesias-nuclear-energy.html" target="_blank" rel="noopener">Small reactors, the future of Indonesia’s nuclear energy</a></td>
+        </tr>
+        <tr data-title="indonesia&#39;s cultural dynamics and the future of nuclear power" data-year="2024">
+          <td class="date-col">2024-07-20</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/07/20/indonesias-cultural-dynamics-and-the-future-of-nuclear-power.html" target="_blank" rel="noopener">Indonesia's cultural dynamics and the future of nuclear power</a></td>
+        </tr>
+        <tr data-title="indonesia’s nuclear horizon: diplomatic finesse needed" data-year="2024">
+          <td class="date-col">2024-07-06</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/07/06/indonesias-nuclear-horizon-diplomatic-finesse-needed.html" target="_blank" rel="noopener">Indonesia’s nuclear horizon: Diplomatic finesse needed</a></td>
+        </tr>
+        <tr data-title="the art of waiting: a pointer guide for job seekers, decision-makers" data-year="2024">
+          <td class="date-col">2024-06-23</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/06/23/the-art-of-waiting-a-pointer-guide-for-job-seekers-decision-makers.html" target="_blank" rel="noopener">The art of waiting: A pointer guide for job seekers, decision-makers</a></td>
+        </tr>
+        <tr data-title="artistry and enterprise: harmonizing creativity with commercial success" data-year="2024">
+          <td class="date-col">2024-06-08</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/06/08/artistry-and-enterprise-harmonizing-creativity-with-commercial-success.html" target="_blank" rel="noopener">Artistry and enterprise: Harmonizing creativity with commercial success</a></td>
+        </tr>
+        <tr data-title="tools for introverts in education: a paradigm shift" data-year="2024">
+          <td class="date-col">2024-03-16</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/03/16/tools-for-introverts-in-education-a-paradigm-shift.html" target="_blank" rel="noopener">Tools for introverts in education: A paradigm shift</a></td>
+        </tr>
+        <tr data-title="rediscovering silence in the digital age: introducing ‘among wektu’" data-year="2024">
+          <td class="date-col">2024-03-02</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/03/02/rediscovering-silence-in-the-digital-age-introducing-among-wektu.html" target="_blank" rel="noopener">Rediscovering silence in the digital age: Introducing ‘among wektu’</a></td>
+        </tr>
+        <tr data-title="entrepreneurship education in democratic engagement" data-year="2024">
+          <td class="date-col">2024-02-17</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/02/17/entrepreneurship-education-in-democratic-engagement.html" target="_blank" rel="noopener">Entrepreneurship education in democratic engagement</a></td>
+        </tr>
+        <tr data-title="beyond &#39;greenflation&#39;: multi-solving and equity in climate discourse" data-year="2024">
+          <td class="date-col">2024-02-03</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/02/03/beyond-greenflation-multi-solving-and-equity-in-climate-discourse.html" target="_blank" rel="noopener">Beyond 'greenflation': Multi-solving and equity in climate discourse</a></td>
+        </tr>
+        <tr data-title="election 2024: mit and insead&#39;s x-team insights in navigating the vote" data-year="2024">
+          <td class="date-col">2024-01-20</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/01/20/election-2024-mit-and-inseads-x-team-insights-in-navigating-the-vote.html" target="_blank" rel="noopener">Election 2024: MIT and INSEAD's X-Team insights in navigating the vote</a></td>
+        </tr>
+        <tr data-title="free lunch in nourishing the future: how empowering aid preserves dignity" data-year="2024">
+          <td class="date-col">2024-01-06</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2024/01/06/free-lunch-in-nourishing-the-future-how-empowering-aid-preserves-dignity.html" target="_blank" rel="noopener">Free lunch in nourishing the future: How empowering aid preserves dignity</a></td>
+        </tr>
+        <tr data-title="sosrokartono’s wisdom and the transformative role of educators" data-year="2023">
+          <td class="date-col">2023-12-23</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/12/23/sosrokartonos-wisdom-and-the-transformative-role-of-educators.html" target="_blank" rel="noopener">Sosrokartono’s wisdom and the transformative role of educators</a></td>
+        </tr>
+        <tr data-title="beyond shame: ethical dimensions of mindsets in corruption" data-year="2023">
+          <td class="date-col">2023-12-02</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/12/02/beyond-shame-ethical-dimensions-of-mindsets-in-corruption.html" target="_blank" rel="noopener">Beyond shame: Ethical dimensions of mindsets in corruption</a></td>
+        </tr>
+        <tr data-title="how ‘pesantren’ foster unconventional leaders" data-year="2023">
+          <td class="date-col">2023-11-18</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/11/18/how-pesantren-foster-unconventional-leaders.html" target="_blank" rel="noopener">How ‘pesantren’ foster unconventional leaders</a></td>
+        </tr>
+        <tr data-title="meritocracy is key to democracy, national unity" data-year="2023">
+          <td class="date-col">2023-10-28</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/10/28/meritocracy-is-key-to-democracy-national-unity.html" target="_blank" rel="noopener">Meritocracy is key to democracy, national unity</a></td>
+        </tr>
+        <tr data-title="traditional journalism: trustworthy anchor in the digital age" data-year="2023">
+          <td class="date-col">2023-10-21</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/10/21/traditional-journalism-trustworthy-anchor-in-the-digital-age.html" target="_blank" rel="noopener">Traditional journalism: Trustworthy anchor in the digital age</a></td>
+        </tr>
+        <tr data-title="vietnam&#39;s secret sauce: a blend of tradition and tomorrow" data-year="2023">
+          <td class="date-col">2023-10-07</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/10/07/vietnams-secret-sauce-a-blend-of-tradition-and-tomorrow.html" target="_blank" rel="noopener">Vietnam's secret sauce: A blend of tradition and tomorrow</a></td>
+        </tr>
+        <tr data-title="embracing cultural differences: a tale of two corporate sherpas" data-year="2023">
+          <td class="date-col">2023-09-23</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/09/23/embracing-cultural-differences-a-tale-of-two-corporate-sherpas.html" target="_blank" rel="noopener">Embracing cultural differences: A tale of two corporate sherpas</a></td>
+        </tr>
+        <tr data-title="understanding the misguided praise for platform matchmaking" data-year="2023">
+          <td class="date-col">2023-09-09</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/09/09/understanding-the-misguided-praise-for-platform-matchmaking.html" target="_blank" rel="noopener">Understanding the misguided praise for platform matchmaking</a></td>
+        </tr>
+        <tr data-title="fostering a culturally ready, innovative and safe cybernation" data-year="2023">
+          <td class="date-col">2023-08-26</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/08/26/fostering-a-culturally-ready-innovative-and-safe-cybernation.html" target="_blank" rel="noopener">Fostering a culturally ready, innovative and safe cybernation</a></td>
+        </tr>
+        <tr data-title="how to thrive in an individualistic corporate maze" data-year="2023">
+          <td class="date-col">2023-08-12</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/08/12/how-to-thrive-in-an-individualistic-corporate-maze.html" target="_blank" rel="noopener">How to thrive in an individualistic corporate maze</a></td>
+        </tr>
+        <tr data-title="sme vs ide: which one is culturally fitter?" data-year="2023">
+          <td class="date-col">2023-07-29</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/07/29/sme-vs-ide-which-one-is-culturally-fitter.html" target="_blank" rel="noopener">SME vs IDE: Which one is culturally fitter?</a></td>
+        </tr>
+        <tr data-title="shared values for sustainable progress: learning from norway" data-year="2023">
+          <td class="date-col">2023-07-22</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/07/21/shared-values-for-sustainable-progress-learning-from-norway.html" target="_blank" rel="noopener">Shared values for sustainable progress: Learning from Norway</a></td>
+        </tr>
+        <tr data-title="believe it or not, javanese values breed innovation" data-year="2023">
+          <td class="date-col">2023-03-15</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/03/14/believe-it-or-not-javanese-values-breed-innovation.html" target="_blank" rel="noopener">Believe it or not, Javanese values breed innovation</a></td>
+        </tr>
+        <tr data-title="elements that determine innovative nations: the case of japan" data-year="2023">
+          <td class="date-col">2023-03-01</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/03/01/elements-that-determine-innovative-nations-the-case-of-japan.html" target="_blank" rel="noopener">Elements that determine innovative nations: The case of Japan</a></td>
+        </tr>
+        <tr data-title="the other face of the younger generation. what can we do?" data-year="2023">
+          <td class="date-col">2023-02-28</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/opinion/2023/01/27/the-other-face-of-the-younger-generation-what-can-we-do.html" target="_blank" rel="noopener">The other face of the younger generation. What can we do?</a></td>
+        </tr>
+        <tr data-title="indonesian oil and gas: bureaucracy reform?" data-year="2014">
+          <td class="date-col">2014-06-19</td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/news/2014/06/19/indonesian-oil-and-gas-bureaucracy-reform.html" target="_blank" rel="noopener">Indonesian oil and gas: Bureaucracy reform?</a></td>
+        </tr>
+    </tbody>
+  </table>
+  <div id="no-results">No columns match your search.</div>
+</div>
+<footer>
+  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a> &nbsp;·&nbsp; All columns originally published in The Jakarta Post</p>
+</footer>
+<script>
+  const searchInput = document.getElementById('search');
+  const yearFilter  = document.getElementById('year-filter');
+  const resultCount = document.getElementById('result-count');
+  const noResults   = document.getElementById('no-results');
+  const rows        = document.querySelectorAll('#articles-table tbody tr');
+  function filter() {
+    const q    = searchInput.value.toLowerCase().trim();
+    const year = yearFilter.value;
+    let visible = 0;
+    rows.forEach(row => {
+      const matchQ = !q    || (row.dataset.title || '').includes(q);
+      const matchY = !year || row.dataset.year === year;
+      if (matchQ && matchY) { row.classList.remove('hidden'); visible++; }
+      else                  { row.classList.add('hidden'); }
+    });
+    resultCount.textContent = visible === 1 ? '1 column' : `${visible} columns`;
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  }
+  searchInput.addEventListener('input', filter);
+  yearFilter.addEventListener('change', filter);
+</script>
+</body>
+</html>
