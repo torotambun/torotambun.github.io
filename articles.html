@@ -19,181 +19,35 @@
       --radius:   4px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Source Serif 4', Georgia, serif;
-      background: var(--bg);
-      color: var(--ink);
-      min-height: 100vh;
-    }
-    header {
-      background: var(--accent2);
-      color: #fff;
-      padding: 48px 40px 36px;
-      position: relative;
-      overflow: hidden;
-    }
-    header::before {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 300px; height: 300px;
-      border-radius: 50%;
-      background: rgba(200,169,110,0.15);
-      pointer-events: none;
-    }
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: -80px; left: 20%;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: rgba(200,169,110,0.08);
-      pointer-events: none;
-    }
-    .back-link {
-      display: inline-block;
-      color: var(--accent);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      opacity: 0.9;
-    }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    header { background: var(--accent2); color: #fff; padding: 48px 40px 36px; position: relative; overflow: hidden; }
+    header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: rgba(200,169,110,0.15); pointer-events: none; }
+    header::after { content: ''; position: absolute; bottom: -80px; left: 20%; width: 200px; height: 200px; border-radius: 50%; background: rgba(200,169,110,0.08); pointer-events: none; }
+    .back-link { display: inline-block; color: var(--accent); font-size: 13px; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; margin-bottom: 20px; opacity: 0.9; }
     .back-link:hover { opacity: 1; text-decoration: underline; }
-    header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(26px, 4vw, 40px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-    header .subtitle {
-      font-size: 15px;
-      opacity: 0.75;
-      font-weight: 300;
-      font-style: italic;
-    }
-    .article-count {
-      display: inline-block;
-      margin-top: 20px;
-      background: rgba(200,169,110,0.25);
-      border: 1px solid rgba(200,169,110,0.4);
-      color: var(--accent);
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      letter-spacing: 0.05em;
-    }
-    .controls {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 20px 40px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-    .search-wrap {
-      position: relative;
-      flex: 1;
-      min-width: 200px;
-    }
-    .search-wrap svg {
-      position: absolute;
-      left: 12px; top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.4;
-      pointer-events: none;
-    }
-    #search {
-      width: 100%;
-      padding: 10px 16px 10px 38px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      font-family: inherit;
-      font-size: 14px;
-      background: var(--bg);
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 8px; }
+    header .subtitle { font-size: 15px; opacity: 0.75; font-weight: 300; font-style: italic; }
+    .article-count { display: inline-block; margin-top: 20px; background: rgba(200,169,110,0.25); border: 1px solid rgba(200,169,110,0.4); color: var(--accent); padding: 4px 14px; border-radius: 20px; font-size: 13px; letter-spacing: 0.05em; }
+    .controls { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 40px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .search-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.4; pointer-events: none; }
+    #search { width: 100%; padding: 10px 16px 10px 38px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.2s; }
     #search:focus { border-color: var(--accent2); }
-    #year-filter {
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      font-family: inherit;
-      font-size: 14px;
-      background: var(--bg);
-      color: var(--ink);
-      outline: none;
-      cursor: pointer;
-    }
-    #result-count {
-      font-size: 13px;
-      color: var(--muted);
-      white-space: nowrap;
-      font-style: italic;
-    }
-    .table-wrap {
-      padding: 32px 40px 60px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    #year-filter { padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; cursor: pointer; }
+    #result-count { font-size: 13px; color: var(--muted); white-space: nowrap; font-style: italic; }
+    .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; }
     table { width: 100%; border-collapse: collapse; }
-    thead th {
-      font-family: 'Playfair Display', serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0 16px 14px;
-      text-align: left;
-      border-bottom: 2px solid var(--accent);
-    }
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
-    }
+    thead th { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0 16px 14px; text-align: left; border-bottom: 2px solid var(--accent); }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
     tbody tr:hover { background: var(--hover-bg); }
     tbody tr.hidden { display: none; }
     td { padding: 14px 16px; vertical-align: top; }
-    .date-col {
-      white-space: nowrap;
-      font-size: 13px;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      width: 120px;
-      padding-top: 16px;
-    }
+    .date-col { white-space: nowrap; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; width: 120px; padding-top: 16px; }
     .title-col { font-size: 15px; line-height: 1.5; }
-    .title-col a {
-      color: var(--accent2);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
+    .title-col a { color: var(--accent2); text-decoration: none; transition: color 0.15s; }
     .title-col a:hover { color: var(--accent); text-decoration: underline; }
-    #no-results {
-      display: none;
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--muted);
-      font-style: italic;
-    }
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 12px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
+    #no-results { display: none; text-align: center; padding: 60px 20px; color: var(--muted); font-style: italic; }
+    footer { text-align: center; padding: 30px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
     footer a { color: var(--accent2); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
     @media (max-width: 600px) {
@@ -204,14 +58,12 @@
   </style>
 </head>
 <body>
-
 <header>
   <a class="back-link" href="https://torotambun.github.io">← Back to CV</a>
   <h1>LinkedIn Articles</h1>
   <p class="subtitle">Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Published 2017–2026</p>
-  <span class="article-count">305 articles</span>
+  <span class="article-count">318 articles</span>
 </header>
-
 <div class="controls">
   <div class="search-wrap">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -231,18 +83,64 @@
           <option value="2018">2018</option>
           <option value="2017">2017</option>
   </select>
-  <span id="result-count">305 articles</span>
+  <span id="result-count">318 articles</span>
 </div>
-
 <div class="table-wrap">
   <table id="articles-table">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Title</th>
-      </tr>
-    </thead>
+    <thead><tr><th>Date</th><th>Title</th></tr></thead>
     <tbody>
+        <tr data-title="the danger of calling students heroes too early" data-year="2026">
+          <td class="date-col">2026-04-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/danger-calling-students-heroes-too-early-toronata-tambun-labdc/?trackingId=2EG0bfCtTLO14byIjtR5hw%3D%3D" target="_blank" rel="noopener">The Danger of Calling Students Heroes Too Early</a></td>
+        </tr>
+        <tr data-title="older than religion: an easter question i did not expect to ask" data-year="2026">
+          <td class="date-col">2026-04-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/older-than-religion-easter-question-i-did-expect-ask-toronata-tambun-hxk5c" target="_blank" rel="noopener">Older Than Religion: An Easter Question I Did Not Expect to Ask</a></td>
+        </tr>
+        <tr data-title="a ruthless audience diagnosis for the thought leadership writer" data-year="2026">
+          <td class="date-col">2026-04-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/ruthless-audience-diagnosis-thought-leadership-writer-toronata-tambun-ii8cc/?trackingId=p3jvVLcuQK6tw0jiLey0eA%3D%3D" target="_blank" rel="noopener">A Ruthless Audience Diagnosis for the Thought Leadership Writer</a></td>
+        </tr>
+        <tr data-title="he is entering pangkur" data-year="2026">
+          <td class="date-col">2026-04-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/he-entering-pangkur-toronata-tambun-bhopc/?trackingId=p3jvVLcuQK6tw0jiLey0eA%3D%3D" target="_blank" rel="noopener">He Is Entering Pangkur</a></td>
+        </tr>
+        <tr data-title="mid-term pnu20242206" data-year="2026">
+          <td class="date-col">2026-04-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/mid-term-pnu20242206-toronata-tambun-jwssf/?trackingId=p3jvVLcuQK6tw0jiLey0eA%3D%3D" target="_blank" rel="noopener">Mid-Term PNU20242206</a></td>
+        </tr>
+        <tr data-title="he left the matter to god: a pardes reading of david in the cave and david at the table" data-year="2026">
+          <td class="date-col">2026-04-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/he-left-matter-god-pardes-reading-david-cave-table-toronata-tambun-lmp7f/?trackingId=p3jvVLcuQK6tw0jiLey0eA%3D%3D" target="_blank" rel="noopener">He Left the Matter to God: A PaRDeS reading of David in the cave and David at the table</a></td>
+        </tr>
+        <tr data-title="easter through the lens of disruptive innovation" data-year="2026">
+          <td class="date-col">2026-04-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/good-friday-easter-through-lens-disruptive-innovation-toronata-tambun-sh5xc/?trackingId=p3jvVLcuQK6tw0jiLey0eA%3D%3D" target="_blank" rel="noopener">Easter through the lens of disruptive innovation</a></td>
+        </tr>
+        <tr data-title="english for academic purposes: week 7 mid-term instruction" data-year="2026">
+          <td class="date-col">2026-04-01</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/english-academic-purposes-week-7-mid-term-instruction-toronata-tambun-hpqpc/?trackingId=p3jvVLcuQK6tw0jiLey0eA%3D%3D" target="_blank" rel="noopener">English for Academic Purposes: Week 7 Mid-Term Instruction</a></td>
+        </tr>
+        <tr data-title="introverts do not need to become extroverts to succeed. they need disciplined storytelling" data-year="2026">
+          <td class="date-col">2026-03-29</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/introverts-do-need-become-extroverts-succeed-toronata-tambun-fwfqc/" target="_blank" rel="noopener">Introverts Do Not Need to Become Extroverts to Succeed. They Need Disciplined Storytelling</a></td>
+        </tr>
+        <tr data-title="when a man who walks by choice meets a man who walks by life: an autoethnographic note from menteng" data-year="2026">
+          <td class="date-col">2026-03-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/when-man-who-walks-choice-meets-life-autoethnographic-toronata-tambun-znusc" target="_blank" rel="noopener">When a Man Who Walks by Choice Meets a Man Who Walks by Life: An Autoethnographic Note from Menteng</a></td>
+        </tr>
+        <tr data-title="from rules to informal tyranny: in a voluntary organization | linkedin" data-year="2026">
+          <td class="date-col">2026-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/from-rules-informal-tyranny-note-under-political-lens-toronata-tambun-v21rc" target="_blank" rel="noopener">From Rules to Informal Tyranny: in a voluntary organization | LinkedIn</a></td>
+        </tr>
+        <tr data-title="the architecture of silence: why javanese surrender &quot;kulo ikhlas&quot; is a cosmic escalation" data-year="2026">
+          <td class="date-col">2026-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/architecture-silence-why-javanese-resignation-cosmic-toronata-tambun-rnycc" target="_blank" rel="noopener">The Architecture of Silence: Why Javanese Surrender "kulo ikhlas" is a Cosmic Escalation</a></td>
+        </tr>
+        <tr data-title="disciplined storytelling week 6 academic writing challenge" data-year="2026">
+          <td class="date-col">2026-03-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/pulse/disciplined-storytelling-week-6-academic-writing-challenge-tambun-bttbc" target="_blank" rel="noopener">Disciplined Storytelling Week 6 Academic Writing Challenge</a></td>
+        </tr>
         <tr data-title="a rare general who did not bend: how early childhood shaped johnny lumintang" data-year="2026">
           <td class="date-col">2026-03-08</td>
           <td class="title-col"><a href="https://www.linkedin.com/pulse/rare-general-who-did-bend-how-early-childhood-shaped-johnny-tambun-erqnc" target="_blank" rel="noopener">A Rare General Who Did Not Bend: How Early Childhood Shaped Johnny Lumintang</a></td>
@@ -1467,37 +1365,30 @@
   </table>
   <div id="no-results">No articles match your search.</div>
 </div>
-
 <footer>
   <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a> &nbsp;·&nbsp; All articles originally published on LinkedIn</p>
 </footer>
-
 <script>
   const searchInput = document.getElementById('search');
   const yearFilter  = document.getElementById('year-filter');
   const resultCount = document.getElementById('result-count');
   const noResults   = document.getElementById('no-results');
   const rows        = document.querySelectorAll('#articles-table tbody tr');
-
   function filter() {
     const q    = searchInput.value.toLowerCase().trim();
     const year = yearFilter.value;
     let visible = 0;
     rows.forEach(row => {
-      const title   = row.dataset.title || '';
-      const rowYear = row.dataset.year  || '';
-      const matchQ  = !q    || title.includes(q);
-      const matchY  = !year || rowYear === year;
+      const matchQ = !q    || (row.dataset.title || '').includes(q);
+      const matchY = !year || (row.dataset.year  || '') === year;
       if (matchQ && matchY) { row.classList.remove('hidden'); visible++; }
       else                  { row.classList.add('hidden'); }
     });
     resultCount.textContent = visible === 1 ? '1 article' : `${visible} articles`;
     noResults.style.display = visible === 0 ? 'block' : 'none';
   }
-
   searchInput.addEventListener('input', filter);
   yearFilter.addEventListener('change', filter);
 </script>
-
 </body>
 </html>
