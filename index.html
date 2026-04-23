@@ -570,4 +570,31 @@
 </div>
 
 <!-- FOOTER -->
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    cursor: pointer;
+    border-radius: 3px;
+    opacity: 0.75;
+    z-index: 999;
+    transition: opacity 0.2s;
+  }
+  #back-to-top:hover { opacity: 1; }
+</style>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Top</button>
+<script>
+  const btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+</script>
 <
