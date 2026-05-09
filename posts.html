@@ -7,55 +7,42 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --ink:      #1a1a2e;
-      --muted:    #5a5a7a;
-      --accent:   #c8a96e;
-      --accent2:  #0f4c81;
-      --bg:       #faf9f6;
-      --surface:  #ffffff;
-      --border:   #e8e4dc;
-      --hover-bg: #f5f0e8;
-      --radius:   4px;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
-    header { background: var(--accent2); color: #fff; padding: 48px 40px 36px; position: relative; overflow: hidden; }
-    header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: rgba(200,169,110,0.15); pointer-events: none; }
-    header::after { content: ''; position: absolute; bottom: -80px; left: 20%; width: 200px; height: 200px; border-radius: 50%; background: rgba(200,169,110,0.08); pointer-events: none; }
-    .back-link { display: inline-block; color: var(--accent); font-size: 13px; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; margin-bottom: 20px; opacity: 0.9; }
-    .back-link:hover { opacity: 1; text-decoration: underline; }
-    header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 8px; }
-    header .subtitle { font-size: 15px; opacity: 0.75; font-weight: 300; font-style: italic; }
-    .note { font-size: 12px; opacity: 0.55; margin-top: 8px; font-style: italic; }
-    .count-badge { display: inline-block; margin-top: 20px; background: rgba(200,169,110,0.25); border: 1px solid rgba(200,169,110,0.4); color: var(--accent); padding: 4px 14px; border-radius: 20px; font-size: 13px; letter-spacing: 0.05em; }
-    .controls { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 40px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-    .search-wrap { position: relative; flex: 1; min-width: 200px; }
-    .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.4; pointer-events: none; }
-    #search { width: 100%; padding: 10px 16px 10px 38px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.2s; }
-    #search:focus { border-color: var(--accent2); }
-    #year-filter { padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; cursor: pointer; }
-    #result-count { font-size: 13px; color: var(--muted); white-space: nowrap; font-style: italic; }
-    .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; }
-    table { width: 100%; border-collapse: collapse; }
-    thead th { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0 16px 14px; text-align: left; border-bottom: 2px solid var(--accent); }
-    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-    tbody tr:hover { background: var(--hover-bg); }
-    tbody tr.hidden { display: none; }
-    td { padding: 14px 16px; vertical-align: top; }
-    .date-col { white-space: nowrap; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; width: 120px; padding-top: 16px; }
-    .title-col { font-size: 15px; line-height: 1.5; }
-    .title-col a { color: var(--accent2); text-decoration: none; transition: color 0.15s; }
-    .title-col a:hover { color: var(--accent); text-decoration: underline; }
-    #no-results { display: none; text-align: center; padding: 60px 20px; color: var(--muted); font-style: italic; }
-    footer { text-align: center; padding: 30px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
-    footer a { color: var(--accent2); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    @media (max-width: 600px) {
-      header, .controls, .table-wrap { padding-left: 20px; padding-right: 20px; }
-      .date-col { width: 90px; font-size: 12px; }
-      .title-col { font-size: 14px; }
-    }
+    :root{--ink:#1a1a2e;--muted:#5a5a7a;--accent:#c8a96e;--accent2:#0f4c81;--bg:#faf9f6;--surface:#ffffff;--border:#e8e4dc;--hover-bg:#f5f0e8;--radius:4px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(--ink);min-height:100vh;}
+    header{background:var(--accent2);color:#fff;padding:48px 40px 36px;position:relative;overflow:hidden;}
+    header::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(200,169,110,0.15);pointer-events:none;}
+    header::after{content:'';position:absolute;bottom:-80px;left:20%;width:200px;height:200px;border-radius:50%;background:rgba(200,169,110,0.08);pointer-events:none;}
+    .back-link{display:inline-block;color:var(--accent);font-size:13px;letter-spacing:0.08em;text-decoration:none;text-transform:uppercase;margin-bottom:20px;opacity:0.9;}
+    .back-link:hover{opacity:1;text-decoration:underline;}
+    header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-0.02em;line-height:1.2;margin-bottom:8px;}
+    header .subtitle{font-size:15px;opacity:0.75;font-weight:300;font-style:italic;}
+    .count-badge{display:inline-block;margin-top:20px;background:rgba(200,169,110,0.25);border:1px solid rgba(200,169,110,0.4);color:var(--accent);padding:4px 14px;border-radius:20px;font-size:13px;letter-spacing:0.05em;}
+    .controls{background:var(--surface);border-bottom:1px solid var(--border);padding:20px 40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+    .search-wrap{position:relative;flex:1;min-width:200px;}
+    .search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:0.4;pointer-events:none;}
+    #search{width:100%;padding:10px 16px 10px 38px;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:14px;background:var(--bg);color:var(--ink);outline:none;transition:border-color 0.2s;}
+    #search:focus{border-color:var(--accent2);}
+    #year-filter{padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:14px;background:var(--bg);color:var(--ink);outline:none;cursor:pointer;}
+    #result-count{font-size:13px;color:var(--muted);white-space:nowrap;font-style:italic;}
+    .table-wrap{padding:32px 40px 60px;max-width:1100px;margin:0 auto;}
+    table{width:100%;border-collapse:collapse;}
+    thead th{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:0 16px 14px;text-align:left;border-bottom:2px solid var(--accent);}
+    tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s;}
+    tbody tr:hover{background:var(--hover-bg);}
+    tbody tr.hidden{display:none;}
+    td{padding:14px 16px;vertical-align:top;}
+    .date-col{white-space:nowrap;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;width:120px;padding-top:16px;}
+    .title-col{font-size:15px;line-height:1.5;}
+    .title-col a{color:var(--accent2);text-decoration:none;transition:color 0.15s;}
+    .title-col a:hover{color:var(--accent);text-decoration:underline;}
+    #no-results{display:none;text-align:center;padding:60px 20px;color:var(--muted);font-style:italic;}
+    footer{text-align:center;padding:30px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);}
+    footer a{color:var(--accent2);text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
+    #back-to-top{display:none;position:fixed;bottom:32px;right:32px;background:#111;color:#fff;border:none;padding:10px 16px;font-family:Arial,sans-serif;font-size:0.78rem;cursor:pointer;border-radius:3px;opacity:0.75;z-index:999;transition:opacity 0.2s;}
+    #back-to-top:hover{opacity:1;}
+    @media(max-width:600px){header,.controls,.table-wrap{padding-left:20px;padding-right:20px;}.date-col{width:90px;font-size:12px;}.title-col{font-size:14px;}}
   </style>
 </head>
 <body>
@@ -63,8 +50,7 @@
   <a class="back-link" href="https://torotambun.github.io">← Back to CV</a>
   <h1>LinkedIn Posts</h1>
   <p class="subtitle">Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Published 2011–2026</p>
-  <p class="note">Titles extracted from opening line of each post. Archive updated quarterly. Older posts may require LinkedIn login.</p>
-  <span class="count-badge">1387 posts</span>
+  <span class="count-badge">1378 posts</span>
 </header>
 <div class="controls">
   <div class="search-wrap">
@@ -87,10 +73,9 @@
           <option value="2017">2017</option>
           <option value="2016">2016</option>
           <option value="2015">2015</option>
-          <option value="2013">2013</option>
           <option value="2011">2011</option>
   </select>
-  <span id="result-count">1387 posts</span>
+  <span id="result-count">1378 posts</span>
 </div>
 <div class="table-wrap">
   <table id="posts-table">
@@ -5220,13 +5205,13 @@
           <td class="date-col">2019-02-10</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6500342339041624064" target="_blank" rel="noopener">Honored to teach #DiciplinedEntrepreneurship  to 90 students of Nuclear and Physics Engine...</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2018">
+        <tr data-title="how entrepreneurship is helping to save puerto rico" data-year="2018">
           <td class="date-col">2018-10-01</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6452327255531192320" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6452327255531192320" target="_blank" rel="noopener">How Entrepreneurship is Helping to Save Puerto Rico</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2018">
+        <tr data-title="mit sloan reunion weekend&quot;" data-year="2018">
           <td class="date-col">2018-04-24</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6394346829407973376" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6394346829407973376" target="_blank" rel="noopener">MIT Sloan Reunion Weekend"</a></td>
         </tr>
         <tr data-title="mit sloan reunion weekend&quot;" data-year="2018">
           <td class="date-col">2018-04-23</td>
@@ -5252,45 +5237,45 @@
           <td class="date-col">2018-03-27</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6384378862092017666" target="_blank" rel="noopener">Song from Toro to all MIT-EDP-2018 "E luce van le stelle""</a></td>
         </tr>
-        <tr data-title="glad to learn directly from prof. josh lerner,  prof. paul gompers, prof. matt rhodes-krop..." data-year="2018">
+        <tr data-title="glad to learn directly from prof. josh lerner,  prof. paul gompers, prof. matt rhodes-kropf, et.al d..." data-year="2018">
           <td class="date-col">2018-03-24</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6383136089858760704" target="_blank" rel="noopener">Glad to learn directly from Prof. Josh Lerner,  Prof. Paul Gompers, Prof. Matt Rhodes-Krop...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6383136089858760704" target="_blank" rel="noopener">Glad to learn directly from Prof. Josh Lerner,  Prof. Paul Gompers, Prof. Matt Rhodes-Kropf, et.al d...</a></td>
         </tr>
-        <tr data-title="5 signs your boss is threatened by you : (1)you were a star performer, but suddenly you ca..." data-year="2018">
+        <tr data-title="5 signs your boss is threatened by you : (1)you were a star performer, but suddenly you can&#39;t do any..." data-year="2018">
           <td class="date-col">2018-03-12</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6378838612636729345" target="_blank" rel="noopener">5 Signs Your Boss Is Threatened by You : (1)You Were A Star Performer, But Suddenly You Ca...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6378838612636729345" target="_blank" rel="noopener">5 Signs Your Boss Is Threatened by You : (1)You Were A Star Performer, But Suddenly You Can't Do Any...</a></td>
         </tr>
         <tr data-title="ace - affiliate alumni mit sloan&quot;" data-year="2018">
           <td class="date-col">2018-02-22</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A8157415-6372324337244045316" target="_blank" rel="noopener">ACE - affiliate alumni MIT Sloan"</a></td>
         </tr>
-        <tr data-title="innovation 101 by bill aulet : innovation can be driven by : 1) technology , 2) process im..." data-year="2018">
+        <tr data-title="innovation 101 by bill aulet : innovation can be driven by : 1) technology , 2) process improvement,..." data-year="2018">
           <td class="date-col">2018-02-22</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6372321559004176384" target="_blank" rel="noopener">INNOVATION 101 by Bill Aulet : Innovation can be driven by : 1) technology , 2) process im...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6372321559004176384" target="_blank" rel="noopener">INNOVATION 101 by Bill Aulet : Innovation can be driven by : 1) technology , 2) process improvement,...</a></td>
         </tr>
         <tr data-title="list of companies for visit for edp 2018&quot;" data-year="2018">
           <td class="date-col">2018-02-22</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6372316576271695873" target="_blank" rel="noopener">List of Companies for Visit for EDP 2018"</a></td>
         </tr>
-        <tr data-title="o&g will play a major role in non-hydro-renewables ! oil (in the energy mix) will be reduc..." data-year="2018">
+        <tr data-title="o&g will play a major role in non-hydro-renewables ! oil (in the energy mix) will be reduced dramati..." data-year="2018">
           <td class="date-col">2018-02-17</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6370464479062388736" target="_blank" rel="noopener">O&G will play a major role in non-hydro-renewables ! Oil (in the energy mix) will be reduc...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6370464479062388736" target="_blank" rel="noopener">O&G will play a major role in non-hydro-renewables ! Oil (in the energy mix) will be reduced dramati...</a></td>
         </tr>
         <tr data-title="that is why we need a &quot;home&quot; / &quot;entrepreneurship ecosystem&quot; &quot;" data-year="2018">
           <td class="date-col">2018-02-16</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6370400124794966016" target="_blank" rel="noopener">That is why we need a "Home" / "Entrepreneurship Ecosystem" "</a></td>
         </tr>
-        <tr data-title="a genuine innovator, keep reiterating the products, proper mvp and successful (a school dr..." data-year="2018">
+        <tr data-title="a genuine innovator, keep reiterating the products, proper mvp and successful (a school drop out bec..." data-year="2018">
           <td class="date-col">2018-02-16</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6370396280195244032" target="_blank" rel="noopener">A genuine innovator, keep reiterating the products, proper MVP and successful (a school dr...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6370396280195244032" target="_blank" rel="noopener">A genuine innovator, keep reiterating the products, proper MVP and successful (a school drop out bec...</a></td>
         </tr>
-        <tr data-title="market, paying customers, iteration etc, then confirming products , but this guy seems foc..." data-year="2018">
+        <tr data-title="market, paying customers, iteration etc, then confirming products , but this guy seems focus on the ..." data-year="2018">
           <td class="date-col">2018-02-16</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6370392343211794433" target="_blank" rel="noopener">Market, Paying Customers, Iteration etc, then confirming products , but this guy seems foc...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6370392343211794433" target="_blank" rel="noopener">Market, Paying Customers, Iteration etc, then confirming products , but this guy seems focus on the ...</a></td>
         </tr>
-        <tr data-title="inspired by the video, i write : &quot; shall we not strive to reach our humanity in an era whe..." data-year="2018">
+        <tr data-title="inspired by the video, i write : &quot; shall we not strive to reach our humanity in an era where we are ..." data-year="2018">
           <td class="date-col">2018-02-16</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6370386946027556864" target="_blank" rel="noopener">Inspired by the video, I write : " Shall we not strive to reach our humanity in an era whe...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6370386946027556864" target="_blank" rel="noopener">Inspired by the video, I write : " Shall we not strive to reach our humanity in an era where we are ...</a></td>
         </tr>
         <tr data-title="&quot;follow up after our edp (besides building our startup for the ones who haven&#39;t built one)" data-year="2018">
           <td class="date-col">2018-02-16</td>
@@ -5300,37 +5285,33 @@
           <td class="date-col">2018-02-16</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6370323125124599810" target="_blank" rel="noopener">The 1st session of Bill Aulet"</a></td>
         </tr>
-        <tr data-title="anybody will come next month to take the course innovation ecosystems: a new approach to a..." data-year="2018">
+        <tr data-title="anybody will come next month to take the course innovation ecosystems: a new approach to acceleratin..." data-year="2018">
           <td class="date-col">2018-02-15</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6370016792278073347" target="_blank" rel="noopener">Anybody will come next month to take the course Innovation Ecosystems: A New Approach to A...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6370016792278073347" target="_blank" rel="noopener">Anybody will come next month to take the course Innovation Ecosystems: A New Approach to Acceleratin...</a></td>
         </tr>
-        <tr data-title="somebody must have taught him about &quot;paying customer&quot; otherwise his product won&#39;t go anywh..." data-year="2018">
+        <tr data-title="somebody must have taught him about &quot;paying customer&quot; otherwise his product won&#39;t go anywhere ?&quot;" data-year="2018">
           <td class="date-col">2018-02-15</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6370016211450859521" target="_blank" rel="noopener">Somebody must have taught him about "paying customer" otherwise his product won't go anywh...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6370016211450859521" target="_blank" rel="noopener">Somebody must have taught him about "paying customer" otherwise his product won't go anywhere ?"</a></td>
         </tr>
-        <tr data-title="humanity : customer service : in the industry where a loss is common, southwestern airline..." data-year="2018">
+        <tr data-title="humanity : customer service : in the industry where a loss is common, southwestern airline (which i ..." data-year="2018">
           <td class="date-col">2018-02-15</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A6369876307735642112" target="_blank" rel="noopener">HUMANITY : CUSTOMER SERVICE : In the industry where a loss is common, Southwestern Airline...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A6369876307735642112" target="_blank" rel="noopener">HUMANITY : CUSTOMER SERVICE : In the industry where a loss is common, Southwestern Airline (which i ...</a></td>
         </tr>
-        <tr data-title="public speaking : the 1 skill that warren buffet says will raise your value by 50% ..... h..." data-year="2018">
+        <tr data-title="public speaking : the 1 skill that warren buffet says will raise your value by 50% ..... he was so c..." data-year="2018">
           <td class="date-col">2018-02-15</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6369870790409756672" target="_blank" rel="noopener">PUBLIC SPEAKING : the 1 skill that Warren Buffet says will raise your value by 50% ..... h...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6369870790409756672" target="_blank" rel="noopener">PUBLIC SPEAKING : the 1 skill that Warren Buffet says will raise your value by 50% ..... he was so c...</a></td>
         </tr>
         <tr data-title="to take or not to take vc money ?" data-year="2018">
           <td class="date-col">2018-02-15</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6369820757635194880" target="_blank" rel="noopener">To take or not to take VC money ?</a></td>
         </tr>
-        <tr data-title="for startups “rent scale where you can, and focus on product design above all else” meanin..." data-year="2018">
+        <tr data-title="for startups “rent scale where you can, and focus on product design above all else” meaning focus on..." data-year="2018">
           <td class="date-col">2018-02-12</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6368857191243399168" target="_blank" rel="noopener">For startups “Rent scale where you can, and focus on product design above all else” meanin...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6368857191243399168" target="_blank" rel="noopener">For startups “Rent scale where you can, and focus on product design above all else” meaning focus on...</a></td>
         </tr>
         <tr data-title="i would love to know how to contact this r&d and possibly invest in it ...." data-year="2018">
           <td class="date-col">2018-02-12</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6368840781351972866" target="_blank" rel="noopener">I would love to know how to contact this R&D and possibly invest in it ....</a></td>
-        </tr>
-        <tr data-title="shree verma" data-year="2018">
-          <td class="date-col">2018-02-12</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6368747491038416896" target="_blank" rel="noopener">shree verma</a></td>
         </tr>
         <tr data-title="i have just added few fellow participants in the group. some remain untouched.&quot;" data-year="2018">
           <td class="date-col">2018-02-09</td>
@@ -5340,49 +5321,49 @@
           <td class="date-col">2018-02-09</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A13577737-6367759602876022788" target="_blank" rel="noopener">All of Our Presentations are online now"</a></td>
         </tr>
-        <tr data-title="inspiring writing by hemant taneja on applying two-sided / multi-sided platform into the e..." data-year="2018">
+        <tr data-title="inspiring writing by hemant taneja on applying two-sided / multi-sided platform into the energy indu..." data-year="2018">
           <td class="date-col">2018-02-09</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367737690426830848" target="_blank" rel="noopener">Inspiring writing by Hemant Taneja on applying two-sided / Multi-sided platform into the e...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367737690426830848" target="_blank" rel="noopener">Inspiring writing by Hemant Taneja on applying two-sided / Multi-sided platform into the energy indu...</a></td>
         </tr>
         <tr data-title="massachusetts institute of technology" data-year="2018">
           <td class="date-col">2018-02-09</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367702929159352320" target="_blank" rel="noopener">Massachusetts Institute of Technology</a></td>
         </tr>
-        <tr data-title="prof bill aulet when explaining the 24 disciplined entrepreneurship frameworks explained :..." data-year="2018">
+        <tr data-title="prof bill aulet when explaining the 24 disciplined entrepreneurship frameworks explained : the neces..." data-year="2018">
           <td class="date-col">2018-02-09</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367577084210044928" target="_blank" rel="noopener">Prof Bill Aulet when explaining the 24 Disciplined Entrepreneurship frameworks explained :...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367577084210044928" target="_blank" rel="noopener">Prof Bill Aulet when explaining the 24 Disciplined Entrepreneurship frameworks explained : the neces...</a></td>
         </tr>
-        <tr data-title="this article written by jason jay of mit sloan school of management  reminds me of cally r..." data-year="2018">
+        <tr data-title="this article written by jason jay of mit sloan school of management  reminds me of cally russell who..." data-year="2018">
           <td class="date-col">2018-02-08</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367471098149339136" target="_blank" rel="noopener">This article written by Jason Jay of MIT Sloan School of Management  reminds me of Cally R...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367471098149339136" target="_blank" rel="noopener">This article written by Jason Jay of MIT Sloan School of Management  reminds me of Cally Russell who...</a></td>
         </tr>
-        <tr data-title="it is 1. the existence of paying customers (from the 24 disciplined enterpreneurship by bi..." data-year="2018">
+        <tr data-title="it is 1. the existence of paying customers (from the 24 disciplined enterpreneurship by bill aulet a..." data-year="2018">
           <td class="date-col">2018-02-08</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367250919972802560" target="_blank" rel="noopener">It is 1. the existence of paying customers (from the 24 Disciplined Enterpreneurship By Bi...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367250919972802560" target="_blank" rel="noopener">It is 1. the existence of paying customers (from the 24 Disciplined Enterpreneurship By Bill Aulet a...</a></td>
         </tr>
-        <tr data-title="the importance of co-founder ! the story below from shashank murali , who only recently be..." data-year="2018">
+        <tr data-title="the importance of co-founder ! the story below from shashank murali , who only recently been connect..." data-year="2018">
           <td class="date-col">2018-02-08</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367235373562716160" target="_blank" rel="noopener">The importance of co-founder ! The story below from Shashank Murali , who only recently be...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6367235373562716160" target="_blank" rel="noopener">The importance of co-founder ! The story below from Shashank Murali , who only recently been connect...</a></td>
         </tr>
-        <tr data-title="i met brian halligan in mit sloan executive education edp 2018 led by prof bill aulet and ..." data-year="2018">
+        <tr data-title="i met brian halligan in mit sloan executive education edp 2018 led by prof bill aulet and his team  ..." data-year="2018">
           <td class="date-col">2018-02-07</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366944697243496448" target="_blank" rel="noopener">I met Brian Halligan in MIT Sloan Executive Education EDP 2018 led by Prof Bill Aulet and ...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366944697243496448" target="_blank" rel="noopener">I met Brian Halligan in MIT Sloan Executive Education EDP 2018 led by Prof Bill Aulet and his team  ...</a></td>
         </tr>
         <tr data-title="good summary on pe by omiros d. sarikas" data-year="2018">
           <td class="date-col">2018-02-05</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366391698498650112" target="_blank" rel="noopener">Good summary on PE by Omiros D. Sarikas</a></td>
         </tr>
-        <tr data-title="excellent brief on space enterpreneur by my mit edp 2017 fellow class mate @corentin guill..." data-year="2018">
+        <tr data-title="excellent brief on space enterpreneur by my mit edp 2017 fellow class mate @corentin guillo" data-year="2018">
           <td class="date-col">2018-02-05</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366133345105076224" target="_blank" rel="noopener">Excellent brief on space enterpreneur by my MIT EDP 2017 fellow class mate @Corentin Guill...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366133345105076224" target="_blank" rel="noopener">Excellent brief on space enterpreneur by my MIT EDP 2017 fellow class mate @Corentin Guillo</a></td>
         </tr>
         <tr data-title="for those who are interested in a startup in sustainability ..." data-year="2018">
           <td class="date-col">2018-02-05</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366131592032808960" target="_blank" rel="noopener">For those who are interested in a startup in sustainability ...</a></td>
         </tr>
-        <tr data-title="credit to suraj kripalani, cfa my fellow mit edp 2017 who summarized brian halligan’s lect..." data-year="2018">
+        <tr data-title="credit to suraj kripalani, cfa my fellow mit edp 2017 who summarized brian halligan’s lecture in the..." data-year="2018">
           <td class="date-col">2018-02-05</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366129313548472320" target="_blank" rel="noopener">Credit to Suraj Kripalani, CFA my fellow MIT EDP 2017 who summarized Brian Halligan’s lect...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366129313548472320" target="_blank" rel="noopener">Credit to Suraj Kripalani, CFA my fellow MIT EDP 2017 who summarized Brian Halligan’s lecture in the...</a></td>
         </tr>
         <tr data-title="to my fellow edp 2018 classmates" data-year="2018">
           <td class="date-col">2018-02-05</td>
@@ -5396,49 +5377,49 @@
           <td class="date-col">2018-02-05</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6366125550062399488" target="_blank" rel="noopener">Blockchain for dummies free download book  by IBM free, shared by Ravi Singh</a></td>
         </tr>
-        <tr data-title="ron suber : &quot;innovation is accelerating, and so is funding: in q1 2017, vc-backed fintech ..." data-year="2018">
+        <tr data-title="ron suber : &quot;innovation is accelerating, and so is funding: in q1 2017, vc-backed fintech startups r..." data-year="2018">
           <td class="date-col">2018-01-11</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6357188602266513408" target="_blank" rel="noopener">Ron Suber : "Innovation is accelerating, and so is funding: in Q1 2017, VC-backed fintech ...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6357188602266513408" target="_blank" rel="noopener">Ron Suber : "Innovation is accelerating, and so is funding: in Q1 2017, VC-backed fintech startups r...</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2018">
+        <tr data-title="affinity buys malaysia education business for $180m" data-year="2018">
           <td class="date-col">2018-01-08</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6356168066396708864" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6356168066396708864" target="_blank" rel="noopener">Affinity buys Malaysia education business for $180m</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="reminicence as an expatriate vp in a china state owned company" data-year="2017">
           <td class="date-col">2017-12-20</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6349043464327532544" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6349043464327532544" target="_blank" rel="noopener">Reminicence as an Expatriate VP in a China State Owned Company</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="a 36000ft view of global oil and gas industry" data-year="2017">
           <td class="date-col">2017-12-19</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6348723605416837120" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6348723605416837120" target="_blank" rel="noopener">A 36000ft View of global oil and Gas Industry</a></td>
         </tr>
         <tr data-title="i have just added a slideshare to my profile" data-year="2017">
           <td class="date-col">2017-12-19</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6348723184489062400" target="_blank" rel="noopener">I have just added a SlideShare to my profile</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="a 36000ft view of global oil and gas industry" data-year="2017">
           <td class="date-col">2017-12-17</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6348021325751259136" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6348021325751259136" target="_blank" rel="noopener">A 36000ft View of global oil and Gas Industry</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="the u.s. is the biggest carbon polluter in history" data-year="2017">
           <td class="date-col">2017-06-03</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6276818840332562432" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6276818840332562432" target="_blank" rel="noopener">The U.S. is the Biggest carbon Polluter in History</a></td>
         </tr>
-        <tr data-title="jakarta 2017 election aftermath : this article helps me to explain why the incumbent lost ..." data-year="2017">
+        <tr data-title="jakarta 2017 election aftermath : this article helps me to explain why the incumbent lost against ca..." data-year="2017">
           <td class="date-col">2017-04-19</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6260394980842532864" target="_blank" rel="noopener">Jakarta 2017 Election aftermath : This article helps me to explain why the incumbent lost ...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6260394980842532864" target="_blank" rel="noopener">Jakarta 2017 Election aftermath : This article helps me to explain why the incumbent lost against ca...</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="renewable energy: not a clich�" data-year="2017">
           <td class="date-col">2017-04-17</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6259654897122275328" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6259654897122275328" target="_blank" rel="noopener">Renewable Energy: not a clich�</a></td>
         </tr>
-        <tr data-title="i know a shallow water offshore block in australia that has an opex of 11usd/bbl and opex ..." data-year="2017">
+        <tr data-title="i know a shallow water offshore block in australia that has an opex of 11usd/bbl and opex + capex 19..." data-year="2017">
           <td class="date-col">2017-04-17</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6259646397012893696" target="_blank" rel="noopener">I know a shallow water OFFSHORE block in Australia that has an OPEX of 11USD/bbl and OPEX ...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6259646397012893696" target="_blank" rel="noopener">I know a shallow water OFFSHORE block in Australia that has an OPEX of 11USD/bbl and OPEX + CAPEX 19...</a></td>
         </tr>
-        <tr data-title="today i forwarded  an article that reminds us to be human in the digital era. now i am for..." data-year="2017">
+        <tr data-title="today i forwarded  an article that reminds us to be human in the digital era. now i am forwarding an..." data-year="2017">
           <td class="date-col">2017-04-14</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6258652976869629952" target="_blank" rel="noopener">Today I forwarded  an article that reminds us to be human in the digital era. Now I am for...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6258652976869629952" target="_blank" rel="noopener">Today I forwarded  an article that reminds us to be human in the digital era. Now I am forwarding an...</a></td>
         </tr>
         <tr data-title="passing this info to fellow mit edp 17 and all entrepreneurs  in my network." data-year="2017">
           <td class="date-col">2017-04-14</td>
@@ -5452,17 +5433,17 @@
           <td class="date-col">2017-04-14</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6258501219132760064" target="_blank" rel="noopener">Excellent writing by  Balakhrisnan Kunjan . Please keep writing  Pak Bala</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="7 key qualities of an effective family office ceo" data-year="2017">
           <td class="date-col">2017-04-12</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6257851293797314560" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6257851293797314560" target="_blank" rel="noopener">7 Key Qualities of an Effective Family Office CEO</a></td>
         </tr>
-        <tr data-title="excellent summary of the session by ceo hubspot at mit sloan executive education edp 2017 ..." data-year="2017">
+        <tr data-title="excellent summary of the session by ceo hubspot at mit sloan executive education edp 2017 by suraj k..." data-year="2017">
           <td class="date-col">2017-04-12</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6257801345600978944" target="_blank" rel="noopener">Excellent Summary of the session by CEO HubSpot at MIT Sloan Executive Education EDP 2017 ...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6257801345600978944" target="_blank" rel="noopener">Excellent Summary of the session by CEO HubSpot at MIT Sloan Executive Education EDP 2017 by Suraj K...</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="o mio babbino caro" data-year="2017">
           <td class="date-col">2017-04-11</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6257682710098165760" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6257682710098165760" target="_blank" rel="noopener">O Mio Babbino Caro</a></td>
         </tr>
         <tr data-title="i have just added a slideshare to my profile" data-year="2017">
           <td class="date-col">2017-04-11</td>
@@ -5472,177 +5453,145 @@
           <td class="date-col">2017-04-11</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6257654826423902208" target="_blank" rel="noopener">I just added a SlideShare to my profile</a></td>
         </tr>
-        <tr data-title="it is worth digesting  the insight from goldman sachs that there will be glut of oil and g..." data-year="2017">
+        <tr data-title="it is worth digesting  the insight from goldman sachs that there will be glut of oil and gas again i..." data-year="2017">
           <td class="date-col">2017-03-26</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6251804337102778369" target="_blank" rel="noopener">it is worth digesting  the insight from Goldman Sachs that there will be glut of oil and g...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6251804337102778369" target="_blank" rel="noopener">it is worth digesting  the insight from Goldman Sachs that there will be glut of oil and gas again i...</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
-          <td class="date-col">2017-03-22</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6250314750547329024" target="_blank" rel="noopener">LinkedIn Post</a></td>
-        </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="new marketer breed slideshare.net" data-year="2017">
           <td class="date-col">2017-03-20</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6249484459511513088" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6249484459511513088" target="_blank" rel="noopener">New marketer breed slideshare.net</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="new marketer breed slideshare.net" data-year="2017">
           <td class="date-col">2017-03-20</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6249483775647027200" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6249483775647027200" target="_blank" rel="noopener">New marketer breed slideshare.net</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="redefining your sales and marketing team" data-year="2017">
           <td class="date-col">2017-03-20</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6249483154575450112" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6249483154575450112" target="_blank" rel="noopener">Redefining your sales and marketing team</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="new marketer breed slideshare.net" data-year="2017">
           <td class="date-col">2017-03-20</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6249475605822312448" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6249475605822312448" target="_blank" rel="noopener">New marketer breed slideshare.net</a></td>
         </tr>
         <tr data-title="founder and leader : the differences and the shared traits ..." data-year="2017">
           <td class="date-col">2017-02-27</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6241830706033541120" target="_blank" rel="noopener">Founder and leader : the differences and the shared traits ...</a></td>
         </tr>
-        <tr data-title="apparently oil and gas industry has been long embarking the word innovate ... but i hope t..." data-year="2017">
+        <tr data-title="apparently oil and gas industry has been long embarking the word innovate ... but i hope they unders..." data-year="2017">
           <td class="date-col">2017-02-27</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6241807810724712448" target="_blank" rel="noopener">Apparently oil and gas industry has been long embarking the word innovate ... but I hope t...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6241807810724712448" target="_blank" rel="noopener">Apparently oil and gas industry has been long embarking the word innovate ... but I hope they unders...</a></td>
         </tr>
         <tr data-title="new marketer breed" data-year="2017">
           <td class="date-col">2017-02-26</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6241684594194735104" target="_blank" rel="noopener">New marketer breed</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="criteria of the new marketer breed: darc" data-year="2017">
           <td class="date-col">2017-02-26</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6241658003494363136" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6241632841143250944" target="_blank" rel="noopener">Criteria of the New Marketer Breed: DARC</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
-          <td class="date-col">2017-02-26</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6241632841143250944" target="_blank" rel="noopener">LinkedIn Post</a></td>
-        </tr>
-        <tr data-title="martin bawden" data-year="2017">
-          <td class="date-col">2017-02-26</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6241595052586528768" target="_blank" rel="noopener">Martin Bawden</a></td>
-        </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="simple steps to make crm to be embraced by the start-performer sales structured team" data-year="2017">
           <td class="date-col">2017-02-24</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240850792291622912" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240850792291622912" target="_blank" rel="noopener">Simple Steps to make CRM to be embraced by the start-performer sales structured team</a></td>
         </tr>
         <tr data-title="the top reasons why crm projects fail (and how to prevent from failures -added)&quot;" data-year="2017">
           <td class="date-col">2017-02-24</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240793916896047104" target="_blank" rel="noopener">The Top Reasons why CRM Projects Fail (and how to prevent from failures -added)"</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="checklist of a star-performer sales manager" data-year="2017">
           <td class="date-col">2017-02-24</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240790154743767040" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240790154743767040" target="_blank" rel="noopener">Checklist of a star-performer Sales Manager</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="simple steps to make crm to be embraced by the start-performer sales structured team" data-year="2017">
           <td class="date-col">2017-02-24</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240771768370462720" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240771768370462720" target="_blank" rel="noopener">Simple Steps to make CRM to be embraced by the start-performer sales structured team</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="are you a star-performer sales person?" data-year="2017">
           <td class="date-col">2017-02-23</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240429364622778368" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240429364622778368" target="_blank" rel="noopener">Are you a star-performer sales person?</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="abraham verhese: a doctor&#39;s touch" data-year="2017">
           <td class="date-col">2017-02-23</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240426382699130880" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6240426382699130880" target="_blank" rel="noopener">Abraham Verhese: A doctor's touch</a></td>
         </tr>
-        <tr data-title="i came across this post on the hubspot blog and thought you&#39;d like it. check it out: https..." data-year="2017">
+        <tr data-title="i came across this post on the hubspot blog and thought you&#39;d like it. check it out: https://lnkd.in..." data-year="2017">
           <td class="date-col">2017-02-19</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6239108006005571584" target="_blank" rel="noopener">I came across this post on the HubSpot Blog and thought you'd like it. Check it out: https...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6239108006005571584" target="_blank" rel="noopener">I came across this post on the HubSpot Blog and thought you'd like it. Check it out: https://lnkd.in...</a></td>
         </tr>
         <tr data-title="something to ponder for the executives" data-year="2017">
           <td class="date-col">2017-02-04</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6233481732788719616" target="_blank" rel="noopener">Something to ponder for the executives</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="hong kong: the worst place in the world for a startup to open a bank account?" data-year="2017">
           <td class="date-col">2017-01-31</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6232191133942931456" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6232191133942931456" target="_blank" rel="noopener">Hong Kong: The Worst place in the world for a startup to open a bank account?</a></td>
         </tr>
         <tr data-title="thanks andrei uglar for posting our class photo. it was indeed very memorable." data-year="2017">
           <td class="date-col">2017-01-30</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6231979279698235392" target="_blank" rel="noopener">Thanks Andrei Uglar for posting our class photo. It was indeed very memorable.</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2017">
+        <tr data-title="big ideas on breaking new grounds n the solar energy front" data-year="2017">
           <td class="date-col">2017-01-30</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6231827256445104128" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6231827256445104128" target="_blank" rel="noopener">Big Ideas on Breaking New Grounds n the Solar Energy Front</a></td>
         </tr>
-        <tr data-title="message found in mit executive education group : contain youtube link to us singing happy ..." data-year="2017">
+        <tr data-title="message found in mit executive education group : contain youtube link to us singing happy birthday t..." data-year="2017">
           <td class="date-col">2017-01-30</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A10328225-6231826493081784322" target="_blank" rel="noopener">Message found in MIT Executive Education Group : contain youtube link to us singing happy ...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AgroupPost%3A10328225-6231826493081784322" target="_blank" rel="noopener">Message found in MIT Executive Education Group : contain youtube link to us singing happy birthday t...</a></td>
         </tr>
-        <tr data-title="i read this article which was an embryo of 3d campaign during my days in the vessel in lat..." data-year="2017">
+        <tr data-title="i read this article which was an embryo of 3d campaign during my days in the vessel in late 1990s. i..." data-year="2017">
           <td class="date-col">2017-01-11</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6224932792984276992" target="_blank" rel="noopener">I read this article which was an embryo of 3D campaign during my days in the vessel in lat...</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6224932792984276992" target="_blank" rel="noopener">I read this article which was an embryo of 3D campaign during my days in the vessel in late 1990s. I...</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2016">
+        <tr data-title="statoil rushes to exit new zealand&#39;s reinga basin" data-year="2016">
           <td class="date-col">2016-11-20</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6205969670995046400" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6205969670995046400" target="_blank" rel="noopener">Statoil rushes to exit New Zealand's Reinga Basin</a></td>
         </tr>
-        <tr data-title="folks, this article i found before i went to mit edp 17. it is worth revisiting :" data-year="2016">
+        <tr data-title="10 emerging technologies that will drive the next economy" data-year="2016">
           <td class="date-col">2016-11-13</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6203593540681981952" target="_blank" rel="noopener">Folks, this article I found before I went to MIT EDP 17. It is worth revisiting :</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6203593540681981952" target="_blank" rel="noopener">10 Emerging Technologies that will drive the next economy</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2016">
+        <tr data-title="why pollsters were completely and utterly wrong" data-year="2016">
           <td class="date-col">2016-11-13</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6203593051236065280" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6203593051236065280" target="_blank" rel="noopener">Why Pollsters Were Completely and Utterly Wrong</a></td>
         </tr>
         <tr data-title="indonesian oil and gas: bureaucracy reform?" data-year="2016">
           <td class="date-col">2016-11-13</td>
           <td class="title-col"><a href="https://www.thejakartapost.com/news/2014/06/19/indonesian-oil-and-gas-bureaucracy-reform.html" target="_blank" rel="noopener">Indonesian oil and gas: Bureaucracy reform?</a></td>
         </tr>
-        <tr data-title="https://lnkd.in/f6hg7sm" data-year="2016">
+        <tr data-title="indonesian oil and gas: bureaucracy reform?" data-year="2016">
           <td class="date-col">2016-11-13</td>
-          <td class="title-col"><a href="https://www.thejakartapost.com/news/2014/06/19/indonesian-oil-and-gas-bureaucracy-reform.html" target="_blank" rel="noopener">https://lnkd.in/f6Hg7SM</a></td>
+          <td class="title-col"><a href="https://www.thejakartapost.com/news/2014/06/19/indonesian-oil-and-gas-bureaucracy-reform.html" target="_blank" rel="noopener">Indonesian oil and gas: Bureaucracy reform?</a></td>
         </tr>
-        <tr data-title="https://lnkd.in/f6hg7sm" data-year="2016">
+        <tr data-title="indonesian oil and gas: bureaucracy reform?" data-year="2016">
           <td class="date-col">2016-11-13</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6203590933800423424" target="_blank" rel="noopener">https://lnkd.in/f6Hg7SM</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6203590933800423424" target="_blank" rel="noopener">Indonesian oil and gas: Bureaucracy reform?</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2016">
+        <tr data-title="the economic impact of not exploring for resources in indonesia" data-year="2016">
           <td class="date-col">2016-11-13</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6203590574738628608" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6203590574738628608" target="_blank" rel="noopener">The Economic Impact of Not Exploring for Resources in Indonesia</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2016">
+        <tr data-title="6 lessons from donald trump&#39;s winning marketing manual - hbs working knowledge" data-year="2016">
           <td class="date-col">2016-11-09</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6202165482871713792" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6202165482871713792" target="_blank" rel="noopener">6 Lessons from Donald Trump's Winning Marketing Manual - HBS Working Knowledge</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2016">
-          <td class="date-col">2016-08-07</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6167934164579512320" target="_blank" rel="noopener">LinkedIn Post</a></td>
-        </tr>
-        <tr data-title="linkedin post" data-year="2016">
-          <td class="date-col">2016-07-25</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6163352803566813184" target="_blank" rel="noopener">LinkedIn Post</a></td>
-        </tr>
-        <tr data-title="linkedin post" data-year="2016">
+        <tr data-title="nobel laureates question greenpeace anti-scientific stand" data-year="2016">
           <td class="date-col">2016-07-04</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6155702268948774912" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6155702268948774912" target="_blank" rel="noopener">Nobel Laureates question Greenpeace anti-scientific stand</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2016">
+        <tr data-title="2 monkeys were paid unequally" data-year="2016">
           <td class="date-col">2016-05-23</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6140347350167670784" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6140347350167670784" target="_blank" rel="noopener">2 Monkeys Were Paid Unequally</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2016">
+        <tr data-title="what happens when monkeys are not paid" data-year="2016">
           <td class="date-col">2016-05-20</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6139464461196554241" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6139464461196554241" target="_blank" rel="noopener">What Happens when monkeys are not paid</a></td>
         </tr>
-        <tr data-title="linkedin post" data-year="2015">
+        <tr data-title="six habits of confident people" data-year="2015">
           <td class="date-col">2015-07-15</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6027060400887992320" target="_blank" rel="noopener">LinkedIn Post</a></td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6027060400887992320" target="_blank" rel="noopener">Six Habits of Confident People</a></td>
         </tr>
-        <tr data-title="joe amlin" data-year="2013">
-          <td class="date-col">2013-12-07</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A5815130252816424965" target="_blank" rel="noopener">joe amlin</a></td>
-        </tr>
-        <tr data-title="jaleh" data-year="2011">
-          <td class="date-col">2011-12-15</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A761672589" target="_blank" rel="noopener">Jaleh</a></td>
-        </tr>
-        <tr data-title="please see an excerpt of my latest singing performance - i wish i had more time to practic..." data-year="2011">
+        <tr data-title="please see my latest singing performance :  con te partiro" data-year="2011">
           <td class="date-col">2011-10-18</td>
-          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A647451350" target="_blank" rel="noopener">Please see an excerpt of my latest singing performance - i wish I had more time to practic...</a></td>
-        </tr>
-        <tr data-title="please see my latest singing performance : http://lnkd.in/b2hz-c - con te partiro" data-year="2011">
-          <td class="date-col">2011-10-18</td>
-          <td class="title-col"><a href="http://lnkd.in/b2HZ-c" target="_blank" rel="noopener">Please see my latest singing performance : http://lnkd.in/b2HZ-c - Con te Partiro</a></td>
+          <td class="title-col"><a href="http://lnkd.in/b2HZ-c" target="_blank" rel="noopener">Please see my latest singing performance :  Con te Partiro</a></td>
         </tr>
     </tbody>
   </table>
@@ -5651,27 +5600,30 @@
 <footer>
   <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a> &nbsp;·&nbsp; All posts originally published on LinkedIn</p>
 </footer>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Top</button>
 <script>
-  const searchInput = document.getElementById('search');
-  const yearFilter  = document.getElementById('year-filter');
-  const resultCount = document.getElementById('result-count');
-  const noResults   = document.getElementById('no-results');
-  const rows        = document.querySelectorAll('#posts-table tbody tr');
-  function filter() {
-    const q    = searchInput.value.toLowerCase().trim();
-    const year = yearFilter.value;
-    let visible = 0;
-    rows.forEach(row => {
-      const matchQ = !q    || (row.dataset.title || '').includes(q);
-      const matchY = !year || row.dataset.year === year;
-      if (matchQ && matchY) { row.classList.remove('hidden'); visible++; }
-      else                  { row.classList.add('hidden'); }
+  const searchInput=document.getElementById('search');
+  const yearFilter=document.getElementById('year-filter');
+  const resultCount=document.getElementById('result-count');
+  const noResults=document.getElementById('no-results');
+  const rows=document.querySelectorAll('#posts-table tbody tr');
+  const btn=document.getElementById('back-to-top');
+  window.addEventListener('scroll',()=>{btn.style.display=window.scrollY>300?'block':'none';});
+  function filter(){
+    const q=searchInput.value.toLowerCase().trim();
+    const year=yearFilter.value;
+    let visible=0;
+    rows.forEach(row=>{
+      const matchQ=!q||(row.dataset.title||'').includes(q);
+      const matchY=!year||row.dataset.year===year;
+      if(matchQ&&matchY){row.classList.remove('hidden');visible++;}
+      else{row.classList.add('hidden');}
     });
-    resultCount.textContent = visible === 1 ? '1 post' : `${visible} posts`;
-    noResults.style.display = visible === 0 ? 'block' : 'none';
+    resultCount.textContent=visible===1?'1 post':`${visible} posts`;
+    noResults.style.display=visible===0?'block':'none';
   }
-  searchInput.addEventListener('input', filter);
-  yearFilter.addEventListener('change', filter);
+  searchInput.addEventListener('input',filter);
+  yearFilter.addEventListener('change',filter);
 </script>
 </body>
 </html>
