@@ -21,8 +21,10 @@
     .controls{background:var(--surface);border-bottom:1px solid var(--border);padding:20px 40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
     .search-wrap{position:relative;flex:1;min-width:200px;}
     .search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:0.4;pointer-events:none;}
-    #search{width:100%;padding:10px 16px 10px 38px;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:14px;background:var(--bg);color:var(--ink);outline:none;transition:border-color 0.2s;}
+    #search{width:100%;padding:10px 32px 10px 38px;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:14px;background:var(--bg);color:var(--ink);outline:none;transition:border-color 0.2s;}
     #search:focus{border-color:var(--accent2);}
+    #search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px;line-height:1;padding:2px 4px;display:none;opacity:0.5;transition:opacity 0.15s;}
+    #search-clear:hover{opacity:1;}
     #year-filter{padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:14px;background:var(--bg);color:var(--ink);outline:none;cursor:pointer;}
     #result-count{font-size:13px;color:var(--muted);white-space:nowrap;font-style:italic;}
     .table-wrap{padding:32px 40px 60px;max-width:1100px;margin:0 auto;}
@@ -50,7 +52,7 @@
   <a class="back-link" href="https://torotambun.github.io">← Back to CV</a>
   <h1>Field Notes</h1>
   <p class="subtitle">Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Published 2011–2026</p>
-  <span class="count-badge">1378 posts</span>
+  <span class="count-badge">1435 posts</span>
 </header>
 <div class="controls">
   <div class="search-wrap">
@@ -58,6 +60,7 @@
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
     <input type="text" id="search" placeholder="Search by keyword, topic…" autocomplete="off">
+    <button id="search-clear" title="Clear search">✕</button>
   </div>
   <select id="year-filter">
     <option value="">All years</option>
@@ -75,12 +78,240 @@
           <option value="2015">2015</option>
           <option value="2011">2011</option>
   </select>
-  <span id="result-count">1378 posts</span>
+  <span id="result-count">1435 posts</span>
 </div>
 <div class="table-wrap">
   <table id="posts-table">
     <thead><tr><th>Date</th><th>Opening Line</th></tr></thead>
     <tbody>
+        <tr data-title="thanks for publishing this: dr. atik aprianingsih, bapak mochamad marcellodia..." data-year="2026">
+          <td class="date-col">2026-05-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7462872990255513600" target="_blank" rel="noopener">Thanks for publishing this: Dr. Atik Aprianingsih, Bapak Mochamad Marcellodia...</a></td>
+        </tr>
+        <tr data-title="today is hari kebangkitan nasional.  innovation will again be claimed in p..." data-year="2026">
+          <td class="date-col">2026-05-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7462687368689553408" target="_blank" rel="noopener">Today is Hari Kebangkitan Nasional." " "Innovation will again be claimed in p...</a></td>
+        </tr>
+        <tr data-title="a friend once joked to me after my doctoral defense: “pak toro buru-buru lulu..." data-year="2026">
+          <td class="date-col">2026-05-14</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7460534847208550400" target="_blank" rel="noopener">A friend once joked to me after my doctoral defense: “Pak Toro buru-buru lulu...</a></td>
+        </tr>
+        <tr data-title="ai itself does not worry me. i use it myself and probably more enthusiastical..." data-year="2026">
+          <td class="date-col">2026-05-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7460266254893780992" target="_blank" rel="noopener">AI itself does not worry me. I use it myself and probably more enthusiastical...</a></td>
+        </tr>
+        <tr data-title="today is 12 may. i re-read this poem by taufik ismail (1935 - present) in his..." data-year="2026">
+          <td class="date-col">2026-05-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7459854568198164480" target="_blank" rel="noopener">Today is 12 May. I re-read this poem by Taufik Ismail (1935 - present) in his...</a></td>
+        </tr>
+        <tr data-title="after retirement i started reading 𝗩𝗮𝗻 𝗕𝗲𝗺𝗺𝗲𝗹𝗲𝗻’𝘀 𝗧𝗵𝗲 𝗚𝗲𝗼𝗹𝗼𝗴𝘆 𝗼𝗳 𝗜𝗻𝗱𝗼𝗻𝗲𝘀𝗶𝗮 di..." data-year="2026">
+          <td class="date-col">2026-05-12</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7459813447371886594" target="_blank" rel="noopener">After retirement I started reading 𝗩𝗮𝗻 𝗕𝗲𝗺𝗺𝗲𝗹𝗲𝗻’𝘀 𝗧𝗵𝗲 𝗚𝗲𝗼𝗹𝗼𝗴𝘆 𝗼𝗳 𝗜𝗻𝗱𝗼𝗻𝗲𝘀𝗶𝗮 di...</a></td>
+        </tr>
+        <tr data-title="i bought “an outline of the geology of indonesia” in 2002, only a few months ..." data-year="2026">
+          <td class="date-col">2026-05-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7459449276021018624" target="_blank" rel="noopener">I bought “An Outline of the Geology of Indonesia” in 2002, only a few months ...</a></td>
+        </tr>
+        <tr data-title="many retirees are not suffering from lack of money, but …   for decades, i..." data-year="2026">
+          <td class="date-col">2026-05-10</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7459111165135151104" target="_blank" rel="noopener">Many retirees are not suffering from lack of money, but … " " "For decades, i...</a></td>
+        </tr>
+        <tr data-title="𝐆𝐞𝐧𝐀𝐈 𝐦𝐚𝐤𝐞𝐬 𝐫𝐞𝐚𝐥 𝐥𝐞𝐚𝐫𝐧𝐢𝐧𝐠 𝐦𝐨𝐫𝐞 𝐩𝐨𝐰𝐞𝐫𝐟𝐮𝐥. 𝐈𝐭 𝐚𝐥𝐬𝐨 𝐦𝐚𝐤𝐞𝐬 𝐟𝐚𝐤𝐞 𝐥𝐞𝐚𝐫𝐧𝐢𝐧𝐠 𝐞𝐚𝐬𝐢𝐞𝐫 𝐭..." data-year="2026">
+          <td class="date-col">2026-05-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7458790144524042241" target="_blank" rel="noopener">𝐆𝐞𝐧𝐀𝐈 𝐦𝐚𝐤𝐞𝐬 𝐫𝐞𝐚𝐥 𝐥𝐞𝐚𝐫𝐧𝐢𝐧𝐠 𝐦𝐨𝐫𝐞 𝐩𝐨𝐰𝐞𝐫𝐟𝐮𝐥. 𝐈𝐭 𝐚𝐥𝐬𝐨 𝐦𝐚𝐤𝐞𝐬 𝐟𝐚𝐤𝐞 𝐥𝐞𝐚𝐫𝐧𝐢𝐧𝐠 𝐞𝐚𝐬𝐢𝐞𝐫 𝐭...</a></td>
+        </tr>
+        <tr data-title="𝐈𝐧 𝐚 𝐜𝐮𝐥𝐭𝐮𝐫𝐞 𝐭𝐡𝐚𝐭 𝐰𝐨𝐫𝐬𝐡𝐢𝐩𝐬 𝐭𝐢𝐭𝐥𝐞𝐬, 𝐩𝐞𝐨𝐩𝐥𝐞 𝐞𝐯𝐞𝐧𝐭𝐮𝐚𝐥𝐥𝐲 𝐥𝐞𝐚𝐫𝐧 𝐡𝐨𝐰 𝐭𝐨 𝐦𝐚𝐧𝐮𝐟𝐚𝐜𝐭𝐮𝐫𝐞..." data-year="2026">
+          <td class="date-col">2026-05-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7458372071946047488" target="_blank" rel="noopener">𝐈𝐧 𝐚 𝐜𝐮𝐥𝐭𝐮𝐫𝐞 𝐭𝐡𝐚𝐭 𝐰𝐨𝐫𝐬𝐡𝐢𝐩𝐬 𝐭𝐢𝐭𝐥𝐞𝐬, 𝐩𝐞𝐨𝐩𝐥𝐞 𝐞𝐯𝐞𝐧𝐭𝐮𝐚𝐥𝐥𝐲 𝐥𝐞𝐚𝐫𝐧 𝐡𝐨𝐰 𝐭𝐨 𝐦𝐚𝐧𝐮𝐟𝐚𝐜𝐭𝐮𝐫𝐞...</a></td>
+        </tr>
+        <tr data-title="a former co-learner recently asked me which skill i wish i had learned more d..." data-year="2026">
+          <td class="date-col">2026-05-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7458029626687209472" target="_blank" rel="noopener">A former co-learner recently asked me which skill I wish I had learned more d...</a></td>
+        </tr>
+        <tr data-title="menutup prodi dengan alasan lulusannya menganggur? really? apa universitas ma..." data-year="2026">
+          <td class="date-col">2026-05-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7457136830195453952" target="_blank" rel="noopener">Menutup prodi dengan alasan lulusannya menganggur? Really? Apa Universitas ma...</a></td>
+        </tr>
+        <tr data-title="in a typical hbs class, the professor’s own slide presentation comes only at ..." data-year="2026">
+          <td class="date-col">2026-05-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7456797063398354944" target="_blank" rel="noopener">In a typical HBS class, the professor’s own slide presentation comes only at ...</a></td>
+        </tr>
+        <tr data-title="closing a study program because its graduates are unemployed assumes that the..." data-year="2026">
+          <td class="date-col">2026-05-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7456357641276211200" target="_blank" rel="noopener">Closing a study program because its graduates are unemployed assumes that the...</a></td>
+        </tr>
+        <tr data-title="five civilizations, no contact with each other, all independently discovered ..." data-year="2026">
+          <td class="date-col">2026-04-30</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7455531961592332288" target="_blank" rel="noopener">Five civilizations, no contact with each other, all independently discovered ...</a></td>
+        </tr>
+        <tr data-title="𝗛𝗼𝘄 𝗺𝗮𝗻𝘆 𝘁𝗶𝗺𝗲𝘀 𝘀𝗶𝗹𝗲𝗻𝗰𝗲 𝗰𝗼𝗺𝗲𝘀 𝗳𝗿𝗼𝗺 𝗳𝗿𝗶𝗲𝗻𝗱𝘀, 𝗻𝗼𝘁 𝗳𝗼𝗲𝘀, 𝘄𝗵𝗲𝗻 𝗳𝗮𝗰𝗶𝗻𝗴 𝗽𝗲𝗿𝘀𝗲𝗰𝘂𝘁𝗶𝗼𝗻,..." data-year="2026">
+          <td class="date-col">2026-04-29</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7455142515592257538" target="_blank" rel="noopener">𝗛𝗼𝘄 𝗺𝗮𝗻𝘆 𝘁𝗶𝗺𝗲𝘀 𝘀𝗶𝗹𝗲𝗻𝗰𝗲 𝗰𝗼𝗺𝗲𝘀 𝗳𝗿𝗼𝗺 𝗳𝗿𝗶𝗲𝗻𝗱𝘀, 𝗻𝗼𝘁 𝗳𝗼𝗲𝘀, 𝘄𝗵𝗲𝗻 𝗳𝗮𝗰𝗶𝗻𝗴 𝗽𝗲𝗿𝘀𝗲𝗰𝘂𝘁𝗶𝗼𝗻,...</a></td>
+        </tr>
+        <tr data-title="𝗪𝗵𝗲𝘁𝗵𝗲𝗿 𝗔𝗜 𝘄𝗶𝗹𝗹 𝗿𝗲𝗽𝗹𝗮𝗰𝗲 𝗽𝗲𝗼𝗽𝗹𝗲 may be an obsolete question. the harder questi..." data-year="2026">
+          <td class="date-col">2026-04-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7454388260623106048" target="_blank" rel="noopener">𝗪𝗵𝗲𝘁𝗵𝗲𝗿 𝗔𝗜 𝘄𝗶𝗹𝗹 𝗿𝗲𝗽𝗹𝗮𝗰𝗲 𝗽𝗲𝗼𝗽𝗹𝗲 may be an obsolete question. The harder questi...</a></td>
+        </tr>
+        <tr data-title="shir lama’alot. psalm 121. almost three millennia old. rendered through chatg..." data-year="2026">
+          <td class="date-col">2026-04-25</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7453757185748180992" target="_blank" rel="noopener">Shir LaMa’alot. Psalm 121. Almost three millennia old. Rendered through ChatG...</a></td>
+        </tr>
+        <tr data-title="today, our el-4062 class witnessed sense-making at its best before beginning ..." data-year="2026">
+          <td class="date-col">2026-04-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7453545446091751424" target="_blank" rel="noopener">Today, our EL-4062 class witnessed sense-making at its best before beginning ...</a></td>
+        </tr>
+        <tr data-title="how many rejections from scopus indexed journals does a phd student go throug..." data-year="2026">
+          <td class="date-col">2026-04-19</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7451686753222045696" target="_blank" rel="noopener">How many rejections from scopus indexed journals does a PhD student go throug...</a></td>
+        </tr>
+        <tr data-title="a late award is still an award. yet timing has its own way of shaping what an..." data-year="2026">
+          <td class="date-col">2026-04-17</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7450918307890900992" target="_blank" rel="noopener">A late award is still an award. Yet timing has its own way of shaping what an...</a></td>
+        </tr>
+        <tr data-title="a phd friend sent this to me “my right to deliver a valedictorian speech was ..." data-year="2026">
+          <td class="date-col">2026-04-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7450577166871994368" target="_blank" rel="noopener">A PhD friend sent this to me “My right to deliver a valedictorian speech was ...</a></td>
+        </tr>
+        <tr data-title="the sheep, know the shepherd’s voice. not because they studied it. because th..." data-year="2026">
+          <td class="date-col">2026-04-16</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7450336303004430338" target="_blank" rel="noopener">The sheep, know the shepherd’s voice. Not because they studied it. Because th...</a></td>
+        </tr>
+        <tr data-title="when persecution happens, people quickly blame religion, and usually the majo..." data-year="2026">
+          <td class="date-col">2026-04-13</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7449536362665410560" target="_blank" rel="noopener">When persecution happens, people quickly blame religion, and usually the majo...</a></td>
+        </tr>
+        <tr data-title="my attempt to model mathematically patrick winstons conundrum your success ..." data-year="2026">
+          <td class="date-col">2026-04-11</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7448696689177042944" target="_blank" rel="noopener">My attempt to model mathematically Patrick Winston's conundrum "your success ...</a></td>
+        </tr>
+        <tr data-title="most thought leadership is not weak because the ideas are bad. it is weak bec..." data-year="2026">
+          <td class="date-col">2026-04-09</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7448069499146235904" target="_blank" rel="noopener">Most thought leadership is not weak because the ideas are bad. It is weak bec...</a></td>
+        </tr>
+        <tr data-title="what if religious persecution has nothing to do with religion? what if the re..." data-year="2026">
+          <td class="date-col">2026-04-08</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7447486123972628481" target="_blank" rel="noopener">What if religious persecution has nothing to do with religion? What if the re...</a></td>
+        </tr>
+        <tr data-title="this is the official d-day instruction for today’s midterm exam. read it care..." data-year="2026">
+          <td class="date-col">2026-04-07</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7447250846532431872" target="_blank" rel="noopener">This is the official D-Day instruction for today’s midterm exam. Read it care...</a></td>
+        </tr>
+        <tr data-title="a colleague responded to my ikhlas article not with words — but with a map. ..." data-year="2026">
+          <td class="date-col">2026-04-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7446983178919079936" target="_blank" rel="noopener">A colleague responded to my ikhlas article not with words — but with a map." ...</a></td>
+        </tr>
+        <tr data-title="easters question is no longer whether the story is believed but whether its ..." data-year="2026">
+          <td class="date-col">2026-04-06</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7446917734694825985" target="_blank" rel="noopener">Easter's question is no longer whether the story is believed but whether its ...</a></td>
+        </tr>
+        <tr data-title="easter is not only a sacred event. it is the most consequential disruption in..." data-year="2026">
+          <td class="date-col">2026-04-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7446044196437762048" target="_blank" rel="noopener">Easter is not only a sacred event. It is the most consequential disruption in...</a></td>
+        </tr>
+        <tr data-title="what if the cross is the most disruptive innovation in the history of access?..." data-year="2026">
+          <td class="date-col">2026-04-04</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7446040207654760448" target="_blank" rel="noopener">What if the cross is the most disruptive innovation in the history of access?...</a></td>
+        </tr>
+        <tr data-title="how does one “celebrate” a final teaching class?  my thanks to mas dwi atm..." data-year="2026">
+          <td class="date-col">2026-04-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7445783865899626497" target="_blank" rel="noopener">How does one “celebrate” a final teaching class?" " "My thanks to Mas Dwi Atm...</a></td>
+        </tr>
+        <tr data-title="many do not wait long enough to judge a moment well. what looks like an open ..." data-year="2026">
+          <td class="date-col">2026-04-03</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7445726719271006208" target="_blank" rel="noopener">Many do not wait long enough to judge a moment well. What looks like an open ...</a></td>
+        </tr>
+        <tr data-title="a close friend once said something that was hard to ignore. he is known for h..." data-year="2026">
+          <td class="date-col">2026-04-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7445361128815333376" target="_blank" rel="noopener">A close friend once said something that was hard to ignore. He is known for h...</a></td>
+        </tr>
+        <tr data-title="for those carrying bitterness from unfair treatment, neglect, or being cast a..." data-year="2026">
+          <td class="date-col">2026-04-02</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7445326038919974913" target="_blank" rel="noopener">For those carrying bitterness from unfair treatment, neglect, or being cast a...</a></td>
+        </tr>
+        <tr data-title="𝗠𝗼𝗿𝗮𝗹 𝗠𝗼𝗺𝗲𝗻𝘁 – 𝗘𝗽𝗶𝘀𝗼𝗱𝗲 21 🧾 𝗦𝗲𝗹𝗹𝗲𝗿-𝗜𝘀𝘀𝘂𝗲𝗱 𝗥𝗲𝗰𝗲𝗶𝗽𝘁 𝘄𝗶𝘁𝗵 𝗕𝗹𝗮𝗻𝗸 𝗔𝗺𝗼𝘂𝗻𝘁  a pub..." data-year="2026">
+          <td class="date-col">2026-03-31</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7444808178774634496" target="_blank" rel="noopener">𝗠𝗼𝗿𝗮𝗹 𝗠𝗼𝗺𝗲𝗻𝘁 – 𝗘𝗽𝗶𝘀𝗼𝗱𝗲 21 🧾 𝗦𝗲𝗹𝗹𝗲𝗿-𝗜𝘀𝘀𝘂𝗲𝗱 𝗥𝗲𝗰𝗲𝗶𝗽𝘁 𝘄𝗶𝘁𝗵 𝗕𝗹𝗮𝗻𝗸 𝗔𝗺𝗼𝘂𝗻𝘁" " "A pub...</a></td>
+        </tr>
+        <tr data-title="the point in the meme is real. too many early-career profiles turn small expo..." data-year="2026">
+          <td class="date-col">2026-03-31</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7444726364722622464" target="_blank" rel="noopener">The point in the meme is real. Too many early-career profiles turn small expo...</a></td>
+        </tr>
+        <tr data-title="𝗠𝗼𝗿𝗮𝗹 𝗠𝗼𝗺𝗲𝗻𝘁 – 𝗘𝗽𝗶𝘀𝗼𝗱𝗲 20 🛵 𝗖𝗼𝗻𝘃𝗲𝗻𝗶𝗲𝗻𝗰𝗲 𝗢𝘃𝗲𝗿 𝗦𝗮𝗳𝗲𝘁𝘆  a motorcycle is obser..." data-year="2026">
+          <td class="date-col">2026-03-31</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7444686537646309376" target="_blank" rel="noopener">𝗠𝗼𝗿𝗮𝗹 𝗠𝗼𝗺𝗲𝗻𝘁 – 𝗘𝗽𝗶𝘀𝗼𝗱𝗲 20 🛵 𝗖𝗼𝗻𝘃𝗲𝗻𝗶𝗲𝗻𝗰𝗲 𝗢𝘃𝗲𝗿 𝗦𝗮𝗳𝗲𝘁𝘆" " "A motorcycle is obser...</a></td>
+        </tr>
+        <tr data-title="introverts supporting each other “ .. would simply fly away” .. thanks prof. ..." data-year="2026">
+          <td class="date-col">2026-03-30</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7444381506783055872" target="_blank" rel="noopener">Introverts supporting each other “ .. would simply fly away” .. thanks Prof. ...</a></td>
+        </tr>
+        <tr data-title="mid-term instruction - pnu20242206. bahasa inggris akademik kelas f. you must..." data-year="2026">
+          <td class="date-col">2026-03-29</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7443992813278486528" target="_blank" rel="noopener">Mid-Term Instruction - PNU20242206. Bahasa Inggris Akademik Kelas F. You must...</a></td>
+        </tr>
+        <tr data-title="here is the week 7 pre-reading material for pnu20192206 . it is a short note ..." data-year="2026">
+          <td class="date-col">2026-03-29</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7443868028150292480" target="_blank" rel="noopener">Here is the Week 7 pre-reading material for PNU20192206 . It is a short note ...</a></td>
+        </tr>
+        <tr data-title="a breakthrough in national energy thinking has finally arrived: 𝐚𝐟𝐭𝐞𝐫 𝐭𝐡𝐞 𝐟𝐨𝐨..." data-year="2026">
+          <td class="date-col">2026-03-28</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7443692047896649728" target="_blank" rel="noopener">A breakthrough in national energy thinking has finally arrived: 𝐚𝐟𝐭𝐞𝐫 𝐭𝐡𝐞 𝐟𝐨𝐨...</a></td>
+        </tr>
+        <tr data-title="indonesia says it wants stronger entrepreneurship and deeper industry. yet ma..." data-year="2026">
+          <td class="date-col">2026-03-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7443343997189722113" target="_blank" rel="noopener">Indonesia says it wants stronger entrepreneurship and deeper industry. Yet ma...</a></td>
+        </tr>
+        <tr data-title="𝐇𝐚𝐯𝐞 𝐲𝐨𝐮 𝐞𝐯𝐞𝐫 𝐬𝐞𝐞𝐧 𝐚 𝐯𝐞𝐫𝐲 𝐜𝐚𝐩𝐚𝐛𝐥𝐞 𝐩𝐞𝐫𝐬𝐨𝐧 𝐛𝐞𝐜𝐨𝐦𝐞 𝐚 𝐬𝐭𝐫𝐚𝐧𝐠𝐞𝐫 𝐢𝐧 𝐡𝐢𝐬 𝐨𝐰𝐧 𝐜𝐢𝐭𝐲? v..." data-year="2026">
+          <td class="date-col">2026-03-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7443268675001987072" target="_blank" rel="noopener">𝐇𝐚𝐯𝐞 𝐲𝐨𝐮 𝐞𝐯𝐞𝐫 𝐬𝐞𝐞𝐧 𝐚 𝐯𝐞𝐫𝐲 𝐜𝐚𝐩𝐚𝐛𝐥𝐞 𝐩𝐞𝐫𝐬𝐨𝐧 𝐛𝐞𝐜𝐨𝐦𝐞 𝐚 𝐬𝐭𝐫𝐚𝐧𝐠𝐞𝐫 𝐢𝐧 𝐡𝐢𝐬 𝐨𝐰𝐧 𝐜𝐢𝐭𝐲? V...</a></td>
+        </tr>
+        <tr data-title="some people do not need to become somebody else to live with dignity. the rea..." data-year="2026">
+          <td class="date-col">2026-03-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7443170082203021312" target="_blank" rel="noopener">Some people do not need to become somebody else to live with dignity. The rea...</a></td>
+        </tr>
+        <tr data-title="𝗪𝗵𝗲𝗻 𝗮 𝗹𝗲𝗮𝗱𝗲𝗿 𝗹𝗼𝗼𝗸𝘀 𝘁𝘆𝗿𝗮𝗻𝗻𝗶𝗰, 𝘁𝗵𝗲 𝗱𝗲𝗲𝗽𝗲𝗿 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝗶𝘀 𝗼𝗳𝘁𝗲𝗻 𝗻𝗼𝘁 𝗼𝗻𝗹𝘆 𝘄𝗵𝗼 𝗹𝗲𝗮𝗱𝘀..." data-year="2026">
+          <td class="date-col">2026-03-27</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7443101500710481921" target="_blank" rel="noopener">𝗪𝗵𝗲𝗻 𝗮 𝗹𝗲𝗮𝗱𝗲𝗿 𝗹𝗼𝗼𝗸𝘀 𝘁𝘆𝗿𝗮𝗻𝗻𝗶𝗰, 𝘁𝗵𝗲 𝗱𝗲𝗲𝗽𝗲𝗿 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝗶𝘀 𝗼𝗳𝘁𝗲𝗻 𝗻𝗼𝘁 𝗼𝗻𝗹𝘆 𝘄𝗵𝗼 𝗹𝗲𝗮𝗱𝘀...</a></td>
+        </tr>
+        <tr data-title="tambun, a. r. y. t. (2026, march 26). the architecture of silence: why javane..." data-year="2026">
+          <td class="date-col">2026-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7443003527800492032" target="_blank" rel="noopener">Tambun, A. R. Y. T. (2026, March 26). The Architecture of Silence: Why Javane...</a></td>
+        </tr>
+        <tr data-title="the podcast link: https://lnkd.in/ddzh2u_w  nation-building often demands ..." data-year="2026">
+          <td class="date-col">2026-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7443000047954403328" target="_blank" rel="noopener">The podcast link: https://lnkd.in/ddzh2u_w" " "Nation-building often demands ...</a></td>
+        </tr>
+        <tr data-title="𝗪𝗵𝗲𝗻 𝗮 𝗹𝗲𝗮𝗱𝗲𝗿 𝗹𝗼𝗼𝗸𝘀 𝘁𝘆𝗿𝗮𝗻𝗻𝗶𝗰, 𝘁𝗵𝗲 𝗱𝗲𝗲𝗽𝗲𝗿 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝗶𝘀 𝗼𝗳𝘁𝗲𝗻 𝗻𝗼𝘁 𝗼𝗻𝗹𝘆 𝘄𝗵𝗼 𝗹𝗲𝗮𝗱𝘀..." data-year="2026">
+          <td class="date-col">2026-03-26</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7442808307289079808" target="_blank" rel="noopener">𝗪𝗵𝗲𝗻 𝗮 𝗹𝗲𝗮𝗱𝗲𝗿 𝗹𝗼𝗼𝗸𝘀 𝘁𝘆𝗿𝗮𝗻𝗻𝗶𝗰, 𝘁𝗵𝗲 𝗱𝗲𝗲𝗽𝗲𝗿 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝗶𝘀 𝗼𝗳𝘁𝗲𝗻 𝗻𝗼𝘁 𝗼𝗻𝗹𝘆 𝘄𝗵𝗼 𝗹𝗲𝗮𝗱𝘀...</a></td>
+        </tr>
+        <tr data-title="dedicated to those who were disinherited, the damned, the dispossessed and th..." data-year="2026">
+          <td class="date-col">2026-03-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7442291033893216256" target="_blank" rel="noopener">Dedicated to those who were DISINHERITED, the DAMNED, the DISPOSSESSED and th...</a></td>
+        </tr>
+        <tr data-title="suplementary material for week 6 the storytellers toolkit  the video wil..." data-year="2026">
+          <td class="date-col">2026-03-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7442186774401069056" target="_blank" rel="noopener">Suplementary Material for Week 6 "The Storyteller's Toolkit" " "The video wil...</a></td>
+        </tr>
+        <tr data-title="failure in professional communication is not just a missed opportunity; it is..." data-year="2026">
+          <td class="date-col">2026-03-24</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7442075430171545600" target="_blank" rel="noopener">Failure in professional communication is not just a missed opportunity; it is...</a></td>
+        </tr>
+        <tr data-title="𝐈𝐭 𝐢𝐬 𝐧𝐨𝐭 𝐚𝐛𝐨𝐮𝐭 𝐟𝐚𝐢𝐥𝐮𝐫𝐞. 𝐈𝐭 𝐢𝐬 𝐚𝐛𝐨𝐮𝐭 𝐛𝐞𝐢𝐧𝐠 𝐝𝐞𝐧𝐢𝐞𝐝 𝐰𝐡𝐚𝐭 𝐈 𝐡𝐚𝐝 𝐞𝐚𝐫𝐧𝐞𝐝 𝐨𝐧 𝐦𝐞𝐫𝐢𝐭...." data-year="2026">
+          <td class="date-col">2026-03-23</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7441927007283761152" target="_blank" rel="noopener">𝐈𝐭 𝐢𝐬 𝐧𝐨𝐭 𝐚𝐛𝐨𝐮𝐭 𝐟𝐚𝐢𝐥𝐮𝐫𝐞. 𝐈𝐭 𝐢𝐬 𝐚𝐛𝐨𝐮𝐭 𝐛𝐞𝐢𝐧𝐠 𝐝𝐞𝐧𝐢𝐞𝐝 𝐰𝐡𝐚𝐭 𝐈 𝐡𝐚𝐝 𝐞𝐚𝐫𝐧𝐞𝐝 𝐨𝐧 𝐦𝐞𝐫𝐢𝐭....</a></td>
+        </tr>
+        <tr data-title="𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗺𝗼𝘀𝘁 𝗵𝗼𝗻𝗲𝘀𝘁 𝘁𝗵𝗶𝗻𝗴 𝘁𝗼 𝘀𝗮𝘆 𝗶𝗻 𝗮 𝘃𝗮𝗹𝗲𝗱𝗶𝗰𝘁𝗼𝗿𝗶𝗮𝗻 𝘀𝗽𝗲𝗲𝗰𝗵 𝗳𝗼𝗿 𝗮 𝗣𝗵𝗗 𝗴𝗿𝗮𝗱..." data-year="2026">
+          <td class="date-col">2026-03-23</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7441666194149003264" target="_blank" rel="noopener">𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗺𝗼𝘀𝘁 𝗵𝗼𝗻𝗲𝘀𝘁 𝘁𝗵𝗶𝗻𝗴 𝘁𝗼 𝘀𝗮𝘆 𝗶𝗻 𝗮 𝘃𝗮𝗹𝗲𝗱𝗶𝗰𝘁𝗼𝗿𝗶𝗮𝗻 𝘀𝗽𝗲𝗲𝗰𝗵 𝗳𝗼𝗿 𝗮 𝗣𝗵𝗗 𝗴𝗿𝗮𝗱...</a></td>
+        </tr>
+        <tr data-title="𝐍𝐨𝐭 𝐛𝐲 𝐌𝐢𝐠𝐡𝐭. 𝐍𝐨𝐭 𝐛𝐲 𝐏𝐨𝐰𝐞𝐫. 𝐁𝐮𝐭 𝐛𝐲 𝐌𝐲 𝐒𝐩𝐢𝐫𝐢𝐭. have you ever completed work pr..." data-year="2026">
+          <td class="date-col">2026-03-22</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A7441511091836379136" target="_blank" rel="noopener">𝐍𝐨𝐭 𝐛𝐲 𝐌𝐢𝐠𝐡𝐭. 𝐍𝐨𝐭 𝐛𝐲 𝐏𝐨𝐰𝐞𝐫. 𝐁𝐮𝐭 𝐛𝐲 𝐌𝐲 𝐒𝐩𝐢𝐫𝐢𝐭. Have you ever completed work pr...</a></td>
+        </tr>
+        <tr data-title="to all my co-learners and current students celebrating eid al-fitr this week,..." data-year="2026">
+          <td class="date-col">2026-03-20</td>
+          <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7440604989116276736" target="_blank" rel="noopener">To all my co-learners and current students celebrating Eid al-Fitr this week,...</a></td>
+        </tr>
         <tr data-title="to all my co-learners and current students celebrating eid al-fitr this week, pnu20242206 ..." data-year="2026">
           <td class="date-col">2026-03-20</td>
           <td class="title-col"><a href="https://www.linkedin.com/feed/update/urn%3Ali%3AugcPost%3A7440604989116276736" target="_blank" rel="noopener">To all my co-learners and current students celebrating Eid al-Fitr this week, PNU20242206 ...</a></td>
@@ -5624,6 +5855,9 @@
   }
   searchInput.addEventListener('input',filter);
   yearFilter.addEventListener('change',filter);
+  const clearBtn=document.getElementById('search-clear');
+  searchInput.addEventListener('input',function(){clearBtn.style.display=this.value?'block':'none';});
+  clearBtn.addEventListener('click',function(){searchInput.value='';clearBtn.style.display='none';filter();searchInput.focus();});
 </script>
 </body>
 </html>
