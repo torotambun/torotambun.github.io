@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atatbon: Protecting Forests Beyond the Harvest — Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444; --amber: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(26px, 4vw, 44px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 40px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-authors { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+  .title-author { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-author strong { color: #94a3b8; display: block; margin-bottom: 4px; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(20px, 3vw, 34px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 40px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 28px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid var(--amber); padding: 20px 24px; margin: 28px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 24px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  /* SCHEIN 3-LEVEL CARDS */
+  .schein-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 32px; }
+  .schein-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 28px; background: #fff; display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: start; }
+  .schein-level { font-family: Arial, sans-serif; }
+  .schein-num { font-size: 28px; font-weight: 700; color: #e2e8f0; line-height: 1; margin-bottom: 4px; }
+  .schein-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+  .schein-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+  .schein-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .schein-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  /* TIMELINE */
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  /* SEQUENCE FLOW */
+  .sequence { margin-top: 28px; }
+  .seq-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .seq-node { background: var(--navy); color: #fff; font-family: Arial, sans-serif; font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 4px; white-space: nowrap; }
+  .seq-arrow { color: var(--blue); font-size: 16px; flex-shrink: 0; }
+  .seq-outcomes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 16px; }
+  .seq-outcome { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 8px 12px; font-size: 12px; color: #166534; line-height: 1.5; }
+
+  /* EVIDENCE */
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  /* DIAGNOSIS */
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.missing { background: #fefce8; border: 1px solid #fde68a; }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.missing .diag-header { color: #b45309; }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.missing .diag-icon { color: #b45309; }
+
+  /* NOBLE OPTION */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .action-card { border-radius: 6px; padding: 28px; }
+  .action-card.provider { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .action-card.preserver { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .action-label { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+  .action-card.provider .action-label { color: #1d4ed8; }
+  .action-card.preserver .action-label { color: var(--green); }
+  .action-card p { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  /* RECS */
+  .rec-list { margin-top: 32px; display: flex; flex-direction: column; gap: 18px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 14px; }
+  .rec-content { flex: 1; padding-top: 6px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  /* REFERENCES */
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .schein-card { grid-template-columns: 1fr; }
+    .evidence-grid, .diagnosis-grid, .two-col, .title-authors, .seq-outcomes { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Atatbon: Protecting Forests Beyond the Harvest</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-intro"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-gap"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-framework"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-details"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-evidence"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-implications"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-conclusion"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-references"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-intro"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-gap"><div class="car-num">02</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-framework"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-details"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-evidence"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-implications"><div class="car-num">06</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-conclusion"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-references"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <!-- 00 TITLE -->
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">The Jakarta Post Column &nbsp;·&nbsp; Anthropology &amp; Forest Policy &nbsp;·&nbsp; 11 July 2026</div>
+      <h1 class="title-main">'Atatbon': Protecting Forests<br>Beyond the Harvest</h1>
+      <p class="title-thesis">A ritual reveals why food security cannot be separated from the continuity of the forest that makes it possible.</p>
+      <div class="title-authors">
+        <div class="title-author">
+          <strong>Dr. Toronata Tambun</strong>
+          Ambassador, En-ROADS Climate Simulation<br>
+          Climate Interactive and MIT Sustainability Initiative
+        </div>
+        <div class="title-author">
+          <strong>Dr. Adrianus L.G. Waworuntu</strong>
+          Former Dean, Faculty of Humanities<br>
+          Universitas Indonesia (FIB-UI)
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <!-- 01 INTRODUCTION -->
+  <section class="slide" id="slide-intro">
+    <div class="slide-content">
+      <div class="sec-eyebrow">01 &nbsp;·&nbsp; Introduction</div>
+      <h2 class="sec-title">This is not a commentary on food policy. It is an anthropological reading of a ritual.</h2>
+      <p class="sec-lead">Two things now share the name Pesta Babi. This column reads the ancient one — and what it has to teach national policy.</p>
+
+      <p class="body-text">Two things now share the name Pesta Babi. One is a controversial YouTube documentary about deforestation, military escorts and land conflict in Papua's south. The other is the ancient pig feast: the Dani call it <em>ebe akho</em> or <em>mawe</em>; the Muyu call it <em>atatbon</em>.</p>
+      <p class="body-text" style="margin-top:20px;">Most writing about Papua right now engages the documentary. This column reads the ritual — its objects, what it declares, and what it assumes about the relationship between people and forest.</p>
+
+      <div class="callout" style="margin-top:32px;">
+        <div class="callout-label">The Frame</div>
+        <p>The article does not treat the feast as a cultural ornament. It treats the ritual order as evidence of a forest covenant built over time — and asks what food policy looks like when it inherits that time horizon.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <!-- 02 GAP -->
+  <section class="slide" id="slide-gap">
+    <div class="slide-content">
+      <div class="sec-eyebrow">02 &nbsp;·&nbsp; Research Gap</div>
+      <h2 class="sec-title">The missing time horizon in food policy.</h2>
+      <p class="sec-lead">Indonesia's food security debate is measured in harvests. The Muyu measure in decades. That gap in time horizon is the gap this column addresses.</p>
+
+      <div class="callout">
+        <div class="callout-label">Core Gap</div>
+        <p>The Ministry of Agriculture reports current harvests. Muyu families preserve the forest so that the land can continue producing in the years ahead. The issue is not food security itself. The issue is the time horizon used to define success. A food policy measured only by the current harvest cannot account for the forest covenant that makes the next harvest possible.</p>
+      </div>
+
+      <p class="body-text" style="margin-top:32px;">Reducing Indonesia's dependence on imported food is a legitimate national goal. It does not conflict with the Muyu principle. What conflicts is the time horizon. Reporting restoration and clearing in the same column of figures prevents restoration from being held accountable for what it claims to offset.</p>
+
+      <div class="warning-callout">
+        <div class="callout-label">⚠ The Asymmetry</div>
+        <p>Clearing releases loss immediately. Newly planted trees need decades to recover only part of what has been removed. The curves do not meet. Policy that treats restoration as compensation for deforestation is built on a false equivalence.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <!-- 03 FRAMEWORK -->
+  <section class="slide" id="slide-framework">
+    <div class="slide-content">
+      <div class="sec-eyebrow">03 &nbsp;·&nbsp; Framework</div>
+      <h2 class="sec-title">Schein's Cultural Reading: Three Levels of the Atatbon</h2>
+      <p class="sec-lead">Objects, declared values, and underlying assumptions carry the argument. The feast operates on all three levels simultaneously.</p>
+
+      <div class="schein-grid">
+        <div class="schein-card">
+          <div class="schein-level">
+            <div class="schein-num">I</div>
+            <div class="schein-tag">Artefacts</div>
+            <div class="schein-name">What You Can See</div>
+            <div class="schein-sub">The visible layer</div>
+          </div>
+          <p class="schein-body">The pig raised by name in the forest. The sacred <em>waruk</em> tree. The ceremonial fire and enclosure. Shell money (<em>ot</em>) and exchange stones (<em>je</em>). These are not decorations — they are evidence of years of obligation kept. Each object is traceable to a decade of forest stewardship that preceded the feast.</p>
+        </div>
+        <div class="schein-card">
+          <div class="schein-level">
+            <div class="schein-num">II</div>
+            <div class="schein-tag">Espoused Values</div>
+            <div class="schein-name">What the Feast Declares</div>
+            <div class="schein-sub">The stated layer</div>
+          </div>
+          <p class="schein-body">Reciprocity. Ancestral debt honoured. Community witnessed. Mourning ended. Marriages recognized. Adulthood conferred. The feast does not announce abundance — it confirms that continuity of care has been maintained. Every declaration in the ritual is a public confirmation of obligations met over years.</p>
+        </div>
+        <div class="schein-card">
+          <div class="schein-level">
+            <div class="schein-num">III</div>
+            <div class="schein-tag">Underlying Assumption</div>
+            <div class="schein-name">What the Feast Takes as Given</div>
+            <div class="schein-sub">The foundational layer</div>
+          </div>
+          <p class="schein-body">The forest is not a resource to extract. It is the precondition. You cannot buy the pig shortly before the feast. You cannot buy the forest back after it is gone. The land covenant precedes the harvest by a decade — and this assumption is so foundational it requires no declaration. It is built into the ritual order itself.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <!-- 04 DETAILS -->
+  <section class="slide" id="slide-details">
+    <div class="slide-content">
+      <div class="sec-eyebrow">04 &nbsp;·&nbsp; Details</div>
+      <h2 class="sec-title">The Ten-Year Covenant and the Required Sequence</h2>
+      <p class="sec-lead">The pigs cannot be purchased before the feast. There is no shortcut. The order cannot be reversed.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-year">Year 1</div><div class="timeline-line"></div></div>
+          <div class="timeline-content"><div class="timeline-title">Pigs named — raised in forest, not in pens</div><p class="timeline-body">The covenant begins. Each pig is given a name and raised as kin within ancestral forest territory.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-year">Years 2–4</div><div class="timeline-line"></div></div>
+          <div class="timeline-content"><div class="timeline-title">Learning paths, feeding grounds, sleep patterns</div><p class="timeline-body">The clan remains connected to their ancestral rivers, ridges and paths. The forest is lived in, not managed from a distance.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-year">Years 5–8</div><div class="timeline-line"></div></div>
+          <div class="timeline-content"><div class="timeline-title">Retaining rivers, ridges and soil boundaries</div><p class="timeline-body">Ancestral territorial boundaries are held. Any clearing of this forest during this period ends the feast — not next year, but for a generation.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-year">Year 9</div><div class="timeline-line"></div></div>
+          <div class="timeline-content"><div class="timeline-title"><em>Amin bon tibri</em> enters restrictions</div><p class="timeline-body">Ceremonial preparations begin. The host clan enters a period of obligation and restriction that anticipates the feast.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-year">Year 10</div><div class="timeline-line"></div></div>
+          <div class="timeline-content"><div class="timeline-title">Atatbon — the feast becomes visible to the world</div><p class="timeline-body">The public settlement of obligations: mourning ends, marriages recognized, young men accepted as adults, debts named, territory boundaries reaffirmed, pigs and exchange objects transferred. The feast is not a spectacle — it is a witnessed accounting.</p></div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:32px;">
+        <div class="callout-label">The Required Sequence</div>
+        <p>Prepare ceremonial ground → build pig enclosure → plant sacred <em>waruk</em> tree → light ritual fire → <em>amin bon tibri</em> observes restrictions → offerings near <em>waruk</em> → first pig slaughtered before witnesses. Atatbon is not a spectacle. It is a public settlement of obligations accumulated over years. The order cannot be reversed and no step can be purchased.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <!-- 05 EVIDENCE -->
+  <section class="slide" id="slide-evidence">
+    <div class="slide-content">
+      <div class="sec-eyebrow">05 &nbsp;·&nbsp; Evidence</div>
+      <h2 class="sec-title">Science Confirms What the Feast Already Knew</h2>
+      <p class="sec-lead">The Muyu did not need a simulator. They built the asymmetry into the ritual. Two independent knowledge systems arrive at the same structural fact.</p>
+
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE A — Indigenous Knowledge</div>
+          <div class="ev-title">Atatbon as Ecological Covenant</div>
+          <p class="ev-body">Atatbon requires the clan to remain connected to the same forest for ten years before the feast is even possible. The pigs cannot be bought. The territory cannot be replaced. Clearing the forest ends the feast — not next year, but for a generation. The ritual encodes an ecological asymmetry that no policy shortcut can override.</p>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE B — Climate Science</div>
+          <div class="ev-title">En-ROADS Climate Solutions Simulator</div>
+          <p class="ev-body">Avoiding deforestation and growing new forests operate on fundamentally different time scales. Clearing releases stored carbon immediately. Newly planted trees need years to recover only part of what has been lost. The curves do not meet. Both indigenous knowledge and climate modelling point to the same structural fact: the loss is instant; the recovery, measured in decades — if it comes at all.</p>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE C — Ministry Data</div>
+          <div class="ev-title">Minister Amran's Data Duel</div>
+          <p class="ev-body">Minister of Agriculture Amran Sulaiman cites an FAO report placing Indonesia second in the world (behind Brazil) for percentage increase in rice production. The Farmer Exchange Rate reached 127, its highest level in 34 years. These figures are real and examinable — and they do not conflict with the Muyu principle. What conflicts is the time horizon used to define success.</p>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE D — Forest Bond Asymmetry</div>
+          <div class="ev-title">Preservation Comes Before Restoration</div>
+          <p class="ev-body">Ten years is not decoration. The ritual requires a decade of continuing obligation before the feast appears. The visible celebration is only the end point. Clearing releases loss immediately. Newly planted trees need decades to recover only part of what has been removed. Policy must protect intact forests first — restoration cannot be counted as compensation for avoidable destruction of functioning ecosystems.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <!-- 06 IMPLICATIONS -->
+  <section class="slide" id="slide-implications">
+    <div class="slide-content">
+      <div class="sec-eyebrow">06 &nbsp;·&nbsp; Implications</div>
+      <h2 class="sec-title">What Is Measured and What Is Missing</h2>
+      <p class="sec-lead">A food policy metric must not stop at the current harvest. Reporting restoration and clearing separately prevents restoration from being counted as compensation for forest that no longer exists.</p>
+
+      <div class="diagnosis-grid">
+        <div class="diag-col visible">
+          <div class="diag-header">✓ Visible Output — Currently Reported</div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Rice production, ranked 2nd globally (FAO)</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Farmer Exchange Rate, 127 — highest in 34 years</span></div>
+        </div>
+        <div class="diag-col missing">
+          <div class="diag-header">⚠ System Continuity — Missing from the Report</div>
+          <div class="diag-item"><span class="diag-icon">⚠</span><span>Hectares of intact forest protected from clearing</span></div>
+          <div class="diag-item"><span class="diag-icon">⚠</span><span>Hectares of degraded land with surviving restored trees</span></div>
+        </div>
+      </div>
+
+      <blockquote style="margin-top:32px;">
+        <p>"Indonesia must feed its people. That is not in question. Damaging the forest is not an option."</p>
+        <cite>— The tension the column holds simultaneously</cite>
+      </blockquote>
+
+      <p class="body-text" style="margin-top:24px;">The ministry records the current harvest. Muyu families preserve the forest so that the land can continue producing in the years ahead. These two orientations are not inherently opposed — but they become opposed when food-estate projects treat intact forest as available land for clearing.</p>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <!-- 07 CONCLUSION -->
+  <section class="slide" id="slide-conclusion">
+    <div class="slide-content">
+      <div class="sec-eyebrow">07 &nbsp;·&nbsp; Conclusion</div>
+      <h2 class="sec-title">The Noble Option: Provider and Preserver</h2>
+      <p class="sec-lead">Minister Amran can be remembered for both. Six policy commitments define what that dual legacy requires.</p>
+
+      <div class="two-col">
+        <div class="action-card provider">
+          <div class="action-label">Provider</div>
+          <p>Rice production ranked second in the world. Farmer Exchange Rate at a 34-year high. Food security delivered at scale. This achievement is real and must be held.</p>
+        </div>
+        <div class="action-card preserver">
+          <div class="action-label">Preserver</div>
+          <p>The person who returned the blessing to the land — and to the Indigenous communities whose forest covenant the harvest depends on. The larger legacy is to keep the land capable of feeding future generations.</p>
+        </div>
+      </div>
+
+      <div class="rec-list" style="margin-top:36px;">
+        <div class="rec-item"><div class="rec-num">1</div><div class="rec-content"><p class="rec-body">Food-estate projects must use degraded land first. Intact forest is not available for clearing.</p></div></div>
+        <div class="rec-item"><div class="rec-num">2</div><div class="rec-content"><p class="rec-body">Where clearing is independently justified, restoration is an additional obligation — not a trade-off or offset against what has been lost.</p></div></div>
+        <div class="rec-item"><div class="rec-num">3</div><div class="rec-content"><p class="rec-body">Land may not be declared restored until planted trees have survived for a defined period.</p></div></div>
+        <div class="rec-item"><div class="rec-num">4</div><div class="rec-content"><p class="rec-body">Customary councils — who know the forest boundaries and clan claims — must verify both the area cleared and the survival of the restored forest.</p></div></div>
+        <div class="rec-item"><div class="rec-num">5</div><div class="rec-content"><p class="rec-body">Land permits are renewed only after obligations have been independently verified.</p></div></div>
+        <div class="rec-item"><div class="rec-num">6</div><div class="rec-content"><p class="rec-body">Two new metrics reported separately: hectares of intact forest protected; hectares of degraded land with surviving trees.</p></div></div>
+      </div>
+
+      <div class="callout" style="margin-top:36px;">
+        <div class="callout-label">Closing</div>
+        <p>Muyu families remain responsible for the same forest throughout the years before a feast can take place. National food policy should require the same continuity — protecting intact forest first, and keeping restoration obligations in force beyond a single harvest or a single ministerial term. The forest covenant must outlast the harvest.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <!-- 08 REFERENCES -->
+  <section class="slide" id="slide-references">
+    <div class="slide-content">
+      <div class="sec-eyebrow">08 &nbsp;·&nbsp; References</div>
+      <h2 class="sec-title">Recommended Readings</h2>
+      <p class="sec-lead">Sources informing this column, for those who want to go deeper.</p>
+
+      <div class="ref-entry"><span class="ref-num">01</span>Budaya Indonesia. (2014). Pesta Babi Suku Muyu. <em>Perpustakaan Digital Budaya Indonesia</em>.</div>
+      <div class="ref-entry"><span class="ref-num">02</span>De Vries, L. (2017). Greater Awyu languages of West Papua in typological perspective. In A. Y. Aikhenvald &amp; R. M. W. Dixon (Eds.), <em>The Cambridge handbook of linguistic typology</em> (pp. 942–966). Cambridge University Press.</div>
+      <div class="ref-entry"><span class="ref-num">03</span>Golson, J., &amp; Gardner, D. S. (1990). Agriculture and sociopolitical organization in New Guinea Highlands prehistory. <em>Annual Review of Anthropology</em>, <em>19</em>, 395–417.</div>
+      <div class="ref-entry"><span class="ref-num">04</span>Heider, K. G. (1970). <em>The Dugum Dani: A Papuan culture in the Highlands of West New Guinea</em> (Viking Fund Publications in Anthropology No. 49). Wenner-Gren Foundation for Anthropological Research.</div>
+      <div class="ref-entry"><span class="ref-num">05</span>Historia.id. (2026). Di balik Pesta Babi. <em>PT. Media Digital Historia</em>.</div>
+      <div class="ref-entry"><span class="ref-num">06</span>Kamur, R. (2018). Odakem-Minisme dalam kebudayaan suku bangsa Sawi wilayah Pantai Kasuari Kabupaten Asmat Provinsi Papua. <em>Jurnal Ekologi Birokrasi</em>, <em>6</em>(3), 59–71.</div>
+      <div class="ref-entry"><span class="ref-num">07</span>Masir, V. (2026, May 31). Pesta Babi, negara, dan masyarakat adat. <em>VIVA NTT</em>.</div>
+      <div class="ref-entry"><span class="ref-num">08</span>Mawikere, M. C. S., &amp; Hura, S. (2021). Telaah etnografi mengenai inkulturasi dan akulturasi sebagai kearifan lokal etnis Baliem, Papua. <em>Jurnal Ilmiah Tumou Tou</em>, <em>8</em>(1), 27–45.</div>
+      <div class="ref-entry"><span class="ref-num">09</span>Redaksi JubiTV. (2026). Pastor pribumi Papua tanggapi film Pesta Babi [Video]. YouTube.</div>
+      <div class="ref-entry"><span class="ref-num">10</span>Sulaiman, A. (2026). Amran keras singgung film Pesta Babi, undang BEM [Video]. YouTube.</div>
+
+      <div class="ref-entry" style="margin-top:16px; font-style:italic; color:var(--muted);">
+        Tambun, T., &amp; Waworuntu, A. L. G. (2026, July 11). 'Atatbon': Protecting forests beyond the harvest. <em>The Jakarta Post</em>.
+        <a href="https://www.thejakartapost.com/opinion/2026/07/11/atatbon-protecting-forests-beyond-the-harvest" style="color:var(--blue);" target="_blank">thejakartapost.com</a>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">↑</button>
+  <button class="nav-btn" id="btn-down">↓</button>
+</div>
+
+<script>
+  const SECTIONS = ['slide-title','slide-intro','slide-gap','slide-framework','slide-details','slide-evidence','slide-implications','slide-conclusion','slide-references'];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
