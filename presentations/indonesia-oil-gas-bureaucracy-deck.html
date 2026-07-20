@@ -6,198 +6,91 @@
 <title>Indonesia Oil & Gas: Bureaucracy Reform? — Dr. Toronata Tambun</title>
 <style>
   :root {
-    --navy: #1c2340;
-    --blue: #5b8cff;
-    --blue-light: #eef2ff;
-    --violet: #a78bfa;
-    --text: #1a1a2e;
-    --muted: #64748b;
-    --border: #e2e8f0;
-    --sidebar-w: 260px;
-    --train-h: 56px;
-    --green: #10b981;
-    --red: #ef4444;
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
 
-  /* SIDEBAR */
-  #sidebar {
-    position: fixed; top: 0; left: 0; width: var(--sidebar-w);
-    height: 100vh; background: var(--navy); color: #cdd5e0;
-    display: flex; flex-direction: column; z-index: 100; overflow-y: auto;
-    padding-bottom: 24px;
-  }
-  #sidebar-title {
-    padding: 72px 18px 16px;
-    font-size: 11px; font-family: Arial, sans-serif; font-weight: 700;
-    letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa;
-    border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5;
-  }
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
   #sidebar nav { padding: 12px 0; }
-  .nav-item {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 9px 18px; cursor: pointer;
-    font-size: 12px; font-family: Arial, sans-serif;
-    color: #8899bb; line-height: 1.4; transition: all 0.2s;
-    border-left: 3px solid transparent;
-  }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
   .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
   .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
   .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
 
-  /* TRAIN BAR */
-  #trainbar {
-    position: fixed; top: 0; left: var(--sidebar-w); right: 0;
-    height: var(--train-h); background: #111827;
-    display: flex; align-items: center; z-index: 101;
-    overflow-x: auto; padding: 0 16px; gap: 0;
-    scrollbar-width: none;
-  }
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
   #trainbar::-webkit-scrollbar { display: none; }
-  .carriage {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-width: 80px; height: 38px; padding: 0 10px;
-    border: 1px solid #334155; border-radius: 3px;
-    cursor: pointer; flex-shrink: 0;
-    font-family: Arial, sans-serif; transition: all 0.2s;
-    background: #1e293b; color: #64748b;
-  }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
   .carriage:hover { border-color: var(--blue); color: #94a3b8; }
   .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
   .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
   .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
-  .coupling {
-    width: 12px; height: 2px; background: #334155; flex-shrink: 0;
-    position: relative;
-  }
-  .coupling::before, .coupling::after {
-    content: ''; position: absolute; width: 1px; height: 6px;
-    background: #334155; top: -2px;
-  }
-  .coupling::before { left: 2px; }
-  .coupling::after { right: 2px; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
 
-  /* MAIN CONTENT */
   #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
-  .slide {
-    min-height: 100vh; padding: 64px 64px 80px;
-    max-width: 980px;
-    border-bottom: 1px solid var(--border);
-  }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
   .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
 
-  /* TITLE SLIDE */
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
   #slide-title { background: var(--navy); color: #fff; }
-  .title-venue {
-    font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--blue); margin-bottom: 32px;
-  }
-  .title-main {
-    font-size: clamp(28px, 4vw, 48px); line-height: 1.2;
-    font-weight: 400; color: #fff; margin-bottom: 20px;
-  }
-  .title-thesis {
-    font-size: 16px; line-height: 1.7; color: #94a3b8;
-    max-width: 640px; margin-bottom: 48px; font-style: italic;
-    border-left: 3px solid var(--blue); padding-left: 20px;
-  }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
   .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
   .title-meta strong { color: #94a3b8; }
 
-  /* SECTION HEADERS */
-  .sec-eyebrow {
-    font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
-  }
-  .sec-title {
-    font-size: clamp(22px, 3vw, 36px); line-height: 1.25;
-    color: var(--navy); margin-bottom: 12px; font-weight: 400;
-  }
-  .sec-lead {
-    font-size: 16px; line-height: 1.75; color: var(--muted);
-    max-width: 680px; margin-bottom: 48px; font-style: italic;
-  }
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
 
-  /* CALLOUT BOX */
-  .callout {
-    background: var(--blue-light); border-left: 4px solid var(--blue);
-    padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0;
-  }
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
   .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
-  .callout-label {
-    font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700;
-  }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
 
-  /* BLOCKQUOTE */
-  blockquote {
-    border-left: 3px solid var(--violet); padding: 12px 24px;
-    margin: 28px 0; background: #faf5ff;
-  }
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
   blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
   blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
 
-  /* SCQ TABLE */
   .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
-  .scqa-card {
-    border: 1px solid var(--border); border-radius: 6px; padding: 24px;
-    background: #fff;
-  }
-  .scqa-label {
-    font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700;
-  }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
   .scqa-card p { font-size: 14px; line-height: 1.75; }
   .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
   .scqa-card.answer .scqa-label { color: var(--blue); }
-  .scqa-card.answer p { font-weight: 400; color: #1e3a6e; }
+  .scqa-card.answer p { color: #1e3a6e; }
 
-  /* EVIDENCE CARDS */
   .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
-  .evidence-card {
-    border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff;
-  }
-  .ev-tag {
-    font-family: monospace; font-size: 11px; color: var(--blue);
-    background: var(--blue-light); display: inline-block;
-    padding: 2px 8px; border-radius: 3px; margin-bottom: 12px;
-  }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
   .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
   .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
 
-  /* COMPONENT CARDS */
   .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
-  .comp-card {
-    border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff;
-    position: relative; overflow: hidden;
-  }
-  .comp-num {
-    position: absolute; top: 12px; right: 16px;
-    font-size: 48px; font-weight: 700; color: #f1f5f9;
-    font-family: Arial, sans-serif; line-height: 1; pointer-events: none;
-  }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
   .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
   .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
 
-  /* ARITHMETIC CARDS */
   .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
-  .arith-card {
-    border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff;
-  }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
   .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
   .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
 
-  /* DIAGNOSIS TABLE */
   .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
   .diag-col { border-radius: 6px; padding: 28px; }
   .diag-col.wrong { background: #fef2f2; border: 1px solid #fecaca; }
   .diag-col.right { background: #f0fdf4; border: 1px solid #bbf7d0; }
-  .diag-header {
-    font-family: Arial, sans-serif; font-size: 11px; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px;
-  }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
   .diag-col.wrong .diag-header { color: var(--red); }
   .diag-col.right .diag-header { color: var(--green); }
   .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
@@ -205,55 +98,33 @@
   .diag-col.wrong .diag-icon { color: var(--red); }
   .diag-col.right .diag-icon { color: var(--green); }
 
-  /* RECOMMENDATIONS */
   .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 24px; }
   .rec-item { display: flex; gap: 24px; align-items: flex-start; }
-  .rec-num {
-    flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
-    background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center;
-    font-family: Arial, sans-serif; font-weight: 700; font-size: 16px;
-  }
+  .rec-num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 16px; }
   .rec-content { flex: 1; }
   .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
   .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
 
-  /* REFERENCES */
-  .ref-entry {
-    padding: 16px 0; border-bottom: 1px solid var(--border);
-    font-size: 14px; line-height: 1.7; color: #374151;
-  }
+  .ref-entry { padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 14px; line-height: 1.7; color: #374151; }
   .ref-entry:last-child { border-bottom: none; }
-
-  /* BODY TEXT */
   .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
   .body-text + .body-text { margin-top: 20px; }
 
-  /* NAV BUTTONS */
-  #nav-btns {
-    position: fixed; bottom: 28px; right: 28px;
-    display: flex; flex-direction: column; gap: 8px; z-index: 200;
-  }
-  .nav-btn {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--navy); color: #fff; border: none;
-    font-size: 18px; cursor: pointer; display: flex;
-    align-items: center; justify-content: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s;
-  }
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
   .nav-btn:hover { background: #2e3a60; }
 
   @media (max-width: 900px) {
     #sidebar { display: none; }
     #trainbar { left: 0; }
     #main { margin-left: 0; }
-    .slide { padding: 40px 24px 60px; }
+    .slide { padding: 40px 24px 40px; }
     .scqa-grid, .evidence-grid, .comp-grid, .diagnosis-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <aside id="sidebar">
   <div id="sidebar-title">Indonesia Oil &amp; Gas:<br>Bureaucracy Reform?</div>
   <nav>
@@ -269,7 +140,6 @@
   </nav>
 </aside>
 
-<!-- TRAIN BAR -->
 <div id="trainbar">
   <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
   <div class="coupling"></div>
@@ -290,299 +160,189 @@
   <div class="carriage" data-target="slide-references"><div class="car-num">08</div><div class="car-label">References</div></div>
 </div>
 
-<!-- MAIN -->
 <div id="main">
 
-  <!-- 00 TITLE -->
   <section class="slide" id="slide-title">
-    <div class="title-venue">Jakarta Post Column &nbsp;·&nbsp; Oil &amp; Gas Policy &nbsp;·&nbsp; 19 June 2014</div>
-    <h1 class="title-main">Indonesia Oil and Gas:<br>Bureaucracy Reform?</h1>
-    <p class="title-thesis">Indonesia's oil decline is not a geology problem but a governance failure — only bureaucracy reform anchored to people's welfare can reverse the trend.</p>
-    <div class="title-meta">
-      <strong>Dr. Toronata Tambun</strong><br>
-      Director, Yayasan Mens et Manus<br><br>
-      <span style="font-size:11px;">© 2026 Dr. Toronata Tambun</span>
+    <div class="slide-content">
+      <div class="title-venue">Jakarta Post Column &nbsp;·&nbsp; Oil &amp; Gas Policy &nbsp;·&nbsp; 19 June 2014</div>
+      <h1 class="title-main">Indonesia Oil and Gas:<br>Bureaucracy Reform?</h1>
+      <p class="title-thesis">Indonesia's oil decline is not a geology problem but a governance failure — only bureaucracy reform anchored to people's welfare can reverse the trend.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
     </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <!-- 01 INTRODUCTION -->
   <section class="slide" id="slide-intro">
-    <div class="sec-eyebrow">01 &nbsp;·&nbsp; Introduction</div>
-    <h2 class="sec-title">A governance crisis masquerading as a resource shortage.</h2>
-    <p class="sec-lead">The numbers tell a story of decline — but the cause is not geological. It is institutional.</p>
-
-    <div class="scqa-grid">
-      <div class="scqa-card">
-        <div class="scqa-label">Situation</div>
-        <p>Indonesia's oil production has fallen from 1,437 to under 840 thousand boepd in a decade. Reserves have declined from 5.6 to 3.7 billion barrels since 1992. The R/P ratio stands at just 11.1 years.</p>
-      </div>
-      <div class="scqa-card">
-        <div class="scqa-label">Complication</div>
-        <p>Despite 22 unexplored basins, a world-class PSC framework, and democratic protections for contracts, bureaucratic dysfunction — not geology — is the primary barrier to recovery.</p>
-      </div>
-      <div class="scqa-card">
-        <div class="scqa-label">Question</div>
-        <p>What must Indonesia reform in its governance and regulatory structure to reverse production decline and ensure the resource wealth reaches the people?</p>
-      </div>
-      <div class="scqa-card answer">
-        <div class="scqa-label">Answer</div>
-        <p>Three-part bureaucracy reform: redefine the regulator as monitor not challenger; revise the Oil and Gas Law for the $100/barrel era; and streamline inter-ministerial decision-making — all for the people's welfare.</p>
+    <div class="slide-content">
+      <div class="sec-eyebrow">01 &nbsp;·&nbsp; Introduction</div>
+      <h2 class="sec-title">A governance crisis masquerading as a resource shortage.</h2>
+      <p class="sec-lead">The numbers tell a story of decline — but the cause is not geological. It is institutional.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card"><div class="scqa-label">Situation</div><p>Indonesia's oil production has fallen from 1,437 to under 840 thousand boepd in a decade. Reserves have declined from 5.6 to 3.7 billion barrels since 1992. The R/P ratio stands at just 11.1 years.</p></div>
+        <div class="scqa-card"><div class="scqa-label">Complication</div><p>Despite 22 unexplored basins, a world-class PSC framework, and democratic protections for contracts, bureaucratic dysfunction — not geology — is the primary barrier to recovery.</p></div>
+        <div class="scqa-card"><div class="scqa-label">Question</div><p>What must Indonesia reform in its governance and regulatory structure to reverse production decline and ensure the resource wealth reaches the people?</p></div>
+        <div class="scqa-card answer"><div class="scqa-label">Answer</div><p>Three-part bureaucracy reform: redefine the regulator as monitor not challenger; revise the Oil and Gas Law for the $100/barrel era; and streamline inter-ministerial decision-making — all for the people's welfare.</p></div>
       </div>
     </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <!-- 02 RESEARCH GAP -->
   <section class="slide" id="slide-gap">
-    <div class="sec-eyebrow">02 &nbsp;·&nbsp; Research Gap</div>
-    <h2 class="sec-title">The opportunity is all there — yet governance determines who wins.</h2>
-    <p class="sec-lead">Indonesia's geological endowment is real and waiting. The deficit is not in resources — it is in the regulatory and institutional environment that surrounds them.</p>
-
-    <div class="callout">
-      <div class="callout-label">Core Gap</div>
-      <p>Existing policy debate treats Indonesia's oil decline as a supply or pricing problem. It is neither. The gap is governance: a supervisory body that challenges instead of monitors, a legal framework designed for a different era, and ministries that cannot coordinate efficiently. Addressing the geology without addressing the institution is a remedy applied to the wrong problem.</p>
+    <div class="slide-content">
+      <div class="sec-eyebrow">02 &nbsp;·&nbsp; Research Gap</div>
+      <h2 class="sec-title">The opportunity is all there — yet governance determines who wins.</h2>
+      <p class="sec-lead">Indonesia's geological endowment is real and waiting. The deficit is not in resources — it is in the regulatory and institutional environment that surrounds them.</p>
+      <div class="callout">
+        <div class="callout-label">Core Gap</div>
+        <p>Existing policy debate treats Indonesia's oil decline as a supply or pricing problem. It is neither. The gap is governance: a supervisory body that challenges instead of monitors, a legal framework designed for a different era, and ministries that cannot coordinate efficiently. Addressing the geology without addressing the institution is a remedy applied to the wrong problem.</p>
+      </div>
+      <p class="body-text" style="margin-top:32px;">Indonesia competes for investment capital against every other petroleum province in the world. Governance quality is what tips the balance. A country with 22 unexplored basins, a world-invented PSC framework, and democratic contract protections should not struggle to attract capital — yet it does. The gap is internal, not external.</p>
     </div>
-
-    <p class="body-text" style="margin-top:32px;">Indonesia competes for investment capital against every other petroleum province in the world. Governance quality is what tips the balance. A country with 22 unexplored basins, a world-invented PSC framework, and democratic contract protections should not struggle to attract capital — yet it does. The gap is internal, not external.</p>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <!-- 03 FRAMEWORK -->
   <section class="slide" id="slide-framework">
-    <div class="sec-eyebrow">03 &nbsp;·&nbsp; Framework</div>
-    <h2 class="sec-title">The Governance Imperative: Three Reform Pillars</h2>
-    <p class="sec-lead">Bureaucracy reform — not investor attraction — is the master key to unlocking Indonesia's oil and gas future.</p>
-
-    <blockquote>
-      <p>"Do the right thing right in the first time is the key for achieving the goal."</p>
-      <cite>— Dr. Toronata Tambun</cite>
-    </blockquote>
-
-    <div class="comp-grid">
-      <div class="comp-card">
-        <div class="comp-num">01</div>
-        <div class="comp-name">Empower Forensic Auditors</div>
-        <p class="comp-body">The supervisory body must return to its calling as a monitoring authority — not a challenging one. Competent oil and gas forensic auditors must be empowered to ensure accountability without friction.</p>
-      </div>
-      <div class="comp-card">
-        <div class="comp-num">02</div>
-        <div class="comp-name">Revise the Oil and Gas Law</div>
-        <p class="comp-body">The legal and supply-chain framework must be updated for $100/barrel oil, resource scarcity, and the rising cost of lifting. Adoption of new technology is no longer optional — it must be mandated.</p>
-      </div>
-      <div class="comp-card">
-        <div class="comp-num">03</div>
-        <div class="comp-name">Integrate the Ministries</div>
-        <p class="comp-body">An efficient, lawful inter-ministerial decision process linking Energy, Environment, Manpower, Law, and Administrative Reform ministries is required. Decision delay is policy failure — treat it as one.</p>
+    <div class="slide-content">
+      <div class="sec-eyebrow">03 &nbsp;·&nbsp; Framework</div>
+      <h2 class="sec-title">The Governance Imperative: Three Reform Pillars</h2>
+      <p class="sec-lead">Bureaucracy reform — not investor attraction — is the master key to unlocking Indonesia's oil and gas future.</p>
+      <blockquote><p>"Do the right thing right in the first time is the key for achieving the goal."</p><cite>— Dr. Toronata Tambun</cite></blockquote>
+      <div class="comp-grid">
+        <div class="comp-card"><div class="comp-num">01</div><div class="comp-name">Empower Forensic Auditors</div><p class="comp-body">The supervisory body must return to its calling as a monitoring authority — not a challenging one. Competent oil and gas forensic auditors must be empowered to ensure accountability without friction.</p></div>
+        <div class="comp-card"><div class="comp-num">02</div><div class="comp-name">Revise the Oil and Gas Law</div><p class="comp-body">The legal and supply-chain framework must be updated for $100/barrel oil, resource scarcity, and the rising cost of lifting. Adoption of new technology is no longer optional — it must be mandated.</p></div>
+        <div class="comp-card"><div class="comp-num">03</div><div class="comp-name">Integrate the Ministries</div><p class="comp-body">An efficient, lawful inter-ministerial decision process linking Energy, Environment, Manpower, Law, and Administrative Reform ministries is required. Decision delay is policy failure — treat it as one.</p></div>
       </div>
     </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <!-- 04 DETAILS -->
   <section class="slide" id="slide-details">
-    <div class="sec-eyebrow">04 &nbsp;·&nbsp; Details</div>
-    <h2 class="sec-title">The Arithmetic of Recovery</h2>
-    <p class="sec-lead">Restoring 1,400 thousand boepd in 7 years is mathematically achievable — if the governance conditions are created.</p>
-
-    <div class="arith-grid">
-      <div class="arith-card">
-        <div class="arith-header">The Scale of the Target</div>
-        <blockquote style="margin:0 0 12px;">
-          <p>"In 1997–1998, no less than 35 new PSCs were signed in a single round."</p>
-        </blockquote>
-        <p class="arith-body">Recovering to 1,400 thousand boepd requires roughly 30 new producing fields at 20–35 thousand boepd each. History shows this scale is achievable — it has been done before.</p>
-      </div>
-      <div class="arith-card">
-        <div class="arith-header">The Pertamina Factor</div>
-        <blockquote style="margin:0 0 12px;">
-          <p>"Pertamina's domestic effort could contribute 50% of the 7-year recovery target."</p>
-        </blockquote>
-        <p class="arith-body">PT Pertamina plans to grow from 465,220 to 2.2M boepd in 11 years, with 30% from domestic effort. Government backing of Pertamina is therefore not optional — it is essential strategy.</p>
-      </div>
-      <div class="arith-card">
-        <div class="arith-header">The Time Imperative</div>
-        <blockquote style="margin:0 0 12px;">
-          <p>"West Seno went from discovery to production in just 5 years. We must have started yesterday."</p>
-        </blockquote>
-        <p class="arith-body">The 7-year window is tight but precedented. Every year of delay compounds the production deficit. If the goal is 2021, the starting gun fired in 2014 — and every moment of inaction has a cost.</p>
+    <div class="slide-content">
+      <div class="sec-eyebrow">04 &nbsp;·&nbsp; Details</div>
+      <h2 class="sec-title">The Arithmetic of Recovery</h2>
+      <p class="sec-lead">Restoring 1,400 thousand boepd in 7 years is mathematically achievable — if the governance conditions are created.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The Scale of the Target</div>
+          <blockquote style="margin:0 0 12px;"><p>"In 1997–1998, no less than 35 new PSCs were signed in a single round."</p></blockquote>
+          <p class="arith-body">Recovering to 1,400 thousand boepd requires roughly 30 new producing fields at 20–35 thousand boepd each. History shows this scale is achievable — it has been done before.</p>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The Pertamina Factor</div>
+          <blockquote style="margin:0 0 12px;"><p>"Pertamina's domestic effort could contribute 50% of the 7-year recovery target."</p></blockquote>
+          <p class="arith-body">PT Pertamina plans to grow from 465,220 to 2.2M boepd in 11 years, with 30% from domestic effort. Government backing of Pertamina is therefore not optional — it is essential strategy.</p>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The Time Imperative</div>
+          <blockquote style="margin:0 0 12px;"><p>"West Seno went from discovery to production in just 5 years. We must have started yesterday."</p></blockquote>
+          <p class="arith-body">The 7-year window is tight but precedented. Every year of delay compounds the production deficit. If the goal is 2021, the starting gun fired in 2014 — and every moment of inaction has a cost.</p>
+        </div>
       </div>
     </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <!-- 05 EVIDENCE -->
   <section class="slide" id="slide-evidence">
-    <div class="sec-eyebrow">05 &nbsp;·&nbsp; Evidence</div>
-    <h2 class="sec-title">The Resource Case: Indonesia's Geology Is Not the Problem</h2>
-    <p class="sec-lead">Four data points establish that the geological opportunity is real — and that governance, not resource scarcity, is the binding constraint.</p>
-
-    <div class="evidence-grid">
-      <div class="evidence-card">
-        <div class="ev-tag">EVIDENCE A</div>
-        <div class="ev-title">22 Unexplored Basins</div>
-        <p class="ev-body">IAGE reports 22 basins still unexplored; 15 drilled but hydrocarbon not yet found; 7 with hydrocarbon found but not yet in production. The geological upside is real and waiting.</p>
-      </div>
-      <div class="evidence-card">
-        <div class="ev-tag">EVIDENCE B</div>
-        <div class="ev-title">PSC: Invented in Indonesia</div>
-        <p class="ev-body">The Production Sharing Contract originated in Indonesia in 1966 and was adopted globally. The framework is sound — negative perceptions stem from misunderstanding cost recovery, not structural flaws.</p>
-      </div>
-      <div class="evidence-card">
-        <div class="ev-tag">EVIDENCE C</div>
-        <div class="ev-title">R/P Ratio of 11.1 Years</div>
-        <p class="ev-body">Reserves have declined: 5.6 (1992) → 4.7 (2002) → 3.7 (2011) billion barrels. This is a governance-driven metric, not a geological ceiling. The resource is there; the institutional will is absent.</p>
-      </div>
-      <div class="evidence-card">
-        <div class="ev-tag">EVIDENCE D</div>
-        <div class="ev-title">Contract Sanctity Is Protected</div>
-        <p class="ev-body">UN Resolution 1803 (1962) protects investor rights and requires fair prior compensation for any nationalization. Democratic Indonesia already provides the legal protection investors need.</p>
+    <div class="slide-content">
+      <div class="sec-eyebrow">05 &nbsp;·&nbsp; Evidence</div>
+      <h2 class="sec-title">The Resource Case: Indonesia's Geology Is Not the Problem</h2>
+      <p class="sec-lead">Four data points establish that the geological opportunity is real — and that governance, not resource scarcity, is the binding constraint.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card"><div class="ev-tag">EVIDENCE A</div><div class="ev-title">22 Unexplored Basins</div><p class="ev-body">IAGE reports 22 basins still unexplored; 15 drilled but hydrocarbon not yet found; 7 with hydrocarbon found but not yet in production. The geological upside is real and waiting.</p></div>
+        <div class="evidence-card"><div class="ev-tag">EVIDENCE B</div><div class="ev-title">PSC: Invented in Indonesia</div><p class="ev-body">The Production Sharing Contract originated in Indonesia in 1966 and was adopted globally. The framework is sound — negative perceptions stem from misunderstanding cost recovery, not structural flaws.</p></div>
+        <div class="evidence-card"><div class="ev-tag">EVIDENCE C</div><div class="ev-title">R/P Ratio of 11.1 Years</div><p class="ev-body">Reserves have declined: 5.6 (1992) → 4.7 (2002) → 3.7 (2011) billion barrels. This is a governance-driven metric, not a geological ceiling. The resource is there; the institutional will is absent.</p></div>
+        <div class="evidence-card"><div class="ev-tag">EVIDENCE D</div><div class="ev-title">Contract Sanctity Is Protected</div><p class="ev-body">UN Resolution 1803 (1962) protects investor rights and requires fair prior compensation for any nationalization. Democratic Indonesia already provides the legal protection investors need.</p></div>
       </div>
     </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <!-- 06 IMPLICATIONS -->
   <section class="slide" id="slide-implications">
-    <div class="sec-eyebrow">06 &nbsp;·&nbsp; Implications</div>
-    <h2 class="sec-title">Diagnosis: The Wrong Remedies Are Already in Play</h2>
-    <p class="sec-lead">Policy failure takes two forms: doing the wrong things, and leaving the right things undone. Indonesia is currently doing both.</p>
-
-    <div class="diagnosis-grid">
-      <div class="diag-col wrong">
-        <div class="diag-header">✗ Wrong Remedy</div>
-        <div class="diag-item"><span class="diag-icon">✗</span><span>Begging investors to enter at all cost without governance reform</span></div>
-        <div class="diag-item"><span class="diag-icon">✗</span><span>Signing new PSCs without fixing the regulatory environment first</span></div>
-        <div class="diag-item"><span class="diag-icon">✗</span><span>Dismissing cost recovery out of ignorance of its actual mechanics</span></div>
-        <div class="diag-item"><span class="diag-icon">✗</span><span>Nationalizing resources without fair and prior compensation</span></div>
-        <div class="diag-item"><span class="diag-icon">✗</span><span>Using oil and gas policy to enrich a group, party, or family</span></div>
-      </div>
-      <div class="diag-col right">
-        <div class="diag-header">✓ The Right Work</div>
-        <div class="diag-item"><span class="diag-icon">✓</span><span>Anchor every regulatory framework to people's welfare — unambiguously</span></div>
-        <div class="diag-item"><span class="diag-icon">✓</span><span>Redefine the supervisory body as monitor, not challenger or executor</span></div>
-        <div class="diag-item"><span class="diag-icon">✓</span><span>Revise the Oil and Gas Law for today's cost and resource environment</span></div>
-        <div class="diag-item"><span class="diag-icon">✓</span><span>Build efficient inter-ministerial decision protocols without legal breach</span></div>
-        <div class="diag-item"><span class="diag-icon">✓</span><span>Give Pertamina full government support for its domestic production plan</span></div>
+    <div class="slide-content">
+      <div class="sec-eyebrow">06 &nbsp;·&nbsp; Implications</div>
+      <h2 class="sec-title">Diagnosis: The Wrong Remedies Are Already in Play</h2>
+      <p class="sec-lead">Policy failure takes two forms: doing the wrong things, and leaving the right things undone. Indonesia is currently doing both.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">✗ Wrong Remedy</div>
+          <div class="diag-item"><span class="diag-icon">✗</span><span>Begging investors to enter at all cost without governance reform</span></div>
+          <div class="diag-item"><span class="diag-icon">✗</span><span>Signing new PSCs without fixing the regulatory environment first</span></div>
+          <div class="diag-item"><span class="diag-icon">✗</span><span>Dismissing cost recovery out of ignorance of its actual mechanics</span></div>
+          <div class="diag-item"><span class="diag-icon">✗</span><span>Nationalizing resources without fair and prior compensation</span></div>
+          <div class="diag-item"><span class="diag-icon">✗</span><span>Using oil and gas policy to enrich a group, party, or family</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">✓ The Right Work</div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Anchor every regulatory framework to people's welfare — unambiguously</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Redefine the supervisory body as monitor, not challenger or executor</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Revise the Oil and Gas Law for today's cost and resource environment</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Build efficient inter-ministerial decision protocols without legal breach</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Give Pertamina full government support for its domestic production plan</span></div>
+        </div>
       </div>
     </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <!-- 07 CONCLUSION -->
   <section class="slide" id="slide-conclusion">
-    <div class="sec-eyebrow">07 &nbsp;·&nbsp; Conclusion</div>
-    <h2 class="sec-title">Indonesia must do the right things right — for the people, not the powerful.</h2>
-    <p class="sec-lead">Three reforms, pursued simultaneously, with people's welfare as the unambiguous north star.</p>
-
-    <div class="rec-list">
-      <div class="rec-item">
-        <div class="rec-num">1</div>
-        <div class="rec-content">
-          <div class="rec-title">Reform the Regulator</div>
-          <p class="rec-body">Return the supervisory body to monitoring and forensic auditing — not executing or challenging. Empower competent oil and gas auditors to ensure accountability without bureaucratic overreach.</p>
-        </div>
+    <div class="slide-content">
+      <div class="sec-eyebrow">07 &nbsp;·&nbsp; Conclusion</div>
+      <h2 class="sec-title">Indonesia must do the right things right — for the people, not the powerful.</h2>
+      <p class="sec-lead">Three reforms, pursued simultaneously, with people's welfare as the unambiguous north star.</p>
+      <div class="rec-list">
+        <div class="rec-item"><div class="rec-num">1</div><div class="rec-content"><div class="rec-title">Reform the Regulator</div><p class="rec-body">Return the supervisory body to monitoring and forensic auditing — not executing or challenging. Empower competent oil and gas auditors to ensure accountability without bureaucratic overreach.</p></div></div>
+        <div class="rec-item"><div class="rec-num">2</div><div class="rec-content"><div class="rec-title">Revise the Legal Framework</div><p class="rec-body">Update the Oil and Gas Law and supply-chain regulations for $100/barrel oil, resource scarcity, and rising lifting costs. Early adoption of technology must become mandatory — not aspirational.</p></div></div>
+        <div class="rec-item"><div class="rec-num">3</div><div class="rec-content"><div class="rec-title">Integrate the Ministries</div><p class="rec-body">Create a lawful, efficient inter-ministerial decision system across Energy, Environment, Manpower, Law, and Administrative Reform. Delay in decisions is a policy failure — it must be treated as one.</p></div></div>
       </div>
-      <div class="rec-item">
-        <div class="rec-num">2</div>
-        <div class="rec-content">
-          <div class="rec-title">Revise the Legal Framework</div>
-          <p class="rec-body">Update the Oil and Gas Law and supply-chain regulations for $100/barrel oil, resource scarcity, and rising lifting costs. Early adoption of technology must become mandatory — not aspirational.</p>
-        </div>
-      </div>
-      <div class="rec-item">
-        <div class="rec-num">3</div>
-        <div class="rec-content">
-          <div class="rec-title">Integrate the Ministries</div>
-          <p class="rec-body">Create a lawful, efficient inter-ministerial decision system across Energy, Environment, Manpower, Law, and Administrative Reform. Delay in decisions is a policy failure — it must be treated as one.</p>
-        </div>
-      </div>
+      <div class="callout" style="margin-top:40px;"><div class="callout-label">Closing</div><p>If the goal is purely for the benefit of the people, then it is such a noble mission — and must be pursued with utmost effort and supported throughout.</p></div>
     </div>
-
-    <div class="callout" style="margin-top:40px;">
-      <div class="callout-label">Closing</div>
-      <p>If the goal is purely for the benefit of the people, then it is such a noble mission — and must be pursued with utmost effort and supported throughout.</p>
-    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <!-- 08 REFERENCES -->
   <section class="slide" id="slide-references">
-    <div class="sec-eyebrow">08 &nbsp;·&nbsp; References</div>
-    <h2 class="sec-title">Source &amp; Attribution</h2>
-    <p class="sec-lead">This presentation is derived from the following published column.</p>
-
-    <div class="ref-entry">
-      Tambun, T. (2014, June 19). Indonesia oil and gas: Bureaucracy reform? <em>The Jakarta Post</em>.
+    <div class="slide-content">
+      <div class="sec-eyebrow">08 &nbsp;·&nbsp; References</div>
+      <h2 class="sec-title">Source &amp; Attribution</h2>
+      <p class="sec-lead">This presentation is derived from the following published column.</p>
+      <div class="ref-entry">Tambun, T. (2014, June 19). Indonesia oil and gas: Bureaucracy reform? <em>The Jakarta Post</em>.</div>
+      <div class="ref-entry" style="margin-top:8px; font-size:13px; color:var(--muted);">
+        Indonesian Agency for Geology and Energy (IAGE). Basin inventory data referenced in column.<br>
+        UN General Assembly Resolution 1803 (XVII), Permanent Sovereignty over Natural Resources, 14 December 1962.<br>
+        PT Pertamina. Corporate production growth projections, 2014.
+      </div>
     </div>
-    <div class="ref-entry" style="margin-top:8px; font-size:13px; color:var(--muted);">
-      Indonesian Agency for Geology and Energy (IAGE). Basin inventory data referenced in column.<br>
-      UN General Assembly Resolution 1803 (XVII), Permanent Sovereignty over Natural Resources, 14 December 1962.<br>
-      PT Pertamina. Corporate production growth projections, 2014.
-    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
   </section>
 
-</div><!-- end #main -->
+</div>
 
-<!-- NAV BUTTONS -->
 <div id="nav-btns">
-  <button class="nav-btn" id="btn-up" title="Previous section">↑</button>
-  <button class="nav-btn" id="btn-down" title="Next section">↓</button>
+  <button class="nav-btn" id="btn-up">↑</button>
+  <button class="nav-btn" id="btn-down">↓</button>
 </div>
 
 <script>
   const SECTIONS = ['slide-title','slide-intro','slide-gap','slide-framework','slide-details','slide-evidence','slide-implications','slide-conclusion','slide-references'];
   let activeIdx = 0;
-
   function setActive(id) {
-    const idx = SECTIONS.indexOf(id);
-    if (idx === -1) return;
-    activeIdx = idx;
-
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
     document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
-    const carriages = document.querySelectorAll('.carriage');
-    carriages.forEach((c, i) => c.classList.toggle('active', c.dataset.target === id));
-
-    // scroll trainbar to active carriage
     const bar = document.getElementById('trainbar');
-    const activeCarriage = bar.querySelector('.carriage.active');
-    if (activeCarriage) {
-      const barW = bar.offsetWidth;
-      const carLeft = activeCarriage.offsetLeft;
-      const carW = activeCarriage.offsetWidth;
-      bar.scrollTo({ left: carLeft - barW / 2 + carW / 2, behavior: 'smooth' });
-    }
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
   }
-
-  // IntersectionObserver
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
-  }, { threshold: 0.35 });
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
   SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
-
-  // Click nav
   document.querySelectorAll('.nav-item, .carriage').forEach(el => {
-    el.addEventListener('click', () => {
-      const target = document.getElementById(el.dataset.target);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
   });
-
-  // Arrow keys
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-      e.preventDefault();
-      const next = SECTIONS[Math.min(activeIdx + 1, SECTIONS.length - 1)];
-      document.getElementById(next)?.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-      e.preventDefault();
-      const prev = SECTIONS[Math.max(activeIdx - 1, 0)];
-      document.getElementById(prev)?.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1, SECTIONS.length-1)])?.scrollIntoView({ behavior: 'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1, 0)])?.scrollIntoView({ behavior: 'smooth' }); }
   });
-
-  // Buttons
-  document.getElementById('btn-down').addEventListener('click', () => {
-    const next = SECTIONS[Math.min(activeIdx + 1, SECTIONS.length - 1)];
-    document.getElementById(next)?.scrollIntoView({ behavior: 'smooth' });
-  });
-  document.getElementById('btn-up').addEventListener('click', () => {
-    const prev = SECTIONS[Math.max(activeIdx - 1, 0)];
-    document.getElementById(prev)?.scrollIntoView({ behavior: 'smooth' });
-  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1, SECTIONS.length-1)])?.scrollIntoView({ behavior: 'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1, 0)])?.scrollIntoView({ behavior: 'smooth' }));
 </script>
 </body>
 </html>
