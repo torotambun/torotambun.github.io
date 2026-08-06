@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indonesia's EV Momentum and the Questions We Forget to Ask — Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 40px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header { color: var(--red); }
+  .diag-col.right .diag-header { color: var(--green); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon { color: var(--green); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .comp-grid, .evidence-grid, .diagnosis-grid, .scqa-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Indonesia's EV Momentum</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-intro"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-gap"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-framework"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-details"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-evidence"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-implications"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-conclusion"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-references"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div><div class="coupling"></div><div class="carriage" data-target="slide-intro"><div class="car-num">01</div><div class="car-label">Introduction</div></div><div class="coupling"></div><div class="carriage" data-target="slide-gap"><div class="car-num">02</div><div class="car-label">Gap</div></div><div class="coupling"></div><div class="carriage" data-target="slide-framework"><div class="car-num">03</div><div class="car-label">Framework</div></div><div class="coupling"></div><div class="carriage" data-target="slide-details"><div class="car-num">04</div><div class="car-label">Details</div></div><div class="coupling"></div><div class="carriage" data-target="slide-evidence"><div class="car-num">05</div><div class="car-label">Evidence</div></div><div class="coupling"></div><div class="carriage" data-target="slide-implications"><div class="car-num">06</div><div class="car-label">Implications</div></div><div class="coupling"></div><div class="carriage" data-target="slide-conclusion"><div class="car-num">07</div><div class="car-label">Conclusion</div></div><div class="coupling"></div><div class="carriage" data-target="slide-references"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+<div class="slide-content">
+<div class="title-venue">The Jakarta Post &nbsp;·&nbsp; Industrial Policy &amp; Energy &nbsp;·&nbsp; 7 August 2025</div>
+<h1 class="title-main">Indonesia's EV Momentum<br>and the Questions We Forget to Ask</h1>
+<p class="title-thesis">From 14,000 battery electric vehicles in 2022 to a projected 374,000 this year, Indonesia's numbers show motion. Whether they show direction, or merely activity mistaken for authority, is a different question.</p>
+<div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>EN-ROADS Climate Simulation Ambassador; Doctoral Researcher, SBM-ITB.</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-intro">
+<div class="slide-content">
+<div class="sec-eyebrow">01 &nbsp;&middot;&nbsp; Introduction</div>
+<h2 class="sec-title">Visibility is not the same as clarity</h2>
+<p class="sec-lead">The regulatory architecture is real. Whether it adds up to transformation is the open question.</p>
+<div class="scqa-grid">
+  <div class="scqa-card"><div class="scqa-label">Situation</div><p>Indonesia is pushing hard on vehicle electrification: from 14,000 domestically produced BEVs in 2022 to a projected 374,000 by year-end, nearly IDR 20 trillion in new investment, and Presidential Regulation 79/2023 laying out local content requirements, tax incentives, and production guarantees.</p></div>
+  <div class="scqa-card"><div class="scqa-label">Complication</div><p>As an EN-ROADS climate simulation ambassador, the author notes a sobering structural fact: even a full global EV switch would cut global temperature by roughly 0.1&deg;F &mdash; and only if electricity comes from clean sources. Indonesia's grid remains heavily coal-reliant.</p></div>
+  <div class="scqa-card"><div class="scqa-label">Question</div><p>What problem are we actually solving &mdash; emissions, employment, or sovereignty? And does the current strategy solve any of them fully?</p></div>
+  <div class="scqa-card answer"><div class="scqa-label">Answer</div><p>Each goal requires a different missing piece: grid decarbonization for emissions, skills evolution for employment, and upstream control &mdash; not just local assembly &mdash; for sovereignty. Without these, Indonesia risks confusing volume for progress.</p></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-gap">
+<div class="slide-content">
+<div class="sec-eyebrow">02 &nbsp;&middot;&nbsp; Gap</div>
+<h2 class="sec-title">Activity Is Not Authority</h2>
+<p class="sec-lead">A factory onshore does not automatically mean decision-making onshore.</p>
+<div class="callout">
+  <div class="callout-label">Core Gap</div>
+  <p>Local content targets measure where production happens, not who owns the technology, designs the systems, or controls the supply chain. A country can assemble what it does not command. The EV Tech Summit presentation from the Coordinating Ministry for Infrastructure and Regional Development does not yet address upstream control &mdash; who owns the battery design, who sets software standards, who controls the mining-to-manufacturing flow. Sovereignty without these levers may remain performative.</p>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-framework">
+<div class="slide-content">
+<div class="sec-eyebrow">03 &nbsp;&middot;&nbsp; Framework</div>
+<h2 class="sec-title">Three Goals, Three Missing Pieces</h2>
+<p class="sec-lead">Electrification serves different purposes depending on which problem you think you're solving.</p>
+<div class="comp-grid">
+  <div class="comp-card"><div class="comp-num">1</div><div class="comp-name">If the Goal Is Emissions</div><p class="comp-body">BEVs must be tied to a decarbonized grid, and transport policy must include public mobility and equity &mdash; not just tailpipe-to-smokestack emissions transfer.</p></div>
+  <div class="comp-card"><div class="comp-num">2</div><div class="comp-name">If the Goal Is Employment</div><p class="comp-body">The country must invest not only in how many people are hired but how their skills evolve &mdash; battery systems, embedded software, power electronics, safety testing.</p></div>
+  <div class="comp-card"><div class="comp-num">3</div><div class="comp-name">If the Goal Is Sovereignty</div><p class="comp-body">Factories must be followed by learning curves, standards ownership, and the ability to shape &mdash; not just receive &mdash; the global EV roadmap.</p></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-details">
+<div class="slide-content">
+<div class="sec-eyebrow">04 &nbsp;&middot;&nbsp; Details</div>
+<h2 class="sec-title">The Regulatory Architecture</h2>
+<p class="sec-lead">Presidential Regulation 79/2023 is structured, and far from symbolic.</p>
+<div class="arith-grid">
+  <div class="arith-card"><div class="arith-header">Local content targets: 40% by 2026, 60% by 2029, 80% thereafter</div><p class="arith-body">Manufacturers must provide production guarantees equivalent to the number of BEVs they import, tied to tax incentives (reduced VAT and PPnBM) and enforced via bank guarantees.</p></div>
+  <div class="arith-card"><div class="arith-header">1.5 million jobs, IDR 190 trillion in GDP contribution</div><p class="arith-body">Indonesia's automotive sector is a real economic backbone, and the country leads ASEAN in car sales &mdash; but the employment argument is framed through scale, not structure.</p></div>
+  <div class="arith-card"><div class="arith-header">BYD has seven months left to fulfill its plant commitment</div><p class="arith-body">If delivered, a milestone &mdash; but presence alone is not depth. If the plant operates mainly as an assembly site while key components and decisions stay imported, Indonesia risks remaining an import-based market in structure.</p></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-evidence">
+<div class="slide-content">
+<div class="sec-eyebrow">05 &nbsp;&middot;&nbsp; Evidence</div>
+<h2 class="sec-title">The Sovereignty Reframe, and Its Limits</h2>
+<p class="sec-lead">One of the presentation's strongest moves &mdash; and its biggest blind spot.</p>
+<div class="evidence-grid">
+  <div class="evidence-card"><div class="ev-tag">STRENGTH</div><div class="ev-title">BEVs framed as a sovereignty tool, not just a carbon solution</div><p class="ev-body">Indonesia imports oil and LPG but generates electricity domestically. Electrifying transport reduces dependence on volatile global fuel markets &mdash; a trade-driven argument, arguably more politically grounded than a climate-driven one.</p></div>
+  <div class="evidence-card"><div class="ev-tag">BLIND SPOT</div><div class="ev-title">155 GW of solar potential, still largely untapped</div><p class="ev-body">The presentation does not map a policy mechanism to accelerate grid decarbonization alongside vehicle electrification, leaving BEVs at risk of becoming just another fossil-fueled load.</p></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-implications">
+<div class="slide-content">
+<div class="sec-eyebrow">06 &nbsp;&middot;&nbsp; Implications</div>
+<h2 class="sec-title">Movement vs. Meaning</h2>
+<p class="sec-lead">Two paths, only one of which ends in structural transformation.</p>
+<div class="diagnosis-grid">
+  <div class="diag-col wrong">
+    <div class="diag-header">&#10007; Volume Mistaken for Progress</div>
+    <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Treating BEV production numbers as the end goal, without asking whether the grid, workforce, or supply chain are catching up</span></div>
+    <div class="diag-item"><span class="diag-icon">&#10007;</span><span>No urban mobility logic &mdash; no mention of public transit integration, rural access, or transport equity</span></div>
+    <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Assuming a factory onshore equals decision-making onshore</span></div>
+  </div>
+  <div class="diag-col right">
+    <div class="diag-header">&#10003; Structural Transformation</div>
+    <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Planning the transition from assembler to innovator, not assuming it happens on its own</span></div>
+    <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Building vocational pathways, technical certification, and university R&amp;D investment alongside factory jobs</span></div>
+    <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Pursuing upstream control &mdash; battery design, software standards, mining-to-manufacturing flow &mdash; not just assembly presence</span></div>
+  </div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-conclusion">
+<div class="slide-content">
+<div class="sec-eyebrow">07 &nbsp;&middot;&nbsp; Conclusion</div>
+<h2 class="sec-title">Define What Works Here</h2>
+<p class="sec-lead">Adoption without authorship is not sovereignty.</p>
+<div class="rec-list">
+  <div class="rec-item"><div class="rec-num">1</div><div class="rec-content"><p class="rec-body">Tie BEV expansion explicitly to grid decarbonization targets and public mobility policy &mdash; not just production volume.</p></div></div>
+  <div class="rec-item"><div class="rec-num">2</div><div class="rec-content"><p class="rec-body">Build the workforce pipeline deliberately: vocational pathways, certification, and university R&amp;D for battery systems, embedded software, and power electronics.</p></div></div>
+  <div class="rec-item"><div class="rec-num">3</div><div class="rec-content"><p class="rec-body">Pursue upstream control over design, standards, and supply chain &mdash; the difference between hosting production and owning it.</p></div></div>
+</div>
+<div class="callout" style="margin-top:36px;"><div class="callout-label">Closing</div><p>The task now is not just to adopt what works elsewhere, but to make sure that we define what works here. Not just to produce what others design, but to make sure we don't remain dependent on other countries for parts, tools, or technology.</p></div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-references">
+<div class="slide-content">
+<div class="sec-eyebrow">08 &nbsp;&middot;&nbsp; References</div>
+<h2 class="sec-title">Selected References</h2>
+<p class="sec-lead">Cited in the original piece.</p>
+<div class="ref-section">
+<div class="ref-entry">Climate Interactive &amp; MIT Sloan Sustainability Initiative. <em>EN-ROADS Climate Simulator</em>. As cited by the author, who serves as an EN-ROADS ambassador.</div>
+<div class="ref-entry">Republic of Indonesia. Presidential Regulation No. 79/2023 on the Acceleration of the Battery Electric Vehicle Program.</div>
+<div class="ref-entry">Coordinating Ministry for Infrastructure and Regional Development. EV Tech Summit presentation, as cited in the piece.</div>
+<div class="ref-entry" style="margin-top:16px; font-style:italic; color:var(--muted);">Tambun, T. (2025, August 7). Indonesia's EV momentum and the questions we forget to ask. <em>The Jakarta Post</em>. <a href="https://www.thejakartapost.com/opinion/2025/08/07/indonesias-ev-momentum-and-the-questions-we-forget-to-ask" style="color:var(--blue);" target="_blank">thejakartapost.com</a></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">↑</button>
+  <button class="nav-btn" id="btn-down">↓</button>
+</div>
+
+<script>
+  const SECTIONS = ['slide-title', 'slide-intro', 'slide-gap', 'slide-framework', 'slide-details', 'slide-evidence', 'slide-implications', 'slide-conclusion', 'slide-references'];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
