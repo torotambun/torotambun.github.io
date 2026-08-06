@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ngada Tragedy: When Paper Prosperity Meets Children's Realities — Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 40px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header { color: var(--red); }
+  .diag-col.right .diag-header { color: var(--green); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon { color: var(--green); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .comp-grid, .evidence-grid, .diagnosis-grid, .scqa-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Ngada Tragedy: When Paper Prosperity Meets Children's Realities</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-intro"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-gap"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-framework"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-details"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-evidence"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-implications"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-conclusion"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-references"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div><div class="coupling"></div><div class="carriage" data-target="slide-intro"><div class="car-num">01</div><div class="car-label">Introduction</div></div><div class="coupling"></div><div class="carriage" data-target="slide-gap"><div class="car-num">02</div><div class="car-label">Gap</div></div><div class="coupling"></div><div class="carriage" data-target="slide-framework"><div class="car-num">03</div><div class="car-label">Framework</div></div><div class="coupling"></div><div class="carriage" data-target="slide-details"><div class="car-num">04</div><div class="car-label">Details</div></div><div class="coupling"></div><div class="carriage" data-target="slide-evidence"><div class="car-num">05</div><div class="car-label">Evidence</div></div><div class="coupling"></div><div class="carriage" data-target="slide-implications"><div class="car-num">06</div><div class="car-label">Implications</div></div><div class="coupling"></div><div class="carriage" data-target="slide-conclusion"><div class="car-num">07</div><div class="car-label">Conclusion</div></div><div class="coupling"></div><div class="carriage" data-target="slide-references"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+<div class="slide-content">
+<div class="title-venue">The Jakarta Post &nbsp;·&nbsp; Social Policy &amp; Child Welfare &nbsp;·&nbsp; 14 February 2026</div>
+<h1 class="title-main">Ngada Tragedy: When Paper<br>Prosperity Meets Children's Realities</h1>
+<p class="title-thesis">A tragic loss of a child's life in Ngada, Nusa Tenggara Timur, occurred not in a country collapsing under hunger, but in one that increasingly looks successful on paper. That contrast is the problem.</p>
+<div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Doctoral Researcher in Corporate Innovation Ecosystems, School of Business and Management, Institut Teknologi Bandung (SBM-ITB).</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-intro">
+<div class="slide-content">
+<div class="sec-eyebrow">01 &nbsp;&middot;&nbsp; Introduction</div>
+<h2 class="sec-title">Children Experience Reality Before Statistics Do</h2>
+<p class="sec-lead">If one wants to know whether a society is truly advancing, one should look first at children &mdash; their bodies, their learning capacity, their emotional resilience.</p>
+<div class="scqa-grid">
+  <div class="scqa-card"><div class="scqa-label">Situation</div><p>By the logic of dashboards, Indonesia looks richer than ever: GDP expands, programs multiply, budgets rise, institutions are present, and the national narrative is one of progress.</p></div>
+  <div class="scqa-card"><div class="scqa-label">Complication</div><p>What dashboards capture well is activity, but they say little about whether the system is actually changing underneath &mdash; and a family in Ngada was left to carry a loss the numbers never predicted.</p></div>
+  <div class="scqa-card"><div class="scqa-label">Question</div><p>How can a country that looks increasingly successful on indicators still fail its most vulnerable children?</p></div>
+  <div class="scqa-card answer"><div class="scqa-label">Answer</div><p>Because GDP records circulation, not formation. Paper prosperity can coexist with deep vulnerability when activity substitutes for transformation and compliance replaces change.</p></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-gap">
+<div class="slide-content">
+<div class="sec-eyebrow">02 &nbsp;&middot;&nbsp; Gap</div>
+<h2 class="sec-title">Circulation Is Not Formation</h2>
+<p class="sec-lead">When spending passes through more layers, the graph rises. What remains unclear is whether anything underneath is actually moving in a sustained way.</p>
+<div class="callout">
+  <div class="callout-label">Core Gap</div>
+  <p>This is how paper prosperity is produced: institutions exist, programs operate, symbols of progress are visible &mdash; yet the long-term trajectory barely shifts. When progress is measured primarily through indicators, systems learn to satisfy indicators. Language changes, structures appear, KPIs are met, but the deep drivers of the system remain untouched. Activity spikes, then quietly reverts.</p>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-framework">
+<div class="slide-content">
+<div class="sec-eyebrow">03 &nbsp;&middot;&nbsp; Framework</div>
+<h2 class="sec-title">Beyond Linear Thinking</h2>
+<p class="sec-lead">A child's well-being is not the output of a single intervention. It emerges from interacting systems.</p>
+<div class="comp-grid">
+  <div class="comp-card"><div class="comp-num">1</div><div class="comp-name">The Linear Fallacy</div><p class="comp-body">If children struggle, deliver food. If households are poor, distribute aid. The logic is moral and politically attractive &mdash; but adding one intervention does not reliably produce one predictable outcome.</p></div>
+  <div class="comp-card"><div class="comp-num">2</div><div class="comp-name">Interacting Systems, Not Single Levers</div><p class="comp-body">Parental work, household income, daily routines, mental security, and learning environments interact. Nutrition is one element inside that structure, not the structure itself.</p></div>
+  <div class="comp-card"><div class="comp-num">3</div><div class="comp-name">Buffers vs. Foundations</div><p class="comp-body">Free nutritious meal programs operate as buffers, not foundations. They amplify what already exists. They cannot create what is missing.</p></div>
+  <div class="comp-card"><div class="comp-num">4</div><div class="comp-name">Parental Work as the Central Stabilizer</div><p class="comp-body">When parents are absorbed into productive employment, income becomes predictable, routines return, and children internalize stability rather than dependency.</p></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-details">
+<div class="slide-content">
+<div class="sec-eyebrow">04 &nbsp;&middot;&nbsp; Details</div>
+<h2 class="sec-title">Distribution Outpacing Readiness</h2>
+<p class="sec-lead">More is delivered. Less is absorbed. The system looks active while coherence weakens.</p>
+<div class="arith-grid">
+  <div class="arith-card"><div class="arith-header">Fixing symptoms shifts fragility, it does not remove it</div><p class="arith-body">When policy fixes one symptom without stabilizing daily life around it, fragility simply shifts rather than disappears &mdash; inputs raise activity temporarily, but unless deeper attractors shift, the system compensates and gains dissipate.</p></div>
+  <div class="arith-card"><div class="arith-header">Food relieves hunger; it does not restore mental security</div><p class="arith-body">Children living in poverty suffer not only from lack of calories but from instability, parental stress, and the psychological weight of households that cannot plan, decide, or provide with dignity.</p></div>
+  <div class="arith-card"><div class="arith-header">Stability forms early, long before policy effects are measured</div><p class="arith-body">By the time statistics improve, mental models are already formed. Children carry the imprint of stability or fragility forward.</p></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-evidence">
+<div class="slide-content">
+<div class="sec-eyebrow">05 &nbsp;&middot;&nbsp; Evidence</div>
+<h2 class="sec-title">What Dashboards Capture, and What They Miss</h2>
+<p class="sec-lead">Recent claims that Indonesia is "at its richest" are defensible in macroeconomic terms &mdash; and that is precisely the diagnostic problem.</p>
+<div class="evidence-grid">
+  <div class="evidence-card"><div class="ev-tag">DASHBOARD VIEW</div><div class="ev-title">Economic activity has expanded</div><p class="ev-body">Transactions are more visible, public spending is larger and more sophisticated, and digital assistance distribution logs activity across multiple sectors.</p></div>
+  <div class="evidence-card"><div class="ev-tag">SYSTEM VIEW</div><div class="ev-title">A signal, not a failure of compassion</div><p class="ev-body">The tragedy in Ngada should be read as a signal from a system where performance masks fragility, and where inputs substitute for ignition.</p></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-implications">
+<div class="slide-content">
+<div class="sec-eyebrow">06 &nbsp;&middot;&nbsp; Implications</div>
+<h2 class="sec-title">Distribution vs. Activation</h2>
+<p class="sec-lead">The priority is not to distribute more inputs. It is to activate the structures that make care sustainable.</p>
+<div class="diagnosis-grid">
+  <div class="diag-col wrong">
+    <div class="diag-header">&#10007; Treating Distribution as Development</div>
+    <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Asking nutrition programs to carry the system alone, as though food access were the entire structure of a child's stability</span></div>
+    <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Expanding programs faster than cultural and household absorption, widening the gap between delivery and coherence</span></div>
+  </div>
+  <div class="diag-col right">
+    <div class="diag-header">&#10003; Activating Sustainable Structures</div>
+    <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Creating real, local, labor-absorbing industry &mdash; manufacturing, processing, services &mdash; as human infrastructure, not growth ambition</span></div>
+    <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Letting nutrition programs reinforce a system already moving, rather than carry the system alone</span></div>
+  </div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-conclusion">
+<div class="slide-content">
+<div class="sec-eyebrow">07 &nbsp;&middot;&nbsp; Conclusion</div>
+<h2 class="sec-title">Where Real Transformation Shows Up First</h2>
+<p class="sec-lead">If prosperity is real, it will show up first where fragility used to be.</p>
+<div class="rec-list">
+  <div class="rec-item"><div class="rec-num">1</div><div class="rec-content"><p class="rec-body">Stop treating distribution as development &mdash; measure whether households regain a time horizon, not whether budgets were disbursed.</p></div></div>
+  <div class="rec-item"><div class="rec-num">2</div><div class="rec-content"><p class="rec-body">Stop mistaking presence for activation &mdash; institutions and programs existing is not the same as the underlying system changing.</p></div></div>
+  <div class="rec-item"><div class="rec-num">3</div><div class="rec-content"><p class="rec-body">Stop reading paper success as lived reality &mdash; when parents work, tables fill; when tables fill, nutrition follows; when nutrition and stability align, children grow healthier, physically and mentally.</p></div></div>
+</div>
+<div class="callout" style="margin-top:36px;"><div class="callout-label">Closing</div><p>In households. In routines. In children who can grow, learn, and endure without breaking. That is what real transformation looks like.</p></div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+  <section class="slide" id="slide-references">
+<div class="slide-content">
+<div class="sec-eyebrow">08 &nbsp;&middot;&nbsp; References</div>
+<h2 class="sec-title">Selected References</h2>
+<p class="sec-lead">Cited in the original piece.</p>
+<div class="ref-section">
+<div class="ref-entry">Drawn from a systems-thinking reading of national economic indicators alongside the reported circumstances of a child's death in Ngada, Nusa Tenggara Timur, on 29 January 2026.</div>
+<div class="ref-entry" style="margin-top:16px; font-style:italic; color:var(--muted);">Tambun, T. (2026, February 14). Ngada tragedy: When paper prosperity meets children's realities. <em>The Jakarta Post</em>. <a href="https://www.thejakartapost.com/opinion/2026/02/14/ngada-tragedy-when-paper-prosperity-meets-childrens-realities" style="color:var(--blue);" target="_blank">thejakartapost.com</a></div>
+</div>
+</div>
+<footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+</section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">↑</button>
+  <button class="nav-btn" id="btn-down">↓</button>
+</div>
+
+<script>
+  const SECTIONS = ['slide-title', 'slide-intro', 'slide-gap', 'slide-framework', 'slide-details', 'slide-evidence', 'slide-implications', 'slide-conclusion', 'slide-references'];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
