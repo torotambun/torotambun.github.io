@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentations — Dr. A.R.Y. Toronata Tambun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:      #1a1a2e;
+      --muted:    #5a5a7a;
+      --accent:   #2e6da4;
+      --accent2:  #1a1a2e;
+      --bg:       #faf9f6;
+      --surface:  #ffffff;
+      --border:   #e8e4dc;
+      --hover-bg: #f0f4f8;
+      --radius:   4px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    header { background: var(--accent2); color: #fff; padding: 48px 40px 36px; position: relative; overflow: hidden; }
+    header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: rgba(46,109,164,0.15); pointer-events: none; }
+    header::after { content: ''; position: absolute; bottom: -80px; left: 20%; width: 200px; height: 200px; border-radius: 50%; background: rgba(46,109,164,0.08); pointer-events: none; }
+    .back-link { display: inline-block; color: #a8c4e0; font-size: 13px; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; margin-bottom: 20px; opacity: 0.9; }
+    .back-link:hover { opacity: 1; text-decoration: underline; }
+    header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 8px; }
+    header .subtitle { font-size: 15px; opacity: 0.75; font-weight: 300; font-style: italic; }
+    .count-badge { display: inline-block; margin-top: 20px; background: rgba(46,109,164,0.25); border: 1px solid rgba(46,109,164,0.4); color: #a8c4e0; padding: 4px 14px; border-radius: 20px; font-size: 13px; letter-spacing: 0.05em; }
+    .controls { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 40px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .search-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.4; pointer-events: none; }
+    #search { width: 100%; padding: 10px 32px 10px 38px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.2s; }
+    #search:focus { border-color: var(--accent); }
+    #search-clear { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: 16px; line-height: 1; padding: 2px 4px; display: none; opacity: 0.5; transition: opacity 0.15s; }
+    #search-clear:hover { opacity: 1; }
+    #year-filter, #source-filter { padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; cursor: pointer; }
+    #result-count { font-size: 13px; color: var(--muted); white-space: nowrap; font-style: italic; }
+    .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0 16px 14px; text-align: left; border-bottom: 2px solid var(--accent); }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    tbody tr:hover { background: var(--hover-bg); }
+    tbody tr.hidden { display: none; }
+    td { padding: 14px 16px; vertical-align: top; }
+    .date-col { white-space: nowrap; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; width: 120px; padding-top: 16px; }
+    .source-col { width: 150px; padding-top: 14px; }
+    .title-col { font-size: 15px; line-height: 1.5; }
+    .title-col a { color: var(--accent2); text-decoration: none; transition: color 0.15s; }
+    .title-col a:hover { color: var(--accent); text-decoration: underline; }
+    .source-badge { display: inline-block; font-size: 10px; font-family: Arial, sans-serif; border-radius: 3px; padding: 2px 7px; font-weight: 600; letter-spacing: 0.04em; white-space: nowrap; }
+    .badge-jp { background: #fdf0ee; color: #c0392b; border: 1px solid #f0c8c4; }
+    .badge-li-article { background: #e8f0f8; color: #2e6da4; border: 1px solid #b8d0e8; }
+    .badge-li-post { background: #eef4ec; color: #2e7d32; border: 1px solid #b8d8b4; }
+    #no-results { display: none; text-align: center; padding: 60px 20px; color: var(--muted); font-style: italic; }
+    footer { text-align: center; padding: 30px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    #back-to-top { position: fixed; bottom: 32px; right: 32px; background: #222; color: #fff; border: none; border-radius: 50%; width: 48px; height: 48px; font-size: 22px; line-height: 48px; text-align: center; cursor: pointer; display: none; box-shadow: 0 2px 10px rgba(0,0,0,0.25); z-index: 9999; }
+    #back-to-top:hover { background: #555; }
+    @media (max-width: 600px) {
+      header, .controls, .table-wrap { padding-left: 20px; padding-right: 20px; }
+      .date-col { width: 90px; font-size: 12px; }
+      .source-col { width: 110px; }
+      .title-col { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a class="back-link" href="https://torotambun.github.io">← Back to CV</a>
+  <h1>Presentations</h1>
+  <p class="subtitle">Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; HTML Slide Decks</p>
+  <span class="count-badge">87 presentations</span>
+</header>
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="search" placeholder="Search by keyword, title, topic…" autocomplete="off">
+    <button id="search-clear" title="Clear search">✕</button>
+  </div>
+  <select id="source-filter">
+    <option value="">All sources</option>
+    <option value="jakarta-post">Jakarta Post</option>
+    <option value="linkedin-article">LinkedIn Article</option>
+    <option value="linkedin-post">LinkedIn Post</option>
+  </select>
+  <select id="year-filter">
+    <option value="">All years</option>
+    <option value="2026">2026</option>
+    <option value="2025">2025</option>
+    <option value="2024">2024</option>
+    <option value="2023">2023</option>
+    <option value="2014">2014</option>
+  </select>
+  <span id="result-count">87 presentations</span>
+</div>
+<div class="table-wrap">
+  <table id="presentations-table">
+    <thead><tr><th>Date</th><th>Source</th><th>Title</th></tr></thead>
+    <tbody>
+<tr data-title="village cooperatives koperasi merah putih hatta economic democracy bum desa indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-07-30</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/village-cooperatives-existed-before-deck.html" target="_blank" rel="noopener">Village cooperatives have existed before. What will make the new ones last?</a></td>
+      </tr>
+<tr data-title="b50 b60 biodiesel energy indonesia mandate palm oil sovereignty food" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-07-18</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/b50-b60-deck.html" target="_blank" rel="noopener">What we can learn from mandatory B50 before B60</a></td>
+      </tr>
+<tr data-title="atatbon muyu papua forest covenant food security ritual indigenous pesta babi schein" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-07-11</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/atatbon-protecting-forests-deck.html" target="_blank" rel="noopener">'Atatbon': Protecting forests beyond the harvest</a></td>
+      </tr>
+<tr data-title="classroom formation attention memory number sense curriculum reform early childhood ai pedagogy indonesia education" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-06-21</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/what-classroom-never-received-deck.html" target="_blank" rel="noopener">What the classroom never received</a></td>
+      </tr>
+<tr data-title="indonesia rupiah rp20000 currency policy exchange rate energy oil gas execution gap prabowo inflation reserves" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-06-15</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/indonesia-rupiah-rp20000-deck.html" target="_blank" rel="noopener">Is Indonesia Safe if the Rupiah Reaches Rp20,000?</a></td>
+      </tr>
+      <tr data-title="entrepreneurial class alatas colonial history merchant culture policy indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-06-10</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/indonesia-entrepreneurial-class-deck.html" target="_blank" rel="noopener">What happened to Indonesia's entrepreneurial class?</a></td>
+      </tr>
+      <tr data-title="entrepreneurial formation university system dynamics culture stable jobs prabowo indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-05-30</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/entrepreneurial-formation-not-university-deck.html" target="_blank" rel="noopener">Entrepreneurial formation does not start in university</a></td>
+      </tr>
+      <tr data-title="science parks technopark innovation coordination talent sink corporations indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-05-20</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/science-parks-wont-solve-innovation-deck.html" target="_blank" rel="noopener">Science parks won't solve Indonesia's innovation problem</a></td>
+      </tr>
+      <tr data-title="study program closure graduate unemployment harvard general education dewantara sosrokartono" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-05-05</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/wrong-remedy-study-program-closures-deck.html" target="_blank" rel="noopener">The wrong remedy: Evaluating university study program closures</a></td>
+      </tr>
+      <tr data-title="discrimination religion amygdala neuroscience prefrontal cortex teluknaga minahasa laroma" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-04-14</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/discrimination-not-about-religion-deck.html" target="_blank" rel="noopener">What if discrimination is not about religion?</a></td>
+      </tr>
+      <tr data-title="easter good friday disruptive innovation access grace resurrection theology" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-04-06</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/easter-disruptive-innovation-deck.html" target="_blank" rel="noopener">Reading Easter through the lens of disruptive innovation</a></td>
+      </tr>
+      <tr data-title="vocational education gengsi mit mens et manus agriculture applied competence indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-03-28</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/vocational-education-respect-deck.html" target="_blank" rel="noopener">Why vocational education struggles for respect in Indonesia</a></td>
+      </tr>
+      <tr data-title="feudalism meritocracy performative innovation incubator accelerator hierarchy indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-03-14</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/feudalism-meritocracy-performative-deck.html" target="_blank" rel="noopener">Feudalism, meritocracy and why innovation becomes performative</a></td>
+      </tr>
+      <tr data-title="innovation technopark repetition equilibrium incentives incubator indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-02-28</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/why-innovation-never-innovates-deck.html" target="_blank" rel="noopener">Why we keep building innovation that never innovates</a></td>
+      </tr>
+      <tr data-title="ngada tragedy paper prosperity children gdp systems thinking linear indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-02-14</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/ngada-tragedy-paper-prosperity-deck.html" target="_blank" rel="noopener">Ngada tragedy: When paper prosperity meets children's realities</a></td>
+      </tr>
+      <tr data-title="universities innovators promotion academic evaluation venture building entrepreneurship indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-02-07</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/universities-punish-innovators-deck.html" target="_blank" rel="noopener">Universities may be killing their innovators softly</a></td>
+      </tr>
+      <tr data-title="invention innovation dynamic feedback theory entrepreneurial formation corporations talent sink indonesia" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-01-24</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/invention-mistaken-innovation-deck.html" target="_blank" rel="noopener">When invention is mistaken for innovation</a></td>
+      </tr>
+      <tr data-title="privacy culture corporations gen-z kohlberg moral development iot data rights indonesia surveillance" data-year="2026" data-source="jakarta-post">
+        <td class="date-col">2026-01-04</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/corporations-genz-privacy-culture-deck.html" target="_blank" rel="noopener">Society relies on corporations and Gen-Z to build a privacy culture</a></td>
+      </tr>
+      <tr data-title="corruption alatas justification exposure accountability leadership reform indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-12-20</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/usual-approach-corruption-keeps-failing-deck.html" target="_blank" rel="noopener">Why the usual approach to corruption keeps failing</a></td>
+      </tr>
+      <tr data-title="ai artificial intelligence culture habits discipline governance human in the loop indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-12-10</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/ai-is-not-the-risk-our-habits-deck.html" target="_blank" rel="noopener">AI is not the risk. Our habits are.</a></td>
+      </tr>
+      <tr data-title="nuclear power corruption safety culture integrity indonesia energy" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-11-29</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/one-condition-nuclear-cannot-ignore-deck.html" target="_blank" rel="noopener">The one condition nuclear power cannot ignore</a></td>
+      </tr>
+      <tr data-title="entrepreneurship corruption titles bureaucracy history bourdieu symbolic capital indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-11-15</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/enterprise-struggles-nation-rewards-titles-deck.html" target="_blank" rel="noopener">Why enterprise struggles in a nation that rewards titles</a></td>
+      </tr>
+      <tr data-title="mbg free meal program stunting corruption nutrition policy system dynamics indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-10-17</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/mbg-moral-test-nourishing-nation-deck.html" target="_blank" rel="noopener">MBG and the moral test of nourishing a nation</a></td>
+      </tr>
+      <tr data-title="faith corruption neuroscience morality childhood religion ministry of religion indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-10-03</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/faith-corruption-morality-childhood-deck.html" target="_blank" rel="noopener">Faith and corruption: Why morality starts in early childhood</a></td>
+      </tr>
+      <tr data-title="purbaya finance minister culture leadership hofstede collectivism confidence arrogance indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-09-17</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/unfiltered-leader-confidence-convention-deck.html" target="_blank" rel="noopener">The unfiltered leader: When confidence clashes with convention</a></td>
+      </tr>
+      <tr data-title="nuclear power thorium smr proven technology sovereignty energy indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-08-30</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/secure-proven-nuclear-technology-deck.html" target="_blank" rel="noopener">Nuclear power: Secure it with proven technology</a></td>
+      </tr>
+      <tr data-title="indonesia richest stunting water stress independence economy children" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-08-15</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/richest-ask-children-deck.html" target="_blank" rel="noopener">Is Indonesia today at its richest? Ask children</a></td>
+      </tr>
+      <tr data-title="ev electric vehicle battery indonesia sovereignty emissions en-roads climate" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-08-07</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/ev-momentum-questions-forgot-deck.html" target="_blank" rel="noopener">Indonesia's EV momentum and the questions we forget to ask</a></td>
+      </tr>
+      <tr data-title="nuclear smr sovereignty dependency indonesia energy united states" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-07-26</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/real-price-nuclear-dependency-deck.html" target="_blank" rel="noopener">The real price of Indonesia's nuclear dependency</a></td>
+      </tr>
+      <tr data-title="research integrity risk index ri2 academia publication saturation indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-07-12</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/ri2-flags-telling-us-deck.html" target="_blank" rel="noopener">What the RI² flags might really be telling us</a></td>
+      </tr>
+      <tr data-title="innovation ecosystem system dynamics loops national ecosystems indonesia" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-07-03</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/innovation-loop-fails-deck.html" target="_blank" rel="noopener">Innovation paradox: When the loop fails before it begins</a></td>
+      </tr>
+      <tr data-title="trump nuclear executive order indonesia posture ruptl energy sovereignty" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-06-23</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/trumps-nuclear-orders-posture-deck.html" target="_blank" rel="noopener">What Trump's nuclear orders reveal about Indonesia's posture</a></td>
+      </tr>
+      <tr data-title="social media quiet return imperialism algorithm silicon valley performance shame culture children content creators" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-06-07</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/social-media-imperialism-deck.html" target="_blank" rel="noopener">Social media and the quiet return of imperialism</a></td>
+      </tr>
+      <tr data-title="innovation indonesia learn taiwan china guanxi relational autonomy directive cohesion execution discipline" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-05-28</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/innovation-taiwan-china-deck.html" target="_blank" rel="noopener">Innovation: What Indonesia can learn from Taiwan, China</a></td>
+      </tr>
+      <tr data-title="borrowed standards buried sovereignty nuclear dilemma nuscale thorcon shaping intelligence steering" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-05-19</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/borrowed-standards-sovereignty-deck.html" target="_blank" rel="noopener">Borrowed standards, buried sovereignty: Indonesia's nuclear dilemma</a></td>
+      </tr>
+      <tr data-title="nuclear technology without integrity risk not progress axiology corruption perceptions index bapeten" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-05-06</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/nuclear-technology-integrity-deck.html" target="_blank" rel="noopener">Nuclear technology without integrity is a risk, not progress</a></td>
+      </tr>
+      <tr data-title="rediscovering indonesia rhythm hope 2045 nusantara epistemology mandala alus kasar parsons" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-04-26</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/rediscovering-indonesia-rhythm-deck.html" target="_blank" rel="noopener">Rediscovering Indonesia's rhythm: A hope for 2045</a></td>
+      </tr>
+      <tr data-title="javanese sayings world losing its way sarjana wiyata ngendika panggrahita kuasa prabawa meres deduga" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-04-19</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/javanese-sayings-losing-way-deck.html" target="_blank" rel="noopener">Javanese sayings for a world losing its way</a></td>
+      </tr>
+      <tr data-title="startups deferred entrepreneurial curriculum revisited hybrid side business 4-layer pathway model steiitb" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-04-09</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/startups-deferred-deck.html" target="_blank" rel="noopener">Start-ups deferred: Entrepreneurial curriculum revisited</a></td>
+      </tr>
+      <tr data-title="why corruption thrives religious society shame culture kohlberg rest schwartz pancasila howells" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-03-26</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/religion-corruption-deck.html" target="_blank" rel="noopener">Why corruption thrives in a religious society</a></td>
+      </tr>
+      <tr data-title="prabowo test governing jokowi absence coalition discipline bureaucratic continuity personalist" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-03-15</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/hidup-jokowi-leadership-deck.html" target="_blank" rel="noopener">Prabowo's test of governing in Jokowi's absence</a></td>
+      </tr>
+      <tr data-title="indonesia richest strengthening governance sustainable growth danantara hausmann sovereign wealth fund" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-03-05</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/indonesia-at-its-richest-deck.html" target="_blank" rel="noopener">Indonesia at its richest: Strengthening governance for sustainable growth</a></td>
+      </tr>
+      <tr data-title="indonesian start-ups valuations eclipse innovation venture capital management fees carried interest" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-02-17</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/valuations-eclipse-innovation-deck.html" target="_blank" rel="noopener">Indonesian start-ups: When valuations eclipse innovation</a></td>
+      </tr>
+      <tr data-title="investor biases enable fraud start-ups venture capital due diligence limited partners" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-02-08</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/investor-biases-fraud-deck.html" target="_blank" rel="noopener">How investor biases can enable fraud in start-ups</a></td>
+      </tr>
+      <tr data-title="biases behind indonesian start-ups ethical pitfalls fraud pressure rationalization triangle" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-02-01</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/startup-ethical-biases-deck.html" target="_blank" rel="noopener">The biases behind Indonesian start-ups' ethical pitfalls</a></td>
+      </tr>
+      <tr data-title="can indonesia thrive meritocracy under threat democracy kohlberg loyalty competence" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-01-18</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/meritocracy-under-threat-deck.html" target="_blank" rel="noopener">Can Indonesia thrive when meritocracy is under threat?</a></td>
+      </tr>
+      <tr data-title="palm plantations cannot replace forests mr president deforestation biodiversity carbon sink" data-year="2025" data-source="jakarta-post">
+        <td class="date-col">2025-01-08</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/palm-plantations-forests-deck.html" target="_blank" rel="noopener">Palm plantations cannot replace forests, Mr. President</a></td>
+      </tr>
+      <tr data-title="rakyat jelata controversy words sword mcluhan derrida iterability communicative empathy spokesperson" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-12-29</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/rakyat-jelata-sword-deck.html" target="_blank" rel="noopener">'Rakyat jelata' controversy shows how words can be a sword</a></td>
+      </tr>
+      <tr data-title="christmas reflection climate crisis relational framework stewardship genesis love neighbor" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-12-27</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/christmas-climate-reflection-deck.html" target="_blank" rel="noopener">Christmas reflection on climate crisis</a></td>
+      </tr>
+      <tr data-title="reengineering culture prabowo leadership schein 4-caps x-team model shared assumptions coalition" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-12-10</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/prabowo-leadership-culture-deck.html" target="_blank" rel="noopener">Reengineering culture to sustain Prabowo's leadership</a></td>
+      </tr>
+      <tr data-title="wong urip urup collectivism innovation javanese village wake funeral solidarity mount slamet" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-12-02</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/wong-urip-urup-deck.html" target="_blank" rel="noopener">'Wong urip urup': Transforming collectivism into innovation</a></td>
+      </tr>
+      <tr data-title="national iqs indonesian mockery chimpanzee lynn mesenberg pisa scores structural factors education" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-11-23</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/national-iqs-mockery-deck.html" target="_blank" rel="noopener">Understanding national IQs and rejecting the Indonesian mockery</a></td>
+      </tr>
+      <tr data-title="mit blueprint cultural challenges 2045 vision kornbluth gumun smart kluckhohn strodtbeck inglehart" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-11-16</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/mit-blueprint-2045-vision-deck.html" target="_blank" rel="noopener">MIT's blueprint and Indonesia's cultural challenges to achieve the 2045 vision</a></td>
+      </tr>
+      <tr data-title="strong democracy innovation-driven entrepreneurship plato philosopher-king civic education meritocracy" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-11-09</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/strong-democracy-entrepreneurship-deck.html" target="_blank" rel="noopener">A strong democracy will advance innovation-driven entrepreneurship</a></td>
+      </tr>
+      <tr data-title="unseen toll mental health lecturers burnout emotional labor academia bullying institutional support" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-10-26</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/mental-health-lecturers-deck.html" target="_blank" rel="noopener">The unseen toll: Mental health challenges facing lecturers</a></td>
+      </tr>
+      <tr data-title="transforming indonesia core values gas pricing system dynamics feedback loops fsru short-term thinking" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-10-12</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/gas-pricing-core-values-deck.html" target="_blank" rel="noopener">Transforming Indonesia's core values: Lessons from the gas pricing challenge</a></td>
+      </tr>
+      <tr data-title="singapore ev transition green evolution land transport master plan 2040 milestones incentives safety" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-09-28</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/singapore-ev-transition-deck.html" target="_blank" rel="noopener">Singapore's EV transition could spark Indonesia's green evolution</a></td>
+      </tr>
+      <tr data-title="mental health resilience education world suicide prevention day anti-fragility fire hose bootcamp discipline" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-09-14</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/mental-health-resilience-education-deck.html" target="_blank" rel="noopener">Addressing mental health and building resilience in education</a></td>
+      </tr>
+      <tr data-title="beyond simple fixes climate change multi-solving equity en-roads early childhood education sense-making" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-09-07</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/beyond-simple-fixes-climate-deck.html" target="_blank" rel="noopener">Beyond simple fixes in the fight against climate change</a></td>
+      </tr>
+      <tr data-title="empowering energy engineers renewable solutions golden indonesia 2045 smr ccus brain drain workforce" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-08-19</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/empowering-energy-engineers-deck.html" target="_blank" rel="noopener">Empowering energy engineers: Indonesia's path to renewable solutions</a></td>
+      </tr>
+      <tr data-title="small reactors nuclear energy structural lens java-bali oversupply nuscale radiant microreactors smr" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-08-03</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/small-reactors-nuclear-energy-deck.html" target="_blank" rel="noopener">Small reactors, the future of Indonesia's nuclear energy</a></td>
+      </tr>
+      <tr data-title="cultural dynamics nuclear power hofstede parsons kluckhohn strodtbeck three lenses morowali covid vaccination" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-07-20</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/nuclear-cultural-dynamics-deck.html" target="_blank" rel="noopener">Indonesia's cultural dynamics and the future of nuclear power</a></td>
+      </tr>
+      <tr data-title="nuclear horizon diplomatic finesse rogers diffusion innovation bataan philippines singapore smr thorium" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-07-06</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/nuclear-horizon-diplomatic-finesse-deck.html" target="_blank" rel="noopener">Indonesia's nuclear horizon: Diplomatic finesse needed</a></td>
+      </tr>
+      <tr data-title="art of waiting job seekers career changers bourdieu capital raven power luck equation disciplined storytelling" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-06-23</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/art-of-waiting-deck.html" target="_blank" rel="noopener">The art of waiting: A pointer guide for job seekers, decision-makers</a></td>
+      </tr>
+      <tr data-title="artistry enterprise creativity commercial success innovation invention commercialization dual-track stei-itb" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-06-08</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/artistry-enterprise-creativity-deck.html" target="_blank" rel="noopener">Artistry and enterprise: Harmonizing creativity with commercial success</a></td>
+      </tr>
+      <tr data-title="tools introverts education paradigm shift mind-mapping gadjah mada geertz kahneman j-wel" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-03-16</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/introverts-education-paradigm-shift-deck.html" target="_blank" rel="noopener">Tools for introverts in education: A paradigm shift</a></td>
+      </tr>
+      <tr data-title="among wektu silence digital age javanese timing elevator pitch doxa episteme" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-03-02</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/among-wektu-silence-deck.html" target="_blank" rel="noopener">Rediscovering silence in the digital age: Introducing 'among wektu'</a></td>
+      </tr>
+      <tr data-title="entrepreneurship education democracy anti-fragility ethical leadership election civic engagement" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-02-17</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/entrepreneurship-democratic-engagement-deck.html" target="_blank" rel="noopener">Entrepreneurship education in democratic engagement</a></td>
+      </tr>
+      <tr data-title="greenflation climate cop28 en-roads paris agreement multi-solving equity" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-02-03</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/beyond-greenflation-deck.html" target="_blank" rel="noopener">Beyond 'greenflation': Multi-solving and equity in climate discourse</a></td>
+      </tr>
+      <tr data-title="election 2024 x-team 4-caps mit insead leadership voting president" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-01-20</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/x-team-election-2024-deck.html" target="_blank" rel="noopener">Election 2024: MIT and INSEAD's X-Team insights in navigating the vote</a></td>
+      </tr>
+      <tr data-title="free lunch nourishing future empowering aid dignity poverty nutrition economic development job creation" data-year="2024" data-source="jakarta-post">
+        <td class="date-col">2024-01-06</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/empowering-aid-dignity-deck.html" target="_blank" rel="noopener">Free lunch in nourishing the future: How empowering aid preserves dignity</a></td>
+      </tr>
+      <tr data-title="sosrokartono wisdom educators teachers mentorship merdeka curriculum pisa" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-12-23</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/sosrokartono-wisdom-educators-deck.html" target="_blank" rel="noopener">Sosrokartono's wisdom and the transformative role of educators</a></td>
+      </tr>
+      <tr data-title="shame corruption mindset dweck growth fixed ethics benedict koentjaraningrat" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-12-02</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/beyond-shame-corruption-mindsets-deck.html" target="_blank" rel="noopener">Beyond shame: Ethical dimensions of mindsets in corruption</a></td>
+      </tr>
+      <tr data-title="pesantren unconventional leaders santri big five rebel talent climate education" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-11-18</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/pesantren-unconventional-leaders-deck.html" target="_blank" rel="noopener">How 'pesantren' foster unconventional leaders</a></td>
+      </tr>
+      <tr data-title="meritocracy democracy national unity passow starting line wayang dhalang" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-10-28</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/meritocracy-democracy-unity-deck.html" target="_blank" rel="noopener">Why meritocracy is key to democracy, national unity</a></td>
+      </tr>
+      <tr data-title="traditional journalism digital age doxa episteme newspaper election trust" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-10-21</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/traditional-journalism-digital-age-deck.html" target="_blank" rel="noopener">Traditional journalism: Trustworthy anchor in the digital age</a></td>
+      </tr>
+      <tr data-title="vietnam secret sauce tradition tomorrow global innovation index shared values uncertainty avoidance" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-10-07</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/vietnam-secret-sauce-deck.html" target="_blank" rel="noopener">Vietnam's secret sauce: A blend of tradition and tomorrow</a></td>
+      </tr>
+      <tr data-title="embracing cultural differences corporate sherpas javanese adat hofstede trompenaars" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-09-23</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/indonesian-corporate-life-deck.html" target="_blank" rel="noopener">Embracing cultural differences: A tale of two corporate sherpas</a></td>
+      </tr>
+      <tr data-title="misguided praise platform matchmaking managerial economics msme suppliers surveillance capitalism" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-09-09</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/fomo-platform-matchmaking-deck.html" target="_blank" rel="noopener">Understanding the misguided praise for platform matchmaking</a></td>
+      </tr>
+      <tr data-title="culturally ready innovative safe cybernation ai automation early education cybersecurity" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-08-26</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/culturally-ready-innovation-nation-deck.html" target="_blank" rel="noopener">Fostering a culturally ready, innovative and safe cybernation</a></td>
+      </tr>
+      <tr data-title="individualistic corporate maze power distance sense making french raven social power" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-08-12</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/individualistic-corporate-maze-deck.html" target="_blank" rel="noopener">How to thrive in an individualistic corporate maze</a></td>
+      </tr>
+      <tr data-title="sme ide innovation driven enterprise culturally fitter policy entrepreneurship" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-07-29</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/sme-vs-ide-deck.html" target="_blank" rel="noopener">SME vs IDE: Which one is culturally fitter?</a></td>
+      </tr>
+      <tr data-title="norway shared values sustainable progress friluftsliv dugnad refugees environment" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-07-21</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/norway-shared-values-deck.html" target="_blank" rel="noopener">Shared values for sustainable progress: Learning from Norway</a></td>
+      </tr>
+      <tr data-title="javanese values breed innovation espoused proverbs openness conscientiousness" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-03-14</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/javanese-espoused-values-deck.html" target="_blank" rel="noopener">Believe it or not, Javanese values breed innovation</a></td>
+      </tr>
+      <tr data-title="elements determine innovative nations japan hofstede innovation culture" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-03-01</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/japan-basic-values-innovation-deck.html" target="_blank" rel="noopener">Elements that determine innovative nations: The case of Japan</a></td>
+      </tr>
+      <tr data-title="other face younger generation demographic bonus blue collar millennials innovation ecosystem rent seeking" data-year="2023" data-source="jakarta-post">
+        <td class="date-col">2023-01-27</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/other-face-younger-generation-deck.html" target="_blank" rel="noopener">The other face of the younger generation. What can we do?</a></td>
+      </tr>
+<tr data-title="indonesia oil gas bureaucracy reformation pertamina energy policy reform" data-year="2014" data-source="jakarta-post">
+        <td class="date-col">2014-06-19</td>
+        <td class="source-col"><span class="source-badge badge-jp">Jakarta Post</span></td>
+        <td class="title-col"><a href="presentations/indonesia-oil-gas-bureaucracy-deck.html" target="_blank" rel="noopener">Indonesia's oil and gas bureaucracy: Reformation, not just reform</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="no-results">No presentations match your search.</div>
+</div>
+<footer>
+  <p>Presentations derived from Jakarta Post columns, LinkedIn articles, and LinkedIn posts &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a></p>
+</footer>
+<button id="back-to-top" title="Back to top">↑</button>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const search = document.getElementById('search');
+    const searchClear = document.getElementById('search-clear');
+    const yearFilter = document.getElementById('year-filter');
+    const sourceFilter = document.getElementById('source-filter');
+    const resultCount = document.getElementById('result-count');
+    const noResults = document.getElementById('no-results');
+    const rows = document.querySelectorAll('#presentations-table tbody tr');
+    const backToTop = document.getElementById('back-to-top');
+
+    function filterRows() {
+      const q = search.value.toLowerCase().trim();
+      const yr = yearFilter.value;
+      const src = sourceFilter.value;
+      let visible = 0;
+      rows.forEach(function(row) {
+        const titleMatch = !q || row.dataset.title.includes(q) || row.querySelector('a').textContent.toLowerCase().includes(q);
+        const yearMatch = !yr || row.dataset.year === yr;
+        const sourceMatch = !src || row.dataset.source === src;
+        if (titleMatch && yearMatch && sourceMatch) {
+          row.classList.remove('hidden');
+          visible++;
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+      const label = visible === 1 ? '1 presentation' : visible + ' presentations';
+      resultCount.textContent = label;
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+      searchClear.style.display = q ? 'inline' : 'none';
+    }
+
+    search.addEventListener('input', filterRows);
+    yearFilter.addEventListener('change', filterRows);
+    sourceFilter.addEventListener('change', filterRows);
+    searchClear.addEventListener('click', function() { search.value = ''; filterRows(); search.focus(); });
+
+    window.addEventListener('scroll', function() {
+      backToTop.style.display = document.documentElement.scrollTop > 300 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', function() {
+      document.documentElement.scrollTop = 0;
+    });
+  });
+</script>
+</body>
+</html>
