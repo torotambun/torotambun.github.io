@@ -64,6 +64,51 @@
 
   .nav a:hover { color: #111; border-color: #111; }
 
+  .nav-dropdown { position: relative; }
+
+  .nav-home-btn {
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    color: #555;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0 0 1px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .nav-home-btn:hover, .nav-home-btn.active { color: #111; border-color: #111; }
+
+  .nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    padding: 6px 0;
+    min-width: 170px;
+    z-index: 100;
+  }
+
+  .nav-dropdown-menu.open { display: block; }
+
+  .nav-dropdown-menu a {
+    display: block;
+    padding: 8px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    color: #444;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  .nav-dropdown-menu a:hover { background: #f5f5f5; color: #111; }
+
   /* ── BIO ── */
   .bio {
     font-size: 1rem;
@@ -136,7 +181,7 @@
     font-family: Arial, sans-serif;
   }
 
-  /* ── COLUMNS ── */
+  /* ── ARCHIVE BLOCKS ── */
   .arc-block { margin-bottom: 24px; }
 
   .arc-label {
@@ -289,18 +334,22 @@
   <div class="header-text">
     <h1>A.R.Y. Toronata Tambun</h1>
     <div class="nav">
-      <a href="#publications">Publications</a>
-      <a href="#columns">Columns</a>
-      <a href="#books">Books</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#awards">Awards</a>
-      <a href="#contact">Contact</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-home-btn" id="home-toggle" aria-expanded="false">Home ▾</button>
+        <div class="nav-dropdown-menu" id="home-menu">
+          <a href="#publications">Scholarly Article</a>
+          <a href="#books">Books</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#awards">Awards</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
       <a href="https://drive.google.com/file/d/1bHdTHKkRjeyX2-udRpb3f5MVYSxCRUrw/view?usp=sharing" target="_blank">CV</a>
       <a href="https://linkedin.com/in/toronatatambun" target="_blank">LinkedIn Profile</a>
       <a href="jakarta_post.html">Jakarta Post Columns</a>
+      <a href="presentations.html">Presentations</a>
       <a href="articles.html">LinkedIn Articles</a>
       <a href="posts.html">Field Notes</a>
-      <a href="presentations.html">Presentations</a>
       <a href="exec-education.html">Executive Education</a>
       <a href="courses.html">Courses</a>
       <a href="industry-experience.html">Industry Experience</a>
@@ -325,7 +374,7 @@
 </div>
 
 <!-- PUBLICATIONS -->
-<h2 id="publications">Publications</h2>
+<h2 id="publications">Scholarly Article</h2>
 
 <h3>Scopus-Indexed</h3>
 <ul class="pub-list">
@@ -449,89 +498,6 @@
   </li>
 </ul>
 
-<!-- COLUMNS -->
-<h2 id="columns">Jakarta Post Columns</h2>
-
-<p style="font-size:0.95rem; color:#444; margin-bottom:20px;">
-  87 published opinion columns in <em>The Jakarta Post</em> (2023–present). Full archive: <a href="jakarta_post.html">Jakarta Post Columns →</a> Selected columns below.
-</p>
-
-<ul class="pub-list">
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/06/15/is-indonesia-safe-if-the-rupiah-reaches-rp-20000" target="_blank">Is Indonesia safe if the rupiah reaches Rp 20,000?</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, June 15, 2026.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/06/10/what-happened-to-indonesias-entrepreneurial-class" target="_blank">What happened to Indonesia's entrepreneurial class?</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, June 10, 2026.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/05/30/entrepreneurial-formation-does-not-start-in-university" target="_blank">Entrepreneurial Formation Does Not Start in University</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, May 30, 2026.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/05/20/science-parks-wont-solve-indonesias-innovation-problem.html" target="_blank">Science Parks Won't Solve Indonesia's Innovation Problem</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, May 20, 2026.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/04/06/reading-easter-through-the-lens-of-disruptive-innovation.html" target="_blank">Reading Easter Through the Lens of Disruptive Innovation</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, April 6, 2026.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/03/28/why-vocational-education-struggles-for-respect-in-indonesia.html" target="_blank">Why Vocational Education Struggles for Respect in Indonesia</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, March 28, 2026.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/03/14/feudalism-meritocracy-and-why-innovation-becomes-performative.html" target="_blank">Feudalism, Meritocracy and Why Innovation Becomes Performative</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, March 14, 2026.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/02/28/why-we-keep-building-innovation-that-never-innovates.html" target="_blank">Why We Keep Building Innovation That Never Innovates</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, February 28, 2026.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2026/01/24/when-invention-is-mistaken-for-innovation.html" target="_blank">When Invention Is Mistaken for Innovation</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, January 24, 2026. With N. Sukamdani.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/07/03/innovation-paradox-when-the-loop-fails-before-it-begins.html" target="_blank">Innovation Paradox: When the Loop Fails Before It Begins</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, July 3, 2025. With L. Aldianto.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/05/28/innovation-what-indonesia-can-learn-from-taiwan-china.html" target="_blank">Innovation: What Indonesia Can Learn from Taiwan, China</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, May 28, 2025.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2025/02/17/indonesian-start-ups-when-valuations-eclipse-innovation.html" target="_blank">Indonesian Start-ups: When Valuations Eclipse Innovation</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, February 17, 2025.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2024/12/02/wong-urip-urup-transforming-collectivism-into-innovation.html" target="_blank">'Wong Urip Urup': Transforming Collectivism into Innovation</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, December 2, 2024.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2024/11/09/a-strong-democracy-will-advance-innovation-driven-entrepreneurship.html" target="_blank">A Strong Democracy Will Advance Innovation-Driven Entrepreneurship</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, November 9, 2024.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.thejakartapost.com/opinion/2023/03/14/believe-it-or-not-javanese-values-breed-innovation.html" target="_blank">Believe It or Not, Javanese Values Breed Innovation</a></div>
-    <div class="pub-meta"><em>The Jakarta Post</em>, March 15, 2023.</div>
-  </li>
-</ul>
-<!-- LINKEDIN ARTICLES -->
-<h2 id="linkedin-articles">LinkedIn Articles</h2>
-<div class="arc-block">
-  <div class="arc-desc">328 long-form articles published on LinkedIn (2017–2026), covering entrepreneurship, innovation ecosystems, management theory, philosophy of science, leadership, faith, and education.</div>
-  <div style="margin-top:10px;"><a href="articles.html" style="color:#333; text-decoration:underline; font-family:Arial,sans-serif; font-size:0.88rem;">Browse all 328 articles →</a></div>
-</div>
-
-<!-- FIELD NOTES -->
-<h2 id="linkedin-posts">Field Notes</h2>
-<div class="arc-block">
-  <div class="arc-desc">Short-form thinking on education, leadership, culture, faith, and daily observation — published since 2011, intensively since 2019. Archive updated quarterly.</div>
-  <div style="margin-top:10px;"><a href="posts.html" style="color:#333; text-decoration:underline; font-family:Arial,sans-serif; font-size:0.88rem;">Browse archive →</a></div>
-</div>
-
 <!-- BOOKS -->
 <h2 id="books">Books</h2>
 
@@ -646,6 +612,32 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     };
+
+    var homeToggle = document.getElementById('home-toggle');
+    var homeMenu = document.getElementById('home-menu');
+
+    homeToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = homeMenu.classList.toggle('open');
+      homeToggle.classList.toggle('active', isOpen);
+      homeToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!homeMenu.contains(e.target) && e.target !== homeToggle) {
+        homeMenu.classList.remove('open');
+        homeToggle.classList.remove('active');
+        homeToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    homeMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        homeMenu.classList.remove('open');
+        homeToggle.classList.remove('active');
+        homeToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
   });
 </script>
 </body>
