@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Courses — A.R.Y. Toronata Tambun</title>
 <style>
+  :root { --accent: #5f4b8b; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -42,7 +43,7 @@
     transition: color 0.15s, border-color 0.15s;
   }
 
-  .nav a:hover { color: #111; border-color: #111; }
+  .nav a:hover { color: var(--accent); border-color: var(--accent); }
 
   .page-desc {
     font-size: 0.95rem;
@@ -53,7 +54,7 @@
   h2 {
     font-size: 1.15rem;
     font-weight: normal;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid var(--accent);
     padding-bottom: 6px;
     margin-bottom: 20px;
     margin-top: 40px;
@@ -123,7 +124,7 @@
     box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     z-index: 9999;
   }
-  #back-to-top:hover { background: #555; }
+  #back-to-top:hover { background: var(--accent); }
 </style>
 </head>
 <body>
@@ -133,6 +134,7 @@
   <a href="index.html">← Back to Home</a>
   <a href="exec-education.html">Executive Education</a>
   <a href="industry-experience.html">Industry Experience</a>
+  <a href="speaking.html">Speaking Engagements</a>
 </div>
 
 <p class="page-desc">
