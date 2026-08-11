@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toronata Tambun</title>
+<title>Dr. A.R.Y. Toronata Tambun</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -66,7 +66,7 @@
 
   .nav-dropdown { position: relative; }
 
-  .nav-home-btn {
+  .nav-dropdown-btn {
     font-family: Arial, sans-serif;
     font-size: 0.88rem;
     color: #555;
@@ -78,7 +78,7 @@
     transition: color 0.15s, border-color 0.15s;
   }
 
-  .nav-home-btn:hover, .nav-home-btn.active { color: #111; border-color: #111; }
+  .nav-dropdown-btn:hover, .nav-dropdown-btn.active { color: #111; border-color: #111; }
 
   .nav-dropdown-menu {
     display: none;
@@ -143,6 +143,58 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
+
+  /* ── DROPDOWN TOGGLES ── */
+  .section-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .section-toggle:hover { color: #000; }
+  .section-chevron {
+    display: inline-block;
+    font-size: 0.75em;
+    color: #888;
+    transition: transform 0.15s;
+  }
+  h2.expanded .section-chevron { transform: rotate(90deg); }
+  .section-content { display: none; }
+  .section-content.open { display: block; }
+
+  .subsection-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .subsection-toggle:hover { color: #000; }
+  .subsection-chevron {
+    display: inline-block;
+    font-size: 0.75em;
+    color: #999;
+    transition: transform 0.15s;
+  }
+  h3.expanded .subsection-chevron,
+  .teach-inst.expanded .subsection-chevron { transform: rotate(90deg); }
+  .subsection-content { display: none; }
+  .subsection-content.open { display: block; }
 
   /* ── PUBLICATIONS ── */
   .pub-list { list-style: none; }
@@ -297,6 +349,13 @@
 
   .contact-block a:hover { color: #000; }
 
+  .privacy-note {
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
+    margin-top: 8px;
+  }
+
   /* ── FOOTER ── */
   .footer {
     margin-top: 72px;
@@ -338,29 +397,27 @@
 
 <!-- HEADER -->
 <div class="header">
-  <img src="profile.jpg" alt="Toronata Tambun">
+  <img src="profile.jpg" alt="Dr. A.R.Y. Toronata Tambun">
   <div class="header-text">
-    <h1>A.R.Y. Toronata Tambun</h1>
+    <h1>Dr. A.R.Y. Toronata Tambun, S.T., M.B.A.</h1>
     <div class="nav">
       <div class="nav-dropdown">
-        <button type="button" class="nav-home-btn" id="home-toggle" aria-expanded="false">Home ▾</button>
-        <div class="nav-dropdown-menu" id="home-menu">
-          <a href="#publications">Scholarly Article</a>
-          <a href="#books">Books</a>
-          <a href="#teaching">Teaching</a>
-          <a href="#awards">Awards</a>
-          <a href="#contact">Contact</a>
+        <button type="button" class="nav-dropdown-btn" id="writing-toggle" data-menu="writing-menu" aria-expanded="false">Writing &#9662;</button>
+        <div class="nav-dropdown-menu" id="writing-menu">
+          <a href="jakarta_post.html">Jakarta Post Columns</a>
+          <a href="articles.html">LinkedIn Articles</a>
+          <a href="posts.html">Field Notes</a>
+          <a href="presentations.html">Presentations</a>
         </div>
       </div>
-      <a href="https://drive.google.com/file/d/1bHdTHKkRjeyX2-udRpb3f5MVYSxCRUrw/view?usp=sharing" target="_blank">CV</a>
-      <a href="https://linkedin.com/in/toronatatambun" target="_blank">LinkedIn Profile</a>
-      <a href="jakarta_post.html">Jakarta Post Columns</a>
-      <a href="presentations.html">Presentations</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-btn" id="learning-toggle" data-menu="learning-menu" aria-expanded="false">Lifelong Learning &#9662;</button>
+        <div class="nav-dropdown-menu" id="learning-menu">
+          <a href="exec-education.html">Executive Education</a>
+          <a href="courses.html">Courses</a>
+        </div>
+      </div>
       <a href="speaking.html">Speaking Engagements</a>
-      <a href="articles.html">LinkedIn Articles</a>
-      <a href="posts.html">Field Notes</a>
-      <a href="exec-education.html">Executive Education</a>
-      <a href="courses.html">Courses</a>
       <a href="industry-experience.html">Industry Experience</a>
     </div>
   </div>
@@ -369,24 +426,34 @@
 <!-- BIO -->
 <div class="bio">
   <p>
+    Welcome — and thank you for spending a few minutes of a busy day here.
+  </p>
+  <p>
     My work sits at the intersection of entrepreneurial formation, institutional culture, judgment under uncertainty, and disciplined human development.
   </p>
   <p>
-    I am Executive Director of <a href="https://yayasanmensetmanus.org" target="_blank">Yayasan Mens et Manus</a> (Jakarta) and Founder and Director of <a href="#">Aren Energy Investment Pte Ltd</a> (Singapore). I bring over 24 years of executive experience across 52 countries, including thirteen years with Schlumberger in regional and global roles spanning operations, technology deployment, and organizational leadership.
+    I am Executive Director of <a href="https://yayasanmensetmanus.org" target="_blank">Yayasan Mens et Manus</a> (Jakarta) and Founder and Director of <a href="#">Aren Energy Investment Pte Ltd</a> (Singapore). I bring over 24 years of executive experience across 52 countries, including thirteen years with Schlumberger in regional and global roles spanning operations, technology deployment, and organizational leadership — the fuller record is on the <a href="industry-experience.html">Industry Experience</a> page.
   </p>
   <p>
-    I completed my Doctor of Philosophy in Science in Management at <a href="https://www.itb.ac.id" target="_blank">Institut Teknologi Bandung</a> (2023–2026) — Summa Cum Laude, GPA 4.0 of 4.0, Minimum Required Time for Graduation. My doctoral theory — the <em>Dynamic Feedback Theory of Entrepreneurial Formation in Loss-Averse, Short-Horizon Cultures</em> — explains why innovation ecosystems in Indonesia fail not from resource scarcity, but from suppressed feedback loops, cultural risk-aversion, and institutional conformity. Earlier formation includes a Bachelor of Engineering in Nuclear Engineering — <em>Sarjana Teknik</em> — from <a href="https://www.ugm.ac.id" target="_blank">Universitas Gadjah Mada</a> (1994), a dual MM/MBA from IPMI Jakarta and Monash University Melbourne (2001), executive education at <a href="https://www.hbs.edu" target="_blank">Harvard Business School</a> (GMP26, Full Alumni, 2018–2019), the Private Equity School at <a href="https://www.sbs.ox.ac.uk" target="_blank">Saïd Business School, University of Oxford</a> (Associate Alumni, 2017), and fourteen courses at <a href="https://executive.mit.edu/certificate-holder-community/toronata-tambun-0036g000017A1AcAAK.html" target="_blank">MIT Sloan</a> (ACE, Affiliate Alumni, 2016–2018).
+    I completed my Doctor of Philosophy in Science in Management at <a href="https://www.itb.ac.id" target="_blank">Institut Teknologi Bandung</a> (2023–2026) — Summa Cum Laude, GPA 4.0 of 4.0, Minimum Required Time for Graduation. My doctoral theory — the <em>Dynamic Feedback Theory of Entrepreneurial Formation in Loss-Averse, Short-Horizon Cultures</em> — explains why innovation ecosystems in Indonesia fail not from resource scarcity, but from suppressed feedback loops, cultural risk-aversion, and institutional conformity.
   </p>
   <p>
-    I am a member of the <a href="https://hbr.org" target="_blank">Harvard Business Review Advisory Council</a> and an <a href="https://www.climateinteractive.org/en-roads/climate-ambassadors/ambassador/toronata-tambun/" target="_blank">MIT En-Roads Climate Simulation Ambassador</a>. I am available for board advisory, research collaboration, and speaking engagements. I am Manadonese — from North Sulawesi, Indonesia. I am based across Jakarta, Singapore, and Bandung.
+    Earlier formation includes a Bachelor of Engineering in Nuclear Engineering — <em>Sarjana Teknik</em> — from <a href="https://www.ugm.ac.id" target="_blank">Universitas Gadjah Mada</a> (1994), a dual MM/MBA from IPMI Jakarta and Monash University Melbourne (2001), executive education at <a href="https://www.hbs.edu" target="_blank">Harvard Business School</a> (GMP26, Full Alumni, 2018–2019), the Private Equity School at <a href="https://www.sbs.ox.ac.uk" target="_blank">Saïd Business School, University of Oxford</a> (Associate Alumni, 2017), and fourteen courses at <a href="https://executive.mit.edu/certificate-holder-community/toronata-tambun-0036g000017A1AcAAK.html" target="_blank">MIT Sloan</a> (ACE, Affiliate Alumni, 2016–2018) — the fuller record of programs and certificates is on the <a href="courses.html">Courses</a> and <a href="exec-education.html">Executive Education</a> pages.
+  </p>
+  <p>
+    I am a columnist at The Jakarta Post, where I have written <span id="jp-count">87</span> columns — to see the complete list, please visit my <a href="jakarta_post.html">Jakarta Post Columns</a> archive. I also keep a running blog on LinkedIn Articles and, as an autoethnographer, publish Field Notes drawn from daily practice — to see the complete list of either, please visit <a href="articles.html">LinkedIn Articles</a> or <a href="posts.html">Field Notes</a>. This sits alongside my academic writing — to see the complete list, please visit the <a href="#publications">Scholarly Article</a> section above.
+  </p>
+  <p>
+    I am a member of the <a href="https://hbr.org" target="_blank">Harvard Business Review Advisory Council</a> and an <a href="https://www.climateinteractive.org/en-roads/climate-ambassadors/ambassador/toronata-tambun/" target="_blank">MIT En-Roads Climate Simulation Ambassador</a>. I am available for board advisory, research collaboration, and speaking engagements. I am based across Jakarta and Singapore.
   </p>
 </div>
 
 <!-- PUBLICATIONS -->
-<h2 id="publications">Scholarly Article</h2>
+<h2 id="publications"><button type="button" class="section-toggle" aria-expanded="false" data-target="scholarly-content"><span class="section-chevron">&#9656;</span> Scholarly Article</button></h2>
+<div class="section-content" id="scholarly-content">
 
-<h3>Scopus-Indexed</h3>
-<ul class="pub-list">
+<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="scopus-list"><span class="subsection-chevron">&#9656;</span> Scopus-Indexed</button></h3>
+<ul class="pub-list subsection-content" id="scopus-list">
   <li>
     <div class="pub-title"><a href="https://doi.org/10.1007/s13158-025-00449-x" target="_blank">Neural Development in Early Childhood and the Emergence of Moral Cognition: A Developmental Perspective</a></div>
     <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>International Journal of Early Childhood</em>, 58, 169–197, 2026. Springer Nature.</div>
@@ -409,16 +476,16 @@
   </li>
 </ul>
 
-<h3>Conference Proceedings</h3>
-<ul class="pub-list">
+<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="proceedings-list"><span class="subsection-chevron">&#9656;</span> Conference Proceedings</button></h3>
+<ul class="pub-list subsection-content" id="proceedings-list">
   <li>
     <div class="pub-title">Exploring Shared Values in Innovation and Tourism: A Case Study Approach from Japan, Norway, and Vietnam</div>
     <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Proceedings of the 2023 MAG Scholar Conference in Business, Marketing & Tourism</em>, 198–198. Keynote Speaker.</div>
   </li>
 </ul>
 
-<h3>EBSCO / Crossref / DOAJ</h3>
-<ul class="pub-list">
+<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="ebsco-list"><span class="subsection-chevron">&#9656;</span> EBSCO / Crossref / DOAJ</button></h3>
+<ul class="pub-list subsection-content" id="ebsco-list">
   <li>
     <div class="pub-title"><a href="https://doi.org/10.30560/hssr.v7n3p23" target="_blank">A Comparative Analysis of Twelve Research Paradigms Across Six Knowledge Acquisitions and Twelve Sources of Knowledge: A Philosophical Discourse</a></div>
     <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Humanities and Social Science Research</em>, 7(3), 2024.</div>
@@ -441,8 +508,8 @@
   </li>
 </ul>
 
-<h3>Elsevier eJournals (SSRN)</h3>
-<ul class="pub-list">
+<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="elsevier-list"><span class="subsection-chevron">&#9656;</span> Elsevier eJournals (SSRN)</button></h3>
+<ul class="pub-list subsection-content" id="elsevier-list">
   <li>
     <div class="pub-title"><a href="https://dx.doi.org/10.2139/ssrn.6695143" target="_blank">Graduate Unemployment and the Wrong Remedy: Evaluating Indonesia's Study Program Closure Policy</a></div>
     <div class="pub-meta"><em>Pedagogy eJournal</em>, 9(89), 2026. Elsevier/SSRN.</div>
@@ -475,8 +542,8 @@
   </li>
 </ul>
 
-<h3>Preprints (SSRN)</h3>
-<ul class="pub-list">
+<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="preprints-list"><span class="subsection-chevron">&#9656;</span> Preprints (SSRN)</button></h3>
+<ul class="pub-list subsection-content" id="preprints-list">
   <li>
     <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6559160" target="_blank">A Formal Model of Evaluative Success Under Sequential Screening: Storytelling, Writing Ability, and Idea Quality</a></div>
     <div class="pub-meta">SSRN Scholarly Paper No. 6559170. Social Science Research Network, 2026.</div>
@@ -499,18 +566,20 @@
   </li>
 </ul>
 
-<h3>Sinta-Indexed</h3>
-<ul class="pub-list">
+<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="sinta-list"><span class="subsection-chevron">&#9656;</span> Sinta-Indexed</button></h3>
+<ul class="pub-list subsection-content" id="sinta-list">
   <li>
     <div class="pub-title"><a href="https://doi.org/10.21776/ub.apmba.2023.012.02.1" target="_blank">Value Driven Growth Mindset and Value Driven Fixed Mindset?</a></div>
     <div class="pub-meta">With D. W. Irawanto. <em>Asia Pacific Management and Business Application</em>, 12(2), 137–142, 2023.</div>
   </li>
 </ul>
 
-<!-- BOOKS -->
-<h2 id="books">Books</h2>
+</div>
 
-<ul class="book-list">
+<!-- BOOKS -->
+<h2 id="books"><button type="button" class="section-toggle" aria-expanded="false" data-target="books-content"><span class="section-chevron">&#9656;</span> Books</button></h2>
+
+<ul class="book-list section-content" id="books-content">
   <li>
     <span class="book-title">Disciplined Storytelling?: Manual for Teaching Communications to Introvert and Extrovert, Co-Learning with My Students</span><br>
     <span class="book-status">Kindle Direct Publishing, 2024. ISBN 979-8-3208-4195-3</span>
@@ -526,24 +595,30 @@
 </ul>
 
 <!-- TEACHING -->
-<h2 id="teaching">Teaching</h2>
+<h2 id="teaching"><button type="button" class="section-toggle" aria-expanded="false" data-target="teaching-content"><span class="section-chevron">&#9656;</span> Teaching</button></h2>
+<div class="section-content" id="teaching-content">
 
 <div class="teach-block">
-  <div class="teach-inst">Institut Teknologi Bandung (STEI-ITB)</div>
+  <div class="teach-inst"><button type="button" class="subsection-toggle" aria-expanded="false" data-target="teach-itb"><span class="subsection-chevron">&#9656;</span> Institut Teknologi Bandung (STEI-ITB)</button></div>
+  <div class="subsection-content" id="teach-itb">
   <ul class="teach-list">
     <li><strong>Technology-Based Entrepreneurship</strong> (EL-4062, formerly EL-4244) — <a href="https://stei.itb.ac.id/dosen-industri/#" target="_blank">Lecturer from Industry</a>, 2022–present</li>
   </ul>
+  </div>
 </div>
 
 <div class="teach-block">
-  <div class="teach-inst">Universitas Gadjah Mada — Faculty of Agriculture</div>
+  <div class="teach-inst"><button type="button" class="subsection-toggle" aria-expanded="false" data-target="teach-ugm-agri"><span class="subsection-chevron">&#9656;</span> Universitas Gadjah Mada — Faculty of Agriculture</button></div>
+  <div class="subsection-content" id="teach-ugm-agri">
   <ul class="teach-list">
     <li><strong>Communication Course and Entrepreneurship Course</strong> — teaching since 2020; appointed <a href="https://mikro.faperta.ugm.ac.id/a-r-y-toronata-tambun-s-t-m-b-a/" target="_blank">NIDK Lecturer</a> Odd Semester 2023/2024–Even Semester 2025/2026</li>
   </ul>
+  </div>
 </div>
 
 <div class="teach-block">
-  <div class="teach-inst">Entrepreneurship Bootcamp &mdash; 16 cohorts</div>
+  <div class="teach-inst"><button type="button" class="subsection-toggle" aria-expanded="false" data-target="teach-bootcamp"><span class="subsection-chevron">&#9656;</span> Entrepreneurship Bootcamp &mdash; 16 cohorts</button></div>
+  <div class="subsection-content" id="teach-bootcamp">
   <div class="teach-sub">Delivered as part of a full semester-long course</div>
   <ul class="teach-list">
     <li>Universitas Gadjah Mada &mdash; Department of Nuclear Engineering and Engineering Physics, Faculty of Engineering, 2018&ndash;2024 (multiple cohorts)</li>
@@ -555,19 +630,24 @@
   <ul class="teach-list">
     <li>Universitas Trunojoyo Madura &mdash; Faculty of Agriculture</li>
   </ul>
+  </div>
 </div>
 
 <div class="teach-block">
-  <div class="teach-inst">MIT En-Roads Climate Simulation</div>
+  <div class="teach-inst"><button type="button" class="subsection-toggle" aria-expanded="false" data-target="teach-enroads"><span class="subsection-chevron">&#9656;</span> En-Roads Climate Simulation by Climate Interactive and MIT Sustainability</button></div>
+  <div class="subsection-content" id="teach-enroads">
   <ul class="teach-list">
     <li><a href="https://www.climateinteractive.org/en-roads/climate-ambassadors/ambassador/toronata-tambun/" target="_blank">Ambassador</a> — workshops in Rabat &mdash; Morocco, Ho Chi Minh City &mdash; Vietnam, Guangzhou &mdash; China, Singapore, Jakarta, Bandung, Yogyakarta (2020&ndash;present)</li>
   </ul>
+  </div>
+</div>
+
 </div>
 
 <!-- AWARDS -->
-<h2 id="awards">Awards & Recognition</h2>
+<h2 id="awards"><button type="button" class="section-toggle" aria-expanded="false" data-target="awards-content"><span class="section-chevron">&#9656;</span> Awards &amp; Recognition</button></h2>
 
-<ul class="award-list">
+<ul class="award-list section-content" id="awards-content">
   <li>
     Scholarly Achievement Award — Doctor of Philosophy in Science in Management, SBM-ITB Bandung
     <span class="award-year">2026</span>
@@ -606,19 +686,14 @@
 <h2 id="contact">Contact</h2>
 
 <div class="contact-block">
-  <p>Email: <a href="/cdn-cgi/l/email-protection#71051e031e05101c13041f31101d041c1f185f191003071003155f141504"><span class="__cf_email__" data-cfemail="9eeaf1ecf1eafff3fcebf0defff2ebf3f0f7b0f6ffece8ffecfab0fbfaeb">[email&#160;protected]</span></a></p>
-  <p>LinkedIn: <a href="https://linkedin.com/in/toronatatambun" target="_blank">linkedin.com/in/toronatatambun</a></p>
-  <p>Jakarta Post Columns: <a href="jakarta_post.html">Full Archive →</a></p>
-  <p>LinkedIn Articles: <a href="articles.html">Full Archive →</a></p>
-  <p>Field Notes: <a href="posts.html">Archive →</a></p>
-  <p>Presentations: <a href="presentations.html">Archive →</a></p>
-  <p>Speaking Engagements: <a href="speaking.html">Archive →</a></p>
-  <p>Foundation: <a href="https://yayasanmensetmanus.org" target="_blank">Yayasan Mens et Manus</a></p>
+  <p>You are welcome to send me a message via <a href="https://linkedin.com/in/toronatatambun" target="_blank">linkedin.com/in/toronatatambun</a>.</p>
+  <p>A one-page CV is available <a href="https://drive.google.com/file/d/1bHdTHKkRjeyX2-udRpb3f5MVYSxCRUrw/view?usp=sharing" target="_blank">here</a> for your kind reference.</p>
+  <p class="privacy-note">By downloading or saving any page of this website — including this CV — as a file or PDF, you agree to use the personal information it contains solely for the purpose for which it was provided, and in accordance with applicable data privacy laws.</p>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-  A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore · Bandung &nbsp;·&nbsp; Last updated August 2026
+  A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore &nbsp;·&nbsp; Last updated August 2026
 </div>
 
 <button id="back-to-top" title="Back to top">↑</button>
@@ -638,29 +713,67 @@
       document.documentElement.scrollTop = 0;
     };
 
-    var homeToggle = document.getElementById('home-toggle');
-    var homeMenu = document.getElementById('home-menu');
+    function closeAllNavMenus() {
+      document.querySelectorAll('.nav-dropdown-menu.open').forEach(function (m) {
+        m.classList.remove('open');
+      });
+      document.querySelectorAll('.nav-dropdown-btn.active').forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-expanded', 'false');
+      });
+    }
 
-    homeToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = homeMenu.classList.toggle('open');
-      homeToggle.classList.toggle('active', isOpen);
-      homeToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.querySelectorAll('.nav-dropdown-btn').forEach(function (btn) {
+      var menu = document.getElementById(btn.dataset.menu);
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var wasOpen = menu.classList.contains('open');
+        closeAllNavMenus();
+        if (!wasOpen) {
+          menu.classList.add('open');
+          btn.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
     });
 
-    document.addEventListener('click', function(e) {
-      if (!homeMenu.contains(e.target) && e.target !== homeToggle) {
-        homeMenu.classList.remove('open');
-        homeToggle.classList.remove('active');
-        homeToggle.setAttribute('aria-expanded', 'false');
-      }
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav-dropdown')) { closeAllNavMenus(); }
     });
 
-    homeMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        homeMenu.classList.remove('open');
-        homeToggle.classList.remove('active');
-        homeToggle.setAttribute('aria-expanded', 'false');
+    document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
+      link.addEventListener('click', closeAllNavMenus);
+    });
+
+    var jpCount = document.getElementById('jp-count');
+    if (jpCount) {
+      fetch('jakarta_post.html')
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          var rows = doc.querySelectorAll('#articles-table tbody tr');
+          if (rows.length) { jpCount.textContent = rows.length; }
+        })
+        .catch(function () { /* keep static fallback count */ });
+    }
+
+    document.querySelectorAll('.section-toggle').forEach(function (btn) {
+      var heading = btn.closest('h2');
+      var content = document.getElementById(btn.dataset.target);
+      btn.addEventListener('click', function () {
+        var open = content.classList.toggle('open');
+        heading.classList.toggle('expanded', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+
+    document.querySelectorAll('.subsection-toggle').forEach(function (btn) {
+      var heading = btn.closest('h3') || btn.closest('.teach-inst');
+      var content = document.getElementById(btn.dataset.target);
+      btn.addEventListener('click', function () {
+        var open = content.classList.toggle('open');
+        heading.classList.toggle('expanded', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
     });
   });

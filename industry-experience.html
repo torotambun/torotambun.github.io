@@ -23,10 +23,6 @@
   header.site h1 { font-family:'Playfair Display', Georgia, serif; font-size:clamp(26px,4vw,40px);
     font-weight:700; letter-spacing:-0.02em; line-height:1.2; margin-bottom:8px; color:#fff; }
   header.site .subtitle { font-size:15px; opacity:0.75; font-weight:300; font-style:italic; }
-  header.site .nav { margin-top:20px; display:flex; gap:16px; flex-wrap:wrap; }
-  header.site .nav a { font-family:'Source Serif 4', Georgia, serif; font-size:13px; color:#c3b3dd;
-    text-decoration:none; border-bottom:1px solid rgba(195,179,221,0.4); padding-bottom:1px; }
-  header.site .nav a:hover { color:#fff; border-color:#fff; }
   .content-wrap { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
   @media (max-width: 700px) {
     header.site, .content-wrap { padding-left: 20px; padding-right: 20px; }
@@ -91,6 +87,29 @@
     color: #111;
   }
 
+  .section-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .section-toggle:hover { color: var(--accent); }
+  .section-chevron {
+    display: inline-block;
+    font-size: 0.75em;
+    color: var(--accent);
+    transition: transform 0.15s;
+  }
+  h2.expanded .section-chevron { transform: rotate(90deg); }
+
   .track-desc {
     font-size: 0.88rem;
     color: #888;
@@ -98,7 +117,8 @@
     margin-bottom: 20px;
   }
 
-  .role-list { list-style: none; }
+  .role-list { list-style: none; display: none; }
+  .role-list.open { display: block; }
 
   .role-list li {
     margin-bottom: 28px;
@@ -161,6 +181,39 @@
     z-index: 9999;
   }
   #back-to-top:hover { background: var(--accent); }
+
+  .role-toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .role-toggle .role-title { transition: color 0.15s; }
+  .role-toggle:hover .role-title { color: var(--accent); text-decoration: underline; }
+  .role-chevron {
+    display: inline-block;
+    font-size: 0.7em;
+    color: var(--accent);
+    transition: transform 0.15s;
+    margin-right: 2px;
+  }
+  .role-list li.expanded .role-chevron { transform: rotate(90deg); }
+  .role-list li .role-meta,
+  .role-list li .role-desc { display: none; }
+  .role-list li.expanded .role-meta,
+  .role-list li.expanded .role-desc { display: block; }
+  .role-list li {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+  }
+  .role-list li:last-child { border-bottom: none; }
+
+
 </style>
 </head>
 <body>
@@ -168,11 +221,7 @@
 <header class="site">
   <a class="back-link" href="https://torotambun.github.io">← Back to Home</a>
   <h1>Industry Experience</h1>
-  <p class="subtitle">Oil &amp; gas services, seismic acquisition and geophysical sales, 1994–2018</p>
-  <div class="nav">
-    <a href="#corporate-career">Corporate Career</a>
-    <a href="#entrepreneurship-and-board-advisory">Entrepreneurship &amp; Board Advisory</a>
-  </div>
+  <p class="subtitle">Two parallel tracks, 1994–2018</p>
 </header>
 
 
@@ -181,12 +230,12 @@
   Career history in oil and gas services, seismic acquisition, and geophysical sales, 1994–2018, shown as two parallel tracks: a corporate career progressing from field engineering to regional VP roles, and an entrepreneurship and board advisory track that began in 2012 and continues today.
 </p>
 
-<h2 id="corporate-career">Corporate Career</h2>
+<h2 id="energy-executive"><button type="button" class="section-toggle" aria-expanded="false" data-target="corp-list"><span class="section-chevron">&#9656;</span> Energy Executive</button></h2>
 <div class="track-desc">Schlumberger and the seismic services industry — field engineering through regional sales and business development leadership</div>
 
-<ul class="role-list">
-  <li>
-    <div class="role-title">BGP Marine, CNPC — VP Business Development</div>
+<ul class="role-list" id="corp-list">
+  <li id="role-bgp-marine-cnpc-vp-business-development">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">BGP Marine, CNPC — VP Business Development</span></button>
     <div class="role-meta">British Virgin Islands (regional: Middle East–North Africa–Eastern Mediterranean, Asia, Australia/New Zealand) · February 2014 – January 2017</div>
     <div class="role-desc">
       <p>Assigned through Aren Geophysical Pte Ltd. Led the sales team across the Eastern Hemisphere, delivered three sales courses as part of a change implementation program, and mentored the sales team in building competence to secure contracts.</p>
@@ -194,15 +243,15 @@
       <p>BGP Marine reached break-even for the first time since its 2006 inception in 2015, then over 10% profit in 2016, with recognized revenue coming mostly from Asia-Pacific. Contracts secured included multi-client work for Searcher Seismic (PNG, Australia, Norway, pre-funded by independents and supermajors), TGS Australia, Spectrum Australia, ONGC Videsh, KrisEnergy Thailand, Mubadala Thailand, Pertamina ONWJ, BP Tangguh, and DOE Philippines/Timor Gap. The sales team continued securing contracts after this assignment ended.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Timor Gap Seismic Services — Managing Director</div>
+  <li id="role-timor-gap-seismic-services-managing-director">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Timor Gap Seismic Services — Managing Director</span></button>
     <div class="role-meta">Timor-Leste · November 2015 – December 2016</div>
     <div class="role-desc">
       <p>Appointed by BGP Marine and Timor Gap as MD for a newly launched joint venture providing seismic services for projects involving both parties.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Asia Pacific B2B Sales, Business Developer and Negotiator</div>
+  <li id="role-asia-pacific-b2b-sales-business-developer-and-negotiator">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Asia Pacific B2B Sales, Business Developer and Negotiator</span></button>
     <div class="role-meta">Fugro Geoteam AS · Bergen Oilfield Services · Reflect Geophysical · SeaBird Exploration FZ-LLC — Dubai, Singapore, Perth/Jakarta · November 2007 – January 2014</div>
     <div class="role-desc">
       <p><strong>SeaBird Exploration FZ-LLC</strong> (March 2012 – January 2014), Sales &amp; Business Development Manager, Dubai/Singapore. Implemented a systematic sales funnel methodology from leads through contracts. Produced near-100% utility for the company's two regional vessels, contributing more than 47% of annual revenue in both 2012 and 2013: Australia/New Zealand (6 3D contracts, 2 2D contracts, 2 source vessel contracts), the Philippines (3D contract with Pitkin), Malaysia across 2 seasons (2 3D contracts with Lundin, 6 source contracts with WG and SAE, several 2D contracts for Petronas), and Indonesia (a 2D contract).</p>
@@ -211,76 +260,76 @@
       <p><strong>Fugro-Geoteam A/S</strong> (November 2007 – September 2008), South East Asia Sales Manager, Perth/Jakarta. Built relationships with PetroVietnam, PTTEP, BPMIGAS, and Petronas. Secured a backlog of 2D/3D jobs for Fugro Geoteam's regional vessels from December 2007: TAC PAN Indonesia, Vietgazprom (direct award), 3D Malaysia Newfield (direct award), 2D Premier Indonesia, 2D Idemitsu Vietnam, 2D Premier Vietnam, 2D Talisman, and 2D for PTTEP.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — Contract Manager, KAL-ING Sub-Geomarket</div>
+  <li id="role-schlumberger-contract-manager-kal-ing-sub-geomarket">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — Contract Manager, KAL-ING Sub-Geomarket</span></button>
     <div class="role-meta">Balikpapan · June 2006 – October 2007</div>
     <div class="role-desc">
       <p>Reviewed more than 200 contracts and tenders for Schlumberger KAL.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — General Manager, Human Capital</div>
+  <li id="role-schlumberger-general-manager-human-capital">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — General Manager, Human Capital</span></button>
     <div class="role-meta">Jakarta · March 2006 – June 2006</div>
     <div class="role-desc">
       <p>Human Capital GM assignment at Saripari Pertiwi Abadi, on leave without pay from Schlumberger.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — Credit Controller, Indonesia</div>
+  <li id="role-schlumberger-credit-controller-indonesia">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — Credit Controller, Indonesia</span></button>
     <div class="role-meta">Jakarta · May 2005 – March 2006</div>
     <div class="role-desc">
       <p>Reorganized the credit department for Schlumberger Indonesia — reaffirmed credit policy, reaffirmed credit rating, and established a collection system. Collected more than $550K in three-year bad debt and close to $8.1M in seven-year bad debt.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger Business Consulting</div>
+  <li id="role-schlumberger-business-consulting">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger Business Consulting</span></button>
     <div class="role-meta">Singapore · December 2004 – May 2005</div>
     <div class="role-desc">
       <p>Assignment on IMPACT deployment for Unocal — Houston, Balikpapan, Tokyo, Singapore, Kuala Lumpur, and Jakarta. Also assigned to a competence model project for Petronas.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — Quality Environment Health Safety Manager</div>
+  <li id="role-schlumberger-quality-environment-health-safety-manager">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — Quality Environment Health Safety Manager</span></button>
     <div class="role-meta">Balikpapan · May 2003 – December 2004</div>
     <div class="role-desc">
       <p>QHSE, KAL-ING Sub-Geomarket. Restructured the first Journey Management System in Kalimantan for Schlumberger. Conducted more than 200 field visits over the assignment and received the President of the Republic of Indonesia's safety award for safety leadership across a workforce of more than 800.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — OFS Indonesia (ING) Account Manager</div>
+  <li id="role-schlumberger-ofs-indonesia-ing-account-manager">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — OFS Indonesia (ING) Account Manager</span></button>
     <div class="role-meta">Jakarta · February 2003 – May 2003</div>
     <div class="role-desc">
       <p>For Exspan/Medco and Pertamina New Venture. Approached the account relationship with an anthropologist's attention to organizational culture, working closely with a prominent independent oil company in Jakarta.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — Sales Account Manager, WesternGeco Marine ING</div>
+  <li id="role-schlumberger-sales-account-manager-westerngeco-marine-ing">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — Sales Account Manager, WesternGeco Marine ING</span></button>
     <div class="role-meta">Jakarta · October 2001 – February 2003 · also referenced as Indonesia Marine Sales Manager/Director</div>
     <div class="role-desc">
       <p>From May to October 2001, still offshore aboard the Geco-Angler in Australian and Japanese waters, awaiting the sales opening.</p>
       <p>First regional sales assignment, covering the Indonesian market. Won the first Petronas Carigali contract in Indonesia for the Geco Eagle, at the time WesternGeco's most modern vessel.</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — Leave Without Pay</div>
+  <li id="role-schlumberger-leave-without-pay">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — Leave Without Pay</span></button>
     <div class="role-meta">Jakarta · January 2000 – May 2001</div>
     <div class="role-desc">
       <p>On leave to pursue an MBA. Also served as Health Care Management Manager at International SOS, building their Health Care Management business unit (February – May 2001).</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — South East Asia Instrumentation Supervisor, Geco-Prakla</div>
+  <li id="role-schlumberger-south-east-asia-instrumentation-supervisor-geco-prakla">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — South East Asia Instrumentation Supervisor, Geco-Prakla</span></button>
     <div class="role-meta">Singapore · February 1999 – December 1999</div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — Seismic Acquisition Engineer, Geco-Prakla</div>
+  <li id="role-schlumberger-seismic-acquisition-engineer-geco-prakla">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — Seismic Acquisition Engineer, Geco-Prakla</span></button>
     <div class="role-meta">Asia-Pacific · May 1995 – February 1999</div>
     <div class="role-desc">
       <p>Geco Beta, Australia (scheduled, Oct–Nov 1999). Geco Sapphire/Emerald: Brunei, India, Indonesia (Feb 1998–Feb 1999). Geco Resolution/Sapphire/Emerald: Vietnam, Malaysia, Indonesia, Timor Gap (Aug 1996–Feb 1998). Geco Resolution: Australia, New Zealand (Jan–Jul 1996). Geco Echo/Resolution: Malaysia, Australia (May–Dec 1995).</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Schlumberger — Junior Field Engineer, Wireline</div>
+  <li id="role-schlumberger-junior-field-engineer-wireline">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Schlumberger — Junior Field Engineer, Wireline</span></button>
     <div class="role-meta">Alexandria, Egypt · October 1994 – May 1995</div>
     <div class="role-desc">
       <p>Attended Schlumberger School ETC-46 in Amreya, Alexandria, Egypt. Attended Wireline Pre-School in Balikpapan for Total, Unocal, and Vico.</p>
@@ -288,20 +337,20 @@
   </li>
 </ul>
 
-<h2 id="entrepreneurship-and-board-advisory">Entrepreneurship &amp; Board Advisory</h2>
+<h2 id="entrepreneurship-and-board-advisory"><button type="button" class="section-toggle" aria-expanded="false" data-target="entr-list"><span class="section-chevron">&#9656;</span> Entrepreneurship &amp; Board Advisory</button></h2>
 <div class="track-desc">Running in parallel with, and continuing beyond, the corporate career above</div>
 
-<ul class="role-list">
-  <li>
-    <div class="role-title">Aren Energy Investment Pte Ltd — Founder and Director</div>
+<ul class="role-list" id="entr-list">
+  <li id="role-aren-energy-investment-pte-ltd-founder-and-director">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Aren Energy Investment Pte Ltd — Founder and Director</span></button>
     <div class="role-meta">Singapore · February 2012 – present</div>
     <div class="role-desc">
       <p>Advises investors across a portfolio of oil and gas concession projects, provides frameworks for entrepreneurship, and lays foundations for innovation and entrepreneurship ecosystems in selected universities. Sources startups in AgFood tech, arts and culture, tourism, and education.</p>
       <p>Introduced 11 April 2017 to replace the previously known Aren Geophysical Pte Ltd (Biz File 201511524W, registered 29 April 2015). Aren Geophysical was founded to give oil and gas service companies leverage to establish their presence in Asia-Pacific. Aren's predecessor was Prolific Energy Asia Pacific Pte Ltd (Biz File 201404208M, 21 February 2012 – 14 March 2013).</p>
     </div>
   </li>
-  <li>
-    <div class="role-title">Gulf Energy Pty Ltd — Board Member: Non-Executive Director</div>
+  <li id="role-gulf-energy-pty-ltd-board-member-non-executive-director">
+    <button type="button" class="role-toggle" aria-expanded="false"><span class="role-chevron">&#9656;</span> <span class="role-title">Gulf Energy Pty Ltd — Board Member: Non-Executive Director</span></button>
     <div class="role-meta">Sydney, Australia · November 2016 – March 2018</div>
     <div class="role-desc">
       <p>An oil and gas exploration company managing block Q/23P offshore Queensland, Australia.</p>
@@ -309,14 +358,11 @@
   </li>
 </ul>
 
-<div class="footer">
-  A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore · Bandung
-</div>
 </div>
 
 
 <footer class="site">
-  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a></p>
+  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a></p>
 </footer>
 
 <button id="back-to-top" title="Back to top">↑</button>
@@ -335,6 +381,24 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     };
+
+    document.querySelectorAll('.role-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var li = btn.closest('li');
+        var expanded = li.classList.toggle('expanded');
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+
+    document.querySelectorAll('.section-toggle').forEach(function (btn) {
+      var h2 = btn.closest('h2');
+      var list = document.getElementById(btn.dataset.target);
+      btn.addEventListener('click', function () {
+        var open = list.classList.toggle('open');
+        h2.classList.toggle('expanded', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
   });
 </script>
 </body>

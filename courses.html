@@ -23,10 +23,6 @@
   header.site h1 { font-family:'Playfair Display', Georgia, serif; font-size:clamp(26px,4vw,40px);
     font-weight:700; letter-spacing:-0.02em; line-height:1.2; margin-bottom:8px; color:#fff; }
   header.site .subtitle { font-size:15px; opacity:0.75; font-weight:300; font-style:italic; }
-  header.site .nav { margin-top:20px; display:flex; gap:16px; flex-wrap:wrap; }
-  header.site .nav a { font-family:'Source Serif 4', Georgia, serif; font-size:13px; color:#c3b3dd;
-    text-decoration:none; border-bottom:1px solid rgba(195,179,221,0.4); padding-bottom:1px; }
-  header.site .nav a:hover { color:#fff; border-color:#fff; }
   .content-wrap { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
   @media (max-width: 700px) {
     header.site, .content-wrap { padding-left: 20px; padding-right: 20px; }
@@ -102,7 +98,31 @@
     letter-spacing: 0.06em;
   }
 
-  .pub-list { list-style: none; }
+  .section-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .section-toggle:hover { color: var(--accent); }
+  .section-chevron {
+    display: inline-block;
+    font-size: 0.75em;
+    color: var(--accent);
+    transition: transform 0.15s;
+  }
+  h2.expanded .section-chevron { transform: rotate(90deg); }
+
+  .pub-list { list-style: none; display: none; }
+  .pub-list.open { display: block; }
 
   .pub-list li {
     margin-bottom: 14px;
@@ -163,21 +183,17 @@
 <header class="site">
   <a class="back-link" href="https://torotambun.github.io">← Back to Home</a>
   <h1>Courses</h1>
-  <p class="subtitle">Industry, technical and sales training, 1993–2022</p>
-  <div class="nav">
-    <a href="#recent-2016-2022">Recent (2016–2022)</a>
-    <a href="#industry-and-sales-training-1993-2014">Industry &amp; Sales Training (1993–2014)</a>
-  </div>
+  <p class="subtitle">Courses ran through 2022; field research since 2018 was formulated into a PhD, 2023–2026</p>
 </header>
 
 
 <div class="content-wrap">
 <p class="page-desc">
-  Industry, technical, and sales training completed across a career in seismic acquisition, oilfield services, and business development, 1993–2022, spanning postings from Balikpapan to Boston.
+  Industry, technical, and sales training completed across a career in seismic acquisition, oilfield services, and business development, 1993–2022 — spanning training grounds from the wireline engineering school in Alexandria, Egypt, to executive classrooms in Boston, USA, and Oxford, England.
 </p>
 
-<h2 id="recent-2016-2022">Recent (2016–2022)</h2>
-<ul class="pub-list">
+<h2 id="recent-2016-2022"><button type="button" class="section-toggle" aria-expanded="false" data-target="recent-list"><span class="section-chevron">&#9656;</span> Recent (2016–2022)</button></h2>
+<ul class="pub-list" id="recent-list">
   <li>
     <div class="pub-title">Designing and Executing Corporate Revitalization</div>
     <div class="pub-meta">Harvard Business School Executive Education, Boston — September 2022</div>
@@ -276,8 +292,8 @@
   </li>
 </ul>
 
-<h2 id="industry-and-sales-training-1993-2014">Industry &amp; Sales Training (1993–2014)</h2>
-<ul class="pub-list">
+<h2 id="industry-and-sales-training-1993-2014"><button type="button" class="section-toggle" aria-expanded="false" data-target="training-list"><span class="section-chevron">&#9656;</span> Industry &amp; Sales Training (1993–2014)</button></h2>
+<ul class="pub-list" id="training-list">
   <li>
     <div class="pub-title">VantagePoint: Cracking the Sales Management Code and the Strategic Pipeline Management</div>
     <div class="pub-meta">Chicago — April 2014</div>
@@ -380,14 +396,11 @@
   </li>
 </ul>
 
-<div class="footer">
-  A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore · Bandung
-</div>
 </div>
 
 
 <footer class="site">
-  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a></p>
+  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a></p>
 </footer>
 
 <button id="back-to-top" title="Back to top">↑</button>
@@ -406,6 +419,16 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     };
+
+    document.querySelectorAll('.section-toggle').forEach(function (btn) {
+      var h2 = btn.closest('h2');
+      var list = document.getElementById(btn.dataset.target);
+      btn.addEventListener('click', function () {
+        var open = list.classList.toggle('open');
+        h2.classList.toggle('expanded', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
   });
 </script>
 </body>
