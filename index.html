@@ -75,6 +75,7 @@
     border-bottom: 1px solid #bbb;
     padding: 0 0 1px;
     cursor: pointer;
+    touch-action: manipulation;
     transition: color 0.15s, border-color 0.15s;
   }
 
@@ -95,15 +96,7 @@
     z-index: 100;
   }
 
-  .nav-dropdown-menu.open,
-  .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-
-  .nav-dropdown:hover .nav-dropdown-btn { color: #111; border-color: #111; }
-
-  @media (hover: none) {
-    .nav-dropdown:hover .nav-dropdown-menu { display: none; }
-    .nav-dropdown-menu.open { display: block; }
-  }
+  .nav-dropdown-menu.open { display: block; }
 
   .nav-dropdown-menu a {
     display: block;
@@ -112,6 +105,7 @@
     font-size: 0.88rem;
     color: #444;
     text-decoration: none;
+    touch-action: manipulation;
     border-bottom: none;
   }
 
@@ -752,6 +746,37 @@
     document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
       link.addEventListener('click', closeAllNavMenus);
     });
+
+    // Hover-to-open on real mouse devices only. Deliberately NOT done via CSS :hover —
+    // iOS Safari treats a :hover rule on an ancestor as "first tap = simulate hover,
+    // second tap = actual click," which breaks tap targeting on iPhone. Gating this to
+    // matchMedia('(hover: hover) and (pointer: fine)') keeps touch devices on the plain
+    // click/tap handler above, untouched.
+    if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.nav-dropdown').forEach(function (wrap) {
+        var btn = wrap.querySelector('.nav-dropdown-btn');
+        var menu = wrap.querySelector('.nav-dropdown-menu');
+        var closeTimer = null;
+
+        wrap.addEventListener('mouseenter', function () {
+          clearTimeout(closeTimer);
+          closeAllNavMenus();
+          menu.classList.add('open');
+          btn.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+        });
+
+        wrap.addEventListener('mouseleave', function () {
+          // Short grace period so crossing the small gap between the button and the
+          // menu doesn't flicker the menu closed mid-move.
+          closeTimer = setTimeout(function () {
+            menu.classList.remove('open');
+            btn.classList.remove('active');
+            btn.setAttribute('aria-expanded', 'false');
+          }, 200);
+        });
+      });
+    }
 
     var jpCount = document.getElementById('jp-count');
     if (jpCount) {
