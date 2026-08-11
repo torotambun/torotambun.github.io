@@ -4,27 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dr. A.R.Y. Toronata Tambun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
+  :root { --ink:#1a1a2e; --muted:#5a5a7a; --accent:#5f4b8b; --accent2:#1a1a2e;
+           --bg:#faf9f6; --surface:#ffffff; --border:#e8e4dc; --hover-bg:#f2eef7; --radius:4px; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: 'Source Serif 4', Georgia, serif;
     font-size: 16px;
     line-height: 1.7;
-    color: #222;
-    background: #fff;
+    color: var(--ink);
+    background: var(--bg);
+    min-height: 100vh;
+  }
+
+  .content-wrap {
     max-width: 740px;
     margin: 0 auto;
-    padding: 60px 24px 100px;
+    padding: 36px 24px 100px;
   }
 
   /* ── HEADER ── */
   .header {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     align-items: flex-start;
-    margin-bottom: 28px;
+    background: var(--accent2);
+    color: #fff;
+    padding: 48px 32px 40px;
+    position: relative;
+    overflow: hidden;
   }
+
+  .header::before { content:''; position:absolute; top:-60px; right:-60px; width:280px; height:280px;
+    border-radius:50%; background:rgba(95,75,139,0.22); pointer-events:none; }
+  .header::after { content:''; position:absolute; bottom:-70px; left:15%; width:180px; height:180px;
+    border-radius:50%; background:rgba(95,75,139,0.12); pointer-events:none; }
 
   .header img {
     width: 130px;
@@ -32,67 +49,74 @@
     object-fit: cover;
     object-position: center top;
     flex-shrink: 0;
-    border: 1px solid #ddd;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
   }
 
-  .header-text { flex: 1; }
+  .header-text { flex: 1; position: relative; z-index: 1; }
 
   h1 {
-    font-size: 1.6rem;
-    font-weight: normal;
-    margin-bottom: 10px;
-    color: #111;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 18px;
+    color: #fff;
   }
 
   /* ── NAV ── */
   .nav {
     display: flex;
-    gap: 18px;
-    margin-bottom: 20px;
+    gap: 16px;
+    margin-bottom: 0;
     flex-wrap: wrap;
   }
 
   .nav a {
-    font-family: Arial, sans-serif;
-    font-size: 0.88rem;
-    color: #555;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 0.85rem;
+    color: #c3b3dd;
     text-decoration: none;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid rgba(195,179,221,0.4);
     padding-bottom: 1px;
     transition: color 0.15s, border-color 0.15s;
   }
 
-  .nav a:hover { color: #111; border-color: #111; }
+  .nav a:hover { color: #fff; border-color: #fff; }
 
   .nav-dropdown { position: relative; }
 
   .nav-dropdown-btn {
-    font-family: Arial, sans-serif;
-    font-size: 0.88rem;
-    color: #555;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 0.85rem;
+    color: #c3b3dd;
     background: none;
     border: none;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid rgba(195,179,221,0.4);
     padding: 0 0 1px;
     cursor: pointer;
     touch-action: manipulation;
     transition: color 0.15s, border-color 0.15s;
   }
 
-  .nav-dropdown-btn:hover, .nav-dropdown-btn.active { color: #111; border-color: #111; }
+  .nav-dropdown-btn:hover, .nav-dropdown-btn.active { color: #fff; border-color: #fff; }
 
   .nav-dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    margin-top: 4px;
+    margin-top: 8px;
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
     padding: 6px 0;
-    min-width: 170px;
+    min-width: 190px;
     z-index: 100;
   }
 
@@ -102,48 +126,49 @@
     display: block;
     padding: 8px 16px;
     font-family: Arial, sans-serif;
-    font-size: 0.88rem;
-    color: #444;
+    font-size: 0.87rem;
+    color: var(--ink);
     text-decoration: none;
     touch-action: manipulation;
     border-bottom: none;
   }
 
-  .nav-dropdown-menu a:hover { background: #f5f5f5; color: #111; }
+  .nav-dropdown-menu a:hover { background: var(--hover-bg); color: var(--accent); }
 
   /* ── BIO ── */
   .bio {
-    font-size: 1rem;
+    font-size: 1.02rem;
     color: #333;
-    margin-bottom: 36px;
-    line-height: 1.75;
+    margin-bottom: 20px;
+    line-height: 1.8;
   }
 
-  .bio p { margin-bottom: 12px; }
+  .bio p { margin-bottom: 16px; }
 
-  .bio a { color: #333; text-decoration: underline; }
-  .bio a:hover { color: #000; }
+  .bio a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+  .bio a:hover { color: var(--accent2); }
 
   /* ── SECTION ── */
   h2 {
-    font-size: 1.15rem;
-    font-weight: normal;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 6px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8px;
     margin-bottom: 20px;
-    margin-top: 48px;
-    color: #111;
+    margin-top: 52px;
+    color: var(--ink);
   }
 
   h3 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: bold;
     font-family: Arial, sans-serif;
-    color: #444;
+    color: var(--muted);
     margin-top: 24px;
     margin-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
   }
 
   /* ── DROPDOWN TOGGLES ── */
@@ -161,11 +186,11 @@
     color: inherit;
     cursor: pointer;
   }
-  .section-toggle:hover { color: #000; }
+  .section-toggle:hover { color: var(--accent); }
   .section-chevron {
     display: inline-block;
-    font-size: 0.75em;
-    color: #888;
+    font-size: 0.7em;
+    color: var(--accent);
     transition: transform 0.15s;
   }
   h2.expanded .section-chevron { transform: rotate(90deg); }
@@ -186,11 +211,11 @@
     color: inherit;
     cursor: pointer;
   }
-  .subsection-toggle:hover { color: #000; }
+  .subsection-toggle:hover { color: var(--accent); }
   .subsection-chevron {
     display: inline-block;
-    font-size: 0.75em;
-    color: #999;
+    font-size: 0.7em;
+    color: var(--accent);
     transition: transform 0.15s;
   }
   h3.expanded .subsection-chevron,
@@ -208,21 +233,21 @@
 
   .pub-title {
     font-weight: bold;
-    color: #111;
+    color: var(--ink);
     font-size: 0.98rem;
   }
 
   .pub-title a {
-    color: #111;
+    color: var(--accent);
     text-decoration: none;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid rgba(95,75,139,0.4);
   }
 
-  .pub-title a:hover { border-color: #111; }
+  .pub-title a:hover { border-color: var(--accent); color: var(--accent2); }
 
   .pub-meta {
     font-size: 0.88rem;
-    color: #666;
+    color: var(--muted);
     font-style: italic;
     margin-top: 2px;
     font-family: Arial, sans-serif;
@@ -242,7 +267,7 @@
     font-family: Arial, sans-serif;
     font-size: 0.82rem;
     font-weight: bold;
-    color: #555;
+    color: var(--muted);
     margin-bottom: 6px;
   }
 
@@ -268,7 +293,7 @@
 
   .book-title {
     font-style: italic;
-    color: #111;
+    color: var(--ink);
   }
 
   .book-status {
@@ -284,14 +309,14 @@
   .teach-inst {
     font-size: 0.97rem;
     font-weight: bold;
-    color: #222;
+    color: var(--ink);
     margin-bottom: 6px;
   }
 
   .teach-sub {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.82rem;
-    color: #666;
+    color: var(--muted);
     font-style: italic;
     margin: 8px 0 4px;
   }
@@ -309,7 +334,7 @@
   .teach-list li::before {
     content: '–';
     position: absolute; left: 0;
-    color: #aaa;
+    color: var(--accent);
   }
 
   /* ── AWARDS ── */
@@ -326,7 +351,7 @@
   .award-list li::before {
     content: '–';
     position: absolute; left: 0;
-    color: #aaa;
+    color: var(--accent);
   }
 
   .award-year {
@@ -345,11 +370,12 @@
   .contact-block p { margin-bottom: 6px; }
 
   .contact-block a {
-    color: #333;
+    color: var(--accent);
     text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
-  .contact-block a:hover { color: #000; }
+  .contact-block a:hover { color: var(--accent2); }
 
   .privacy-note {
     font-size: 0.85rem;
@@ -362,23 +388,23 @@
   .footer {
     margin-top: 72px;
     padding-top: 16px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border);
     font-family: Arial, sans-serif;
     font-size: 0.78rem;
-    color: #aaa;
+    color: var(--muted);
   }
 
   @media (max-width: 560px) {
-    .header { flex-direction: column; }
-    .header img { width: 100px; height: 124px; }
-    body { padding: 36px 18px 80px; }
+    .header { flex-direction: column; padding: 36px 20px 32px; gap: 20px; }
+    .header img { width: 96px; height: 118px; }
+    .content-wrap { padding: 28px 18px 80px; }
   }
 
     #back-to-top {
       position: fixed;
       bottom: 32px;
       right: 32px;
-      background: #222;
+      background: var(--accent2);
       color: #fff;
       border: none;
       border-radius: 50%;
@@ -392,7 +418,7 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.25);
       z-index: 9999;
     }
-    #back-to-top:hover { background: #555; }
+    #back-to-top:hover { background: var(--accent); }
   </style>
 </head>
 <body>
@@ -425,6 +451,8 @@
   </div>
 </div>
 
+<div class="content-wrap">
+
 <!-- BIO -->
 <div class="bio">
   <p>
@@ -434,10 +462,10 @@
     My work sits at the intersection of entrepreneurial formation, institutional culture, judgment under uncertainty, and disciplined human development.
   </p>
   <p>
-    I am Executive Director of <a href="https://yayasanmensetmanus.org" target="_blank">Yayasan Mens et Manus</a> (Jakarta) and Founder and Director of <a href="#">Aren Energy Investment Pte Ltd</a> (Singapore). I bring over 24 years of executive experience across 52 countries, including thirteen years with Schlumberger in regional and global roles spanning operations, technology deployment, and organizational leadership — the fuller record is on the <a href="industry-experience.html">Industry Experience</a> page.
+    I am Executive Director of <a href="https://yayasanmensetmanus.org" target="_blank">Yayasan Mens et Manus</a> (Jakarta) and Founder and Director of Aren Energy Investment Pte Ltd (Singapore). I bring over 24 years of executive experience across 52 countries, including thirteen years with Schlumberger in regional and global roles spanning operations, technology deployment, and organizational leadership — the fuller record is on the <a href="industry-experience.html">Industry Experience</a> page.
   </p>
   <p>
-    I completed my Doctor of Philosophy in Science in Management at <a href="https://www.itb.ac.id" target="_blank">Institut Teknologi Bandung</a> (2023–2026) — Summa Cum Laude, GPA 4.0 of 4.0, Minimum Required Time for Graduation. My doctoral theory — the <em>Dynamic Feedback Theory of Entrepreneurial Formation in Loss-Averse, Short-Horizon Cultures</em> — explains why innovation ecosystems in Indonesia fail not from resource scarcity, but from suppressed feedback loops, cultural risk-aversion, and institutional conformity.
+    I completed the Doctoral Program in Management Science at <a href="https://www.itb.ac.id" target="_blank">Institut Teknologi Bandung</a> (2023–2026), graduating with the degree Doktor (Dr.), Doctor of Philosophy — Summa Cum Laude, GPA 4.0 of 4.0, Minimum Required Time for Graduation. My doctoral theory — the <em>Dynamic Feedback Theory of Entrepreneurial Formation in Loss-Averse, Short-Horizon Cultures</em> — explains why innovation ecosystems in Indonesia fail not from resource scarcity, but from suppressed feedback loops, cultural risk-aversion, and institutional conformity.
   </p>
   <p>
     Earlier formation includes a Bachelor of Engineering in Nuclear Engineering — <em>Sarjana Teknik</em> — from <a href="https://www.ugm.ac.id" target="_blank">Universitas Gadjah Mada</a> (1994), a dual MM/MBA from IPMI Jakarta and Monash University Melbourne (2001), executive education at <a href="https://www.hbs.edu" target="_blank">Harvard Business School</a> (GMP26, Full Alumni, 2018–2019), the Private Equity School at <a href="https://www.sbs.ox.ac.uk" target="_blank">Saïd Business School, University of Oxford</a> (Associate Alumni, 2017), and fourteen courses at <a href="https://executive.mit.edu/certificate-holder-community/toronata-tambun-0036g000017A1AcAAK.html" target="_blank">MIT Sloan</a> (ACE, Affiliate Alumni, 2016–2018) — the fuller record of programs and certificates is on the <a href="courses.html">Courses</a> and <a href="exec-education.html">Executive Education</a> pages.
@@ -651,7 +679,7 @@
 
 <ul class="award-list section-content" id="awards-content">
   <li>
-    Scholarly Achievement Award — Doctor of Philosophy in Science in Management, SBM-ITB Bandung
+    Scholarly Achievement Award — Doctoral Program in Management Science, SBM-ITB Bandung
     <span class="award-year">2026</span>
   </li>
   <li>
@@ -659,7 +687,7 @@
     <span class="award-year">July 2025</span>
   </li>
   <li>
-    Best Student Award — Doctor of Philosophy in Science in Management, SBM-ITB Jakarta
+    Best Student Award — Doctoral Program in Management Science, SBM-ITB Jakarta
     <span class="award-year">2024</span>
   </li>
   <li>
@@ -696,6 +724,8 @@
 <!-- FOOTER -->
 <div class="footer">
   A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore &nbsp;·&nbsp; Last updated August 2026
+</div>
+
 </div>
 
 <button id="back-to-top" title="Back to top">↑</button>
