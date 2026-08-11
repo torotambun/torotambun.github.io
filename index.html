@@ -35,12 +35,17 @@
     color: #fff;
     padding: 48px 32px 40px;
     position: relative;
-    overflow: hidden;
   }
 
-  .header::before { content:''; position:absolute; top:-60px; right:-60px; width:280px; height:280px;
+  /* Decorative circles live in their own clipping layer so the header itself can
+     stay overflow:visible — otherwise the absolutely-positioned nav dropdowns get
+     cut off at the header's bottom edge. */
+  .header-deco { position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden; pointer-events: none; z-index: 0; }
+
+  .header-deco::before { content:''; position:absolute; top:-60px; right:-60px; width:280px; height:280px;
     border-radius:50%; background:rgba(95,75,139,0.22); pointer-events:none; }
-  .header::after { content:''; position:absolute; bottom:-70px; left:15%; width:180px; height:180px;
+  .header-deco::after { content:''; position:absolute; bottom:-70px; left:15%; width:180px; height:180px;
     border-radius:50%; background:rgba(95,75,139,0.12); pointer-events:none; }
 
   .header img {
@@ -68,72 +73,151 @@
     color: #fff;
   }
 
-  /* ── NAV ── */
-  .nav {
+  /* ── HEADER ACTION BAR ── */
+  .nav-bar {
     display: flex;
-    gap: 16px;
-    margin-bottom: 0;
     flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 16px;
   }
 
-  .nav a {
+  .toc-btn {
     font-family: 'Source Serif 4', Georgia, serif;
     font-size: 0.85rem;
-    color: #c3b3dd;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(195,179,221,0.4);
-    padding-bottom: 1px;
-    transition: color 0.15s, border-color 0.15s;
-  }
-
-  .nav a:hover { color: #fff; border-color: #fff; }
-
-  .nav-dropdown { position: relative; }
-
-  .nav-dropdown-btn {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-size: 0.85rem;
-    color: #c3b3dd;
-    background: none;
-    border: none;
-    border-bottom: 1px solid rgba(195,179,221,0.4);
-    padding: 0 0 1px;
+    color: #fff;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(195,179,221,0.55);
+    border-radius: 999px;
+    padding: 6px 16px;
     cursor: pointer;
     touch-action: manipulation;
-    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
   }
 
-  .nav-dropdown-btn:hover, .nav-dropdown-btn.active { color: #fff; border-color: #fff; }
+  .toc-btn:hover { background: var(--accent); border-color: var(--accent); }
 
-  .nav-dropdown-menu {
+  /* ── TABLE OF CONTENTS OVERLAY ── */
+  #toc-overlay {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 8px;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-    padding: 6px 0;
-    min-width: 190px;
-    z-index: 100;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--accent2);
+    color: #fff;
+    z-index: 10000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 60px 22px 56px;
   }
 
-  .nav-dropdown-menu.open { display: block; }
+  #toc-overlay.open { display: block; }
 
-  .nav-dropdown-menu a {
-    display: block;
-    padding: 8px 16px;
-    font-family: Arial, sans-serif;
-    font-size: 0.87rem;
-    color: var(--ink);
-    text-decoration: none;
+  body.toc-open { overflow: hidden; }
+
+  .toc-inner { max-width: 740px; margin: 0 auto; }
+
+  .toc-close {
+    position: fixed;
+    top: 10px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 6px 10px;
+    cursor: pointer;
     touch-action: manipulation;
-    border-bottom: none;
+    z-index: 10001;
   }
 
-  .nav-dropdown-menu a:hover { background: var(--hover-bg); color: var(--accent); }
+  .toc-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    margin-bottom: 26px;
+    color: #fff;
+  }
+
+  .toc-group { margin-bottom: 30px; }
+
+  .toc-group h4 {
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #c3b3dd;
+    margin-bottom: 8px;
+  }
+
+  .toc-group ul { list-style: none; }
+
+  .toc-group a {
+    display: block;
+    padding: 11px 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.02rem;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .toc-group a:hover { color: #c3b3dd; }
+
+  .toc-standalone { border-top: 1px solid rgba(255,255,255,0.16); padding-top: 8px; }
+  .toc-standalone a { border-bottom: none; }
+
+  /* ── NAVIGATION BLOCK (closes the narrative) ── */
+  .nav-block {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 22px 24px 18px;
+    margin: 4px 0 8px;
+  }
+
+  .nav-block-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .nav-block-cols { display: flex; gap: 34px; flex-wrap: wrap; }
+
+  .nav-block-col { flex: 1 1 230px; }
+
+  .nav-block-col h4 {
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .nav-block-col ul { list-style: none; }
+
+  .nav-block-col a {
+    display: block;
+    padding: 8px 0;
+    font-size: 0.95rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-block-col a:hover { color: var(--accent2); }
+
+  .nav-block-foot { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+  .nav-block-foot a {
+    font-size: 0.95rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-block-foot a:hover { color: var(--accent2); }
 
   /* ── BIO ── */
   .bio {
@@ -171,219 +255,6 @@
     letter-spacing: 0.07em;
   }
 
-  /* ── DROPDOWN TOGGLES ── */
-  .section-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-  }
-  .section-toggle:hover { color: var(--accent); }
-  .section-chevron {
-    display: inline-block;
-    font-size: 0.7em;
-    color: var(--accent);
-    transition: transform 0.15s;
-  }
-  h2.expanded .section-chevron { transform: rotate(90deg); }
-  .section-content { display: none; }
-  .section-content.open { display: block; }
-
-  .subsection-toggle {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-  }
-  .subsection-toggle:hover { color: var(--accent); }
-  .subsection-chevron {
-    display: inline-block;
-    font-size: 0.7em;
-    color: var(--accent);
-    transition: transform 0.15s;
-  }
-  h3.expanded .subsection-chevron,
-  .teach-inst.expanded .subsection-chevron { transform: rotate(90deg); }
-  .subsection-content { display: none; }
-  .subsection-content.open { display: block; }
-
-  /* ── PUBLICATIONS ── */
-  .pub-list { list-style: none; }
-
-  .pub-list li {
-    margin-bottom: 18px;
-    padding-left: 0;
-  }
-
-  .pub-title {
-    font-weight: bold;
-    color: var(--ink);
-    font-size: 0.98rem;
-  }
-
-  .pub-title a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(95,75,139,0.4);
-  }
-
-  .pub-title a:hover { border-color: var(--accent); color: var(--accent2); }
-
-  .pub-meta {
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-style: italic;
-    margin-top: 2px;
-    font-family: Arial, sans-serif;
-  }
-
-  .pub-note {
-    font-size: 0.85rem;
-    color: #888;
-    margin-top: 2px;
-    font-family: Arial, sans-serif;
-  }
-
-  /* ── ARCHIVE BLOCKS ── */
-  .arc-block { margin-bottom: 24px; }
-
-  .arc-label {
-    font-family: Arial, sans-serif;
-    font-size: 0.82rem;
-    font-weight: bold;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .arc-desc {
-    font-size: 0.93rem;
-    color: #444;
-    margin-bottom: 4px;
-  }
-
-  .arc-count {
-    font-family: Arial, sans-serif;
-    font-size: 0.82rem;
-    color: #888;
-  }
-
-  /* ── BOOKS ── */
-  .book-list { list-style: none; }
-
-  .book-list li {
-    margin-bottom: 14px;
-    font-size: 0.97rem;
-  }
-
-  .book-title {
-    font-style: italic;
-    color: var(--ink);
-  }
-
-  .book-status {
-    font-family: Arial, sans-serif;
-    font-size: 0.82rem;
-    color: #888;
-    margin-left: 6px;
-  }
-
-  /* ── TEACHING ── */
-  .teach-block { margin-bottom: 20px; }
-
-  .teach-inst {
-    font-size: 0.97rem;
-    font-weight: bold;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-
-  .teach-sub {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.82rem;
-    color: var(--muted);
-    font-style: italic;
-    margin: 8px 0 4px;
-  }
-
-  .teach-list { list-style: none; }
-
-  .teach-list li {
-    font-size: 0.93rem;
-    color: #444;
-    margin-bottom: 4px;
-    padding-left: 16px;
-    position: relative;
-  }
-
-  .teach-list li::before {
-    content: '–';
-    position: absolute; left: 0;
-    color: var(--accent);
-  }
-
-  /* ── AWARDS ── */
-  .award-list { list-style: none; }
-
-  .award-list li {
-    font-size: 0.93rem;
-    color: #333;
-    margin-bottom: 10px;
-    padding-left: 16px;
-    position: relative;
-  }
-
-  .award-list li::before {
-    content: '–';
-    position: absolute; left: 0;
-    color: var(--accent);
-  }
-
-  .award-year {
-    font-family: Arial, sans-serif;
-    font-size: 0.82rem;
-    color: #888;
-    margin-left: 6px;
-  }
-
-  /* ── CONTACT ── */
-  .contact-block {
-    font-size: 0.95rem;
-    color: #444;
-  }
-
-  .contact-block p { margin-bottom: 6px; }
-
-  .contact-block a {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .contact-block a:hover { color: var(--accent2); }
-
-  .privacy-note {
-    font-size: 0.85rem;
-    color: #888;
-    font-style: italic;
-    margin-top: 8px;
-  }
-
   /* ── FOOTER ── */
   .footer {
     margin-top: 72px;
@@ -398,6 +269,10 @@
     .header { flex-direction: column; padding: 36px 20px 32px; gap: 20px; }
     .header img { width: 96px; height: 118px; }
     .content-wrap { padding: 28px 18px 80px; }
+
+    .nav-bar { gap: 12px; }
+    .nav-block { padding: 20px 18px 14px; }
+    .nav-block-cols { flex-direction: column; gap: 20px; }
   }
 
     #back-to-top {
@@ -425,28 +300,12 @@
 
 <!-- HEADER -->
 <div class="header">
+  <div class="header-deco" aria-hidden="true"></div>
   <img src="profile.jpg" alt="Dr. A.R.Y. Toronata Tambun">
   <div class="header-text">
     <h1>Dr. A.R.Y. Toronata Tambun, S.T., M.B.A.</h1>
-    <div class="nav">
-      <div class="nav-dropdown">
-        <button type="button" class="nav-dropdown-btn" id="writing-toggle" data-menu="writing-menu" aria-expanded="false">Writing &#9662;</button>
-        <div class="nav-dropdown-menu" id="writing-menu">
-          <a href="jakarta_post.html">Jakarta Post Columns</a>
-          <a href="articles.html">LinkedIn Articles</a>
-          <a href="posts.html">Field Notes</a>
-          <a href="presentations.html">Presentations</a>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <button type="button" class="nav-dropdown-btn" id="learning-toggle" data-menu="learning-menu" aria-expanded="false">Lifelong Learning &#9662;</button>
-        <div class="nav-dropdown-menu" id="learning-menu">
-          <a href="exec-education.html">Executive Education</a>
-          <a href="courses.html">Courses</a>
-        </div>
-      </div>
-      <a href="speaking.html">Speaking Engagements</a>
-      <a href="industry-experience.html">Industry Experience</a>
+    <div class="nav-bar">
+      <button type="button" class="toc-btn" id="toc-open" aria-haspopup="dialog" aria-controls="toc-overlay">Table of Contents</button>
     </div>
   </div>
 </div>
@@ -471,261 +330,97 @@
     Earlier formation includes a Bachelor of Engineering in Nuclear Engineering — <em>Sarjana Teknik</em> — from <a href="https://www.ugm.ac.id" target="_blank">Universitas Gadjah Mada</a> (1994), a dual MM/MBA from IPMI Jakarta and Monash University Melbourne (2001), executive education at <a href="https://www.hbs.edu" target="_blank">Harvard Business School</a> (GMP26, Full Alumni, 2018–2019), the Private Equity School at <a href="https://www.sbs.ox.ac.uk" target="_blank">Saïd Business School, University of Oxford</a> (Associate Alumni, 2017), and fourteen courses at <a href="https://executive.mit.edu/certificate-holder-community/toronata-tambun-0036g000017A1AcAAK.html" target="_blank">MIT Sloan</a> (ACE, Affiliate Alumni, 2016–2018) — the fuller record of programs and certificates is on the <a href="courses.html">Courses</a> and <a href="exec-education.html">Executive Education</a> pages.
   </p>
   <p>
-    I am a columnist at The Jakarta Post, where I have written <span id="jp-count">87</span> columns — to see the complete list, please visit my <a href="jakarta_post.html">Jakarta Post Columns</a> archive. I also keep a running blog on LinkedIn Articles and, as an autoethnographer, publish Field Notes drawn from daily practice — to see the complete list of either, please visit <a href="articles.html">LinkedIn Articles</a> or <a href="posts.html">Field Notes</a>. This sits alongside my academic writing — to see the complete list, please visit the <a href="#publications">Scholarly Article</a> section below.
+    I am a columnist at The Jakarta Post, where I have written <span id="jp-count">87</span> columns — to see the complete list, please visit my <a href="jakarta_post.html">Jakarta Post Columns</a> archive. I also keep a running blog on LinkedIn Articles and, as an autoethnographer, publish Field Notes drawn from daily practice — to see the complete list of either, please visit <a href="articles.html">LinkedIn Articles</a> or <a href="posts.html">Field Notes</a>. This sits alongside my academic writing — to see the complete list, please visit the <a href="scholarly.html">Scholarly Article</a> page.
   </p>
   <p>
     I am a member of the <a href="https://hbr.org" target="_blank">Harvard Business Review Advisory Council</a> and an <a href="https://www.climateinteractive.org/en-roads/climate-ambassadors/ambassador/toronata-tambun/" target="_blank">MIT En-Roads Climate Simulation Ambassador</a>. I am available for board advisory, research collaboration, and speaking engagements. I am based across Jakarta and Singapore.
   </p>
 </div>
 
-<!-- PUBLICATIONS -->
-<h2 id="publications"><button type="button" class="section-toggle" aria-expanded="false" data-target="scholarly-content"><span class="section-chevron">&#9656;</span> Scholarly Article</button></h2>
-<div class="section-content" id="scholarly-content">
-
-<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="scopus-list"><span class="subsection-chevron">&#9656;</span> Scopus-Indexed</button></h3>
-<ul class="pub-list subsection-content" id="scopus-list">
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.1007/s13158-025-00449-x" target="_blank">Neural Development in Early Childhood and the Emergence of Moral Cognition: A Developmental Perspective</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>International Journal of Early Childhood</em>, 58, 169–197, 2026. Springer Nature.</div>
-    <div class="pub-note">Scopus Q2 · Conceptual model: 45% of moral formation takes place during ages 3–7, and 22.5%, 11.25%, 5.625%, and 2.8% consecutively by biases, external factors, context, and character.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.1007/s41959-025-00153-w" target="_blank">Assessing Entrepreneurial Proneness in University-Based Accelerator Programs: A Five-Year Study Across 16 Programs</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Entrepreneurship Education</em>, 8, 533–584, 2025. Springer Nature.</div>
-    <div class="pub-note">Scopus Q2 · Five-year empirical study across 16 accelerator programs.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.3390/systems13050351" target="_blank">Mapping Workplace Inclusion in Hierarchical Collectivist Societies: A Causal Loop Diagram Approach</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Systems</em>, 13(5), 351, 2025. MDPI/Scopus.</div>
-    <div class="pub-note">Scopus Q2 · Applies causal loop diagram methodology to hierarchical collectivist workplace settings.</div>
-  </li>
-  <li>
-    <div class="pub-title">We Built It Anyway: Autoethnographic Reflections on Innovation, Risk, and Institutional Apathy</div>
-    <div class="pub-meta"><em>Journal of Autoethnography</em>, Volume 8, Issue 3 (July 2027). University of California Press. Scopus Q2.</div>
-    <div class="pub-note">Forthcoming · Accepted for publication.</div>
-  </li>
-</ul>
-
-<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="proceedings-list"><span class="subsection-chevron">&#9656;</span> Conference Proceedings</button></h3>
-<ul class="pub-list subsection-content" id="proceedings-list">
-  <li>
-    <div class="pub-title">Exploring Shared Values in Innovation and Tourism: A Case Study Approach from Japan, Norway, and Vietnam</div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Proceedings of the 2023 MAG Scholar Conference in Business, Marketing & Tourism</em>, 198–198. Keynote Speaker.</div>
-  </li>
-</ul>
-
-<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="ebsco-list"><span class="subsection-chevron">&#9656;</span> EBSCO / Crossref / DOAJ</button></h3>
-<ul class="pub-list subsection-content" id="ebsco-list">
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.30560/hssr.v7n3p23" target="_blank">A Comparative Analysis of Twelve Research Paradigms Across Six Knowledge Acquisitions and Twelve Sources of Knowledge: A Philosophical Discourse</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Humanities and Social Science Research</em>, 7(3), 2024.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.29034/ijmra.v16n2a1" target="_blank">Qual-Quant-Quant/Qual-Qual Mixed Method: Autoethnography in Building System Dynamics' Causal Loop Diagram</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>International Journal of Multiple Research Approaches</em>, 16(2), 132–154, 2024.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.24940/theijbm/2024/v12/i7/BM2407-001" target="_blank">Evaluating the Impact of Disciplined Storytelling on Student Communication Skills: Integrating Cultural Sensitivities in Educational Interventions</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>The International Journal of Business & Management</em>, 12(7), 2024.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.24940/ijird/2024/v13/i11/NOV24006" target="_blank">Neuroticism Levels among Entrepreneurial Students in University-Based Accelerator Programs at Selected Indonesian Institutions</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>International Journal of Innovation Research & Development</em>, 13(11), 2024.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://www.internationaljournalcorner.com/index.php/theijbm/article/view/173910" target="_blank">The Cognitive Costs of Multitasking: A Critical Examination of Its Impacts on Learning, Brain Structure, and Long-Term Cognitive Function</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>The International Journal of Business & Management</em>, 12(9), 2024.</div>
-  </li>
-</ul>
-
-<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="elsevier-list"><span class="subsection-chevron">&#9656;</span> Elsevier eJournals (SSRN)</button></h3>
-<ul class="pub-list subsection-content" id="elsevier-list">
-  <li>
-    <div class="pub-title"><a href="https://dx.doi.org/10.2139/ssrn.6695143" target="_blank">Graduate Unemployment and the Wrong Remedy: Evaluating Indonesia's Study Program Closure Policy</a></div>
-    <div class="pub-meta"><em>Pedagogy eJournal</em>, 9(89), 2026. Elsevier/SSRN.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5486526" target="_blank">Constructing Entrepreneurial Identity in Indonesia: Cultural Constraints, Hybrid Pathways, and the Challenge for Multicultural Education</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Entrepreneurship, Innovation, and Growth eJournal</em>, 20(112), 2025.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5480767" target="_blank">Motivating Entrepreneur Educators: A Simulation-Based Approach to Faculty Evaluation and Role Alignment</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Entrepreneurship, Innovation, and Growth eJournal</em>, 20(111), 2025.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5539458" target="_blank">Quantifying Retention Across Pedagogical Combinations in University-Based Entrepreneurship Accelerators: A Simulation-Based Evaluation</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Entrepreneurship, Innovation, and Growth eJournal</em>, 20(117), 2025.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5480786" target="_blank">The Insult Cascade: Elite Contempt, Neural Fragility, and Collective Disorder</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Political Behavior: Cognition, Psychology, and Behavior eJournal</em>, 18(74), 2025.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5403675" target="_blank">Strategy and Innovation in AI Oversight: Fiduciary Duties of Banking Boards</a></div>
-    <div class="pub-meta">With G. Yudoko & L. Aldianto. <em>Cultural Dimensions & Organizational Behavior eJournal</em>, 16(14), 2026. Elsevier/SSRN.</div>
-  </li>
-
-
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.6175338" target="_blank">Loop-Length Prioritization in Organizational Transformation: A System Dynamics Explanation of Persistent Failure</a></div>
-    <div class="pub-meta"><em>Decision Making, Organizational Behavior & Performance eJournal</em>, 17(35), 2026. Elsevier/SSRN.</div>
-  </li>
-</ul>
-
-<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="preprints-list"><span class="subsection-chevron">&#9656;</span> Preprints (SSRN)</button></h3>
-<ul class="pub-list subsection-content" id="preprints-list">
-  <li>
-    <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6559160" target="_blank">A Formal Model of Evaluative Success Under Sequential Screening: Storytelling, Writing Ability, and Idea Quality</a></div>
-    <div class="pub-meta">SSRN Scholarly Paper No. 6559170. Social Science Research Network, 2026.</div>
-    <div class="pub-note">Preprint.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6493358" target="_blank">Beyond Formal Religion: Extended Fasting in Religious, Cultural, and Traditional Systems of Withdrawal and Formation</a></div>
-    <div class="pub-meta">SSRN Scholarly Paper No. 6493358. Social Science Research Network, 2026.</div>
-    <div class="pub-note">Preprint.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6634458" target="_blank">Cognitive Capture in Israel-Palestine Discourse: Neuroscience, Historical Incompleteness, and a Two-Axis Calibration Framework</a></div>
-    <div class="pub-meta">SSRN Scholarly Paper No. 6634458. Social Science Research Network, 2026.</div>
-    <div class="pub-note">Preprint.</div>
-  </li>
-  <li>
-    <div class="pub-title"><a href="http://dx.doi.org/10.2139/ssrn.6583299" target="_blank">Frequency, Interference, and the Resonance of the Soul: A Formal Model of Spiritual Receptivity Grounded in Planck's Energy-Frequency Relation and Cross-Traditional Contemplative Evidence</a></div>
-    <div class="pub-meta">SSRN Scholarly Paper No. 6583299. Social Science Research Network, 2026.</div>
-    <div class="pub-note">Preprint.</div>
-  </li>
-</ul>
-
-<h3><button type="button" class="subsection-toggle" aria-expanded="false" data-target="sinta-list"><span class="subsection-chevron">&#9656;</span> Sinta-Indexed</button></h3>
-<ul class="pub-list subsection-content" id="sinta-list">
-  <li>
-    <div class="pub-title"><a href="https://doi.org/10.21776/ub.apmba.2023.012.02.1" target="_blank">Value Driven Growth Mindset and Value Driven Fixed Mindset?</a></div>
-    <div class="pub-meta">With D. W. Irawanto. <em>Asia Pacific Management and Business Application</em>, 12(2), 137–142, 2023.</div>
-  </li>
-</ul>
-
-</div>
-
-<!-- BOOKS -->
-<h2 id="books"><button type="button" class="section-toggle" aria-expanded="false" data-target="books-content"><span class="section-chevron">&#9656;</span> Books</button></h2>
-
-<ul class="book-list section-content" id="books-content">
-  <li>
-    <span class="book-title">Disciplined Storytelling?: Manual for Teaching Communications to Introvert and Extrovert, Co-Learning with My Students</span><br>
-    <span class="book-status">Kindle Direct Publishing, 2024. ISBN 979-8-3208-4195-3</span>
-  </li>
-  <li>
-    <span class="book-title">Pre-Summit Clarity: Understanding the Research Journey through Saunders' Onion (Do The Right Thing Right In the First Time: Philosophy, Research Philosophy, Science and Its Research Methodology)</span><br>
-    <span class="book-status">Kindle Direct Publishing, 2023. ISBN 979-8867984533</span>
-  </li>
-  <li>
-    <span class="book-title">Exploring Shared Values in Innovation — A Case Study Approach in Japan, Norway, and Vietnam: Applying Edgar Schein's Framework</span><br>
-    <span class="book-status">Kindle Direct Publishing, 2023. ASIN B0CNK693T4</span>
-  </li>
-</ul>
-
-<!-- TEACHING -->
-<h2 id="teaching"><button type="button" class="section-toggle" aria-expanded="false" data-target="teaching-content"><span class="section-chevron">&#9656;</span> Teaching</button></h2>
-<div class="section-content" id="teaching-content">
-
-<div class="teach-block">
-  <div class="teach-inst"><button type="button" class="subsection-toggle" aria-expanded="false" data-target="teach-itb"><span class="subsection-chevron">&#9656;</span> Institut Teknologi Bandung (STEI-ITB)</button></div>
-  <div class="subsection-content" id="teach-itb">
-  <ul class="teach-list">
-    <li><strong>Technology-Based Entrepreneurship</strong> (EL-4062, formerly EL-4244) — <a href="https://stei.itb.ac.id/dosen-industri/#" target="_blank">Lecturer from Industry</a>, 2022–present</li>
-  </ul>
+<!-- NAVIGATION BLOCK — closes the narrative, opens the archive -->
+<nav class="nav-block" id="site-navigation" aria-label="Site navigation">
+  <div class="nav-block-title">Where to go from here</div>
+  <div class="nav-block-cols">
+    <div class="nav-block-col">
+      <h4>Academic Life after Industry</h4>
+      <ul>
+        <li><a href="scholarly.html">Scholarly Article</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="awards.html">Awards &amp; Recognition</a></li>
+      </ul>
+    </div>
+    <div class="nav-block-col">
+      <h4>Writing</h4>
+      <ul>
+        <li><a href="jakarta_post.html">Jakarta Post Columns</a></li>
+        <li><a href="articles.html">LinkedIn Articles</a></li>
+        <li><a href="posts.html">Field Notes</a></li>
+        <li><a href="presentations.html">Presentations</a></li>
+      </ul>
+    </div>
+    <div class="nav-block-col">
+      <h4>Practice &amp; Learning</h4>
+      <ul>
+        <li><a href="exec-education.html">Executive Education</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="speaking.html">Speaking Engagements</a></li>
+        <li><a href="industry-experience.html">Industry Experience</a></li>
+      </ul>
+    </div>
   </div>
-</div>
-
-<div class="teach-block">
-  <div class="teach-inst"><button type="button" class="subsection-toggle" aria-expanded="false" data-target="teach-ugm-agri"><span class="subsection-chevron">&#9656;</span> Universitas Gadjah Mada — Faculty of Agriculture</button></div>
-  <div class="subsection-content" id="teach-ugm-agri">
-  <ul class="teach-list">
-    <li><strong>Communication Course and Entrepreneurship Course</strong> — teaching since 2020; appointed <a href="https://mikro.faperta.ugm.ac.id/a-r-y-toronata-tambun-s-t-m-b-a/" target="_blank">NIDK Lecturer</a> Odd Semester 2023/2024–Even Semester 2025/2026</li>
-  </ul>
-  </div>
-</div>
-
-<div class="teach-block">
-  <div class="teach-inst"><button type="button" class="subsection-toggle" aria-expanded="false" data-target="teach-bootcamp"><span class="subsection-chevron">&#9656;</span> Entrepreneurship Bootcamp &mdash; 16 cohorts</button></div>
-  <div class="subsection-content" id="teach-bootcamp">
-  <div class="teach-sub">Delivered as part of a full semester-long course</div>
-  <ul class="teach-list">
-    <li>Universitas Gadjah Mada &mdash; Department of Nuclear Engineering and Engineering Physics, Faculty of Engineering, 2018&ndash;2024 (multiple cohorts)</li>
-    <li>Universitas Gadjah Mada &mdash; Department of Electrical Engineering and Information Technology (DTETI), Faculty of Engineering, Even Semester 2019/2020 (one cohort)</li>
-    <li>Universitas Gadjah Mada &mdash; Faculty of Agriculture, 2020&ndash;2024</li>
-    <li>Institut Teknologi Bandung &mdash; School of Electrical Engineering and Informatics (STEI-ITB), 2022&ndash;present</li>
-  </ul>
-  <div class="teach-sub">Delivered as a standalone bootcamp, outside a semester course</div>
-  <ul class="teach-list">
-    <li>Universitas Trunojoyo Madura &mdash; Faculty of Agriculture</li>
-  </ul>
-  </div>
-</div>
-
-<div class="teach-block">
-  <div class="teach-inst"><button type="button" class="subsection-toggle" aria-expanded="false" data-target="teach-enroads"><span class="subsection-chevron">&#9656;</span> En-Roads Climate Simulation by Climate Interactive and MIT Sustainability</button></div>
-  <div class="subsection-content" id="teach-enroads">
-  <ul class="teach-list">
-    <li><a href="https://www.climateinteractive.org/en-roads/climate-ambassadors/ambassador/toronata-tambun/" target="_blank">Ambassador</a> — workshops in Rabat &mdash; Morocco, Ho Chi Minh City &mdash; Vietnam, Guangzhou &mdash; China, Singapore, Jakarta, Bandung, Yogyakarta (2020&ndash;present)</li>
-  </ul>
-  </div>
-</div>
-
-</div>
-
-<!-- AWARDS -->
-<h2 id="awards"><button type="button" class="section-toggle" aria-expanded="false" data-target="awards-content"><span class="section-chevron">&#9656;</span> Awards &amp; Recognition</button></h2>
-
-<ul class="award-list section-content" id="awards-content">
-  <li>
-    Scholarly Achievement Award — Doctoral Program in Management Science, SBM-ITB Bandung
-    <span class="award-year">2026</span>
-  </li>
-  <li>
-    Ganesa Widya Jasa Utama — ITB's highest award for external contributors
-    <span class="award-year">July 2025</span>
-  </li>
-  <li>
-    Best Student Award — Doctoral Program in Management Science, SBM-ITB Jakarta
-    <span class="award-year">2024</span>
-  </li>
-  <li>
-    Harvard Business Review Advisory Council — Member
-    <span class="award-year">2024–present</span>
-  </li>
-  <li>
-    Best Foreign Employee of the Year — BGP President's Award, BGP Marine CNPC, Tianjin
-    <span class="award-year">2007–2017 period</span>
-  </li>
-  <li>
-    Republic of Indonesia Presidential Safety Award — 2 million LTI-free man-hours, for QHSE leadership over 800+ personnel
-    <span class="award-year">2005</span>
-  </li>
-  <li>
-    National Seriosa Classical Singing Champion — Juara I, DI Yogyakarta & national level
-    <span class="award-year">1989–1991</span>
-  </li>
-  <li>
-    National Science Writing Contest Finalist — age 17
-    <span class="award-year">1987</span>
-  </li>
-</ul>
-
-<!-- CONTACT -->
-<h2 id="contact">Contact</h2>
-
-<div class="contact-block">
-  <p>You are welcome to send me a message via <a href="https://linkedin.com/in/toronatatambun" target="_blank">linkedin.com/in/toronatatambun</a>.</p>
-  <p>A one-page CV is available <a href="https://drive.google.com/file/d/1bHdTHKkRjeyX2-udRpb3f5MVYSxCRUrw/view?usp=sharing" target="_blank">here</a> for your kind reference.</p>
-  <p class="privacy-note">By downloading or saving any page of this website — including this CV — as a file or PDF, you agree to use the personal information it contains solely for the purpose for which it was provided, and in accordance with applicable data privacy laws.</p>
-</div>
+  <div class="nav-block-foot"><a href="contact.html">Contact</a></div>
+</nav>
 
 <!-- FOOTER -->
 <div class="footer">
   A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore &nbsp;·&nbsp; Last updated August 2026
 </div>
 
+</div>
+
+<!-- TABLE OF CONTENTS OVERLAY -->
+<div id="toc-overlay" role="dialog" aria-modal="true" aria-label="Table of contents">
+  <button type="button" class="toc-close" id="toc-close" aria-label="Close table of contents">&times;</button>
+  <div class="toc-inner">
+    <div class="toc-title">Table of Contents</div>
+
+    <div class="toc-group">
+      <h4>Academic Life after Industry</h4>
+      <ul>
+        <li><a href="scholarly.html">Scholarly Article</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="awards.html">Awards &amp; Recognition</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-group">
+      <h4>Writing</h4>
+      <ul>
+        <li><a href="jakarta_post.html">Jakarta Post Columns</a></li>
+        <li><a href="articles.html">LinkedIn Articles</a></li>
+        <li><a href="posts.html">Field Notes</a></li>
+        <li><a href="presentations.html">Presentations</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-group">
+      <h4>Practice &amp; Learning</h4>
+      <ul>
+        <li><a href="exec-education.html">Executive Education</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="speaking.html">Speaking Engagements</a></li>
+        <li><a href="industry-experience.html">Industry Experience</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-group toc-standalone">
+      <ul>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <button id="back-to-top" title="Back to top">↑</button>
@@ -745,68 +440,35 @@
       document.documentElement.scrollTop = 0;
     };
 
-    function closeAllNavMenus() {
-      document.querySelectorAll('.nav-dropdown-menu.open').forEach(function (m) {
-        m.classList.remove('open');
-      });
-      document.querySelectorAll('.nav-dropdown-btn.active').forEach(function (b) {
-        b.classList.remove('active');
-        b.setAttribute('aria-expanded', 'false');
-      });
+    // ── Table of Contents overlay ──
+    var tocOverlay = document.getElementById('toc-overlay');
+    var tocOpenBtn = document.getElementById('toc-open');
+    var tocCloseBtn = document.getElementById('toc-close');
+
+    function openToc() {
+      if (!tocOverlay) { return; }
+      tocOverlay.classList.add('open');
+      document.body.classList.add('toc-open');
     }
 
-    document.querySelectorAll('.nav-dropdown-btn').forEach(function (btn) {
-      var menu = document.getElementById(btn.dataset.menu);
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var wasOpen = menu.classList.contains('open');
-        closeAllNavMenus();
-        if (!wasOpen) {
-          menu.classList.add('open');
-          btn.classList.add('active');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
+    function closeToc() {
+      if (!tocOverlay) { return; }
+      tocOverlay.classList.remove('open');
+      document.body.classList.remove('toc-open');
+    }
 
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('.nav-dropdown')) { closeAllNavMenus(); }
-    });
-
-    document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
-      link.addEventListener('click', closeAllNavMenus);
-    });
-
-    // Hover-to-open on real mouse devices only. Deliberately NOT done via CSS :hover —
-    // iOS Safari treats a :hover rule on an ancestor as "first tap = simulate hover,
-    // second tap = actual click," which breaks tap targeting on iPhone. Gating this to
-    // matchMedia('(hover: hover) and (pointer: fine)') keeps touch devices on the plain
-    // click/tap handler above, untouched.
-    if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      document.querySelectorAll('.nav-dropdown').forEach(function (wrap) {
-        var btn = wrap.querySelector('.nav-dropdown-btn');
-        var menu = wrap.querySelector('.nav-dropdown-menu');
-        var closeTimer = null;
-
-        wrap.addEventListener('mouseenter', function () {
-          clearTimeout(closeTimer);
-          closeAllNavMenus();
-          menu.classList.add('open');
-          btn.classList.add('active');
-          btn.setAttribute('aria-expanded', 'true');
-        });
-
-        wrap.addEventListener('mouseleave', function () {
-          // Short grace period so crossing the small gap between the button and the
-          // menu doesn't flicker the menu closed mid-move.
-          closeTimer = setTimeout(function () {
-            menu.classList.remove('open');
-            btn.classList.remove('active');
-            btn.setAttribute('aria-expanded', 'false');
-          }, 200);
-        });
+    if (tocOpenBtn) {
+      tocOpenBtn.addEventListener('click', function (e) { e.stopPropagation(); openToc(); });
+    }
+    if (tocCloseBtn) { tocCloseBtn.addEventListener('click', closeToc); }
+    if (tocOverlay) {
+      tocOverlay.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeToc);
       });
     }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeToc(); }
+    });
 
     var jpCount = document.getElementById('jp-count');
     if (jpCount) {
@@ -820,25 +482,6 @@
         .catch(function () { /* keep static fallback count */ });
     }
 
-    document.querySelectorAll('.section-toggle').forEach(function (btn) {
-      var heading = btn.closest('h2');
-      var content = document.getElementById(btn.dataset.target);
-      btn.addEventListener('click', function () {
-        var open = content.classList.toggle('open');
-        heading.classList.toggle('expanded', open);
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-    });
-
-    document.querySelectorAll('.subsection-toggle').forEach(function (btn) {
-      var heading = btn.closest('h3') || btn.closest('.teach-inst');
-      var content = document.getElementById(btn.dataset.target);
-      btn.addEventListener('click', function () {
-        var open = content.classList.toggle('open');
-        heading.classList.toggle('expanded', open);
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-    });
   });
 </script>
 </body>

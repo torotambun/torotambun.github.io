@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarly Article — A.R.Y. Toronata Tambun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1a1a2e; --muted:#5a5a7a; --accent:#5f4b8b; --accent2:#1a1a2e;
+           --bg:#faf9f6; --surface:#ffffff; --border:#e8e4dc; --hover-bg:#f2eef7; --radius:4px; }
+  header.site {
+    background: var(--accent2); color: #fff; padding: 48px 40px 36px;
+    position: relative; overflow: hidden;
+  }
+  header.site::before { content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px;
+    border-radius:50%; background:rgba(95,75,139,0.22); pointer-events:none; }
+  header.site::after { content:''; position:absolute; bottom:-80px; left:20%; width:200px; height:200px;
+    border-radius:50%; background:rgba(95,75,139,0.12); pointer-events:none; }
+  header.site .back-link { display:inline-block; color:#c3b3dd; font-size:13px; letter-spacing:0.08em;
+    text-decoration:none; text-transform:uppercase; margin-bottom:20px; opacity:0.9; }
+  header.site .back-link:hover { opacity:1; text-decoration:underline; }
+  header.site h1 { font-family:'Playfair Display', Georgia, serif; font-size:clamp(26px,4vw,40px);
+    font-weight:700; letter-spacing:-0.02em; line-height:1.2; margin-bottom:8px; color:#fff; }
+  header.site .subtitle { font-size:15px; opacity:0.75; font-weight:300; font-style:italic; }
+  .content-wrap { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
+  @media (max-width: 700px) {
+    header.site, .content-wrap { padding-left: 20px; padding-right: 20px; }
+  }
+  footer.site { text-align:center; padding:30px; font-size:12px; color:var(--muted);
+    border-top:1px solid var(--border); margin-top:48px; }
+  footer.site a { color:var(--accent); text-decoration:none; }
+  footer.site a:hover { text-decoration:underline; }
+
+  :root { --accent: #5f4b8b; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--bg);
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  .nav {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .nav a {
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .page-desc {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: normal;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    color: #111;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: var(--accent);
+    margin-top: 28px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .section-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .section-toggle:hover { color: var(--accent); }
+  .section-chevron {
+    display: inline-block;
+    font-size: 0.75em;
+    color: var(--accent);
+    transition: transform 0.15s;
+  }
+  h2.expanded .section-chevron { transform: rotate(90deg); }
+
+  .pub-list { list-style: none; display: none; }
+  .pub-list.open { display: block; }
+
+  .pub-list li {
+    margin-bottom: 14px;
+    padding-left: 0;
+  }
+
+  .pub-title {
+    font-weight: bold;
+    color: #111;
+    font-size: 0.98rem;
+  }
+
+  .pub-meta {
+    font-size: 0.88rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 2px;
+    font-family: Arial, sans-serif;
+  }
+
+  .footer {
+    margin-top: 72px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    color: #aaa;
+  }
+
+  @media (max-width: 560px) {
+    body { padding: 36px 18px 80px; }
+  }
+
+  #back-to-top {
+    background: var(--accent);
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    line-height: 48px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    z-index: 9999;
+  }
+  #back-to-top:hover { background: var(--accent); }
+
+  .pub-note {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 2px;
+    font-family: Arial, sans-serif;
+  }
+  .pub-list.always-open { display: block; }
+  .teach-sub {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 10px 0 4px;
+  }
+  .teach-list { list-style: none; }
+  .teach-list li {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 6px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .teach-list li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="back-link" href="https://torotambun.github.io">← Back to Home</a>
+  <h1>Scholarly Article</h1>
+  <p class="subtitle">Peer-reviewed articles, proceedings, and working papers</p>
+</header>
+
+
+<div class="content-wrap">
+<p class="page-desc">
+  Published research across Scopus-indexed journals, conference proceedings, indexed journals, Elsevier/SSRN eJournals, and preprints — the majority written with G. Yudoko and L. Aldianto during and after the doctoral program at Institut Teknologi Bandung.
+</p>
+
+<h2 id="scopus-indexed"><button type="button" class="section-toggle" aria-expanded="false" data-target="scopus-list"><span class="section-chevron">&#9656;</span> Scopus-Indexed</button></h2>
+<ul class="pub-list" id="scopus-list">
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.1007/s13158-025-00449-x" target="_blank">Neural Development in Early Childhood and the Emergence of Moral Cognition: A Developmental Perspective</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>International Journal of Early Childhood</em>, 58, 169–197, 2026. Springer Nature.</div>
+    <div class="pub-note">Scopus Q2 · Conceptual model: 45% of moral formation takes place during ages 3–7, and 22.5%, 11.25%, 5.625%, and 2.8% consecutively by biases, external factors, context, and character.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.1007/s41959-025-00153-w" target="_blank">Assessing Entrepreneurial Proneness in University-Based Accelerator Programs: A Five-Year Study Across 16 Programs</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Entrepreneurship Education</em>, 8, 533–584, 2025. Springer Nature.</div>
+    <div class="pub-note">Scopus Q2 · Five-year empirical study across 16 accelerator programs.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.3390/systems13050351" target="_blank">Mapping Workplace Inclusion in Hierarchical Collectivist Societies: A Causal Loop Diagram Approach</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Systems</em>, 13(5), 351, 2025. MDPI/Scopus.</div>
+    <div class="pub-note">Scopus Q2 · Applies causal loop diagram methodology to hierarchical collectivist workplace settings.</div>
+  </li>
+  <li>
+    <div class="pub-title">We Built It Anyway: Autoethnographic Reflections on Innovation, Risk, and Institutional Apathy</div>
+    <div class="pub-meta"><em>Journal of Autoethnography</em>, Volume 8, Issue 3 (July 2027). University of California Press. Scopus Q2.</div>
+    <div class="pub-note">Forthcoming · Accepted for publication.</div>
+  </li>
+</ul>
+
+<h2 id="conference-proceedings"><button type="button" class="section-toggle" aria-expanded="false" data-target="proceedings-list"><span class="section-chevron">&#9656;</span> Conference Proceedings</button></h2>
+<ul class="pub-list" id="proceedings-list">
+  <li>
+    <div class="pub-title">Exploring Shared Values in Innovation and Tourism: A Case Study Approach from Japan, Norway, and Vietnam</div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Proceedings of the 2023 MAG Scholar Conference in Business, Marketing &amp; Tourism</em>, 198–198. Keynote Speaker.</div>
+  </li>
+</ul>
+
+<h2 id="ebsco-crossref-doaj"><button type="button" class="section-toggle" aria-expanded="false" data-target="ebsco-list"><span class="section-chevron">&#9656;</span> EBSCO / Crossref / DOAJ</button></h2>
+<ul class="pub-list" id="ebsco-list">
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.30560/hssr.v7n3p23" target="_blank">A Comparative Analysis of Twelve Research Paradigms Across Six Knowledge Acquisitions and Twelve Sources of Knowledge: A Philosophical Discourse</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Humanities and Social Science Research</em>, 7(3), 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.29034/ijmra.v16n2a1" target="_blank">Qual-Quant-Quant/Qual-Qual Mixed Method: Autoethnography in Building System Dynamics' Causal Loop Diagram</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>International Journal of Multiple Research Approaches</em>, 16(2), 132–154, 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.24940/theijbm/2024/v12/i7/BM2407-001" target="_blank">Evaluating the Impact of Disciplined Storytelling on Student Communication Skills: Integrating Cultural Sensitivities in Educational Interventions</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>The International Journal of Business &amp; Management</em>, 12(7), 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.24940/ijird/2024/v13/i11/NOV24006" target="_blank">Neuroticism Levels among Entrepreneurial Students in University-Based Accelerator Programs at Selected Indonesian Institutions</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>International Journal of Innovation Research &amp; Development</em>, 13(11), 2024.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://www.internationaljournalcorner.com/index.php/theijbm/article/view/173910" target="_blank">The Cognitive Costs of Multitasking: A Critical Examination of Its Impacts on Learning, Brain Structure, and Long-Term Cognitive Function</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>The International Journal of Business &amp; Management</em>, 12(9), 2024.</div>
+  </li>
+</ul>
+
+<h2 id="elsevier-ejournals-ssrn"><button type="button" class="section-toggle" aria-expanded="false" data-target="elsevier-list"><span class="section-chevron">&#9656;</span> Elsevier eJournals (SSRN)</button></h2>
+<ul class="pub-list" id="elsevier-list">
+  <li>
+    <div class="pub-title"><a href="https://dx.doi.org/10.2139/ssrn.6695143" target="_blank">Graduate Unemployment and the Wrong Remedy: Evaluating Indonesia's Study Program Closure Policy</a></div>
+    <div class="pub-meta"><em>Pedagogy eJournal</em>, 9(89), 2026. Elsevier/SSRN.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5486526" target="_blank">Constructing Entrepreneurial Identity in Indonesia: Cultural Constraints, Hybrid Pathways, and the Challenge for Multicultural Education</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Entrepreneurship, Innovation, and Growth eJournal</em>, 20(112), 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5480767" target="_blank">Motivating Entrepreneur Educators: A Simulation-Based Approach to Faculty Evaluation and Role Alignment</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Entrepreneurship, Innovation, and Growth eJournal</em>, 20(111), 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5539458" target="_blank">Quantifying Retention Across Pedagogical Combinations in University-Based Entrepreneurship Accelerators: A Simulation-Based Evaluation</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Entrepreneurship, Innovation, and Growth eJournal</em>, 20(117), 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5480786" target="_blank">The Insult Cascade: Elite Contempt, Neural Fragility, and Collective Disorder</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Political Behavior: Cognition, Psychology, and Behavior eJournal</em>, 18(74), 2025.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.5403675" target="_blank">Strategy and Innovation in AI Oversight: Fiduciary Duties of Banking Boards</a></div>
+    <div class="pub-meta">With G. Yudoko &amp; L. Aldianto. <em>Cultural Dimensions &amp; Organizational Behavior eJournal</em>, 16(14), 2026. Elsevier/SSRN.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.2139/ssrn.6175338" target="_blank">Loop-Length Prioritization in Organizational Transformation: A System Dynamics Explanation of Persistent Failure</a></div>
+    <div class="pub-meta"><em>Decision Making, Organizational Behavior &amp; Performance eJournal</em>, 17(35), 2026. Elsevier/SSRN.</div>
+  </li>
+</ul>
+
+<h2 id="preprints-ssrn"><button type="button" class="section-toggle" aria-expanded="false" data-target="preprints-list"><span class="section-chevron">&#9656;</span> Preprints (SSRN)</button></h2>
+<ul class="pub-list" id="preprints-list">
+  <li>
+    <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6559160" target="_blank">A Formal Model of Evaluative Success Under Sequential Screening: Storytelling, Writing Ability, and Idea Quality</a></div>
+    <div class="pub-meta">SSRN Scholarly Paper No. 6559170. Social Science Research Network, 2026.</div>
+    <div class="pub-note">Preprint.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6493358" target="_blank">Beyond Formal Religion: Extended Fasting in Religious, Cultural, and Traditional Systems of Withdrawal and Formation</a></div>
+    <div class="pub-meta">SSRN Scholarly Paper No. 6493358. Social Science Research Network, 2026.</div>
+    <div class="pub-note">Preprint.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6634458" target="_blank">Cognitive Capture in Israel-Palestine Discourse: Neuroscience, Historical Incompleteness, and a Two-Axis Calibration Framework</a></div>
+    <div class="pub-meta">SSRN Scholarly Paper No. 6634458. Social Science Research Network, 2026.</div>
+    <div class="pub-note">Preprint.</div>
+  </li>
+  <li>
+    <div class="pub-title"><a href="http://dx.doi.org/10.2139/ssrn.6583299" target="_blank">Frequency, Interference, and the Resonance of the Soul: A Formal Model of Spiritual Receptivity Grounded in Planck's Energy-Frequency Relation and Cross-Traditional Contemplative Evidence</a></div>
+    <div class="pub-meta">SSRN Scholarly Paper No. 6583299. Social Science Research Network, 2026.</div>
+    <div class="pub-note">Preprint.</div>
+  </li>
+</ul>
+
+<h2 id="sinta-indexed"><button type="button" class="section-toggle" aria-expanded="false" data-target="sinta-list"><span class="section-chevron">&#9656;</span> Sinta-Indexed</button></h2>
+<ul class="pub-list" id="sinta-list">
+  <li>
+    <div class="pub-title"><a href="https://doi.org/10.21776/ub.apmba.2023.012.02.1" target="_blank">Value Driven Growth Mindset and Value Driven Fixed Mindset?</a></div>
+    <div class="pub-meta">With D. W. Irawanto. <em>Asia Pacific Management and Business Application</em>, 12(2), 137–142, 2023.</div>
+  </li>
+</ul>
+
+</div>
+
+
+<footer class="site">
+  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a></p>
+</footer>
+
+<button id="back-to-top" title="Back to top">↑</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var topBtn = document.getElementById('back-to-top');
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        topBtn.style.display = 'block';
+      } else {
+        topBtn.style.display = 'none';
+      }
+    };
+    topBtn.onclick = function() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    };
+
+    document.querySelectorAll('.section-toggle').forEach(function (btn) {
+      var h2 = btn.closest('h2');
+      var list = document.getElementById(btn.dataset.target);
+      btn.addEventListener('click', function () {
+        var open = list.classList.toggle('open');
+        h2.classList.toggle('expanded', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  });
+</script>
+</body>
+</html>

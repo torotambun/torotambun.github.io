@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Awards &amp; Recognition — A.R.Y. Toronata Tambun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1a1a2e; --muted:#5a5a7a; --accent:#5f4b8b; --accent2:#1a1a2e;
+           --bg:#faf9f6; --surface:#ffffff; --border:#e8e4dc; --hover-bg:#f2eef7; --radius:4px; }
+  header.site {
+    background: var(--accent2); color: #fff; padding: 48px 40px 36px;
+    position: relative; overflow: hidden;
+  }
+  header.site::before { content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px;
+    border-radius:50%; background:rgba(95,75,139,0.22); pointer-events:none; }
+  header.site::after { content:''; position:absolute; bottom:-80px; left:20%; width:200px; height:200px;
+    border-radius:50%; background:rgba(95,75,139,0.12); pointer-events:none; }
+  header.site .back-link { display:inline-block; color:#c3b3dd; font-size:13px; letter-spacing:0.08em;
+    text-decoration:none; text-transform:uppercase; margin-bottom:20px; opacity:0.9; }
+  header.site .back-link:hover { opacity:1; text-decoration:underline; }
+  header.site h1 { font-family:'Playfair Display', Georgia, serif; font-size:clamp(26px,4vw,40px);
+    font-weight:700; letter-spacing:-0.02em; line-height:1.2; margin-bottom:8px; color:#fff; }
+  header.site .subtitle { font-size:15px; opacity:0.75; font-weight:300; font-style:italic; }
+  .content-wrap { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
+  @media (max-width: 700px) {
+    header.site, .content-wrap { padding-left: 20px; padding-right: 20px; }
+  }
+  footer.site { text-align:center; padding:30px; font-size:12px; color:var(--muted);
+    border-top:1px solid var(--border); margin-top:48px; }
+  footer.site a { color:var(--accent); text-decoration:none; }
+  footer.site a:hover { text-decoration:underline; }
+
+  :root { --accent: #5f4b8b; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--bg);
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  .nav {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .nav a {
+    font-family: Arial, sans-serif;
+    font-size: 0.88rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .page-desc {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: normal;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    color: #111;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: var(--accent);
+    margin-top: 28px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .section-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .section-toggle:hover { color: var(--accent); }
+  .section-chevron {
+    display: inline-block;
+    font-size: 0.75em;
+    color: var(--accent);
+    transition: transform 0.15s;
+  }
+  h2.expanded .section-chevron { transform: rotate(90deg); }
+
+  .pub-list { list-style: none; display: none; }
+  .pub-list.open { display: block; }
+
+  .pub-list li {
+    margin-bottom: 14px;
+    padding-left: 0;
+  }
+
+  .pub-title {
+    font-weight: bold;
+    color: #111;
+    font-size: 0.98rem;
+  }
+
+  .pub-meta {
+    font-size: 0.88rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 2px;
+    font-family: Arial, sans-serif;
+  }
+
+  .footer {
+    margin-top: 72px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    color: #aaa;
+  }
+
+  @media (max-width: 560px) {
+    body { padding: 36px 18px 80px; }
+  }
+
+  #back-to-top {
+    background: var(--accent);
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    line-height: 48px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    z-index: 9999;
+  }
+  #back-to-top:hover { background: var(--accent); }
+
+  .pub-note {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 2px;
+    font-family: Arial, sans-serif;
+  }
+  .pub-list.always-open { display: block; }
+  .teach-sub {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 10px 0 4px;
+  }
+  .teach-list { list-style: none; }
+  .teach-list li {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 6px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .teach-list li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="back-link" href="https://torotambun.github.io">← Back to Home</a>
+  <h1>Awards &amp; Recognition</h1>
+  <p class="subtitle">Recognition since 2024</p>
+</header>
+
+
+<div class="content-wrap">
+<p class="page-desc">
+  Awards conferred during the doctoral program at Institut Teknologi Bandung and through membership of the Harvard Business Review Advisory Council.
+</p>
+
+<h2 id="academic-awards">Awards &amp; Recognition</h2>
+<ul class="pub-list always-open" id="awards-list">
+  <li>
+    <div class="pub-title">Scholarly Achievement Award</div>
+    <div class="pub-meta">Doctoral Program in Management Science, SBM-ITB Bandung — 2026</div>
+  </li>
+  <li>
+    <div class="pub-title">Ganesa Widya Jasa Utama</div>
+    <div class="pub-meta">ITB's highest award for external contributors — July 2025</div>
+  </li>
+  <li>
+    <div class="pub-title">Best Student Award</div>
+    <div class="pub-meta">Doctoral Program in Management Science, SBM-ITB Jakarta — 2024</div>
+  </li>
+  <li>
+    <div class="pub-title">Harvard Business Review Advisory Council — Member</div>
+    <div class="pub-meta">2024–present</div>
+  </li>
+</ul>
+<p class="page-desc" style="margin-top:28px;">
+  Awards received before 2017 — during the industry career — are listed on the <a href="industry-experience.html" style="color:var(--accent);">Industry Experience</a> page.
+</p>
+
+</div>
+
+
+<footer class="site">
+  <p>© Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Jakarta · Singapore &nbsp;·&nbsp; <a href="https://torotambun.github.io">torotambun.github.io</a></p>
+</footer>
+
+<button id="back-to-top" title="Back to top">↑</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var topBtn = document.getElementById('back-to-top');
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        topBtn.style.display = 'block';
+      } else {
+        topBtn.style.display = 'none';
+      }
+    };
+    topBtn.onclick = function() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    };
+
+    document.querySelectorAll('.section-toggle').forEach(function (btn) {
+      var h2 = btn.closest('h2');
+      var list = document.getElementById(btn.dataset.target);
+      btn.addEventListener('click', function () {
+        var open = list.classList.toggle('open');
+        h2.classList.toggle('expanded', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  });
+</script>
+</body>
+</html>
