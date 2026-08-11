@@ -27,8 +27,8 @@
     #search-clear:hover { opacity: 1; }
     #year-filter, #type-filter { padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; cursor: pointer; }
     #result-count { font-size: 13px; color: var(--muted); white-space: nowrap; font-style: italic; }
-    .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; }
-    table { width: 100%; border-collapse: collapse; }
+    .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; min-width: 640px; border-collapse: collapse; }
     thead th { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0 16px 14px; text-align: left; border-bottom: 2px solid var(--accent); }
     tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
     tbody tr:hover { background: var(--hover-bg); }
@@ -56,9 +56,46 @@
     #back-to-top:hover { opacity: 1; }
     @media(max-width:700px) {
       header, .controls, .table-wrap { padding-left: 20px; padding-right: 20px; }
-      .date-col { width: 90px; font-size: 12px; }
-      .type-col, .org-col, .course-col { width: auto; }
-      .title-col { font-size: 14px; }
+      .table-wrap { overflow-x: visible; padding-top: 20px; padding-bottom: 40px; }
+      table { min-width: 0; width: 100%; }
+      thead { display: none; }
+      tbody tr {
+        display: block;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        margin-bottom: 14px;
+        padding: 14px 16px;
+        background: var(--surface);
+      }
+      tbody tr:hover { background: var(--surface); }
+      tbody tr.hidden { display: none; }
+      td {
+        display: block;
+        width: auto !important;
+        padding: 3px 0;
+        border: none;
+        vertical-align: top;
+      }
+      td.date-col { font-size: 13px; font-weight: 700; color: var(--accent2); }
+      td.type-col { padding: 4px 0 8px; }
+      td.org-col { font-size: 15px; font-weight: 600; }
+      td.course-col, td.title-col { font-size: 14px; }
+      td.course-col:empty { display: none; }
+      td.org-col::before, td.course-col::before, td.title-col::before {
+        content: attr(data-label);
+        display: block;
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 8px;
+        margin-bottom: 2px;
+      }
+      td.org-col::before { content: "Organizer"; margin-top: 2px; }
+      td.course-col::before { content: "Course / Series"; }
+      td.title-col::before { content: "Title"; }
     }
   </style>
 </head>
