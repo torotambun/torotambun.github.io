@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-  :root { --ink:#1a1a2e; --muted:#5a5a7a; --accent:#5f4b8b; --accent2:#1a1a2e;
+  :root { --ink:#1a1a2e; --muted:#5a5a7a; --accent:#5f4b8b; --accent2:#1a1a2e; --nav-green:#2e7d32;
            --bg:#faf9f6; --surface:#ffffff; --border:#e8e4dc; --hover-bg:#f2eef7; --radius:4px; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -196,11 +196,12 @@
 
   .nav-block-col h4 {
     font-family: Arial, sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.76rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 6px;
+    color: var(--nav-green);
+    margin-bottom: 8px;
   }
 
   .nav-block-col ul { list-style: none; }
@@ -227,7 +228,8 @@
 
   .nav-block-foot a {
     font-size: 0.95rem;
-    color: var(--accent);
+    font-weight: 700;
+    color: var(--nav-green);
     text-decoration: none;
   }
 
