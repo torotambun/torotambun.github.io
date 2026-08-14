@@ -286,7 +286,13 @@
     .content-wrap { padding: 28px 18px 80px; }
 
     .nav-block { padding: 20px 18px 14px; }
+    /* Stacked on phones: columns must size to their own content.
+       .nav-block-col's desktop `flex: 1 1 260px` sets a 260px basis that becomes a
+       HEIGHT once the container is flex-direction:column — padding every short group
+       out to 260px tall and leaving 5-6 blank rows under Industry and Lifelong
+       Learning. `flex: 0 0 auto` restores content-height. Do not remove. */
     .nav-block-cols { flex-direction: column; gap: 20px; }
+    .nav-block-col { flex: 0 0 auto; }
   }
 
     #back-to-top {
