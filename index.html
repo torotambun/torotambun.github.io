@@ -361,10 +361,10 @@
     Earlier formation includes a Bachelor of Engineering in Nuclear Engineering — <em>Sarjana Teknik</em> — from <a href="https://www.ugm.ac.id" target="_blank">Universitas Gadjah Mada</a> (1994), a dual MM/MBA from IPMI Jakarta and Monash University Melbourne (2001), executive education at <a href="https://www.hbs.edu" target="_blank">Harvard Business School</a> (GMP26, Full Alumni, 2018–2019), the Private Equity School at <a href="https://www.sbs.ox.ac.uk" target="_blank">Saïd Business School, University of Oxford</a> (Associate Alumni, 2017), and fourteen courses at <a href="https://executive.mit.edu/certificate-holder-community/toronata-tambun-0036g000017A1AcAAK.html" target="_blank">MIT Sloan</a> (ACE, Affiliate Alumni, 2016–2018) — the fuller record of programs and certificates is on the <a href="courses.html">Courses</a> and <a href="exec-education.html">Executive Education</a> pages.
   </p>
   <p>
-    I am a columnist at The Jakarta Post, where I have written <span id="jp-count">87</span> columns — to see the complete list, please visit my <a href="jakarta_post.html">Jakarta Post Columns</a> archive. I also keep a running blog on LinkedIn Articles and, as an autoethnographer, publish Field Notes drawn from daily practice — to see the complete list of either, please visit <a href="articles.html">LinkedIn Articles</a> or <a href="posts.html">Field Notes</a>. This sits alongside my academic writing — to see the complete list, please visit the <a href="scholarly.html">Scholarly Publications</a> page.
+    I am a columnist at The Jakarta Post, where I have written <span id="jp-count">87</span> columns — to see the complete list, please visit my <a href="jakarta_post.html">Jakarta Post Columns</a> archive. I also keep a running blog on LinkedIn, where <span id="li-articles-count">328</span> long-form articles have accumulated, and, as an autoethnographer, I publish Field Notes drawn from daily practice — <span id="li-posts-count">1,503</span> of them to date. To see the complete list of either, please visit <a href="articles.html">LinkedIn Articles</a> or <a href="posts.html">Field Notes</a>. A further <span id="decks-count">87</span> of those columns and articles have been rebuilt as slide decks — to see them, please visit <a href="presentations.html">Columns in Slides</a>. All of it sits alongside my academic writing — to see the complete list, please visit the <a href="scholarly.html">Scholarly Publications</a> page.
   </p>
   <p>
-    I am a member of the <a href="https://hbr.org" target="_blank">Harvard Business Review Advisory Council</a> and an <a href="https://www.climateinteractive.org/en-roads/climate-ambassadors/ambassador/toronata-tambun/" target="_blank">MIT En-Roads Climate Simulation Ambassador</a>. I am available for board advisory, research collaboration, and speaking engagements. I am based across Jakarta and Singapore.
+    I am a member of the <a href="https://hbr.org" target="_blank">Harvard Business Review Advisory Council</a> and an <a href="https://www.climateinteractive.org/en-roads/climate-ambassadors/ambassador/toronata-tambun/" target="_blank">MIT En-Roads Climate Simulation Ambassador</a>. Since 2017 I have given <span id="speaking-count">150</span> guest lectures and invited talks — to see the complete record, please visit my <a href="speaking.html">Speaking Engagements</a> archive. I remain available for board advisory, research collaboration, and speaking. I am based across Jakarta and Singapore.
   </p>
 </div>
 
@@ -529,6 +529,42 @@
         })
         .catch(function () { /* keep static fallback count */ });
     }
+
+    // ── Live counts for the other archives ──
+    // Each archive page keeps its own authoritative total in a badge near the top of
+    // the file (.count-badge on posts/presentations/speaking, .article-count on
+    // articles). We read only the first 16 KB with a Range request, so posts.html —
+    // over 3 MB of Field Notes — is never downloaded in full just to display a number.
+    // If the server ignores the Range header the response is the whole file: that is
+    // acceptable for the three small archives (allowFullFetch = true) and refused for
+    // posts.html (false), which keeps its static fallback instead. Those fallbacks are
+    // the only hand-maintained numbers here, and they show only when the page is opened
+    // from disk rather than over HTTP.
+    function liveCount(spanId, file, allowFullFetch) {
+      var el = document.getElementById(spanId);
+      if (!el) { return; }
+      var ctrl = (typeof AbortController === 'function') ? new AbortController() : null;
+      fetch(file, { headers: { 'Range': 'bytes=0-16383' }, signal: ctrl ? ctrl.signal : undefined })
+        .then(function (r) {
+          if (r.status !== 206 && !allowFullFetch) {
+            if (ctrl) { ctrl.abort(); }   // cancel the body before it streams
+            throw new Error('range request not honoured');
+          }
+          return r.text();
+        })
+        .then(function (head) {
+          var m = head.match(/class="(?:count-badge|article-count)"[^>]*>\s*([\d,]+)/);
+          if (m) {
+            el.textContent = Number(m[1].replace(/,/g, '')).toLocaleString('en-US');
+          }
+        })
+        .catch(function () { /* keep static fallback count */ });
+    }
+
+    liveCount('li-articles-count', 'articles.html', true);
+    liveCount('li-posts-count', 'posts.html', false);
+    liveCount('decks-count', 'presentations.html', true);
+    liveCount('speaking-count', 'speaking.html', true);
 
   });
 </script>
