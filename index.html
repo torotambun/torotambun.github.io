@@ -215,6 +215,12 @@
 
   .nav-block-col { flex: 1 1 260px; }
 
+  /* Vertical rhythm between stacked groups inside one column. Must be larger than
+     the 8px gap under an h4 so the eye reads a new group starting, not a long list
+     continuing — but small enough that Public Writing stays visibly attached to
+     Speaking rather than drifting into its own region. */
+  .nav-group + .nav-group { margin-top: 26px; }
+
   .nav-block-col h4 {
     font-family: Arial, sans-serif;
     font-size: 0.76rem;
@@ -314,8 +320,24 @@
        HEIGHT once the container is flex-direction:column — padding every short group
        out to 260px tall and leaving 5-6 blank rows under Industry and Lifelong
        Learning. `flex: 0 0 auto` restores content-height. Do not remove. */
-    .nav-block-cols { flex-direction: column; gap: 20px; }
-    .nav-block-col { flex: 0 0 auto; }
+    .nav-block-cols { flex-direction: column; gap: 0; }
+    /* display:contents dissolves the two column wrappers on phones, so all five
+       groups become direct flex children again and `order` can restore the priority
+       sequence — Speaking, then Industry — which the desktop column split would
+       otherwise push to fourth. Supported since iOS 11.3; where it is not, the two
+       wrappers simply stack and Industry sits lower. Nothing breaks either way.
+       `flex: 0 0 auto` is kept for that fallback path, per the note above. */
+    .nav-block-col { flex: 0 0 auto; display: contents; }
+    /* Spacing is keyed to the block rather than to sibling order, so it holds
+       whether or not display:contents applies — a `.nav-group + .nav-group` rule
+       would leave a seam with no gap between the two wrappers in the fallback. */
+    .nav-group { margin-top: 26px; }
+    .nav-block-cols .nav-block-col:first-child .nav-group:first-child { margin-top: 0; }
+    .nav-group-speaking { order: 1; }
+    .nav-group-industry { order: 2; }
+    .nav-group-writing  { order: 3; }
+    .nav-group-academic { order: 4; }
+    .nav-group-learning { order: 5; }
   }
 
     #back-to-top {
@@ -392,40 +414,59 @@
 <!-- NAVIGATION BLOCK — closes the narrative, opens the archive -->
 <nav class="nav-block" id="site-navigation" aria-label="Site navigation">
   <div class="nav-block-title">Where to go from here</div>
+  <!-- TWO real column wrappers, each stacking its own groups.
+       These were five flat .nav-block-col items that wrapped two-per-row. That
+       coupled row heights: Speaking (one link) shared a flex line with Industry
+       (three links) and inherited its height, opening a two-link hole beneath
+       Speaking before Public Writing could begin. Wrappers decouple the columns so
+       each packs to its own content. Groups move between columns by moving the
+       .nav-group div; the ToC overlay below must be kept carrying the same links. -->
   <div class="nav-block-cols">
     <div class="nav-block-col">
-      <h4>Academic Life after Industry</h4>
-      <ul>
-        <li><a href="scholarly.html">Scholarly Publications</a></li>
-        <li><a href="books.html">Books &amp; Book Chapters</a></li>
-        <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="awards.html">Awards &amp; Recognition</a></li>
-      </ul>
+      <div class="nav-group nav-group-speaking">
+        <h4>Speaking</h4>
+        <ul>
+          <li><a href="speaking.html">Speaking Engagements</a></li>
+        </ul>
+      </div>
+      <div class="nav-group nav-group-writing">
+        <h4>Public Writing</h4>
+        <ul>
+          <!-- Jakarta Post first (editorially gatekept, externally validated), with the
+               decks built from those columns immediately under it, so the two read as
+               one body of work. Field Notes and LinkedIn Articles follow. -->
+          <li><a href="jakarta_post.html">Jakarta Post Columns</a></li>
+          <li><a href="presentations.html">Columns in Slides</a></li>
+          <li><a href="posts.html">Field Notes</a></li>
+          <li><a href="articles.html">LinkedIn Articles</a></li>
+        </ul>
+      </div>
+      <div class="nav-group nav-group-learning">
+        <h4>Lifelong Learning</h4>
+        <ul>
+          <li><a href="exec-education.html">Executive Education</a></li>
+          <li><a href="courses.html">Courses</a></li>
+        </ul>
+      </div>
     </div>
     <div class="nav-block-col">
-      <h4>Industry</h4>
-      <ul>
-        <li><a href="industry-experience.html#energy-executive">Energy Executive</a></li>
-        <li><a href="industry-experience.html#entrepreneurship-and-board-advisory">Entrepreneurship &amp; Board Advisory</a></li>
-        <li><a href="industry-experience.html#awards-recognition">Awards &amp; Recognition (pre-2017)</a></li>
-      </ul>
-    </div>
-    <div class="nav-block-col">
-      <h4>Writing &amp; Speaking</h4>
-      <ul>
-        <li><a href="jakarta_post.html">Jakarta Post Columns</a></li>
-        <li><a href="presentations.html">Columns in Slides</a></li>
-        <li><a href="articles.html">LinkedIn Articles</a></li>
-        <li><a href="posts.html">Field Notes</a></li>
-        <li><a href="speaking.html">Speaking Engagements</a></li>
-      </ul>
-    </div>
-    <div class="nav-block-col">
-      <h4>Lifelong Learning</h4>
-      <ul>
-        <li><a href="exec-education.html">Executive Education</a></li>
-        <li><a href="courses.html">Courses</a></li>
-      </ul>
+      <div class="nav-group nav-group-industry">
+        <h4>Industry</h4>
+        <ul>
+          <li><a href="industry-experience.html#energy-executive">Energy Executive</a></li>
+          <li><a href="industry-experience.html#entrepreneurship-and-board-advisory">Entrepreneurship &amp; Board Advisory</a></li>
+          <li><a href="industry-experience.html#awards-recognition">Awards &amp; Recognition (pre-2017)</a></li>
+        </ul>
+      </div>
+      <div class="nav-group nav-group-academic">
+        <h4>Academic Life after Industry</h4>
+        <ul>
+          <li><a href="scholarly.html">Scholarly Publications</a></li>
+          <li><a href="books.html">Books &amp; Book Chapters</a></li>
+          <li><a href="teaching.html">Teaching</a></li>
+          <li><a href="awards.html">Awards &amp; Recognition</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="nav-block-foot">
@@ -446,13 +487,11 @@
   <div class="toc-inner">
     <div class="toc-title">Table of Contents</div>
 
+    <!-- Same order as the navigation block above. Change one, change the other. -->
     <div class="toc-group">
-      <h4>Academic Life after Industry</h4>
+      <h4>Speaking</h4>
       <ul>
-        <li><a href="scholarly.html">Scholarly Publications</a></li>
-        <li><a href="books.html">Books &amp; Book Chapters</a></li>
-        <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="awards.html">Awards &amp; Recognition</a></li>
+        <li><a href="speaking.html">Speaking Engagements</a></li>
       </ul>
     </div>
 
@@ -466,13 +505,22 @@
     </div>
 
     <div class="toc-group">
-      <h4>Writing &amp; Speaking</h4>
+      <h4>Public Writing</h4>
       <ul>
         <li><a href="jakarta_post.html">Jakarta Post Columns</a></li>
         <li><a href="presentations.html">Columns in Slides</a></li>
-        <li><a href="articles.html">LinkedIn Articles</a></li>
         <li><a href="posts.html">Field Notes</a></li>
-        <li><a href="speaking.html">Speaking Engagements</a></li>
+        <li><a href="articles.html">LinkedIn Articles</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-group">
+      <h4>Academic Life after Industry</h4>
+      <ul>
+        <li><a href="scholarly.html">Scholarly Publications</a></li>
+        <li><a href="books.html">Books &amp; Book Chapters</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="awards.html">Awards &amp; Recognition</a></li>
       </ul>
     </div>
 
