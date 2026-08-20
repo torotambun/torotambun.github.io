@@ -87,10 +87,30 @@
     cursor: pointer;
     touch-action: manipulation;
     line-height: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   .toc-btn svg { display: block; fill: #c3b3dd; transition: fill 0.15s; }
+
+  /* The word does more work than the glyph — an unlabelled icon reads as decoration
+     rather than a control. Uppercase Arial here matches the .toc-group h4 and
+     .nav-block-col h4 treatment, so the label belongs to the same family of
+     small section markers used everywhere else on the site. */
+  .toc-btn-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    color: #c3b3dd;
+    transition: color 0.15s;
+  }
+
   .toc-btn:hover svg, .toc-btn:focus-visible svg { fill: #fff; }
+  .toc-btn:hover .toc-btn-label, .toc-btn:focus-visible .toc-btn-label { color: #fff; }
 
   /* ── HEADER VERSE ── */
   .header-verse {
@@ -330,6 +350,7 @@
       <rect x="2" y="11" width="20" height="2.2" rx="1.1"></rect>
       <rect x="2" y="17" width="20" height="2.2" rx="1.1"></rect>
     </svg>
+    <span class="toc-btn-label">Contents</span>
   </button>
   <img src="profile.jpg" alt="Dr. Toronata Tambun">
   <div class="header-text">
