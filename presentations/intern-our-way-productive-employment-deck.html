@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Cannot Intern Our Way to Productive Employment — Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+  .title-authors { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+  .title-author { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-author strong { color: #94a3b8; display: block; margin-bottom: 4px; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .schein-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 32px; }
+  .schein-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px; background: #fff; display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: start; }
+  .schein-level { font-family: Arial, sans-serif; }
+  .schein-num { font-size: 28px; font-weight: 700; color: #e2e8f0; line-height: 1; margin-bottom: 4px; }
+  .schein-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+  .schein-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+  .schein-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .schein-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .action-card { border-radius: 6px; padding: 28px; }
+  .action-card.advance, .action-card.provider { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .action-card.protect, .action-card.preserver { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .action-label { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+  .action-card.advance .action-label, .action-card.provider .action-label { color: #1d4ed8; }
+  .action-card.protect .action-label, .action-card.preserver .action-label { color: var(--green); }
+  .action-card p { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid, .two-col, .title-authors { grid-template-columns: 1fr; }
+    .schein-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">We Cannot Intern Our Way to Productive Employment</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-intro"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-gap"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-framework"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-details"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-evidence"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-implications"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-conclusion"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-references"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-intro"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-gap"><div class="car-num">02</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-framework"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-details"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-evidence"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-implications"><div class="car-num">06</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-conclusion"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-references"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">The Jakarta Post &nbsp;·&nbsp; Labour &amp; Industrial Policy &nbsp;·&nbsp; 29 August 2026</div>
+      <h1 class="title-main">We cannot intern our way to productive employment</h1>
+      <p class="title-thesis">Indonesia cannot subsidise its way into graduate employment while the productive base that must absorb those graduates has stopped gaining economic weight. The binding constraint is production capacity, not worker readiness.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus &nbsp;·&nbsp; Doctorate, Bandung Institute of Technology (ITB)</div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-intro">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A skills programme aimed at a demand-side problem</h2>
+      <p class="sec-lead">Six months of subsidised placement can supply experience, mentoring and certification. It cannot supply the orders, machinery and payroll capacity that turn a graduate into an employee.</p>
+
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>Indonesia faces persistent graduate unemployment. The 2026 government programme places graduates inside host companies for six months, with the state paying an allowance equal to the applicable local minimum wage, plus work-accident and death protection and competency certification.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>The base that should absorb those graduates is not growing. Manufacturing’s share of GDP peaked near 22.7 percent in 2000 and stood at about 19.1 percent in 2025 — a fall of 3.6 percentage points. Meanwhile only 29.2 percent of participants reach even the reported offer-or-recruitment outcome.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>Is the state financing induction <em>into jobs</em>, or financing six months before unemployment returns? And if firms lack the capacity to hire, does making labour temporarily cheaper change anything durable?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Redirect public money from lowering the cost of temporary labour to removing the specific obstacles that stop commercially viable firms from adding production capacity — a <strong>Production-to-Jobs Compact</strong>, where the employer hires because output and orders justify another position on the payroll.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-gap">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">Employability policy prepares workers for firms it has not checked can hire them</h2>
+      <p class="sec-lead">The skills conversation has a well-developed supply side and an assumed demand side. The assumption is doing the load-bearing work.</p>
+
+      <p class="body-text">In 2019 I took part in a focus-group discussion on the skills Indonesian workers would need in the years ahead. Employers wanted technical competence, problem-solving, communication, digital familiarity and closer links between training providers and industry. Every item concerned the worker. The discussion gave less attention to whether enough firms would have orders, machinery and payroll capacity to employ those workers afterward.</p>
+
+      <div class="callout">
+        <div class="callout-label">Core Gap</div>
+        <p>Policy treats graduate unemployment as a readiness deficit in workers, when the evidence points to an absorption deficit in firms. A programme designed against the wrong constraint can run at full capacity, report strong completion, and still leave the employment problem exactly where it was — because nothing it funds increases the number of positions an employer can afford to carry.</p>
+      </div>
+
+      <div class="warning-callout">
+        <div class="callout-label">Asymmetry Worth Naming</div>
+        <p>The 2026 programme is highly favourable to host companies. Government pays the participant’s allowance, the accident and death protection, and the certification. The company provides placement, a mentor and a learning programme. The state bears most of the direct financial cost of having the participant inside the firm — which is precisely the arrangement most likely to attract firms that would not otherwise hire.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-framework">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Four forces the internship instrument does not touch</h2>
+      <p class="sec-lead">Each is independently sufficient to blunt the programme. Together they explain why absorption stays low regardless of how well the training is delivered.</p>
+
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Structural</div>
+          <div class="comp-name">The productive base has stopped gaining weight</div>
+          <div class="comp-body">Manufacturing’s share of GDP fell from about 22.7 percent in 2000 to about 19.1 percent in 2025. Fewer firms are accumulating the machinery, orders and working capital that create permanent positions. Training does not reverse a structural trend in industrial capacity.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Cultural</div>
+          <div class="comp-name">Stable employment is the rational first destination</div>
+          <div class="comp-body">In groups I have studied, between 93 and 99 percent of students preferred stable employment to entrepreneurship. Historical accounts of premodern and colonial Indonesia help explain the persistence: institutional position offered income, protection and standing, while independent enterprise exposed families to commercial uncertainty.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Interpretive</div>
+          <div class="comp-name">Micro-enterprise is being misread as preference</div>
+          <div class="comp-body">Indonesia’s millions of micro and small enterprises are not proof that workers chose entrepreneurship over employment. Many exist because their owners needed immediate income once stable employment was unavailable, and stay hand-to-mouth rather than becoming firms that accumulate capital and hire others.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">Instrumental</div>
+          <div class="comp-name">The subsidy lowers cost without creating a position</div>
+          <div class="comp-body">A six-month, state-funded participant reduces a firm’s labour cost for six months. Nothing in that transaction obliges, or enables, the firm to add a permanent line to its payroll. The instrument acts on price when the constraint is capacity.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-details">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Five unintended effects that can reduce net job creation</h2>
+      <p class="sec-lead">A longer policy paper identifies eighteen possible unintended effects. These five deserve particular attention, because each can either shrink net employment or make the programme look more successful than it is.</p>
+
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;·&nbsp; The six-month revolving door</div>
+          <div class="arith-body">If one publicly funded participant leaves and another enters the same function, a company can keep receiving subsidised labour indefinitely without ever creating an additional permanent position. The programme reduces the firm’s labour cost in perpetuity while its payroll never moves.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;·&nbsp; Displacement of ordinary entry-level employment</div>
+          <div class="arith-body">An intern can perform work that would otherwise go to a newly recruited employee. Firms that once paid for graduate induction can shift part of that cost to government. Entry-level wages face pressure too: a company choosing between an employee whose wage it must pay and an intern whose allowance government finances faces a clear cost difference.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;·&nbsp; Deadweight expenditure</div>
+          <div class="arith-body">Some firms would have recruited or trained the same graduates without public support. In those cases government pays for activity that would have happened anyway. The spending is real; the additional employment is not.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;·&nbsp; Outcome gaming</div>
+          <div class="arith-body">Completion, certification, a job offer and sustained employment are four different outcomes, and only the last one matters. A programme can report strong completion while many participants still fail to remain in paid work after the placement ends.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;·&nbsp; Adverse selection of hosts</div>
+          <div class="arith-body">Firms with genuine vacancies may simply recruit directly. The firms most attracted to the subsidy may be those least likely to hire afterward. If so, the programme concentrates among companies interested in cheap labour rather than companies building a real recruitment pipeline — the opposite of the intended sorting.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-evidence">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">What is on the record</h2>
+      <p class="sec-lead">Four checkable claims. None requires assuming bad faith by any participating company — the last comes from the ministry’s own evaluation.</p>
+
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE A</div>
+          <div class="ev-title">Deindustrialisation is measured, not alleged</div>
+          <div class="ev-body">World Bank data put manufacturing’s share of GDP at about 22.7 percent in 2000 and about 19.1 percent in 2025 — a decline of 3.6 percentage points from the peak. The absorptive base has been contracting in relative terms for a quarter-century.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE B</div>
+          <div class="ev-title">The cost split is documented</div>
+          <div class="ev-body">Ministry of Manpower socialisation material sets out the arrangement: government pays an allowance equal to the applicable local minimum wage, together with work-accident and death protection and competency certification. The company provides placement, mentor and learning programme.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE C</div>
+          <div class="ev-title">29.2 percent is past normal attrition</div>
+          <div class="ev-body">An induction period is not a guarantee of employment, and some participants will not be hired for reasons of performance, fit or business conditions. But when only 29.2 percent reach even the reported offer-or-recruitment outcome, the programme may be preparing far more graduates than participating firms can or will absorb.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE D</div>
+          <div class="ev-title">The ministry’s own evaluation flags the pattern</div>
+          <div class="ev-body">The Ministry of Manpower’s 2026 legal evaluation of the broader apprenticeship system describes apprentices performing core production functions, working under conditions similar to regular employees while receiving only an allowance, and facing weak enforcement and barriers to complaints.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">What This Does Not Claim</div>
+        <p>These risks do not prove that every participating company behaves this way. They establish that firm-level outcomes should be examined before repeated subsidised cohorts become routine.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-implications">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">A programme can be fully visible and still unmeasured</h2>
+      <p class="sec-lead">Everything the programme currently counts happens during the six months. Everything that determines whether it worked happens after.</p>
+
+      <div class="diagnosis-grid">
+        <div class="diag-col visible">
+          <div class="diag-header">Visible and Counted</div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Completion rates for each cohort</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Competency certificates issued</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Allowances disbursed and protection provided</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>Placements filled and host companies enrolled</span></div>
+          <div class="diag-item"><span class="diag-icon">✓</span><span>The reported offer-or-recruitment figure at exit</span></div>
+        </div>
+        <div class="diag-col missing">
+          <div class="diag-header">Missing and Decisive</div>
+          <div class="diag-item"><span class="diag-icon">✕</span><span>Whether the host’s payroll actually grew</span></div>
+          <div class="diag-item"><span class="diag-icon">✕</span><span>Whether ordinary entry-level hiring fell as placements rose</span></div>
+          <div class="diag-item"><span class="diag-icon">✕</span><span>How much spending was deadweight — hiring that would have happened anyway</span></div>
+          <div class="diag-item"><span class="diag-icon">✕</span><span>Employment status at 3, 6 and 12 months, with wages, hours, contract status and social protection</span></div>
+          <div class="diag-item"><span class="diag-icon">✕</span><span>Whether any of it moves manufacturing toward the RPJMN target</span></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">The Plans Already Say This</div>
+        <p>Law No. 59 of 2024, establishing the RPJPN 2025–2045, names early deindustrialisation, low productivity and high informality among Indonesia’s development challenges. The RPJMN 2025–2029 uses a manufacturing baseline of 18.67 percent of GDP and targets 21.90 percent by 2029, while seeking to raise the formal-employment share from 23.96 percent to 46 percent. Those are linked targets: formal jobs will not rise at that scale unless productive firms expand, and firms do not expand because more graduates hold certificates.</p>
+      </div>
+
+      <div class="warning-callout">
+        <div class="callout-label">The Fiscal Trade-off</div>
+        <p>Money spent financing temporary labour cannot also finance machinery, supplier qualification or industrial facilities. If public spending makes workers temporarily cheaper while companies still lack the assets needed to hire them permanently, the underlying employment constraint remains untouched — and has been paid for twice.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-conclusion">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Fund the capacity to hire, not the price of not hiring</h2>
+      <p class="sec-lead">Keep apprenticeships as genuine induction and learning. But stop asking them to do work that only productive capacity can do.</p>
+
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">Screen the host before approving the placement</div>
+            <div class="rec-body">Kemnaker should compare a host’s payroll, recent entry-level hiring, layoffs and previous internship cohorts before approving another subsidised placement. A firm whose payroll never moves is not a recruitment pipeline.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Make repetition trigger review</div>
+            <div class="rec-body">Repeated internships in the same occupation should trigger review, especially where ordinary hiring is falling at the same time. That is the signature of the revolving door.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Split the cost once the work becomes production</div>
+            <div class="rec-body">Public funding can pay for structured learning and independent certification. But once participants contribute to normal production, the company should bear part of their labour cost.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Follow participants after they leave</div>
+            <div class="rec-body">Publish employment status at three, six and twelve months, together with wages, working hours, contract status and social protection. Without those data, a high completion rate can coexist with repeated returns to unemployment.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">5</div>
+          <div class="rec-content">
+            <div class="rec-title">Remove the obstacle to the production line, not the wage bill</div>
+            <div class="rec-body">Consider a domestic supplier with a buyer ready to purchase more, who already holds the order but lacks the machinery to raise output. The entrepreneur puts in equity; a bank or leasing company independently assesses the machinery and working-capital requirement. Where a commercially viable project still faces a defined financing obstacle, government can provide a limited guarantee on qualifying machinery finance, pay for required supplier certification, or resolve a site or infrastructure constraint.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">6</div>
+          <div class="rec-content">
+            <div class="rec-title">Adopt a Production-to-Jobs Compact</div>
+            <div class="rec-body">Kemnaker identifies and certifies workers for the occupations the new production line requires — but the employer hires them because additional output and customer orders justify another position on the payroll. The company still carries the commercial risk and pays its workers from sales. Public money creates productive capacity rather than repeatedly lowering the cost of temporary labour.</div>
+          </div>
+        </div>
+      </div>
+
+      <blockquote>
+        <p>The programme does not need 100 percent absorption, but it should produce a clear majority. If only around three in ten reach even the reported offer-or-recruitment stage, government should ask whether it is financing induction into jobs — or simply financing six months before unemployment returns.</p>
+        <cite>— Closing argument, The Jakarta Post, 29 August 2026</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-references">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">Sources are listed as identified in the column itself. Where the column cites a body of material without full bibliographic detail, that is noted rather than completed by inference.</p>
+
+      <div class="ref-section">
+        <div class="ref-group-title">Law and National Planning</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Law No. 59 of 2024 establishing the National Long-Term Development Plan (RPJPN) 2025–2045. Identifies early deindustrialisation, low productivity and high informality among Indonesia’s development challenges.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>National Medium-Term Development Plan (RPJMN) 2025–2029. Manufacturing baseline 18.67 percent of GDP, target 21.90 percent by 2029; formal-employment share 23.96 percent rising to a 46 percent target.</div>
+
+        <div class="ref-group-title">Ministry of Manpower (Kemnaker)</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Ministry of Manpower socialisation material on the 2026 internship programme — participant allowance at the applicable local minimum wage, work-accident and death protection, competency certification, and the host company’s obligations. <em>Cited in the column without a document number.</em></div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Ministry of Manpower (2026). Legal evaluation of the apprenticeship system. Describes apprentices performing core production functions under conditions similar to regular employees while receiving only an allowance, with weak enforcement and barriers to complaints. <em>Cited in the column without a document number.</em></div>
+
+        <div class="ref-group-title">Data</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>World Bank. Manufacturing, value added (% of GDP) — Indonesia. Peak of approximately 22.7 percent in 2000; approximately 19.1 percent in 2025.</div>
+
+        <div class="ref-group-title">Author’s Own Work</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, A. R. Y. T. Longer policy paper identifying eighteen possible unintended effects of the internship programme, five of which are developed in this column. <em>Referenced in the column; not separately published at the time of writing.</em></div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Author’s focus-group participation (2019) on future skills requirements for Indonesian workers, and studies of student occupational preference reporting 93–99 percent preference for stable employment over entrepreneurship.</div>
+
+        <div class="ref-group-title">Source Column</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, A. R. Y. T. (2026, August 29). We cannot intern our way to productive employment. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2026/08/29/we-cannot-intern-our-way-to-productive-employment</div>
+      </div>
+    </div>
+    <footer class="slide-footer">© 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">↑</button>
+  <button class="nav-btn" id="btn-down">↓</button>
+</div>
+
+<script>
+  const SECTIONS = ['slide-title','slide-intro','slide-gap','slide-framework','slide-details','slide-evidence','slide-implications','slide-conclusion','slide-references'];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
