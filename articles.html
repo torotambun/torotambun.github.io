@@ -35,7 +35,7 @@
     #search:focus { border-color: var(--accent); }
     #year-filter { padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; cursor: pointer; }
     #result-count { font-size: 13px; color: var(--muted); white-space: nowrap; font-style: italic; }
-    .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; }
+    .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     table { width: 100%; border-collapse: collapse; }
     thead th { font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0 16px 14px; text-align: left; border-bottom: 2px solid var(--accent); }
     tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
@@ -43,7 +43,7 @@
     tbody tr.hidden { display: none; }
     td { padding: 14px 16px; vertical-align: top; }
     .date-col { white-space: nowrap; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; width: 120px; padding-top: 16px; }
-    .title-col { font-size: 15px; line-height: 1.5; }
+    .title-col { font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; word-break: break-word; }
     .title-col a { color: var(--accent2); text-decoration: none; transition: color 0.15s; }
     .title-col a:hover { color: var(--accent); text-decoration: underline; }
     #no-results { display: none; text-align: center; padding: 60px 20px; color: var(--muted); font-style: italic; }
@@ -64,7 +64,7 @@
   <a class="back-link" href="https://torotambun.github.io">← Back to Home</a>
   <h1>LinkedIn Articles</h1>
   <p class="subtitle">Dr. A.R.Y. Toronata Tambun &nbsp;·&nbsp; Published 2017–2026</p>
-  <span class="article-count">328 articles</span>
+  <span class="article-count">336 articles</span>
 </header>
 <div class="controls">
   <div class="search-wrap">
@@ -85,12 +85,44 @@
     <option value="2018">2018</option>
     <option value="2017">2017</option>
   </select>
-  <span id="result-count">328 articles</span>
+  <span id="result-count">336 articles</span>
 </div>
 <div class="table-wrap">
   <table id="articles-table">
     <thead><tr><th>Date</th><th>Title</th></tr></thead>
     <tbody>
+      <tr data-title="what if vocational education began in kindergarten vocational education early childhood smk curriculum indonesia" data-year="2026">
+        <td class="date-col">2026-08-29</td>
+        <td class="title-col"><a href="https://www.linkedin.com/pulse/what-vocational-education-began-kindergarten-dr-toronata-tambun-ued0c/" target="_blank" rel="noopener">What if vocational education began in kindergarten?</a></td>
+      </tr>
+      <tr data-title="finding the remaining goods in indonesia smk mitra industri mm2100 vocational school industry partnership cikarang" data-year="2026">
+        <td class="date-col">2026-08-27</td>
+        <td class="title-col"><a href="https://www.linkedin.com/pulse/finding-remaining-goods-indonesia-smk-mitra-industri-mm2100-tambun-2p3zc/" target="_blank" rel="noopener">Finding the Remaining Goods in Indonesia: SMK Mitra Industri MM2100</a></td>
+      </tr>
+      <tr data-title="what the government counts as entrepreneurship measurement statistics umkm policy indonesia entrepreneurial formation" data-year="2026">
+        <td class="date-col">2026-08-24</td>
+        <td class="title-col"><a href="https://www.linkedin.com/pulse/what-government-counts-entrepreneurship-dr-toronata-tambun-sv8zc/" target="_blank" rel="noopener">What the Government Counts as Entrepreneurship</a></td>
+      </tr>
+      <tr data-title="the ruler's word versus republican duty rulers word constitutional authority republic institutions indonesia" data-year="2026">
+        <td class="date-col">2026-08-23</td>
+        <td class="title-col"><a href="https://www.linkedin.com/pulse/rulers-word-versus-republican-duty-dr-toronata-tambun-z0hyc/" target="_blank" rel="noopener">The Ruler's Word Versus Republican Duty</a></td>
+      </tr>
+      <tr data-title="the electric motorcycle is not a transition ev electric vehicle energy transition indonesia emissions policy" data-year="2026">
+        <td class="date-col">2026-08-23</td>
+        <td class="title-col"><a href="https://www.linkedin.com/pulse/electric-motorcycle-transition-dr-toronata-tambun-dy60c/" target="_blank" rel="noopener">The Electric Motorcycle Is Not a Transition</a></td>
+      </tr>
+      <tr data-title="indonesia cannot intern its way to productive employment internship magang labour youth employment policy" data-year="2026">
+        <td class="date-col">2026-08-21</td>
+        <td class="title-col"><a href="https://www.linkedin.com/pulse/indonesia-cannot-intern-its-way-productive-employment-tambun-nd1qc/" target="_blank" rel="noopener">Indonesia Cannot Intern Its Way to Productive Employment</a></td>
+      </tr>
+      <tr data-title="the hat who waited hat waited narrative essay object memory" data-year="2026">
+        <td class="date-col">2026-08-03</td>
+        <td class="title-col"><a href="https://www.linkedin.com/pulse/hat-who-waited-toronata-tambun-fuuic/" target="_blank" rel="noopener">The Hat Who Waited</a></td>
+      </tr>
+      <tr data-title="an autoethnography of my 9th ninth non-event marathon in singapore when i stopped arguing and began to listen and to immerse running autoethnography" data-year="2026">
+        <td class="date-col">2026-08-03</td>
+        <td class="title-col"><a href="https://www.linkedin.com/pulse/autoethnography-my-ninth-non-event-marathon-singapore-toronata-tambun-fgesc/" target="_blank" rel="noopener">An autoethnography of my 9th non-event marathon in Singapore: When I Stopped Arguing and Began to Listen and to Immerse</a></td>
+      </tr>
       <tr data-title="when a pro bono client already had an explanation problem definition consulting diagnosis" data-year="2026">
         <td class="date-col">2026-07-27</td>
         <td class="title-col"><a href="https://www.linkedin.com/pulse/when-pro-bono-client-already-had-explanation-toronata-tambun-qu0kc/" target="_blank" rel="noopener">When a Pro Bono Client Already Had an Explanation</a></td>
