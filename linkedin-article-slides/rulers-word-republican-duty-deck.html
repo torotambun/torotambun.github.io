@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ruler's Word Versus Republican Duty &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+  .title-authors { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+  .title-author { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-author strong { color: #94a3b8; display: block; margin-bottom: 4px; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .schein-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 32px; }
+  .schein-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px; background: #fff; display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: start; }
+  .schein-level { font-family: Arial, sans-serif; }
+  .schein-num { font-size: 28px; font-weight: 700; color: #e2e8f0; line-height: 1; margin-bottom: 4px; }
+  .schein-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+  .schein-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+  .schein-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .schein-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .action-card { border-radius: 6px; padding: 28px; }
+  .action-card.advance, .action-card.provider { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .action-card.protect, .action-card.preserver { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .action-label { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+  .action-card.advance .action-label, .action-card.provider .action-label { color: #1d4ed8; }
+  .action-card.protect .action-label, .action-card.preserver .action-label { color: var(--green); }
+  .action-card p { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid, .two-col, .title-authors { grid-template-columns: 1fr; }
+    .schein-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">The Ruler's Word Versus Republican Duty</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-intro"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-gap"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-framework"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-details"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-evidence"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-implications"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-conclusion"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-references"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-intro"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-gap"><div class="car-num">02</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-framework"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-details"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-evidence"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-implications"><div class="car-num">06</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-conclusion"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-references"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Presidential Communication &nbsp;&middot;&nbsp; 23 August 2026</div>
+      <h1 class="title-main">The Ruler's Word Versus Republican Duty</h1>
+      <p class="title-thesis">Presidential speech is institutional action: from the highest office a joke becomes a cue and a label becomes a classification. The courtly ideal must therefore be reversed — not the public bound because the president has spoken, but the president bound to answer for what his speech does.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-intro">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Eight expressions, seven occasions, one presidency.</h2>
+      <p class="sec-lead">An argument about the ethics of presidential communication should begin by refusing the very imprecision it criticizes.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>Eight expressions now form a troubling vocabulary around President Prabowo Subianto's public communication: rakyat jelata, antek asing, ndeso, bajingan, a suggestion that citizens who found Indonesia's future bleak could seek another country, londo ireng, rasain sendiri, and a remark about when a 10-year-old girl might be allowed to date.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>They are not identical. They arose from seven occasions. Two — rakyat jelata and ndeso — were not spoken by Prabowo but by officials within his apparatus. The remark to the child was neither a curse nor an insult. Yet the differences do not dissolve the pattern; they reveal its institutional breadth.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>Is the problem that coarse words have been used around the presidency — or is it what the office does to language once it passes through it?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Presidential speech is institutional action. The remedy is neither silence nor courtly ornament but republican self-command: speech candid enough to name wrongdoing, precise enough to be answered, and disciplined enough to remain worthy of the office.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-gap">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">The presidency is not a private microphone.</h2>
+      <p class="sec-lead">Indonesians are not so fragile that one vulgar noun, one regional idiom or one sharp joke will destroy public life. Something else is at stake.</p>
+      <p class="body-text">Nor should democratic politics be embalmed in the artificial politeness of the palace. Demands for refinement can disguise class prejudice: elite critics may tolerate brutal policy expressed in polished language while recoiling from a coarse word spoken with popular conviction. Indonesia should not confuse a court accent with moral virtue.</p>
+      <p class="body-text">Several Javanese courtly principles can illuminate this thoroughly republican problem — sabda pandhita ratu, ajining diri saka lathi, empan papan, tepa selira, angon rasa, unggah-ungguh. They should not be used to turn the president into a king. Indonesia is not a court, citizens are not kawula, and political legitimacy does not descend from aristocratic tradition. These principles are valuable only after being democratically reinterpreted.</p>
+      <div class="callout">
+        <div class="callout-label">Core Gap</div>
+        <p>From the highest office, a joke can become a cue, a label can become a classification, and an insinuation can tell ministers, supporters and bureaucrats which citizens may safely be treated as backward, disloyal, contemptible or unserious. The ethical test changes with the power of the office, the vulnerability of the audience, and the direction in which the verbal force travels.</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Not a Romanticised Tradition</div>
+        <p>Javanese courts could be hierarchical, exclusionary and coercive, and courtly language itself could conceal violence. The point is not that past kings always lived up to these ideals — history could not sustain such an absolute. It is that even a tradition built around concentrated authority understood that the ruler's tongue required restraint. A democratic president, governing equal citizens rather than subjects, should face a higher standard still.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-framework">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Five categories, not one catalogue of profanity</h2>
+      <p class="sec-lead">Examining the expressions separately makes the cumulative pattern more serious, not less.</p>
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Rakyat jelata · Ndeso</div>
+          <div class="comp-name">Language of social hierarchy</div>
+          <div class="comp-body">Arranges society vertically — those below, spoken about by those above. Rural identity is made to do the insulting. An official apparatus cannot defend a relational failure solely through lexical definition.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Antek asing · Londo ireng</div>
+          <div class="comp-name">Language of suspected loyalty</div>
+          <div class="comp-body">Divides citizens by suspected allegiance. Neither is an evidentiary category. When the alleged agents are unnamed, the phrase creates a cloud of suspicion without offering the accused a claim they can answer.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Bajingan · Rasain sendiri</div>
+          <div class="comp-name">Language of contempt and taunting</div>
+          <div class="comp-body">Makes contempt available as a presidential register. Honesty and coarseness are not synonyms, and a joke that imagines every citizen as equally free to act turns real constraints into a punchline.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">Cari negara lain</div>
+          <div class="comp-name">Belonging made conditional</div>
+          <div class="comp-body">Makes national belonging sound conditional on political optimism. In a republic, pessimism is not disloyalty and criticism is not a tenancy violation. A president does not own the country whose future he describes.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">05</div>
+          <div class="comp-sub">The remark to Citra</div>
+          <div class="comp-name">A vulnerable citizen diminished</div>
+          <div class="comp-body">An unsolicited, gendered and paternalistic diversion from a girl's educational and athletic achievement to her future romantic life — imposed on a child who could not reject the premise or redirect the conversation.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-details">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">What the courtly principles actually demand, once democratised</h2>
+      <p class="sec-lead">Properly reinterpreted, each imposes restraint before speech rather than submission after it.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Sabda pandhita ratu — the word cannot be casual</div>
+          <div class="arith-body">Sometimes reduced to the claim that a ruler's word is law, which is dangerous in a constitutional republic. The useful meaning is ethical: the word of a sage-ruler must be dependable and cannot be tossed about or treated as disposable chatter. If an utterance carries unusual weight, the speaker has an unusual obligation to test it before release. The principle does not enlarge presidential authority; it enlarges presidential accountability.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Ajining diri saka lathi — dignity is known through the tongue</div>
+          <div class="arith-body">Not a command to decorate every sentence with ceremony, but a recognition that speech reveals self-command. For a president the dignity at stake is not only personal: the office speaks in the name of the republic, so a verbal lapse can diminish the institutional dignity entrusted to its holder.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Empan papan — the discipline of fit</div>
+          <div class="arith-body">Knowing the person, place, time, circumstance and social relation in which words are spoken. A phrase that produces laughter at a private table may be wrong at a national legislative session. A joke suitable among adults may be unsuitable when a child has just been presented as a symbol of educational struggle.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Tepa selira, angon rasa, unggah-ungguh — relational intelligence</div>
+          <div class="arith-body">Tepa selira asks the speaker to consider another person's position; angon rasa to tend to feeling; unggah-ungguh concerns propriety; andhap asor associates authority with humility rather than verbal domination. These are not demands for aristocratic affectation.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-evidence">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">The record, and its gaps</h2>
+      <p class="sec-lead">Where an official transcript exists it is cited. Where it omits what citizens heard, that omission is itself evidence.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE A</div>
+          <div class="ev-title">What the transcripts preserve</div>
+          <div class="ev-body">Antek asing appears in the official presidential transcript of the 22 August 2025 address to Sekolah Rakyat teachers and principals, and returns in a 24 December address. Bajingan is preserved in the transcript of the 79th National Cooperatives Day commemoration on 12 July 2026.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE B</div>
+          <div class="ev-title">What the transcripts omit</div>
+          <div class="ev-body">The published Cooperatives Day transcript confirms the event but does not include the cari negara lain passage, which is preserved in contemporaneous reporting. The State Secretariat's speech text for the 13 August 2026 electric-motorcycle launch presents the event but does not preserve rasain sendiri.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE C</div>
+          <div class="ev-title">The presidential voice is distributed</div>
+          <div class="ev-body">Rakyat jelata came from Presidential Communication Office spokesperson Adita Irawati on 5 December 2024, while praising Prabowo for siding with an iced-tea seller. Ndeso and kampungan came from State Secretary Prasetyo Hadi on 30 October 2025, inside an anti-drug message. Neither was Prabowo's own words; both shaped the presidency's voice.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE D</div>
+          <div class="ev-title">The constitutional frame inverts the palace</div>
+          <div class="ev-body">Article 1(2) of the 1945 Constitution places sovereignty in the people, exercised according to the Constitution. Article 9 requires the president to swear to fulfil the duties of office justly. Articles 28E and 28F protect expression and communication as democratic activities, not gifts from the executive.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What This Does Not Claim</div>
+        <p>The eight expressions should not be inflated into criminal or constitutional charges without legal grounds, and no evidence justifies attributing a sexual motive to the remark made to a child. Criticism becomes easier to dismiss when it outruns the verified words. The issue is constitutional ethics, not criminal liability.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-implications">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">The distinction is between candor and degradation.</h2>
+      <p class="sec-lead">Candor names reality. Degradation assigns inferior standing. A precise president does not need euphemism.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">Degradation</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Defending a relational failure with a dictionary</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Accusing unnamed antek asing or londo ireng</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Treating national belonging as a reward for optimism</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Publishing transcripts that omit what citizens heard</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">Candor</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Naming the contract, the funding, the rule broken</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Routing accusations through institutions that can prove them</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Correcting openly, so the public knows which words bind</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Protecting a child's dignity within an asymmetry she cannot negotiate</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why Precision Is Tougher Than Insult</div>
+        <p>A precise president can say which contract was corrupt, which funding relationship was hidden, which policy argument is wrong, which actor violated what rule, and which evidence supports the charge. Such speech is tougher than insult because it can be tested. Precision is not softness; it is accountable force.</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The Unequal Distribution of Verbal Power</div>
+        <p>Those named or implied by the president do not possess an equivalent platform. A journalist can publish a rebuttal, an NGO can issue a statement, a citizen can post online — but none speaks from a lectern backed by the executive state. Humor does not neutralize that hierarchy; in some contexts it deepens it, because the laughter of the room makes objection feel humorless or disloyal.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-conclusion">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Not censorship. A communication system proportionate to the power of the office.</h2>
+      <p class="sec-lead">These measures would not make presidential language colorless. They would make it more exact — forceful, humorous and recognizably himself, while distinguishing adversaries from traitors and criticism from disloyalty.</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">Apply an empan papan test to every major address</div>
+            <div class="rec-body">Three questions: from what authority is the speaker talking, who is being addressed or classified, and what action, stigma or permission could the wording produce once repeated by officials and supporters? The test must cover jokes and improvisations as well as prepared lines.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Target conduct and evidence, not categories of identity</div>
+            <div class="rec-body">"This organization failed to disclose foreign funding" is answerable. "There are londo ireng among NGOs" is elastic. Serious accusations should then be routed through the institution capable of proving them — a presidential label should never substitute for an evidentiary process.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Adopt a protected-audience protocol</div>
+            <div class="rec-body">Children and other vulnerable citizens appearing at state events should not be invited into adult speculation about romance, marriage, appearance or family roles. This is not humorlessness; it is recognition that a child cannot negotiate the encounter on equal terms.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Red-team high-risk language, and correct openly when it misses</div>
+            <div class="rec-body">A small function inside the Presidential Communication Office should test phrases against foreseeable readings across class, region, gender, profession and affiliation. The question is not whether a phrase can be defended — almost any can, after controversy — but whether a clearer formulation preserves the intended force without creating unnecessary stigma.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">5</div>
+          <div class="rec-content">
+            <div class="rec-title">Preserve the record, and extend the code beyond the president</div>
+            <div class="rec-body">Official transcripts should include consequential off-script remarks rather than producing a smoother institutional memory. The communication code must cover ministers, spokespersons and senior aides — the rakyat jelata and ndeso episodes show the presidential voice is distributed.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">6</div>
+          <div class="rec-content">
+            <div class="rec-title">Pair monologue with structured listening</div>
+            <div class="rec-body">Direct speech is healthiest when those affected can respond through press conferences, consultations and forums where questions are not pre-classified as hostility. A ruler who speaks forcefully but hears weakly will confuse the echo of authority with public understanding.</div>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>The ruler's word once bound the people. The republic requires the people's Constitution to bind the president's word.</p>
+        <cite>&mdash; LinkedIn Article, 23 August 2026</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-references">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <p class="sec-lead">Official transcripts are cited where they exist; contemporaneous reporting is cited where the transcript omits the passage.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Official Records</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Republic of Indonesia. (1945). Undang-Undang Dasar Negara Republik Indonesia Tahun 1945. JDIH Sekretariat Jenderal DPR RI.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Sekretariat Presiden Republik Indonesia. (2025a, December 24; 2025b, August 22; 2026a, July 12; 2026b, July 23). Speech transcripts and press releases.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Kementerian Sekretariat Negara Republik Indonesia. (2026, August 13). Sambutan Presiden pada peluncuran motor listrik nasional beserta ekosistem pendukung.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Majelis Permusyawaratan Rakyat Republik Indonesia. (2026, August 14). Suasana Sidang Tahunan MPR RI Tahun 2026.</div>
+        <div class="ref-group-title">Contemporaneous Reporting</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Attar, H. (2026, July 24). Prabowo tuding masih ada londo ireng dengan wajah wartawan hingga LSM. NU Online.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Nur, M. F. (2026, July 24). Prabowo sindir jurnalis, LSM, dan akademisi sebagai londo ireng. Tirto.id.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Purnomo, H. (2026, July 12). Prabowo: Yang merasa Indonesia suram, silakan kalau mau cari negara lain! detikFinance.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Violleta, P. T. (2026, August 13). Presiden dukung skema tukar kendaraan bensin dengan motor listrik. ANTARA News.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Savitri, D. (2026, August 14). Prabowo perkenalkan Citra di Sidang Tahunan MPR, siswa Sekolah Rakyat juara karate. detikEdu.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Rochman, F. (2025, October 30). Istana: Prabowo kehendaki regulasi pastikan pemberantasan narkotika. ANTARA News.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Sakina, P. (2026, July 27). Kemkomdigi ajak publik lihat pernyataan Presiden secara utuh. ANTARA News Jawa Timur.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Santoso, B., &amp;amp; Weadcaksana, H. A. (2026, August 21). Prabowo didesak banyak mendengar, bukan umbar retorika kosong lewat monolog. Suara.com.</div>
+        <div class="ref-group-title">Scholarship on the Javanese Principles</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Candra, R., &amp;amp; Purnomo, S. H. (2025). Representasi sabda pandhita ratu raja Jawa dalam wayang purwa lakon Kresna Duta. &lt;em&gt;Riwayat&lt;/em&gt;, 8(3), 2306–2320.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Cathrin, S., Wikandaru, R., Nufus, A. B., Sudarsih, S., &amp;amp; Saraswati, D. (2020). Empan papan: Etika komunikasi di media sosial dalam perspektif budaya Jawa. &lt;em&gt;Jurnal Lensa Mutiara Komunikasi&lt;/em&gt;, 4(2), 165–183.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Poedjosoedarmo, S. (2017). Language propriety in Javanese. &lt;em&gt;Journal of Language and Literature&lt;/em&gt;, 17(1), 1–9.</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Utomo, S. G. (2022). Ajining dhiri saka ing lathi [Undergraduate thesis, Universitas Gadjah Mada].</div>
+        <div class="ref-group-title">Author's Prior Work</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Tambun, T. (2024, December 29). 'Rakyat jelata' controversy shows how words can be a sword. &lt;em&gt;The Jakarta Post&lt;/em&gt;.</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Tambun, T. (2025, September 17). The unfiltered leader: When confidence clashes with convention. &lt;em&gt;The Jakarta Post&lt;/em&gt;.</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>Tambun, T. (2026, July 15). Dissecting Prabowo Subianto's speech: Leadership, rhetoric and constitutional risk. &lt;em&gt;LinkedIn Article&lt;/em&gt;.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>Tambun, A. R. Y. T. (23 August 2026). The Ruler's Word Versus Republican Duty. <em>LinkedIn Article</em>. <a href="https://www.linkedin.com/pulse/rulers-word-versus-republican-duty-dr-toronata-tambun-z0hyc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/rulers-word-versus-republican-duty-dr-toronata-tambun-z0hyc/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ['slide-title','slide-intro','slide-gap','slide-framework','slide-details','slide-evidence','slide-implications','slide-conclusion','slide-references'];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
