@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Danger of Calling Students Heroes Too Early &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">The Danger of Calling Students Heroes Too Early</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Slogan</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Why It Travels</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Conversion</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Romance</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> What Is Lost</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> The Alternative</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Slogan</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Why It Travels</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Conversion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Romance</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">What Is Lost</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">The Alternative</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Formation and Its Slogans &nbsp;&middot;&nbsp; 20 April 2026</div>
+      <h1 class="title-main">The Danger of Calling Students Heroes Too Early</h1>
+      <p class="title-thesis">Zero to hero is not merely a generous slogan. It is false, because it awards the verdict at the beginning. It survives because it pays the family, the institution and the student at once — and every payment is drawn against formation that has not happened yet. Heroism is a long verdict.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A 3.96 GPA did not settle a life, and a one-point-something did not end one.</h2>
+      <p class="sec-lead">Two students, described in the same conversation by a lecturer the author admires.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>One graduated with a GPA of 3.96 and still did not secure a good job. The other twice fell into what some called nasib satu koma, one point something GPA, recovered, graduated, joined an oil and gas service company, and eventually made it to Houston from Jakarta.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>A high GPA may show discipline, intelligence and seriousness within a formal system. It does not settle life. It does not guarantee judgment, resilience, communication, maturity, or the ability to grow through difficulty.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If the transcript does not predict the outcome, what exactly is being certified when a young person is called a hero at twenty-two?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Nothing that has been tested yet. The contrast between these two students should disturb any easy theory of education — and it is the reason the author has become suspicious of a slogan.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Slogan</div>
+      <h2 class="sec-title">The slogan is not merely too generous; it is false, because it gives false formation.</h2>
+      <p class="sec-lead">Why zero to hero fails as a description before it fails as encouragement.</p>
+      <p class="body-text">The slogan sounds too generous. That is the charitable reading, and it is the wrong one. "In fact, it is false. It gives false hope because it gives false formation."</p>
+      <p class="body-text">"It tells young people that early hardship plus early recognition equals arrival. It mistakes a beginning for an ending. It mistakes applause for character. It mistakes visibility for substance."</p>
+      <p class="body-text">The falsehood is not random. It fits too well with a wider performative culture in which being seen often outruns being formed — a culture where what can be displayed quickly is rewarded more easily than what must be built slowly.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Why It Travels</div>
+      <h2 class="sec-title">It travels because it pays the family, the institution and the student at once.</h2>
+      <p class="sec-lead">The slogan satisfies a short-term imagination on three sides simultaneously. That is precisely why it is dangerous.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">The family</div>
+          <div class="comp-name">Visible proof that sacrifice paid off</div>
+          <div class="comp-body">Families want evidence that the years of cost produced something. A degree that arrives with a heroic label supplies that evidence faster than a decade of quiet competence would.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">The institution</div>
+          <div class="comp-name">Visible proof that uplift happened</div>
+          <div class="comp-body">Institutions want proof that mobility works and that compassion had an effect. A student who can be narrated as risen is more useful to that account than a student still being formed.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">The student</div>
+          <div class="comp-name">Early signs that the crossing is over</div>
+          <div class="comp-body">Students want confirmation that the struggle has ended and the crossing has already been made. The slogan grants it before anything has been survived long enough to count.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Conversion</div>
+      <h2 class="sec-title">Once the degree carries the family's dignity, it stops being long discipline.</h2>
+      <p class="sec-lead">Higher education then becomes more than education. "It becomes symbolic redemption."</p>
+      <p class="body-text">For many families, especially where the undergraduate degree is the first in the family, the degree carries emotional weight far beyond learning. It becomes evidence of dignity restored, of sacrifice rewarded, of a family that has risen.</p>
+      <p class="body-text">That hope is understandable. But once it becomes too heavy, formation begins to weaken. The degree is no longer approached mainly as long discipline. It is approached as early proof of worth.</p>
+      <p class="body-text">Then title worship enters. Education is treated less as the slow work of becoming substantial and more as convertible prestige. The question quietly changes from what am I becoming to what standing does this give me — and the conditions are now perfect for premature symbolic inflation.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Romance</div>
+      <h2 class="sec-title">A precarious student turned into inspirational material becomes an emotional trophy.</h2>
+      <p class="sec-lead">Support for precarious students is proper. What happens next to the story is not.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">What the Romance Produces</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The student becomes proof that the institution is compassionate</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The student becomes proof that mobility works</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The student becomes proof that a neat story can now be told</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Precarity is converted into inspirational material for an audience</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The student stops being seen as someone still in need of formation</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">What Support Would Actually Mean</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Seeing the student simply as a student who requires formation</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Refusing to hand out crowns before anything has been tested</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Recognising that hardship is not automatically beautiful</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Declining to make the student carry the institution's account of itself</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Treating the difficulty as difficulty, not as narrative material</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The line the author draws</div>
+        <p>"Education should not turn people into emotional trophies." The romance is unfair to the student and corrupting to the institution — and it is corrupting precisely because it is well-meant.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What Is Lost</div>
+      <h2 class="sec-title">The culture wants return before ripening, and the slogan is what supplies it.</h2>
+      <p class="sec-lead">What gets lost in the zero-to-hero script is long formation.</p>
+      <blockquote>
+        <p>The culture wants return before ripening. It wants signs of arrival before substance exists. It wants closure before maturity.</p>
+        <cite>&mdash; The Danger of Calling Students Heroes Too Early</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Discipline weakens</div>
+          <div class="arith-body">Symbolic arrival comes too early, and the reason to keep working past the applause disappears with it. The work was never the point once the label had been awarded.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Calling gets blurred</div>
+          <div class="arith-body">Students are pushed to seek what looks rewarding and respectable rather than what they are prepared to build patiently and deeply. The two are not the same and only one of them lasts.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The moral timeline is taught wrong</div>
+          <div class="arith-body">A young person of twenty-two or twenty-three who has escaped hardship, entered a respected university, or collected awards may deserve respect. That person is not yet a hero, and saying otherwise is inflation, not kindness.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Alternative</div>
+      <h2 class="sec-title">Anti-fragile formation is the harder ambition, and it does not worship suffering.</h2>
+      <p class="sec-lead">What the lecturer seemed to understand, and what he did not do.</p>
+      <p class="body-text">He did not rely on zero to hero. He did not hand out crowns too early. He seemed to understand that the real task is anti-fragile formation — not romanticism, not theatre, not premature heroic language.</p>
+      <p class="body-text">Anti-fragility does not pretend hardship is beautiful. It does not assume every wound becomes wisdom. It recognises only that some students, when formed well, become stronger through difficulty instead of flatter through praise.</p>
+      <p class="body-text">What they develop instead is "resilience instead of image, judgment instead of drama, range instead of entitlement." That is a much harder educational ambition, and a much more honest one.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Heroism is a long verdict, and the young do not need crowns too early.</h2>
+      <p class="sec-lead">The one prescription the piece makes, stated as narrowly as the author states it.</p>
+      <blockquote>
+        <p>The young do not need crowns too early.</p>
+        <cite>&mdash; The Danger of Calling Students Heroes Too Early</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the word actually requires</div>
+          <div class="arith-body">Heroism is tested over time through sacrifice, restraint, responsibility, and usefulness for others after strength and visibility have already arrived. To use it before then is not generosity.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What education should return to</div>
+          <div class="arith-body">If education is serious, it should stop rewarding early symbolic ascent and return to the slower labor of building adults. Zero to hero promises something faster. That is exactly why it is false.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Note on sources</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>The two students described in this article reached the author through a conversation with a lecturer he admires; neither the lecturer nor the students are named, and no institutional records were consulted. The Javanese-Indonesian phrase <em>nasib satu koma</em> is the students' own idiom, not a formal academic category. The article cites no published sources, and none are supplied here.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T. (2026, April 20). <em>The Danger of Calling Students Heroes Too Early</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/danger-calling-students-heroes-too-early-toronata-tambun-labdc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/danger-calling-students-heroes-too-early-toronata-tambun-labdc/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>He Is Entering Pangkur &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">He Is Entering Pangkur</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Map</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Western Parallel</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Phase Nine</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> A Note to the Young</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> What He Carries</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Map</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Western Parallel</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Phase Nine</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">A Note to the Young</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">What He Carries</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Tembang Macapat and the Ninth Phase &nbsp;&middot;&nbsp; 10 April 2026</div>
+      <h1 class="title-main">He Is Entering Pangkur</h1>
+      <p class="title-thesis">Tembang Macapat reads eleven Javanese poetic meters as one human life, and its ninth phase — Pangkur, the turning away — is not decline to be managed but withdrawal to be honoured. A man at the end of Durma is entering it. The young founders reading are not behind; they are in Sinom, and Sinom is where the map says they should be.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">Most of the world has never encountered the map Javanese literature drew of a life.</h2>
+      <p class="sec-lead">Told in the third person, as the article tells it. He has been sitting with this map recently — not as an academic, as a man.</p>
+      <p class="body-text">Tembang Macapat is eleven classical poetic meters embedded in Javanese court literature. Each carries a name whose etymology is so precise, and so achingly human, that over centuries the meters were interpreted not merely as verse forms but as an allegorical map of the entire human journey.</p>
+      <p class="body-text">It runs from the soul's first floating in the darkness of the womb to its final return to the Source of all things. What he sees looking back at him from that map is Phase Nine.</p>
+      <p class="body-text">But before arriving there, the whole road has to be walked.</p>
+      <div class="callout">
+        <div class="callout-label">The claim the map makes</div>
+        <p>"Eleven phases. One life. Nothing wasted." No stage is a detour and none is a delay. That is the premise everything else in the piece depends on.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Map</div>
+      <h2 class="sec-title">Eleven phases, one life, and not one of them wasted.</h2>
+      <p class="sec-lead">The arc rises through worldly achievement, peaking at Dhandhanggula, and then begins deliberately to let go.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 1</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Maskumambang — The Floating Gold</div>
+            <div class="timeline-body">The soul before and during conception: pure, weightless, uncorrupted. Every human life, the tradition insists, begins as something luminous.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 2</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Mijil — The Emergence</div>
+            <div class="timeline-body">Birth. The rupture into light and noise and radical vulnerability. The world receives a new stranger.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 3</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Sinom — The Young Shoot</div>
+            <div class="timeline-body">Adolescence and early youth. Growth, curiosity, the first formation of character. Roots forming beneath soil not yet tested by drought.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 4</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Kinanthi — The Guided One</div>
+            <div class="timeline-body">From kanthi, to be accompanied. The season of being led by mentors, elders and teachers. You do not walk alone here. You are held.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 5</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Asmaradana — The Fire of Love</div>
+            <div class="timeline-body">From asmara, love, and dahana, fire. The most combustible phase. Longing, passion, the search for a life partner. A fire that can illuminate everything, or consume it.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 6</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Gambuh — The Union</div>
+            <div class="timeline-body">From jumbuh, to harmonise, to become one. Marriage. Family. The merging of two lives into a shared vision and covenant.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 7</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Dhandhanggula — The Sweet Vessel</div>
+            <div class="timeline-body">The apex of worldly achievement: career, wealth, recognition. But the Javanese were never naive about sweetness — the vessel must hold something more than sugar, or it remains, despite its beauty, empty.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 8</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Durma — The Giving Phase</div>
+            <div class="timeline-body">From darma, to give, to serve. Having accumulated, one must now distribute. Mentorship. Generosity. The self expands beyond personal triumph toward something communal and lasting.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 9</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Pangkur — The Turning Away</div>
+            <div class="timeline-body">From mungkur, to turn one's back on. Withdrawal from worldly noise. Contemplation. Drawing closer to God. The soul's deliberate, sacred release. This is where he stands.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 10</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Megatruh — The Separation</div>
+            <div class="timeline-body">From megat, to separate, and ruh, spirit. Death. The soul's departure from the body. The closing of the temporal chapter and the opening of the eternal.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Phase 11</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Pocung — The Return</div>
+            <div class="timeline-body">The shrouded body. The soul journeys beyond the cycle to Sang Murbeng Dumadi, the Source and Sovereign of all existence. Sangkan Paraning Dumadi. Not an ending. A homecoming.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Western Parallel</div>
+      <h2 class="sec-title">Erikson asks whether a life was lived well; Macapat asks what is left to release.</h2>
+      <p class="sec-lead">Erikson's eight stages are arguably the most influential life-stage framework in Western scholarship. Notice what they assume.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">Erikson (1950), Eight Stages</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Trust vs. Mistrust; Autonomy vs. Shame; Initiative vs. Guilt</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Industry vs. Inferiority; Identity vs. Role Confusion</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Intimacy vs. Isolation; Generativity vs. Stagnation</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Ego Integrity vs. Despair — the final stage asks whether one lived well enough to avoid despair</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The interior work of a life is a psychological negotiation with the past</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">Macapat, Eleven Phases</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Not did I do enough, but what is left to release</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Not was my life meaningful, but to whom and for what am I now being given</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Withdrawal is a named phase, not a symptom of one</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The arc continues past death into return, rather than closing at integrity</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"Macapat does not pathologize withdrawal. It sanctifies it."</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Phase Nine</div>
+      <h2 class="sec-title">He is at Pangkur, which is not performed humility but an interior turning.</h2>
+      <p class="sec-lead">He has crossed fifty-two countries, built companies, earned a doctorate summa cum laude, written hundreds of columns and articles, lectured, advised ministers, and sat on boards.</p>
+      <p class="body-text">That is a life carried at full velocity across Dhandhanggula and Durma. He is not done. But something in him is shifting.</p>
+      <p class="body-text">What he finds himself turning away from is the noise — the compulsive need to be present in every room, the subtle tyranny of relevance, the measuring of life in metrics that were never truly his to begin with. Borrowed currencies from a world that moves fast and rarely stops to ask: fast toward what, exactly?</p>
+      <p class="body-text">"Pangkur is not a press release. It is not performed humility." It is quieter than that, and more interior. "It is the moment a man stops building his biography and starts listening to his soul."</p>
+      <div class="callout">
+        <div class="callout-label">What he wants now</div>
+        <p>"What he wants now is depth over volume. Presence over productivity." Silence that teaches over noise that merely stimulates. To know God more than to be known by men.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">A Note to the Young</div>
+      <h2 class="sec-title">The young founder is in Sinom, and Sinom is not a lesser place.</h2>
+      <p class="sec-lead">Addressed directly to young founders reading the piece, and framed as location rather than deficiency.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Where you are</div>
+          <div class="comp-name">Sinom, perhaps Kinanthi</div>
+          <div class="comp-body">Probably still finding your footing between the two. That is not an insult. That is the truth of where the journey begins — and the map treats it as a phase, not a shortfall.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Why it feels otherwise</div>
+          <div class="comp-name">The confidence of the uncharted</div>
+          <div class="comp-body">The Dunning-Kruger effect describes the tendency of those early in a learning curve to overestimate their competence, precisely because they do not yet know enough to understand how much they do not know. Most young founders live here. He did too, once.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">What the map asks</div>
+          <div class="comp-name">Do not rush to Dhandhanggula</div>
+          <div class="comp-body">"Sinom is sacred. Kinanthi is sacred. Do not rush to Dhandhanggula." Do not perform Durma before you have lived it. "You are not behind. You are exactly where the journey requires you to be."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The sentence that closes the note</div>
+        <p>"Every phase is necessary. Every phase is enough." There is a map; the instruction is to trust it and walk it fully, not to find a way around it.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What He Carries</div>
+      <h2 class="sec-title">A human being must not lose their humanity in the rush to be impressive.</h2>
+      <p class="sec-lead">Wong Jowo ojo ilang Jowone — a Javanese must not lose their Javaneseness. The piece then widens the claim past Java.</p>
+      <blockquote>
+        <p>But perhaps — for all of us, wherever we come from — a human being must not lose their humanity in the rush to become something impressive.</p>
+        <cite>&mdash; He Is Entering Pangkur</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Pangkur is the reminder</div>
+          <div class="arith-body">Not a retirement announcement and not a withdrawal from usefulness. A named phase that the tradition treats as sacred rather than as decline, offered to a reader who may have no vocabulary for it.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">He is listening</div>
+          <div class="arith-body">The piece ends on that, and then on Rahayu. Rahayu. Rahayu. — a blessing, not a conclusion. It makes no policy claim and offers no recommendations, and none are supplied here.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Erikson, E. H. (1950). <em>Childhood and society</em>. W. W. Norton. — the article dates the eight-stage framework to 1950 and names Erikson as its author; the edition is not specified there.</div>
+        <div class="ref-group-title">Note on sources</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tembang Macapat is a living Javanese literary and philosophical tradition, not a publication. The eleven phase names, their etymologies and their allegorical reading are given in the article as the tradition's own; no textual source is cited there and none is supplied here.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>The article names the Dunning-Kruger effect without citing a source for it. No citation is inferred or substituted in its place.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>The Javanese and Kawi terms used in the article — <em>mungkur</em>, <em>kanthi</em>, <em>jumbuh</em>, <em>darma</em>, <em>asmara</em>, <em>dahana</em>, <em>megat</em>, <em>ruh</em>, <em>Sang Murbeng Dumadi</em>, <em>Sangkan Paraning Dumadi</em>, <em>Wong Jowo ojo ilang Jowone</em> and <em>Rahayu</em> — are glossed by the author within the text.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, T. (2026, April 10). <em>He Is Entering Pangkur</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/he-entering-pangkur-toronata-tambun-bhopc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/he-entering-pangkur-toronata-tambun-bhopc/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

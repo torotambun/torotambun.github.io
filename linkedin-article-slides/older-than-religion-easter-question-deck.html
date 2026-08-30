@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Older Than Religion: An Easter Question I Did Not Expect to Ask &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Older Than Religion: An Easter Question I Did Not Expect to Ask</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Question</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Mechanism</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Mirror</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Count</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Costs</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> The Older Answer</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Implications</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> What I Carry</div>
+    <div class="nav-item" data-target="slide-10"><span class="nav-num">10</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Question</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Mechanism</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Mirror</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Count</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Costs</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">The Older Answer</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">What I Carry</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-10"><div class="car-num">10</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Persecution and the Majority Brain &nbsp;&middot;&nbsp; 11 April 2026</div>
+      <h1 class="title-main">Older Than Religion: An Easter Question I Did Not Expect to Ask</h1>
+      <p class="title-thesis">Religious persecution in Indonesia is not primarily a theological problem. It is a neurological one, activated by majority power rather than by creed — which is why the mechanism is identical in Tangerang and in South Minahasa, and why no tradition owns the solution. What suppresses it is not a tolerance programme but repeated personal encounter, of the kind a family performed at lunchtime in the 1970s without calling it anything.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">Feeding a neighbour's child was the most radical political act I ever witnessed.</h2>
+      <p class="sec-lead">Sometime in the 1970s. It took perhaps ten minutes. It cost nothing.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>A family fed their neighbour's child at lunchtime while his parents were away at work. Nobody asked them to. Nobody thanked them formally. They simply saw a child who needed a meal, and they gave one.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>The author was that child — a member of a religious minority in a region where a different faith formed the overwhelming majority. He knows tepo seliro, the Javanese instinct to feel what another feels and act before being asked, from the inside. He also knows its absence.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>How can the brain capable of that quiet daily generosity be the same brain that seals a prayer house on Good Friday and destroys an ancestral worship site at dawn?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>"Same organ. Same species. Completely different outcome." What changes between the two is not the faith held. It is whether the person holding it is in the majority.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Question</div>
+      <h2 class="sec-title">The real question is what it costs to keep calling this a religious problem.</h2>
+      <p class="sec-lead">The reframe the piece insists on, and the reason it is uncomfortable for every reader it has.</p>
+      <p class="body-text">The question is not simply why minorities are persecuted; social neuroscience has begun to answer that. The deeper question is what it costs to keep pretending this is primarily a religious problem — and what might be gained by looking elsewhere for the diagnosis.</p>
+      <p class="body-text">That reframe has costs. For the reader who holds convenient explanations. For the policymaker who designs tolerance programs. For the diplomat who writes religious freedom reports. And for the believer who has confused persecution with identity.</p>
+      <p class="body-text">"Neither the costs nor the benefits are small." The piece is written on Easter morning and it does not resolve into consolation.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Mechanism</div>
+      <h2 class="sec-title">Fear runs faster than theology, and majority power is what amplifies it.</h2>
+      <p class="sec-lead">What social neuroscience has established, in the order the argument needs it.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE A</div>
+          <div class="ev-title">The amygdala computes us-versus-them in a fraction of a second</div>
+          <div class="ev-body">Estimated by evolutionary biologists at over 200 million years old and shared in its basic architecture with reptiles, its job is threat detection — faster than conscious thought, faster than theology, faster than any value we claim to hold (Amodio, 2014). "This is not evil. It is survival machinery…"</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE B</div>
+          <div class="ev-title">Forty-five percent of adult moral capacity is set between ages three and seven</div>
+          <div class="ev-body">Early childhood experience in that window contributes approximately 45% to the moral capacity expressed in adulthood — the single strongest predictor of ethical behavior, outweighing cognitive biases, external pressures and even character (Tambun et al., 2025). The prefrontal cortex is being built precisely then. What enters does not merely teach. It wires.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE C</div>
+          <div class="ev-title">Inter-group bias appears in the majority brain and far less in the minority brain</div>
+          <div class="ev-body">Neural inter-group bias shows clearly in majority members, in regions governing attention, social categorization and emotional response, but is far less evident in minority members (Karinen et al., 2022). "Power does not merely change behavior. It changes neurology."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">EVIDENCE D</div>
+          <div class="ev-title">The driver underneath the permits is not hatred but mortality salience</div>
+          <div class="ev-body">When the barely conscious terror of being replaced or made irrelevant is activated, negative stereotypes toward outgroups increase, hostility intensifies, and support grows for leaders who promise to manage the threat through force rather than dialogue (Haller et al., 2022).</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Not a verdict</div>
+        <p>The prefrontal cortex arrived much later and is slower: the amygdala fires in milliseconds, the cortex takes seconds. Fear wins the first round automatically, and overriding it is a learned daily discipline. As Montagu observed, treating aggression as biologically inevitable becomes a pseudoscientific excuse for accepting what could be changed. "The amygdala is real. It is not a verdict."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Mirror</div>
+      <h2 class="sec-title">The perpetrators changed faith; the mechanism did not.</h2>
+      <p class="sec-lead">Two cases, in two provinces, with the majority faith reversed between them.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">Teluknaga, Tangerang</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>July 2024: residents dispersed the POUK Tesalonika congregation gathering in a private home after their church lease expired</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Good Friday, 3 April 2026: Satpol PP sealed the congregation's prayer house, citing Perda No. 13/2022 on houses-of-worship permits</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>PGI formally condemned the sealing as violating Articles 28E and 29 of the 1945 Constitution</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The instrument was not a mob with torches; it was government apparatus acting within the framework of law</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The perpetrators belonged to the majority faith of Java</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">South Minahasa, North Sulawesi</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Laroma practises the ancestral Malesung faith of the Minahasa, predating every missionary ship that entered these waters</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Since 2016: hate speech in houses of worship, at government events, and even at weddings</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>June 2022: the sacred gathering place Wale Paliusan was physically destroyed by residents who stigmatised the believers as deviant</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A year after the destruction, discrimination continued in many forms</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The perpetrators belonged to the majority faith of that region</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What was identical</div>
+        <p>Stigmatisation of the minority, pressure through social and institutional channels, the quiet removal of safety. "The amygdala does not check your faith before it activates" — "It only asks: are you inside or outside?"</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Count</div>
+      <h2 class="sec-title">The state has never counted, and the failure to count is itself an answer.</h2>
+      <p class="sec-lead">What the numbers are, and what they are not.</p>
+      <p class="body-text">According to the Communion of Churches in Indonesia, more than 430 churches have been attacked, closed, or burned since 2004. In 2024 alone, SETARA Institute recorded 260 incidents and 402 violations of religious freedom — a significant increase over 2023.</p>
+      <p class="body-text">"The government does not count. And the failure to count is itself a form of answer." An absent register is not neutral: it removes the basis on which a pattern could be established, and therefore the basis on which it could be answered.</p>
+      <div class="warning-callout">
+        <div class="callout-label">What is estimated, not established</div>
+        <p>Local advocacy groups estimate the two-decade total may exceed 1,000 — but Indonesia's Ministry of Religious Affairs has never compiled official data. That figure is an advocacy estimate, and the article presents it as one. The 430 figure and the SETARA counts are attributed to named bodies; the 1,000 is not.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Costs</div>
+      <h2 class="sec-title">Every reader pays a cost, including the one who came for validation.</h2>
+      <p class="sec-lead">The piece names its audiences and charges each of them separately.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">The reader with a convenient diagnosis</div>
+          <div class="comp-name">Your comfortable explanation produces ineffective treatment</div>
+          <div class="comp-body">The brain doing the persecuting in Tangerang and the brain doing it in South Minahasa are running the same ancient program. Blaming a single tradition is more comfortable than confronting a mechanism that lives in every human skull, including your own.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">The believer expecting validation</div>
+          <div class="comp-name">The mirror must turn before the mouth opens</div>
+          <div class="comp-body">You cannot speak with moral authority about what is being done to POUK Tesalonika while your own majority community does the same thing to Laroma. That sentence is addressed to the author's own side, not to someone else's.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">The diplomat and the policymaker</div>
+          <div class="comp-name">The amygdala is not impressed by policy papers</div>
+          <div class="comp-body">Interfaith dialogue brochures do not rewire 200 million years of threat-detection circuitry. What the research consistently shows works is repeated, specific, personal encounter with the human being on the other side of the boundary, sustained long enough for the brain to learn that difference is not threat (Amodio, 2010).</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Older Answer</div>
+      <h2 class="sec-title">The deepest moral intuitions predate every religion that later claimed them.</h2>
+      <p class="sec-lead">Why the Malesung faith and the empty tomb belong in the same argument.</p>
+      <p class="body-text">The Malesung faith carries its own flood story, its own account of the first man and woman — Dotu Lumimuut and Dotu Toar — and its own understanding of what the sacred demands, all arrived at independently through centuries of living close to land and sky. Its central teaching — "Si Tou Timou Tumou Tou, that humans live to be a blessing to other humans" — is not derived from any world religion.</p>
+      <p class="body-text">These are not primitive superstitions. They are evidence that the deepest human questions are not the property of any imported religion. They predate all of them. They belong to the species.</p>
+      <p class="body-text">"Religion does not create this mechanism. It inherits it." And then, across every tradition without exception, gives it a sacred vocabulary.</p>
+      <p class="body-text">The crucifixion interrupted that logic. When the veil of the temple tore, from top to bottom and not by human hands, the entire architecture of mediated religion was abolished — the layered priesthood, the ritual requirements, the bureaucratic permission structure for approaching the sacred. Direct access. No majority required. No permit to be denied.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">No tradition owns the solution, because no tradition created the problem.</h2>
+      <p class="sec-lead">The so-what, stated in the article's own sequence.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; The problem is neurological before it is theological</div>
+          <div class="arith-body">Shaped by millions of years of evolutionary history, activated by the experience of majority power, and suppressible only by the kind of sustained human encounter that rewires the threat response slowly and at great personal cost.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Si Tou Timou Tumou Tou and the Sermon on the Mount are not competitors</div>
+          <div class="arith-body">They are independent human arrivals at the same recognition: that the prefrontal cortex must be trained, daily, to override what the amygdala does automatically.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; The believer must account for Laroma first</div>
+          <div class="arith-body">The reader rightly outraged by Tangerang has an obligation that comes before the next sentence about tolerance, and it points inward.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; The policymaker is funding the wrong organ</div>
+          <div class="arith-body">Programs are designed for the prefrontal cortex while the conditions being funded inflame the amygdala. The two efforts cancel, and the second is larger.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; The diplomat is documenting the wrong category</div>
+          <div class="arith-body">"It is a biological phenomenon dressed in religious clothing." Not the reverse — which is how the reports are currently written.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What I Carry</div>
+      <h2 class="sec-title">The family who fed me did what no tolerance programme has produced.</h2>
+      <p class="sec-lead">Without being asked, without ceremony, without theological justification.</p>
+      <blockquote>
+        <p>They were training their prefrontal cortex. And mine.</p>
+        <cite>&mdash; Older Than Religion: An Easter Question I Did Not Expect to Ask</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">That is the so-what</div>
+          <div class="arith-body">No permit system, no interfaith forum and no tolerance curriculum has ever reliably produced what a lunchtime meal produced in the 1970s. The mechanism that works is unglamorous, repeated, and impossible to fund into existence.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The only answer he actually believes</div>
+          <div class="arith-body">Offered after a lifetime of living and working across 52 countries as a minority. The piece closes on "Maranatha. Come, Lord." — a hope, not a policy, and it is presented as such.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-10">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Neuroscience and moral development</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Amodio, D. M. (2010). The egalitarian brain. In J. Marsh, R. Mendoza-Denton, &amp; J. A. Smith (Eds.), <em>Are we born racist? New insights from neuroscience and positive psychology</em> (pp. 15–24). Beacon Press.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Amodio, D. M. (2014). The neuroscience of prejudice and stereotyping. <em>Nature Reviews Neuroscience, 15</em>(10), 670–682. https://doi.org/10.1038/nrn3800</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Chekroud, A. M., Everett, J. A. C., Bridge, H., &amp; Hewstone, M. (2014). A review of neuroimaging studies of race-related prejudice: Does amygdala response reflect threat? <em>Frontiers in Human Neuroscience, 8</em>, Article 179. https://doi.org/10.3389/fnhum.2014.00179</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Haller, M., Weston, S. J., Shrout, P. E., &amp; Epstein, L. (2022). The neuroscience of intergroup threat and violence. <em>Current Opinion in Psychology, 47</em>, Article 101405. https://doi.org/10.1016/j.copsyc.2022.101405</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Karinen, A. K., Molenberghs, P., &amp; Louis, W. R. (2022). Ethnicity, minority status, and inter-group bias: A systematic meta-analysis on fMRI studies. <em>Frontiers in Human Neuroscience, 16</em>, Article 1072345. https://doi.org/10.3389/fnhum.2022.1072345</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Montagu, A. (1976). <em>The nature of human aggression</em>. Oxford University Press.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tambun, T., Yudoko, G., &amp; Aldianto, L. (2025). Neural development in early childhood and the emergence of moral cognition: A developmental perspective. <em>International Journal of Early Childhood</em>. https://doi.org/10.1007/s13158-025-00449-x</div>
+        <div class="ref-group-title">Cases, counts and documentation</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Human Rights Watch. (2013, March 25). <em>Indonesia: Order an end to church demolitions</em>. https://www.hrw.org/news/2013/03/25/indonesia-order-end-church-demolitions</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Human Rights Watch. (2024, September 3). <em>Pope Francis visits Indonesia amid rising religious intolerance</em>. https://www.hrw.org/news/2024/09/03/pope-francis-visits-indonesia-amid-rising-religious-intolerance</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>ICRS Yogyakarta. (2023, July 13). <em>Indigenous religions amid diversity: Stories from Lalang Rondor Malesung (Minahasa)</em>. https://www.icrs.or.id/news/indigenous-religions-amid-diversity-stories-from-lalang-rondor-malesung-minahasa</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Satelit News. (2026, April 4). <em>Segel kantor yayasan di Teluknaga, Pemkab Tangerang siapkan tempat ibadah sementara</em>. https://www.satelitnews.com/156279/segel-kantor-yayasan-di-teluknaga-pemkab-tangerang-siapkan-tempat-ibadah-sementara/</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>SETARA Institute for Democracy and Peace. (2025). <em>Freedom of religions and beliefs conditions 2024</em>. https://setara-institute.org/en/freedom-of-religions-and-beliefs-conditions-2024/</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Sinar Harapan. (2026, April 4). <em>Negara kalah, gereja di Tangerang disegel saat Paskah</em>. https://www.sinarharapan.net/negara-kalah-gereja-di-tangerang-disegel-saat-paskah/</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Tempo. (2026, April 4). <em>PGI kecam penyegelan rumah doa jemaat POUK Tesalonika</em>. https://www.tempo.co/politik/pgi-kecam-penyegelan-rumah-doa-jemaat-pouk-tesalonika-2126628</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tribunnews. (2024, July 23). <em>Ibadah jemaat Gereja Tesalonika di Tangerang yang dilaksanakan di rumah dibubarkan warga</em>. https://www.tribunnews.com/metropolitan/2024/07/23/ibadah-jemaat-gereja-tesalonika-di-tangerang-yang-dilaksanakan-di-rumah-dibubarkan-warga</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>U.S. Department of State. (2023). <em>2022 report on international religious freedom: Indonesia</em>. https://www.state.gov/reports/2022-report-on-international-religious-freedom/indonesia</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>VOA Indonesia. (2022, June 26). <em>SETARA Institute kecam perusakan rumah tinggal penghayat Laroma</em>. https://www.voaindonesia.com/a/setara-institute-kecam-perusakan-rumah-tinggal-penghayat-laroma/6632771.html</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>The source article prints the 2025 co-authored entry with fuller initials as Tambun, A. R. Y. T., Yudoko, G., &amp; Aldianto, L. It is normalised here to Tambun, T. for consistency with the rest of this list. The record of the change is this note.</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>The article's own Disclosure states: the ideas, lived experience and editorial decisions are the author's own; the composition and language were polished with the assistance of Claude Sonnet 4.6 (Anthropic) and ChatGPT 5.4 Thinking (OpenAI).</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>The estimate that the two-decade total of attacked, closed or burned churches may exceed 1,000 is attributed in the article to local advocacy groups, and is distinguished there from the 430 figure attributed to the Communion of Churches in Indonesia. Indonesia's Ministry of Religious Affairs has never compiled official data.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[21]</span>Tambun, T. (2026, April 11). <em>Older Than Religion: An Easter Question I Did Not Expect to Ask</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/older-than-religion-easter-question-i-did-expect-ask-toronata-tambun-hxk5c" target="_blank" rel="noopener">https://www.linkedin.com/pulse/older-than-religion-easter-question-i-did-expect-ask-toronata-tambun-hxk5c</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
