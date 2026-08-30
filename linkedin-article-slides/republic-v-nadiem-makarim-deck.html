@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Republic of Indonesia v. Nadiem Anwar Makarim (Case No. 147/PITSUS-TPK/2025/PN JKT.PST): A Pseudo Legal Analysis Report &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">The Republic of Indonesia v. Nadiem Anwar Makarim</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Prosecution</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Defence</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Financial Record</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Doctrinal Clash</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Two Pathways</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Prosecution</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Defence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Financial Record</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Doctrinal Clash</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Two Pathways</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Trial Analysis &nbsp;&middot;&nbsp; 28 June 2026</div>
+      <h1 class="title-main">The Republic of Indonesia v. Nadiem Anwar Makarim (Case No. 147/PITSUS-TPK/2025/PN JKT.PST): A Pseudo Legal Analysis Report</h1>
+      <p class="title-thesis">Two cases are running inside one trial. On the procurement, the August 2020 Windows message is genuine exculpatory evidence against mens rea. On the wealth, Article 37 reverses the burden and intent is not required. The report's prediction therefore turns on the second, not the first — and it is a prediction, not a verdict.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Two cases are being tried at once, and they point in opposite directions.</h2>
+      <p class="sec-lead">An analysis of the prosecution's rebuttal (Replik) and the defendant's response (Duplik), as presented at the Jakarta Central District Court.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The prosecution has constructed a narrative of "Special Systematic" corruption, arguing the defendant used ministerial authority to validate a pre-existing evil consensus (mufakat jahat) with Google. The defence answers with a mission of software-driven transformation, a fiscal saving, and a WhatsApp message it calls exculpatory.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>The two sides are not arguing about the same thing. One case concerns the Chromebook procurement and whether the minister intended to enrich a commercial partner. The other concerns a wealth increase of IDR 4,871,469,603,758 during his term and whether he can account for it.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If the procurement case and the wealth case are answered by different evidence and different doctrines, which one carries the trial?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>The wealth case. Intent is contested on the procurement and the defence has real evidence there. On the wealth, Articles 37 and 37A shift the burden onto the defendant, and the report finds that burden undischarged.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Prosecution</div>
+      <h2 class="sec-title">The state alleges one scheme running from retained shares to a IDR 4.87 trillion wealth increase.</h2>
+      <p class="sec-lead">The Replik distils the state's case into eight definitive legal violations. They are presented here as allegations argued at trial.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Systemic conflict of interest</div>
+          <div class="arith-body">"Intentional retention of PT AKAP (GoTo) shares to profit from Google-centric educational policies." The prosecution relies on Identification Theory, as articulated by Prof. Nindyo Pramono, to argue the defendant remained the directing mind despite the irrevocable power of attorney.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Shadow governance and administrative betrayal</div>
+          <div class="arith-body">"Implementation of a "Shadow Organization" (Tan, Arif, Handayani) that overrode official structural roles of Echelon I and II officers", together with the "Intentional replacement of competent officials (Hamim/Popi) with nominees willing to sign off on the Chrome OS pivot."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Procedural fraud and coercive policy-making</div>
+          <div class="arith-body">"Deliberate manipulation of notarial records and tax filings (SPT) to mask the true scale of the defendant's financial relationship with Google", and the bypassing of school needs identification to lock technical specifications through Permendikbud No. 5/2021, "ensuring a Chrome OS monopoly."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Economic enrichment</div>
+          <div class="arith-body">"Orchestrating a IDR 809.6 Billion "corporate action" within Gojek Indonesia that functioned as a disguised kickback."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Constitutional failure</div>
+          <div class="arith-body">"Deepening the educational gap in 3T regions by deploying internet-dependent hardware, a direct "betrayal of the constitutional mandate" for equal education."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Unexplained wealth</div>
+          <div class="arith-body">"Failure to utilize the Article 37 (Reverse Burden of Proof) opportunity to explain a IDR 4.87 Trillion wealth increase during tenure." Witnesses Andre Soelistyo and Kevin Aluwi testified under oath that they were required to report to and seek approval from the defendant for critical corporate actions.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">This Is Not a Judgment</div>
+        <p>This deck summarises an analysis of an ongoing trial. It is not a court judgment and must not be read as a finding of guilt. The presumption of innocence stands. The source article calls itself a pseudo legal analysis report and states that it was developed with the assistance of NotebookLM from official trial transcripts. Its concluding prediction is the author's reading of the record, not an outcome.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Defence</div>
+      <h2 class="sec-title">The defence answers with a software mission, a IDR 3.9 trillion saving, and one WhatsApp message.</h2>
+      <p class="sec-lead">The Duplik contrasts the prosecution's faceless legalism with the personal stakes, and then makes three substantive arguments about the procurement.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">What the Prosecution Says the Policy Was</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A hardware procurement locked to Chrome OS</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Specifications coerced past technical warnings</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A monopoly secured for a commercial partner</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Devices idled ten months a year at a cost of IDR 21 billion in CDM fees</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">What the Defence Says It Was</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A software transformation — PMM, Arkas, Siplah — with hardware a minor enabler</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Chromebooks only 1 of 11 initiatives in Google's February 2020 presentation</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Chrome OS selected as fiduciary duty to the budget during the COVID-19 fiscal crisis</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A leap without which transforming 50 million students would have taken 2 to 3 decades</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The August 11, 2020 "Windows Pivot"</div>
+        <p>A WhatsApp chat between the defendant and Ibrahim Arif, offered to prove a lack of mens rea. The defendant instructed: "If we allow schools to buy PC [Windows] notebooks, it's not the end of the world, right? I will choose the former [everyone having laptops] any day." The defence argues this shows he was prepared to abandon Chrome OS exclusivity to ensure students received devices during the supply chain crisis.</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The Human Argument</div>
+        <p>"I am a human being. I am a son who worries about the health of both my parents who are now over 80 years old. I am a father who worries about the fate of my four children if they are separated from me again... I am not just a sheet of paper; I am a human with feelings and a family holding their breath every day waiting for justice."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Financial Record</div>
+      <h2 class="sec-title">IDR 11 trillion arrived from Google; IDR 72 billion was recorded in the deeds.</h2>
+      <p class="sec-lead">Invoking the doctrine of Substance Over Form (Dr. Mei Jati), the prosecution places actual cash inflows against notarial recordation. These are the figures the court is asked to weigh.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">ON RECORD A</div>
+          <div class="ev-title">The recordation gap</div>
+          <div class="ev-body">Actual cash inflows from Google of approximately IDR 11 trillion — Google Asia Pacific investments into the PT AKAP/GoTo ecosystem — against "Only IDR 72 Billion recorded across multiple deeds (Notary Jose Dima Satria)." "This IDR 10.9 Trillion "gap" represents the true price of the policy influence sold to Google."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ON RECORD B</div>
+          <div class="ev-title">The SPT classification</div>
+          <div class="ev-body">"The IDR 5.2 Trillion share valuation in the 2022 SPT was recorded in the "Stock Sales" column (penjualan saham) rather than the "End of Year Assets" column." The prosecution argues this was a deliberate attempt to legitimize cash inflows under the guise of stock movements that never actually occurred on the exchange.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ON RECORD C</div>
+          <div class="ev-title">Offshore holdings</div>
+          <div class="ev-body">Three Bank of Singapore accounts were presented — IDR 1,279,701,676; IDR 3,631,757,317; IDR 1,822,140,952 — together with Planet Ocean Pte. Ltd., "An offshore vehicle the prosecution alleges was used to bypass Indonesian disclosure requirements for investments and kickbacks."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ON RECORD D</div>
+          <div class="ev-title">The 0.15 percent utility metric</div>
+          <div class="ev-body">Dashboard evidence from admin.belajar.id, supported by testimony from Muhammad Hasan Habibi, "showed that out of 1.6 million Chromebooks, only 0.15% were logged into for regular learning activities." Usage peaked exclusively during the October–November AKM window, leading the prosecution to label IDR 21 billion in CDM fees a state loss for devices idled ten months a year.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Doctrinal Clash</div>
+      <h2 class="sec-title">Whether this is administrative error or corruption turns on Article 603 against lex specialis.</h2>
+      <p class="sec-lead">A central legal battle in this trial is whether the New Criminal Code mandates that administrative sanctions be prioritized over criminal prosecution.</p>
+      <p class="body-text">The defence argues that under the new criminal-law paradigm the principle of Primum Remedium should apply, and that "any procedural lapses in the Chromebook procurement were administrative errors that should be handled through government oversight, not a criminal court."</p>
+      <p class="body-text">The prosecution asserts that notwithstanding the administrative provisions in the 2023 Code, the Anti-Corruption Law remains a lex specialis that overrides general administrative rules, that "Article 603 of the new code does not revoke the "extraordinary" status of corruption crimes", and that administrative mercy applies only to pure errors of negligence.</p>
+      <p class="body-text">The trial also tests the limits of the presumption of innocence against statutory reversal. "Under Articles 37 and 37A, the legal burden shifts: the defendant is obligated to prove that assets which do not align with their official income (such as his Singaporean bank accounts and the IDR 5.2 trillion recorded in his 2022 SPT) were obtained legally." The defendant maintains the increase is a product of entrepreneurial success and asks the judge to look beyond the profile on paper.</p>
+      <div class="warning-callout">
+        <div class="callout-label">A Note on the Amicus Submissions</div>
+        <p>"The Court has received five physical submissions for Amicus Curiae. However, judicial analysis reveals they represent only three distinct content groups, with the final three submissions being word-for-word identical." The report reads this as coordinated institutional pressure rather than spontaneous public outcry — a factor bearing on judicial independence, and one the article raises rather than resolves.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Two Pathways</div>
+      <h2 class="sec-title">The Windows chat negates intent on procurement; Article 37 does not require intent on wealth.</h2>
+      <p class="sec-lead">The report sets out two pathways to verdict, each with its legal centrepiece, its logic, and its sentence prediction.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">Pathway B — Acquittal</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Centrepiece: Article 603 of Law No. 1/2023 and Primum Remedium (Dr. Ahmad Redi)</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The August 11, 2020 Windows Pivot chat as the smoking gun of innocence</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Chrome OS rollout errors as administrative negligence, not administrative error with criminal dimension</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Prediction: full acquittal, or dismissal in favour of administrative sanctions</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">Pathway A — Guilty</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Centrepiece: Article 37 of Law No. 31/1999, reverse burden of proof</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The unexplained IDR 4.87 trillion growth and the Stock Sales SPT discrepancy</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Directing-mind control over PT AKAP as a proven conflict of interest</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Prediction: 18 years' imprisonment and total forfeiture of the unexplained wealth</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Hero Versus Criminal</div>
+        <p>The court is balancing two competing archetypes: "A young idealist who left a multi-billion dollar private career to disrupt a stagnant bureaucracy and save the state IDR 3.9 Trillion", against "A high-status "predatory" official who used the "Image" strategy to mask a classic layering and fraud scheme."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">The prediction rests on the wealth, not on the Chromebooks.</h2>
+      <p class="sec-lead">The report's own concluding judgment, offered as a reading of where the legal weight sits under current Indonesian law.</p>
+      <blockquote>
+        <p>While the "Windows Pivot" chat strongly negates mens rea for the procurement itself, the defendant's inability to explain the multi-trillion rupiah wealth growth and the irregular SPT reporting provides the Court with sufficient "material facts" to find a violation of the Anti-Corruption Law.</p>
+        <cite>&mdash; The report's prediction statement</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The trigger is procedural, not evidentiary</div>
+          <div class="arith-body">"Under current Indonesian law, the Prosecution's case holds superior weight due to the legal trigger of Article 37 (Reverse Burden of Proof)." The prosecution's advantage on this reading comes from where the law places the burden, not from the strength of its procurement evidence.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The condition on which it turns</div>
+          <div class="arith-body">"The "Special Systematic" nature of the wealth discrepancy makes an acquittal unlikely unless the defense can immediately prove the legitimate source of the 4.87T assets." The prediction is conditional and states its own defeater.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What this analysis does not claim</div>
+          <div class="arith-body">It does not establish that the allegations are true, that the transcripts are complete, or that the court will decide as predicted. The article names itself a pseudo legal analysis report and records that it was assembled with AI assistance from the transcripts. The verdict belongs to the Jakarta Central District Court.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The primary material is the trial record as cited in the article. Expert opinions are attributed as the article attributes them; where it gives a name without a full reference, that is recorded rather than inferred.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Trial Record</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Official court transcript: Prosecution's rebuttal (Replik) — The Republic of Indonesia v. Nadiem Anwar Makarim (Case No. 147/Pitsus-TPK/2025/PN JKT.PST), Jakarta Central District Court.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Official court transcript: Defendant's personal response (Duplik) — Nadiem Anwar Makarim, Jakarta Central District Court.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Evidence exhibits as cited at trial: WhatsApp group logs ("Mas Menteri Kortim"), PPATK financial analysis reports, and the BPKP forensic audit of 2024.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Dashboard evidence from admin.belajar.id, with testimony from Muhammad Hasan Habibi.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Sworn testimony of Andre Soelistyo and Kevin Aluwi on corporate approval requirements.</div>
+        <div class="ref-group-title">Expert Opinion Cited at Trial</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Prof. Nindyo Pramono — Identification Theory and the directing mind of a corporation.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Prof. Suparji Ahmad, with the Demersman Doctrine — the autonomy of material criminal law to define misuse of authority differently from administrative law.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Dr. Mei Jati — the substance over form doctrine applied to the recordation gap.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Dr. Ahmad Redi — the distinction between administrative errors and administrative errors with a criminal dimension. <em>Each is named in the article without a published citation; none is supplied here.</em></div>
+        <div class="ref-group-title">Statutes and Instruments Referenced</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Law No. 31 of 1999 (Anti-Corruption Law), Articles 37 and 37A — reversal of the burden of proof.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Law No. 1 of 2023 (New Criminal Code), Article 603 — the administrative-priority provision invoked by the defence.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Permendikbud No. 5 of 2021 — the technical specification the prosecution says locked Chrome OS.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Perpres No. 18 of 2020 (RPJMN 2020–2024) and Article 31(1) of the 1945 Constitution — the constitutional-mandate pillar.</div>
+        <div class="ref-group-title">Process, Limits and Companion Piece</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>The article states that the report was developed with the assistance of NotebookLM, an AI-powered research and writing tool, and that the analysis was generated from provided official transcripts, with factual claims grounded in those primary sources.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tambun, T. (2026, June 11). <em>Prosecution case summary: The 12-pillar legal rebuttal in the Nadiem Makarim Chromebook case</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/prosecution-case-summary-12-pillar-legal-rebuttal-nadiem-tambun-swsyc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/prosecution-case-summary-12-pillar-legal-rebuttal-nadiem-tambun-swsyc/</a> — sets out the prosecution's twelve pillars in full.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Tambun, T. (2026, June 28). <em>The Republic of Indonesia v. Nadiem Anwar Makarim (Case No. 147/PITSUS-TPK/2025/PN JKT.PST): A Pseudo Legal Analysis Report</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/master-legal-analysis-report-republic-indonesia-v-nadiem-tambun-eo1wc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/master-legal-analysis-report-republic-indonesia-v-nadiem-tambun-eo1wc/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

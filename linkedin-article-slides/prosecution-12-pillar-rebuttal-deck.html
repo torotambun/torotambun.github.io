@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prosecution Case Summary: The 12-Pillar Legal Rebuttal in the Nadiem Makarim Chromebook Case &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">The 12-Pillar Legal Rebuttal</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Pillars I–VI</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Pillars VII–XII</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Disagreement</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Why This Was Written</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Pillars I–VI</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Pillars VII–XII</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Disagreement</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Why This Was Written</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; White-Collar Crime and Public Legibility &nbsp;&middot;&nbsp; 11 June 2026</div>
+      <h1 class="title-main">Prosecution Case Summary: The 12-Pillar Legal Rebuttal in the Nadiem Makarim Chromebook Case</h1>
+      <p class="title-thesis">This deck sets out one side of a live trial: the prosecution's rebuttal, pillar by pillar, with the statute each pillar invokes. The purpose is not to reach a verdict but to make a white-collar case legible — because the difficulty the public has with these cases comes from the distance between the money and the act.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">White-collar crime is hard for the public to read because the money sits far from the act.</h2>
+      <p class="sec-lead">A summary of the prosecution's rebuttal (Replik) as presented at trial. Everything below is the state's argument, not a finding.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The prosecution characterizes the defendant's actions not as a series of isolated policy decisions but as a white-collar crime as defined by Edwin H. Sutherland (1939) and forensic legal scholarship (Andi Saputra, 2025).</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"The defense's Pledoi attempts a strategy of "Atomization" (Atomisasi) —intentionally fragmenting a singular criminal scheme into disconnected acts to dilute their illegal nature." A reader following the case through clips and headlines meets the fragments, not the scheme.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If the prosecution's case only makes sense as a single structure, what does that structure look like when it is set out in full?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Twelve pillars. Six concern who was appointed and how the specification was locked. Six rest on financial and utilisation figures. Each names the statute it invokes and the act alleged to breach it.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">The prosecution names three strategies: fraud, layering, and image.</h2>
+      <p class="sec-lead">The state argues these three were used together to execute the scheme. The rest of the case is an attempt to show each one operating.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Strategy one</div>
+          <div class="comp-name">Fraud</div>
+          <div class="comp-body">"The manipulation of regulations and financial reporting to create a facade of legality." The cited example is the 2022 SPT tax discrepancy, where the defendant is alleged to have recorded IDR 4.8 trillion in assets and IDR 5.2 trillion in shares specifically as "stock sales" to evade the "end-of-year assets" classification.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Strategy two</div>
+          <div class="comp-name">Layering</div>
+          <div class="comp-body">"Obscuring the link between the perpetrator and illicit benefits through shell companies and nominees." The prosecution alleges Andre Soelistyo and Kevin Aluwi served as nominees maintaining the defendant's substantive control over PT AKAP (Gojek/GOTO) while he occupied public office.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Strategy three</div>
+          <div class="comp-name">Image</div>
+          <div class="comp-body">"Constructing a "hero" persona through media and awards to frame legal accountability as "criminalization."" The state argues this secures public sympathy and distracts from the underlying allegation.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">This Is Not a Judgment</div>
+        <p>This deck summarises the prosecution's rebuttal in a trial that was ongoing. It is not a court judgment and must not be read as a finding of guilt. The presumption of innocence stands. Every allegation below is the state's contention, and the defence's answer is set out in the companion deck on the full case. The underlying summary was generated with NotebookLM from trial transcripts.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Pillars I–VI</div>
+      <h2 class="sec-title">Pillars I to VI allege that the ministry's own structure was replaced to lock the specification.</h2>
+      <p class="sec-lead">The governance half of the case. Each pillar names the law the prosecution says was violated and the act alleged to breach it.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; I · Administrative versus criminal liability — Article 613(3) of Law No. 1 of 2026; Perpres No. 16 of 2018</div>
+          <div class="arith-body">The prosecution rejects the defence's invocation of Primum Remedium. Per the expert testimony of Dr. Ahmad Redi, the actions are said to fall under "Criminal-Based Administrative Error." "The defendant did not merely commit a procedural lapse; he exhibited mens rea by issuing the "Go Ahead with Chromebook" directive."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; II · The directing mind — Law No. 28 of 1999; principles of corporate law</div>
+          <div class="arith-body">Using Prof. Nindyo Pramono's Identification Theory, the prosecution identifies the defendant as the senior organ who remained the substantive controller of his corporate interests. "The "Irrevocable Power of Attorney" was a sham." Nominees are alleged to have reported and sought approval for investor valuations and corporate actions.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; III · Manipulation of personnel — Law No. 39 of 2008; Law No. 5 of 2014 (ASN)</div>
+          <div class="arith-body">The prosecution asserts the “job auction” was a pre-meditated tool to purge opposition and install compliant subordinates. Echelon II officials Hamid Muhammad and Poppy Dewi, who resisted the Chrome OS shift on technical grounds, were replaced by Sri Wahyuningsih and Mulyatsah, "explicitly ordered to finalize technical specifications favoring Google."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; IV · The shadow organization — Perpres No. 68 of 2019</div>
+          <div class="arith-body">Before his inauguration on 19 September 2019 the defendant is alleged to have planned to replace official roles with external associates, then granted them unauthorized executive authority. Communicating through private WhatsApp groups including "Mas Menteri Kortim" and "Education Council," this group is said to have acted as "The Real Minister," dictating budget and technology policy while bypassing official Echelon channels.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; V · Coercion of technical specifications — Law No. 30 of 2014; Permendikbud No. 5 of 2021</div>
+          <div class="arith-body">"Despite technical warnings from Pustekkom regarding the 2018-2019 Chromebook failure and the lack of internet stability in 3T (underdeveloped) regions, the defendant coerced a shift to Chrome OS." The prosecution argues the devices' internet dependence rendered them useless for the students they were purportedly for.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; VI · Improper delegation and the legal trap — Article 8(2) and Article 5(2) of Law No. 39 of 2008</div>
+          <div class="arith-body">The prosecution rebuts the claim that responsibility shifted to KPA/PPK. Permendikbud No. 11 of 2020, which allowed Windows, is characterised as "a "legal shield" for himself, while concurrently forcing subordinates to sign Technical Guidelines ( Juklak ) that locked in Chrome OS." The alleged effect was plausible deniability for the minister and exposure for his subordinates.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Pillars VII–XII</div>
+      <h2 class="sec-title">Pillars VII to XII rest on numbers: 0.15 percent, IDR 809.6 billion, and IDR 11 trillion recorded as IDR 72 billion.</h2>
+      <p class="sec-lead">The financial and utilisation half. These are the figures the prosecution asks the court to treat as material facts.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">PILLAR A</div>
+          <div class="ev-title">VII · Financial anomalies and substance over form</div>
+          <div class="ev-body">Applying the Substance Over Form doctrine (Dr. Mei Jati), the prosecution identifies a circular transaction. "PT Gojek Indonesia, a passive company with an asset base of only IDR 100 million, was changed from PMDN to PMA status solely to receive IDR 809.6 billion from Google. The funds entered and exited in a single day, after which the company reverted to PMDN status."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">PILLAR B</div>
+          <div class="ev-title">VIII–IX · State loss and the utilisation failure</div>
+          <div class="ev-body">The state alleges "a “real and definite” state loss of IDR 5.2 trillion", including redundant Chrome Device Management licences and devices valued at IDR 4 million procured for up to IDR 8 million per unit. "Of the 1,634,260 units procured, real-time dashboard data (admin.belajar.id) showed a login rate of only 0.15% ." Usage is said to have spiked only briefly for AKM assessments.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">PILLAR C</div>
+          <div class="ev-title">X · Systematic fraud in notarization</div>
+          <div class="ev-body">The prosecution alleges notary acts recorded foreign investments far below actual value: December 2017, $99.9M received, recorded as IDR 17B; January 2019, $349.9M recorded as IDR 6.1B; September 2021, $167.4M recorded as IDR 9.6B. "Total Contrast: Approximately IDR 11 Trillion in actual value vs. only IDR 72 Billion recorded."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">PILLAR D</div>
+          <div class="ev-title">XI–XII · Unexplained wealth and constitutional mandate</div>
+          <div class="ev-body">Under Articles 37 and 37A the burden reverses. "He testified that his wealth stems solely from GOTO, yet GOTO consistently reported massive losses." Pillar XII alleges that by "providing unusable, internet-dependent hardware to 3T regions, he created a digital divide and betrayed his mandate as the Minister of Education."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Disagreement</div>
+      <h2 class="sec-title">The defence answers by atomising a single scheme into disconnected acts.</h2>
+      <p class="sec-lead">The whole disagreement is about whether these twelve items are one structure or twelve separate questions. That is a question about how the case should be read before it is a question about guilt.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">The Defence's Reading</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A series of isolated policy decisions</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Procedural lapses handled through government oversight, not a criminal court</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Primum Remedium: administrative remedy before criminal prosecution</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Responsibility devolved to KPA/PPK once delegation occurred</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">The Prosecution's Reading</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A singular scheme executed through fraud, layering and image</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Criminal-Based Administrative Error, with mens rea in the directive</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Anti-Corruption Law as lex specialis over general administrative rules</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Delegation as a shield, with the specification locked before it</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The Prosecution's Final Demands</div>
+        <p>Eighteen years' imprisonment; a fine of IDR 1 billion or 190 days' additional prison; compensation for state loss of IDR 809.5 billion plus IDR 4.87 trillion, or nine years' additional prison. The prosecution moves to reject the defence's Pledoi entirely.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Why This Was Written</div>
+      <h2 class="sec-title">The question is not guilt; it is why this kind of case is so hard to read.</h2>
+      <p class="sec-lead">The article's own framing, and the author's answer to a reader who asked whether the same practices are prosecuted equally elsewhere.</p>
+      <blockquote>
+        <p>The point is not whether Nadiem is guilty or innocent. That remains for the court. The question is why white-collar cases are harder for the public to read than crimes close to physical money.</p>
+        <cite>&mdash; The author, replying in the article's comments</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Distance is the mechanism</div>
+          <div class="arith-body">A theft is legible because the money and the act occupy the same moment. A procurement specification, a notarial deed, a nominee arrangement and a tax classification are separated by years, institutions and documents. The reader meets each fragment alone and cannot assemble the structure the prosecution alleges.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">A reader's objection worth keeping</div>
+          <div class="arith-body">One co-learner asked why, if directing-mind arrangements, shadow structures and power abuse are practised by others, this defendant alone faces them. "i still questioning are the law are practiced in just and equal to other cases?" The article does not answer that, and the question survives the summary.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What this deck is not</div>
+          <div class="arith-body">It is a summary of one party's rebuttal in an ongoing trial. It contains no assessment of whether the allegations are true, no weighing of the defence's evidence, and no prediction. Those belong to the court, and the companion article of 28 June sets out both sides.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">Primary material is the trial record. The article's own source note, legal disclaimer and reader's note are clipped mid-sentence in the archived PDF and are therefore paraphrased above rather than quoted.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Trial Record</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Official court transcript: Prosecution's rebuttal (Replik) — The Republic of Indonesia v. Nadiem Anwar Makarim (Case No. 147/Pitsus-TPK/2025/PN JKT.PST), Jakarta Central District Court.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Evidence exhibits as cited at trial: WhatsApp group logs ("Mas Menteri Kortim"), PPATK financial analysis reports, and the BPKP forensic audit of 2024.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Expert testimony cited in the rebuttal: Prof. Nindyo Pramono (Identification Theory), Dr. Ahmad Redi (administrative versus criminal error), Dr. Mei Jati (substance over form).</div>
+        <div class="ref-group-title">Scholarship Invoked</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Sutherland, E. H. (1939). White-collar criminality. Cited in the article by name and year only; no full bibliographic entry is given there, and none is supplied here.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Saputra, A. (2025). Forensic legal scholarship on white-collar crime. Cited in the article by name and year only; the article gives no title, publisher or venue.</div>
+        <div class="ref-group-title">Process and Limits</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>The underlying prosecution case summary was generated with NotebookLM from the trial transcripts, as the article states.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>The article's source note, legal disclaimer and reader's note appear truncated mid-sentence in the archived PDF of the published piece. Their substance — that the article is not a court judgment, is not a finding of guilt, and leaves the presumption of innocence intact — is preserved above in paraphrase. <em>The full original wording has not been recovered and is not reconstructed here.</em></div>
+        <div class="ref-group-title">Companion Piece</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2026, June 28). <em>The Republic of Indonesia v. Nadiem Anwar Makarim (Case No. 147/PITSUS-TPK/2025/PN JKT.PST): A pseudo legal analysis report</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/master-legal-analysis-report-republic-indonesia-v-nadiem-tambun-eo1wc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/master-legal-analysis-report-republic-indonesia-v-nadiem-tambun-eo1wc/</a> — sets out the defence's answer and a two-pathway prediction.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2026, June 11). <em>Prosecution Case Summary: The 12-Pillar Legal Rebuttal in the Nadiem Makarim Chromebook Case</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/prosecution-case-summary-12-pillar-legal-rebuttal-nadiem-tambun-swsyc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/prosecution-case-summary-12-pillar-legal-rebuttal-nadiem-tambun-swsyc/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

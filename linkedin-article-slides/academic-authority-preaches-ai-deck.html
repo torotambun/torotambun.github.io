@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When Academic Authority Preaches AI Without Evidence or Competence &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">When Academic Authority Preaches AI Without Evidence</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Fisherman</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Fisherman</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; AI, Evidence and National Capability &nbsp;&middot;&nbsp; 7 July 2026</div>
+      <h1 class="title-main">When Academic Authority Preaches AI Without Evidence or Competence</h1>
+      <p class="title-thesis">The moral case for AI inclusion is valid and the message making it does not survive checking. Access is not capability: a country can have millions of users and no ability to inspect, govern or replace the systems they use. That the message came from a vice rector is not incidental — it is what students will copy.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A vice rector circulated a case for AI inclusion that its own evidence cannot carry.</h2>
+      <p class="sec-lead">A friend forwarded a long WhatsApp message written by a vice rector of a well-known university. Its subject was close to an argument I developed in 2023 after a class discussion with Prof. Dodi.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The message argues that artificial intelligence should not remain a privilege for people with strong education, reliable internet access, and enough money to use advanced systems. Fishermen should receive better weather information. Farmers should have access to market data. Children in remote regions should benefit from educational resources. People without university qualifications should also be able to enter advanced intellectual discussions.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"The argument has a clear moral appeal because unequal access to technology can reinforce existing inequality. Its weakness lies in treating wider access as evidence of empowerment while giving much less attention to the national capability required to understand, verify, govern, and control the systems being used." Its factual foundation also requires scrutiny: "Verified events, loose paraphrases, commercial forecasts, speculative scenarios, and unverified statistics are presented with nearly the same certainty."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If the moral concern is right and the evidence is not, what exactly does the argument establish — and why does the author's position make the answer sharper?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>It establishes that access is expanding. It does not establish national capability, which is a different variable that adoption does not move. And because a vice rector helps define an institution's intellectual standard, the manner of the argument teaches more than its content.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">Access shows that people can reach an interface, not that a country can govern one.</h2>
+      <p class="sec-lead">A country may have millions of AI users while possessing little independent AI capability.</p>
+      <p class="body-text">"Usage shows that people can access an interface. It does not establish that the country can shape the technology, direct it towards national priorities, or continue functioning when a foreign provider changes its prices, policies, technical standards, or access conditions."</p>
+      <p class="body-text">Indonesia may become a large market for ChatGPT, Gemini, Claude, and other systems without developing comparable strength in research, computing infrastructure, data governance, model evaluation, cybersecurity, or domestic technological production. "Citizens may become competent users of foreign platforms while universities, government institutions, companies, and researchers remain unable to inspect the systems, test their assumptions, or replace them."</p>
+      <p class="body-text">"A country does not need to be occupied physically before part of its decision-making independence is lost." Government agencies, universities, companies, schools, and researchers may depend increasingly on systems built and governed elsewhere, and foreign institutions can then influence how problems are framed, which data are prioritised, and which solutions appear reasonable.</p>
+      <div class="callout">
+        <div class="callout-label">Core Gap</div>
+        <p>"The institutions still issue the final decisions, but part of the intellectual work may already have been transferred to systems whose assumptions they cannot examine."</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The Risk Is Not Only Wrong Answers</div>
+        <p>"Incorrect answers are only one part of the risk. Institutions may gradually lose the human capability required to recognise when an answer is wrong. Once that capability has weakened, dependence becomes harder to reverse."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">National weakness appears in eight capabilities, and usage measures none of them.</h2>
+      <p class="sec-lead">National weakness in AI appears when a country cannot do these eight things. Every one of them can fail while adoption rises.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Define its own problems</div>
+          <div class="arith-body">"National capability begins with the ability to define problems independently." A government agency that asks a foreign model to frame policy options may accept categories and assumptions developed outside Indonesia. A university that relies on AI to generate research questions may begin with machine-produced priorities before deciding whether those priorities matter locally.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Produce original knowledge</div>
+          <div class="arith-body">Indonesia may have many AI users while employing too few researchers capable of developing models, maintaining too few laboratories with adequate computing resources, and allocating too little funding for long-term research. "Universities may gradually become consumers of foreign systems instead of producers of original methods, datasets, and theories."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Govern its data</div>
+          <div class="arith-body">AI requires reliable, well-governed and contextually accurate information. A country with fragmented public records, inconsistent standards, poor interoperability and inadequate protection of sensitive information "may provide raw data to foreign platforms and receive processed intelligence in return while remaining unable to reproduce or audit the process that generated the result."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Maintain critical infrastructure</div>
+          <div class="arith-body">Advanced models require specialised chips, cloud capacity, energy, software and technical maintenance. "When these remain under foreign control, access depends on external prices, export restrictions, geopolitical relations, and corporate decisions. A system available today may become more expensive, restricted, or unavailable tomorrow."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Train competent professionals</div>
+          <div class="arith-body">"A population may know how to prompt AI without knowing how to test its output." Teachers may use generated material without sufficient subject knowledge to detect errors; civil servants may accept machine summaries because they lack the time or training to examine the underlying evidence. "The country may become efficient at operating the tool while remaining weak at judging what the tool produces."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Regulate powerful systems</div>
+          <div class="arith-body">"Government cannot regulate AI effectively when regulators do not understand how models are trained, how data cross borders, how automated decisions affect citizens, or how responsibility should be assigned when systems fail." Rules written without technical understanding may leave practical control with model owners, cloud providers and foreign firms.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; Capture economic value</div>
+          <div class="arith-body">Indonesia may contribute users, language data, behavioural data and market growth "while the largest financial returns remain with foreign owners of models, infrastructure, and intellectual property. High adoption may strengthen foreign technology companies more than it strengthens domestic research, industry, or employment."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">8 &nbsp;&middot;&nbsp; Preserve independent judgement</div>
+          <div class="arith-body">A university cannot measure progress only by the number of students using AI. "It must also ask whether those students can locate original sources, recognise weak logic, distinguish evidence from prediction, and reject a fluent answer when the reasoning fails."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Fisherman</div>
+      <h2 class="sec-title">The forecast helps the fisherman without making Indonesia able to build, inspect or replace it.</h2>
+      <p class="sec-lead">The fisherman in the WhatsApp message illustrates the immediate benefit of access. A weather application may help him determine whether conditions are safe enough to go to sea. This may protect income and save lives.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col visible">
+          <div class="diag-header">What the Example Establishes</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>A weather application can tell him whether it is safe to go to sea</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>That benefit is real, and it may protect income and save lives</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Unequal access to it would reinforce existing inequality</span></div>
+        </div>
+        <div class="diag-col missing">
+          <div class="diag-header">What It Leaves Unanswered</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Whether the data represent local coastal conditions accurately</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Whether the forecast has been validated, and by whom</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Who controls the platform and how his data are processed</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Whether the service continues when the provider changes commercial policy</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The Same Structure Appears in Education</div>
+        <p>An AI system may give a student a quick and convincing explanation, which helps where qualified teachers are scarce. "Repeated reliance on machine-generated answers can still weaken education when students have not learned how to define a problem, examine evidence, identify unsupported claims, and form an independent conclusion." Students can become skilled at requesting answers while remaining weak at judging them.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Confirmed facts, corporate forecasts and untraceable numbers arrive with equal confidence.</h2>
+      <p class="sec-lead">Several claims in the message have genuine sources. The mathematical event happened. Gartner issued a related forecast. DeepMind published a substantial safety paper. The failure appears in how these materials are handled.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">CHECKED A</div>
+          <div class="ev-title">The Liam Price case, simplified</div>
+          <div class="ev-body">Price prompted GPT-5.4 Pro on Erdős Problem #1196 and the output contributed to the resolution; the paper has eight authors including Price, Terence Tao and Jared Duker Lichtman. "Access created the opportunity, while mathematical competence and professional verification established the credibility of the result." The paper calls the method new; the message calls it a ninety-year-old method.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CHECKED B</div>
+          <div class="ev-title">The timeline, given false precision</div>
+          <div class="ev-body">Gartner forecast 40 percent of enterprise applications with integrated “task-specific” AI agents by 2026 — the message keeps the percentage and drops the qualifier — and separately predicted more than 40 percent of agentic AI projects cancelled by end-2027, which the message omits. "Some are commercial forecasts. Some are corporate targets. Some are safety scenarios. Others cannot be traced."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CHECKED C</div>
+          <div class="ev-title">The Indonesian statistics, unsupported</div>
+          <div class="ev-body">350 million monthly generative-AI users attributed to Statista with no dataset, date or definition; 27 percent of Indonesian internet users attributed to APJII with no table, page or survey question; a national AI-literacy score of 49.96 out of 100. "I could not find a validated national AI-literacy index reporting that figure." Each remains unverified pending the original source.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CHECKED D</div>
+          <div class="ev-title">The claim I am not making</div>
+          <div class="ev-body">"I would not describe every questionable statement as a hallucination because several can be traced to genuine sources. The more serious problem is that confirmed facts, loose paraphrases, commercial forecasts, personal interpretations, and unverified numbers are presented with almost equal confidence." This pattern commonly appears when chatbot output enters a draft without disciplined checking.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">When a vice rector publishes this, students learn that fluent prose is enough.</h2>
+      <p class="sec-lead">A vice rector helps define the intellectual standard of an institution. Students observe how academic leaders use evidence, distinguish fact from illustration, and revise AI-assisted prose.</p>
+      <p class="body-text">The message carries familiar chatbot traits. "It relies on dramatic short sentences to create emphasis. It moves through famous names without examining their arguments. It uses fishermen, farmers, and children in remote regions as moral symbols. It presents a future timeline with more certainty than the evidence allows. It connects distant subjects through polished transitions without establishing the relationships among them."</p>
+      <p class="body-text">"Senior academics may use AI. Research and writing practices are already changing. Academic responsibility still requires every claim to be checked, every source to be understood, and every connection to survive scrutiny. The final text must reflect the author's own judgement."</p>
+      <p class="body-text">"When a vice rector circulates writing that appears heavily shaped by chatbot habits and insufficiently revised, students receive a damaging lesson. They may conclude that fluent prose, moral confidence, famous names, and precise numbers are enough. They may mistake the appearance of research for research itself."</p>
+      <div class="warning-callout">
+        <div class="callout-label">Neither Author Nor Institution Is Named</div>
+        <p>The article identifies the writer only as a vice rector of a well-known university and does not name the person or the institution. That restraint is part of the argument: the failure being examined is a practice, not a personality, and it is common enough that naming one holder of it would narrow the point.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Adopt in parallel, and build the capability to judge what the machine produces.</h2>
+      <p class="sec-lead">My 2023 proposal was parallel action: engage with available technology while developing the foundations required to remain intellectually and institutionally independent. Indonesia does not need to wait until every condition is perfect.</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">Strengthen reasoning before dependence forms</div>
+            <div class="rec-body">"Education must strengthen reading, writing, mathematics, reasoning, and the ability to question evidence before students become dependent on machine-generated answers."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Invest in research capacity, not platform subscriptions</div>
+            <div class="rec-body">"Universities must invest in research capacity instead of treating foreign platforms as substitutes for scholarship." A university's progress is not the count of students using AI.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Build data quality and regulatory competence together</div>
+            <div class="rec-body">"Government must improve data quality, technical competence, and regulatory understanding." Rules written without technical understanding leave practical control with model owners and cloud providers.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Develop local expertise rather than importing finished systems</div>
+            <div class="rec-body">"Industry must develop local expertise rather than importing finished systems without understanding their limits." Foreign relationships should contribute to domestic capability rather than replace it.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">5</div>
+          <div class="rec-content">
+            <div class="rec-title">Treat local-language access as usability, not sovereignty</div>
+            <div class="rec-body">"A model may speak Indonesian, Javanese, Bugis, or another local language while remaining technically, commercially, and institutionally controlled abroad. Local-language access improves usability, but it does not create technological sovereignty."</div>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>Achieving that balance requires institutions capable of thinking before the machine answers, checking after it answers, and continuing to think when the machine is unavailable.</p>
+        <cite>&mdash; The article's closing sentence</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article's own bibliography, in APA 7th as it appears there. The WhatsApp message under examination is unpublished and its author is deliberately unnamed; it is not citable and is not cited.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">The Mathematical Case</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Alexeev, B., Barreto, K., Li, Y., Lichtman, J. D., Price, L., Shah, J. I., Tang, Q., &amp; Tao, T. (2026). <em>Primitive sets and von Mangoldt chains: Erdős Problem #1196 and beyond</em> [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2605.00301</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Castelvecchi, D. (2026). 'It is incredible': How AI is transforming mathematics. <em>Nature, 653</em>, 664–665. https://doi.org/10.1038/d41586-026-01553-1</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Tao, T. (2026, May 3). Primitive sets and von Mangoldt chains: Erdős Problem #1196 and beyond. <em>What's New</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>OpenAI. (2026, March 5). <em>Introducing GPT-5.4</em>.</div>
+        <div class="ref-group-title">Forecasts, Safety Frameworks and Statistics</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Gartner. (2025a, June 25). <em>Gartner predicts over 40% of agentic AI projects will be canceled by end of 2027</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Gartner. (2025b, August 26). <em>Gartner predicts 40% of enterprise apps will feature task-specific AI agents by 2026, up from less than 5% in 2025</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Google DeepMind. (2025, April 2). <em>Taking a responsible path to AGI</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Shah, R., Irpan, A., Turner, A. M., Wang, A., Conmy, A., Lindner, D., Brown-Cohen, J., Ho, L., Nanda, N., Popa, R. A., Jain, R., Greig, R., Albanie, S., Emmons, S., Farquhar, S., Krier, S., Rajamanoharan, S., Bridgers, S., Ijitoye, T., … Dragan, A. (2025). <em>An approach to technical AGI safety and security</em> [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2504.01849</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Anthropic. (2025, March 6). <em>Anthropic's recommendations to OSTP for the U.S. AI action plan</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Asosiasi Penyelenggara Jasa Internet Indonesia. (2025). <em>Survei penetrasi internet dan perilaku penggunaan internet 2025</em>.</div>
+        <div class="ref-group-title">The Author's Earlier Argument</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Tambun, T. (2023, August 26). Fostering a culturally ready, innovative and safe cybernation. <em>The Jakarta Post</em>. <a href="https://www.thejakartapost.com/opinion/2023/08/26/fostering-a-culturally-ready-innovative-and-safe-cybernation.html" target="_blank" rel="noopener">https://www.thejakartapost.com/opinion/2023/08/26/fostering-a-culturally-ready-innovative-and-safe-cybernation.html</a></div>
+        <div class="ref-group-title">Claims the Article Records as Unverified</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>A Statista figure of 350 million monthly generative-AI users worldwide. The Statista material located during verification reports monthly active users of individual AI mobile applications and does not establish the broader claim.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>An APJII finding that approximately 27 percent of Indonesian internet users had used AI. The accessible official material does not verify the attributed figure.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>A national Indonesian AI-literacy score of 49.96 out of 100. No validated source was found; the article states that no substitute or approximate source should be cited in its place.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>An OpenAI target of an autonomous AI researcher by 2028. No direct OpenAI publication confirming that target in the form used was located.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Tambun, T. (2026, July 7). <em>When Academic Authority Preaches AI Without Evidence or Competence</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/when-academic-authority-preaches-ai-without-evidence-toronata-tambun-lpkhc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/when-academic-authority-preaches-ai-without-evidence-toronata-tambun-lpkhc/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
