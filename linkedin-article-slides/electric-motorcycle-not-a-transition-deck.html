@@ -47,9 +47,6 @@
   .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
   .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
   .title-meta strong { color: #94a3b8; }
-  .title-authors { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
-  .title-author { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
-  .title-author strong { color: #94a3b8; display: block; margin-bottom: 4px; }
 
   .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
   .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
@@ -83,15 +80,6 @@
   .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
   .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
 
-  .schein-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 32px; }
-  .schein-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px; background: #fff; display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: start; }
-  .schein-level { font-family: Arial, sans-serif; }
-  .schein-num { font-size: 28px; font-weight: 700; color: #e2e8f0; line-height: 1; margin-bottom: 4px; }
-  .schein-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
-  .schein-name { font-weight: 700; font-size: 14px; color: var(--navy); }
-  .schein-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .schein-body { font-size: 14px; line-height: 1.75; color: #374151; }
-
   .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
   .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
   .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
@@ -117,22 +105,16 @@
   .diag-col { border-radius: 6px; padding: 28px; }
   .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
   .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
   .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
   .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
   .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
   .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
   .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
   .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
   .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
-  .action-card { border-radius: 6px; padding: 28px; }
-  .action-card.advance, .action-card.provider { background: #eff6ff; border: 1px solid #bfdbfe; }
-  .action-card.protect, .action-card.preserver { background: #f0fdf4; border: 1px solid #bbf7d0; }
-  .action-label { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
-  .action-card.advance .action-label, .action-card.provider .action-label { color: #1d4ed8; }
-  .action-card.protect .action-label, .action-card.preserver .action-label { color: var(--green); }
-  .action-card p { font-size: 14px; line-height: 1.75; color: #374151; }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
 
   .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
   .rec-item { display: flex; gap: 20px; align-items: flex-start; }
@@ -159,8 +141,7 @@
     #trainbar { left: 0; }
     #main { margin-left: 0; }
     .slide { padding: 40px 24px 40px; }
-    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid, .two-col, .title-authors { grid-template-columns: 1fr; }
-    .schein-card { grid-template-columns: 1fr; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -170,35 +151,35 @@
   <div id="sidebar-title">The Electric Motorcycle Is Not a Transition</div>
   <nav>
     <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
-    <div class="nav-item" data-target="slide-intro"><span class="nav-num">01</span> Introduction</div>
-    <div class="nav-item" data-target="slide-gap"><span class="nav-num">02</span> Gap</div>
-    <div class="nav-item" data-target="slide-framework"><span class="nav-num">03</span> Framework</div>
-    <div class="nav-item" data-target="slide-details"><span class="nav-num">04</span> Details</div>
-    <div class="nav-item" data-target="slide-evidence"><span class="nav-num">05</span> Evidence</div>
-    <div class="nav-item" data-target="slide-implications"><span class="nav-num">06</span> Implications</div>
-    <div class="nav-item" data-target="slide-conclusion"><span class="nav-num">07</span> Conclusion</div>
-    <div class="nav-item" data-target="slide-references"><span class="nav-num">08</span> References</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
   </nav>
 </aside>
 
 <div id="trainbar">
   <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
   <div class="coupling"></div>
-  <div class="carriage" data-target="slide-intro"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
   <div class="coupling"></div>
-  <div class="carriage" data-target="slide-gap"><div class="car-num">02</div><div class="car-label">Gap</div></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Gap</div></div>
   <div class="coupling"></div>
-  <div class="carriage" data-target="slide-framework"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
   <div class="coupling"></div>
-  <div class="carriage" data-target="slide-details"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
   <div class="coupling"></div>
-  <div class="carriage" data-target="slide-evidence"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
   <div class="coupling"></div>
-  <div class="carriage" data-target="slide-implications"><div class="car-num">06</div><div class="car-label">Implications</div></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Implications</div></div>
   <div class="coupling"></div>
-  <div class="carriage" data-target="slide-conclusion"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
   <div class="coupling"></div>
-  <div class="carriage" data-target="slide-references"><div class="car-num">08</div><div class="car-label">References</div></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
 </div>
 
 <div id="main">
@@ -213,7 +194,7 @@
     <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <section class="slide" id="slide-intro">
+  <section class="slide" id="slide-01">
     <div class="slide-content">
       <div class="sec-eyebrow">Introduction</div>
       <h2 class="sec-title">The vehicle works. That is the point at which the national claim begins to fail.</h2>
@@ -240,10 +221,10 @@
     <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <section class="slide" id="slide-gap">
+  <section class="slide" id="slide-02">
     <div class="slide-content">
       <div class="sec-eyebrow">Gap</div>
-      <h2 class="sec-title">A real gain, asked to carry claims it has not earned</h2>
+      <h2 class="sec-title">A real gain is being asked to carry claims it has not earned.</h2>
       <p class="sec-lead">Three different objectives — climate, fuel sovereignty, industrial renewal — are being measured with one instrument and reported with none of their own numbers.</p>
       <p class="body-text">I did not expect this conclusion. For two years I have argued in these pages against overclaiming for electrification, and I assumed that on a grid which is 82 percent fossil the climate case for electric two-wheelers would be thin. It is not. A small combustion engine turns about a fifth of its tank into motion; an electric drivetrain manages around 85 percent, and that difference is large enough to survive Indonesian coal.</p>
       <p class="body-text">The government's stronger case is fuel sovereignty. Electricity can be dirty and still domestic. Coal is ours, and each litre displaced is a litre Indonesia no longer buys from someone else's refinery at someone else's price. But that argument does not rescue the policy — it only changes the test.</p>
@@ -259,10 +240,10 @@
     <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <section class="slide" id="slide-framework">
+  <section class="slide" id="slide-03">
     <div class="slide-content">
       <div class="sec-eyebrow">Framework</div>
-      <h2 class="sec-title">Four claims, four different verdicts</h2>
+      <h2 class="sec-title">Four national claims rest on one vehicle, and they do not survive equally.</h2>
       <p class="sec-lead">Each stands or falls on its own evidence. Collapsing them into one slogan is how the policy escapes measurement.</p>
       <div class="comp-grid-4">
         <div class="comp-card">
@@ -294,10 +275,10 @@
     <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <section class="slide" id="slide-details">
+  <section class="slide" id="slide-04">
     <div class="slide-content">
       <div class="sec-eyebrow">Details</div>
-      <h2 class="sec-title">The average is not the number that matters</h2>
+      <h2 class="sec-title">The average is not the number that matters.</h2>
       <p class="sec-lead">Four pieces of arithmetic that decide whether the policy does what is claimed for it.</p>
       <div class="arith-grid">
         <div class="arith-card">
@@ -321,10 +302,10 @@
     <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <section class="slide" id="slide-evidence">
+  <section class="slide" id="slide-05">
     <div class="slide-content">
       <div class="sec-eyebrow">Evidence</div>
-      <h2 class="sec-title">The numbers on the record</h2>
+      <h2 class="sec-title">Even on a 680-gram grid the saving is real; at 32,000 units it is invisible.</h2>
       <p class="sec-lead">Four sets of figures, each of which can be checked against a published source.</p>
       <div class="evidence-grid">
         <div class="evidence-card">
@@ -356,7 +337,7 @@
     <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <section class="slide" id="slide-implications">
+  <section class="slide" id="slide-06">
     <div class="slide-content">
       <div class="sec-eyebrow">Implications</div>
       <h2 class="sec-title">Every objective has a number. None of them is units subsidised.</h2>
@@ -389,7 +370,7 @@
     <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <section class="slide" id="slide-conclusion">
+  <section class="slide" id="slide-07">
     <div class="slide-content">
       <div class="sec-eyebrow">Conclusion</div>
       <h2 class="sec-title">Name the objective, publish its number, and attach the conditions.</h2>
@@ -439,7 +420,7 @@
     <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
   </section>
 
-  <section class="slide" id="slide-references">
+  <section class="slide" id="slide-08">
     <div class="slide-content">
       <div class="sec-eyebrow">References</div>
       <h2 class="sec-title">Sources</h2>
@@ -471,7 +452,7 @@
 </div>
 
 <script>
-  const SECTIONS = ['slide-title','slide-intro','slide-gap','slide-framework','slide-details','slide-evidence','slide-implications','slide-conclusion','slide-references'];
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
   let activeIdx = 0;
   function setActive(id) {
     const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;

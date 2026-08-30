@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dissecting Prabowo Subianto's Speech: Leadership, Rhetoric and Constitutional Risk &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Dissecting Prabowo Subianto's Speech</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Signal</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Noise</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Institutional Culture</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Constitutional Risk</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Trust Audit</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Signal</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Noise</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Institutional Culture</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Constitutional Risk</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Trust Audit</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Leadership, Rhetoric and Constitutional Risk &nbsp;&middot;&nbsp; 15 July 2026</div>
+      <h1 class="title-main">Dissecting Prabowo Subianto's Speech: Leadership, Rhetoric and Constitutional Risk</h1>
+      <p class="title-thesis">The address carries a coherent statesman script — unity, sovereignty, and the rejection of failed economic models. This audit finds that the script does not survive its own delivery: the ancestry offered to explain the language cannot bear that weight, the ultimatum to pessimists raises constitutional questions, and on the Trusted Advisor index the numerator hollows out while the denominator rises.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">The speech projects sovereign resolve, and the resolve does not survive its own delivery.</h2>
+      <p class="sec-lead">A field engineer's audit of one address: the strategic signal, the rhetorical noise, the constitutional question, and the trust arithmetic.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>In an impassioned speech, Prabowo Subianto calls for national unity and a return to the traditional Indonesian values of mutual cooperation and forgiveness. He criticizes hostile political cultures, acknowledges that every political party contains both patriots and bad actors, rejects neoliberal economic theories, and positions his leadership as a defense of the common people.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>The same address mocks the technocratic class, seeks a minister's validation for a curse word, explains bluntness through Banyumas and Minahasa ancestry, and tells citizens who find Indonesia gloomy that they may find another country. "The “dignified script” of national unity in Section 1 appears difficult to reconcile with the exclusionary “noise” of Section 3."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If the statesman script and the exclusionary ultimatum come from the same podium on the same day, which one describes the leadership model?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>This audit reads the second as the operative one. The mockery, the condonation, the conditional citizenship and the shifting words on corruption are not decoration on the script — they are what the script is being used to carry.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Signal</div>
+      <h2 class="sec-title">The statesman is assembled from four pillars: unity, anti-neoliberalism, food sovereignty and the patient retiree.</h2>
+      <p class="sec-lead">These strategic signals can be read as bypassing traditional diplomatic nuance in favour of a strongman-statesman archetype.</p>
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Pillar one</div>
+          <div class="comp-name">The unity mandate</div>
+          <div class="comp-body">A “one family” doctrine, using gotong royong to demand the suspension of partisan friction. "By framing the nation as a singular biological entity that requires “healing” from its roots, the speaker attempts to establish a mandate for total social cohesion, which may characterize dissent as a symptom of national “sickness.”"</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Pillar two</div>
+          <div class="comp-name">The economic paradigm shift</div>
+          <div class="comp-body">A visceral rejection of Western neoliberalism and the trickle-down effect, decried as a failed framework facilitating wealth concentration for the top 1 percent. The speaker mocks the “orang-orang pintar”, accusing them of clinging to globalist theories that even their Western originators have abandoned.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Pillar three</div>
+          <div class="comp-name">Food self-sufficiency in year one</div>
+          <div class="comp-body">A high-stakes, quantifiable benchmark: swasembada pangan within the first year. "This may function as a tactical silencing mechanism. By tethering legitimacy to a rapid, tangible result, the speaker could reduce the influence of technocratic or “neolib” opposition if the aggressive timeline is met."</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">Pillar four</div>
+          <div class="comp-name">Authentic leadership, as a patient retiree</div>
+          <div class="comp-body">The President frames his authority through the lens of a patient retiree who has transitioned from the “hard blood” of his Banyumas and Minahasa ancestry toward a more tempered, patriotic resolve. It is this fourth pillar that the next section tests.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Noise</div>
+      <h2 class="sec-title">Culture is being asked to excuse the language, and neither Minahasa nor Banyumas will do it.</h2>
+      <p class="sec-lead">Linguistic pluralism is one thing. Once regional identity is used to explain or normalise bluntness, the speech enters the question of whether culture is being used to justify behaviour.</p>
+      <p class="body-text">"Minahasa: I cannot accept Minahasan culture as an explanation for harsh language. I do not believe in blame culture, and I do not believe culture should be used to justify personal behaviour. As a Minahasan, I was taught that words must fit the person, the place, and the context." A hukum tua or a tonaas is expected to speak words of blessing, encouragement, direction, and unity. "Leadership in Minahasa is not measured by the ability to use harsh words, but by the responsibility carried through those words."</p>
+      <p class="body-text">L. N. Palar, born in Rurukan, now part of Tomohon, was Indonesia's first Permanent Representative to the United Nations. He represented the Republic in an environment requiring courage, firmness, persuasion and restraint. "Had he spoken in the same style and generalized it as Minahasan character, it is difficult to imagine that he could have carried out that diplomatic role effectively." Minahasa has produced diplomats, generals, executives, pastors, professors and public servants whose authority came from judgment, discipline and self-restraint. "The reference to Minahasan ancestry therefore does not excuse the language. It makes the explanation more questionable."</p>
+      <p class="body-text">Banyumas remains part of the wider Javanese cultural world, where leadership has long been discussed through frameworks such as Hasta Brata. One of its traits is Candra, the moon, representing calmness, a reassuring presence, and the responsibility to provide guidance when people face uncertainty. "Banyumas identity therefore cannot be treated as permission for a leader to say whatever he wants. If Banyumas ancestry is invoked to explain directness, then the same cultural tradition also requires that directness remain under the control of restraint, context, and responsibility."</p>
+      <div class="callout">
+        <div class="callout-label">Colossians 3:12 as a Standard of Conduct</div>
+        <p>Colossians 3:12 calls for compassion, kindness, humility, gentleness, and patience. "These are not decorative religious terms. They are standards of conduct." When a national leader uses a curse word to describe people and then links his bluntness to Minahasan roots, the relevant question is where those five appear in that choice of language.</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What Others in the Field Said</div>
+        <p>An anthropologist specialising in Javanese culture suggests he may violate — or may not know — empan papan, the principle that everything must be at its proper place. Another Javanese scholar invokes sabda pandita ratu, adding: "Tidak hanya sebagai “raja atau ratu” tapi sebagai guru bangsa yg akan “diguGU lan ditiRU” oleh rakyatnya". A Banyumas-origin PhD said: "although we are direct, we don't use those words in a public speech".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Institutional Culture</div>
+      <h2 class="sec-title">The laughter of the cabinet, not the word itself, is what this audit measures.</h2>
+      <p class="sec-lead">In what I consider a notable departure from professional decorum, the speaker seeks validation from the Minister of Education regarding his use of the word bajingan.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; The validation-seeking is itself the finding</div>
+          <div class="arith-body">"This interaction acknowledges an awareness of “proper” language while simultaneously asserting a Betawi identity that appears exempt from those standards." The speaker knows the standard well enough to check it, and asserts an exemption from it in the same gesture.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Condonation by laughter and applause</div>
+          <div class="arith-body">The enthusiastic reception of this linguistic deviance by the assembled cabinet "may be interpreted, within this audit, as evidence of a high Power Distance Index within the administration."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; The silence of the custodian</div>
+          <div class="arith-body">"The perceived silence of the Minister of Education, as the primary custodian of national character, suggests that institutional standards have been subordinated to what appears to be an artefact of apple polishing." In a high-PDI environment, decorum and personal principle appear sacrificed to maintain favour with the executive.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; The rank argument</div>
+          <div class="arith-body">"President Prabowo may have been formed as a military officer, but a three-star or four-star general cannot continue to act or speak like a lieutenant in a combat zone." A lieutenant reacts inside a narrow, urgent, physical situation. "A President operates in a completely different environment. His words move through ministries, markets, security institutions, political parties, local governments, foreign missions, media, and millions of citizens."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Volatility, admitted in the text</div>
+          <div class="arith-body">While claiming to be a patient retiree, the speaker admits that this patience "disappears" when he forgets his retired status. "From a governance perspective, this may indicate institutional volatility, meaning the risk that executive temperament may override bureaucratic protocols, professional restraint, and constitutional protections."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Constitutional Risk</div>
+      <h2 class="sec-title">Telling pessimists to find another country puts Articles 28E, 26 and 9 in question.</h2>
+      <p class="sec-lead">A statutory compliance review of one sentence: "Those who feel Indonesia is gloomy, please if you want to find another country, please, no one is forbidding it".</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">ARTICLE A</div>
+          <div class="ev-title">Article 28E — freedom of opinion</div>
+          <div class="ev-body">The 1945 Constitution guarantees freedom of association, assembly and expression. "By characterizing a “gloomy” outlook as a reason to seek another country, the executive may be interpreted as attaching a penalty to a protected form of political sentiment. This may create a chilling effect on dissent, framing critical or pessimistic outlooks as “un-Indonesian.”"</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ARTICLE B</div>
+          <div class="ev-title">Articles 26 and 27 — inviolability of citizenship</div>
+          <div class="ev-body">"Citizenship in Indonesia is a legal status defined by birth and law, not by political optimism or alignment with the administration." Suggesting that residency is conditional may undermine equality before the law and the inherent right of every citizen to occupy their homeland regardless of political disposition.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ARTICLE C</div>
+          <div class="ev-title">Article 9 — the presidential oath</div>
+          <div class="ev-body">The President is constitutionally sworn to "uphold the Constitution and execute all laws and regulations as strictly as possible." An ultimatum that suggests the exclusion of skeptical citizens raises questions about consistency with the oath to protect the entire nation and all its people.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ARTICLE D</div>
+          <div class="ev-title">From State-as-Protector to State-as-Landlord</div>
+          <div class="ev-body">"By telling the “doubters” to “sit at home” and the “pessimists” to leave, the executive can be interpreted as treating the sovereign territory as a private club with membership fees paid in “positivity” and “loyalty.”" Conditional citizenship is a primary indicator of institutional volatility.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The Limits of This Audit</div>
+        <p>This is a rhetorical and governance audit of one address, not a legal finding. Every constitutional point above is a question of consistency raised by an outside reader, not a charge; the article's own language throughout is "may be interpreted", "raises questions", "within this audit". Nothing here establishes an offence or an intent.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Trust Audit</div>
+      <h2 class="sec-title">Credibility, reliability and intimacy fall while self-orientation rises, and the index approaches zero.</h2>
+      <p class="sec-lead">Trustworthiness = (Credibility + Reliability + Intimacy) ÷ Self-Orientation. For a field engineer, trust is not an abstract emotion; it is a mathematical output (Maister et al., 2000).</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">The Numerator, Hollowing Out</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Credibility: the corruption flip-flop — from chasing and punishing corruptors to forgiveness conditioned on returning illicit funds</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Credibility: "I am old now, so I am patient now", followed immediately by the admission that the patience disappears</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Reliability: a claim of nationwide food self-sufficiency achieved in one year, without the verifiable data to validate it</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Intimacy: belonging made conditional on political optimism, which weakens the "one family" concept established in Section 1</span></div>
+        </div>
+        <div class="diag-col missing">
+          <div class="diag-header">The Denominator, Rising</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>MBG, Koperasi Desa Merah Putih and B50 implemented as centralized, top-down mega-programs</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>High self-orientation read as greater weight on centralized administrative control than on bottom-up implementation</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Self-orientation is the denominator: a high score effectively crashes the entire trust result</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Forensic Verdict</div>
+        <p>"With a hollowed-out numerator (low , , and ) and a massive denominator (high ), the TA Index for this leadership model is mathematically near zero." The article's own rendering drops the variable symbols; the intent is C, R and I low against a high self-orientation.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">The higher the rank, the greater the obligation to restrain temperament, speech, and power.</h2>
+      <p class="sec-lead">The audit's closing synthesis: a compelling statesman script that does not survive the structural and rhetorical filters applied to it.</p>
+      <blockquote>
+        <p>The higher the rank, the greater the obligation to restrain temperament, speech, and power. A senior general is expected to listen to different assessments, choose advisers who do not merely please him, tolerate disagreement, and then make the final decision himself.</p>
+        <cite>&mdash; Section 2, on rank and restraint</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The noise reveals the volatility</div>
+          <div class="arith-body">An executive prone to institutional volatility, where personal temperament and regional slang bypass professional decorum — reinforced by an institutional culture in which ministerial apple polishing and active condonation replace independent professional judgment.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The structure reveals the conditionality</div>
+          <div class="arith-body">The willingness to treat the Constitution as secondary to a demand for total political alignment introduces the risk of conditional citizenship — the barrier to entry that the gotong royong language conceals.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The arithmetic quantifies the gap</div>
+          <div class="arith-body">"The administration's “dignified script” functions, in this audit, as a rhetorical framework for a centralized, top-down power structure." The result is "a leadership model that may project “sovereign resolve” while leaving deep structural and credibility deficits."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article's own further-reading list, in APA 7th as it appears there. Remarks attributed to an anthropologist, a Javanese scholar and a Banyumas-origin PhD are unattributed field comments in the article and are not cited as published works.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Trust, Silence and Impression Management</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Bolino, M. C., Kacmar, K. M., Turnley, W. H., &amp; Gilstrap, J. B. (2008). A multilevel review of impression management motives and behaviors. <em>Journal of Management, 34</em>(6), 1080–1109. https://doi.org/10.1177/0149206308324325</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Hofstede, G. (2001). <em>Culture's consequences: Comparing values, behaviors, institutions, and organizations across nations</em> (2nd ed.). SAGE Publications.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Maister, D. H., Green, C. H., &amp; Galford, R. M. (2000). <em>The trusted advisor</em>. Free Press.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Milliken, F. J., Morrison, E. W., &amp; Hewlin, P. F. (2003). An exploratory study of employee silence: Issues that employees do not communicate upward and why. <em>Journal of Management Studies, 40</em>(6), 1453–1476. https://doi.org/10.1111/1467-6486.00387</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Morrison, E. W., &amp; Milliken, F. J. (2000). Organizational silence: A barrier to change and development in a pluralistic world. <em>Academy of Management Review, 25</em>(4), 706–725. https://doi.org/10.5465/amr.2000.3707697</div>
+        <div class="ref-group-title">Populism and Constitutional Order</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Butt, S., &amp; Lindsey, T. (2012). <em>The constitution of Indonesia: A contextual analysis</em>. Hart Publishing.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Moffitt, B. (2016). <em>The global rise of populism: Performance, political style, and representation</em>. Stanford University Press.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Moffitt, B., &amp; Tormey, S. (2014). Rethinking populism: Politics, mediatisation and political style. <em>Political Studies, 62</em>(2), 381–397. https://doi.org/10.1111/1467-9248.12032</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Müller, J.-W. (2016). <em>What is populism?</em> University of Pennsylvania Press.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Republic of Indonesia. (1945). <em>The 1945 Constitution of the Republic of Indonesia, as amended</em>.</div>
+        <div class="ref-group-title">Javanese and Minahasan Leadership</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Aryawan, I. W. (2021). Penerapan kepemimpinan Asta Brata dalam pendidikan dari sudut pandang teori konflik. <em>Jurnal Ilmiah Ilmu Sosial, 7</em>(1), 56–66.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Kusumawardhini, D. A., &amp; Darmoko. (2020). Moralitas pemimpin dalam Cariyos Raja Siyem. <em>Kawruh: Journal of Language Education, Literature, and Local Culture, 2</em>(1), 72–89.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Lembah, H. (2021). <em>Diplomat legendaris Indonesia: From Tomohon to New York</em>. Rayyana Komunikasindo.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Suryodilogo, P. (2012). <em>Ajaran Kepemimpinan Asthabrata Kadipaten Pakualaman</em>. Perpustakaan Pura Pakualaman.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Sutopo. (1995). <em>Inventaris arsip Lambertus Nicodemus Palar, 1928–1981</em>. Arsip Nasional Republik Indonesia.</div>
+        <div class="ref-group-title">Method</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Amlin, J. P. (2013). <em>Schlumberger Sales: Theory, Process and Application</em> (1st ed.). Schlumberger Oilfield Services.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Tambun, T. (2026, July 15). <em>Dissecting Prabowo Subianto's Speech: Leadership, Rhetoric and Constitutional Risk</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/dissecting-prabowo-subiantos-speech-leadership-rhetoric-tambun-fr6vc/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/dissecting-prabowo-subiantos-speech-leadership-rhetoric-tambun-fr6vc/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
