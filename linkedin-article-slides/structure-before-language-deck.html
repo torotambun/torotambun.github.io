@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structure Before Language: Why I Start My Academic English Course with Mind Mapping &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Structure Before Language: Why I Start My Academic English Course with Mind Mapping</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Reading</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Listening</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Writing</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The AI Question</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Storytelling</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> The Intervention</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Reading</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Listening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Writing</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The AI Question</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Storytelling</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">The Intervention</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Mind Mapping and Academic English &nbsp;&middot;&nbsp; 2 March 2026</div>
+      <h1 class="title-main">Structure Before Language: Why I Start My Academic English Course with Mind Mapping</h1>
+      <p class="title-thesis">Structure must be trained before expression. Mind mapping does different work in each mode — reconstruction when reading, patience under uncertainty when listening, construction when writing — and in all three the value is the friction, which is precisely what AI removes. Seven weeks cannot undo twelve years of conditioning, but it can expose the architecture of correction.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Reading is not collecting information; it is reconstructing structure.</h2>
+      <p class="sec-lead">A note on intellectual discipline, and why the course begins here rather than with language.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>"Reading is not the act of collecting information. It is the act of reconstructing structure." When students are asked to build a mind map while reading, the purpose is not to produce a beautiful diagram.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>The purpose is to force a decision about what the author is actually arguing and how that argument is built. Most students have been trained to cover material, not to judge it. "The goal is not coverage. The goal is judgment."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If structure is the thing being trained, what does mind mapping actually have to do differently in reading, in listening, and in writing?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Three different jobs. In reading the architecture already exists and must be recovered. In listening it unfolds in real time and must be waited for. In writing it does not exist at all and must be built before a sentence is drafted.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Reading</div>
+      <h2 class="sec-title">The centre must be the driving claim, or the whole map will be vague.</h2>
+      <p class="sec-lead">"The central node of a reading mind map must represent the intellectual center of gravity of the text."</p>
+      <p class="body-text">It is not the chapter title. It is not the general topic. It is the driving claim or the core problem being addressed. If that centre is vague, the rest of the map will inevitably be vague — so serious reading begins by asking what the text is trying to prove and what tension it is resolving. Until that is clear, mapping should not begin.</p>
+      <p class="body-text">Branches must contain direction. A branch labelled Incentives is weak because it does not say what is happening. A branch stating that promotion systems reward publications over venture survival carries movement and hierarchy. If a branch cannot complete the sentence this matters because, it is not yet precise enough. Mapping is an exercise in upgrading themes into claims.</p>
+      <p class="body-text">"Compression is the test of understanding." A serious reading map should fit on one page; if it expands endlessly, the reader has not filtered. And revision is part of intellectual honesty — "The second version is often the real version. Redrawing is not aesthetic refinement. It is conceptual refinement."</p>
+      <div class="callout">
+        <div class="callout-label">Structural signals to look for</div>
+        <p>Words such as because, therefore, however, despite, results in, depends on, and in contrast often reveal the skeleton of the argument. Descriptive sections may add texture, but causal bridges build structure. Students who learn to detect these signals begin to read analytically rather than passively.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Listening</div>
+      <h2 class="sec-title">Listening rewards delayed commitment, because premature structure produces premature certainty.</h2>
+      <p class="sec-lead">When reading, the architecture already exists on the page. When listening, structure unfolds in real time and is not visible in advance. Mapping here is not reconstruction — it is disciplined patience under uncertainty.</p>
+      <p class="body-text">The most common mistake is early commitment. A strong statement in the opening minutes is immediately promoted to a major branch, only to collapse as the talk develops. In the early phase, capture fragments without hierarchy — key terms, repeated phrases, tensions, contrasts — and do not connect them yet. "Premature structure produces premature certainty."</p>
+      <p class="body-text">Hierarchy should be introduced only after structural signals appear: repetition, enumeration, explicit causal framing. "Branches are not granted automatically. They are earned through emphasis and recurrence." Most spoken language is scaffolding; only a small portion carries structural weight, and a strong map reflects that imbalance. "Asymmetry indicates selection, not failure."</p>
+      <p class="body-text">The tools are not neutral. A blank landscape sheet, a pencil and an eraser — nothing else. A pencil is superior to a pen because early structure is often wrong and must be erasable without hesitation; if revision is physically difficult, students unconsciously resist revising their thinking. "The more reversible the medium, the more honest the thinking. Complex tools create the illusion of productivity. Simple tools expose judgment."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Writing</div>
+      <h2 class="sec-title">Inventory describes what surrounds a person; formation explains what drives one.</h2>
+      <p class="sec-lead">In writing, structure does not yet exist. It must be constructed deliberately before expression begins — and "The center must be a claim, not a topic. A topic describes a field. A claim establishes direction."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">The Inventory Map</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Centre reads Who I Am — a descriptive label, not an arguable position</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Branches labelled family, education, activities, achievements</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Categories name domains rather than drivers</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Orderly and safe, and it survives no test of removal</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Produces prose that feels complete but lacks spine</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">The Formation Map</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Centre is a claim: I am shaped more by constraint than by talent</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Branches function as reasons — early responsibility increased caution</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Sub-branches identify mechanism, not just influence</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Hierarchy survives compression: remove a branch and test whether the claim weakens</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Drafting begins only after structure stabilises, so prose becomes execution rather than discovery</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The order that makes revision refinement instead of rescue</div>
+        <p>When drafting precedes hierarchy testing, the student discovers structure accidentally and revises endlessly. When structure precedes drafting, revision becomes refinement. "Writing begins only after structure has earned the right to be written."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The AI Question</div>
+      <h2 class="sec-title">When AI supplies the structure, the muscles the exercise trains are never used.</h2>
+      <p class="sec-lead">The article raises this separately in all three modes, and the objection is the same each time.</p>
+      <p class="body-text">"The value of reading mind maps lies in the struggle." It trains selection under constraint, the detection of hierarchy, sensitivity to causality, disciplined compression and structural revision. AI can summarise, outline and cluster themes efficiently. What it cannot do is transfer judgment into the student's mind.</p>
+      <p class="body-text">The growth happens in deciding what not to include, in recognising that a branch is weak, in discovering overlap, and in realising that the original centre was wrong. If that friction disappears, the learning disappears with it.</p>
+      <p class="body-text">The same holds for listening, where AI transcription removes the essential difficulty that is the training, and for writing, where AI can produce plausible claims and organised paragraphs but cannot transfer the internal act of hierarchy testing. AI may be useful as a mirror after the student has completed the work. It should not replace the first attempt. "Convenience can always be outsourced. Judgment cannot."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Storytelling</div>
+      <h2 class="sec-title">A map builds hierarchy; storytelling decides the order the reader meets it.</h2>
+      <p class="sec-lead">"A mind map builds hierarchy. Storytelling governs sequence." Structure alone stabilises thought; storytelling determines how that structure unfolds.</p>
+      <p class="body-text">Academic writing is not exempt from narrative logic. It depends on it. IMRAD is not merely formatting — it is structured progression. The introduction frames a problem and exposes a gap. The methods justify approach. The results present ordered evidence. The discussion interprets meaning and contribution.</p>
+      <p class="body-text">Even at sentence level, storytelling operates through contrast and movement. Transitional markers — however, although, despite, in spite of, nevertheless, regrettably — are not cosmetic connectors. They signal tension, indicate reversal, announce contrast, and move the reader from expectation to correction. This is the same logic found in what, but, then.</p>
+      <p class="body-text">Novelty is not declared by saying this is novel. It is demonstrated by tension. A gap exists when expectation and reality diverge, and a strong introduction does not list literature — it stages contrast. "Storytelling in academic writing is not drama. It is disciplined progression."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Intervention</div>
+      <h2 class="sec-title">Seven weeks cannot erase twelve years, but it can expose the architecture of correction.</h2>
+      <p class="sec-lead">For twelve years prior to university, most students are conditioned within cultural systems that reward restraint, compliance and harmony. The training is implicit: avoid standing out, avoid conflict, speak safely, write safely.</p>
+      <p class="body-text">That conditioning produces linguistic adequacy but structural weakness. Grammar improves. Vocabulary grows. But hierarchy detection, disciplined argument and confident positioning remain underdeveloped. "The gap is not intelligence. It is formation."</p>
+      <p class="body-text">The course operates as a structural intervention across four sequential layers. At the base, Mental Models — perception must change before communication improves. Above that, Idea Focus, where mind mapping trains radial thinking and forces central claims. Then Mindfulness, not as meditation but as cognitive regulation. At the peak, Pitch: the disciplined two minutes, the rule of three, cultural and political fit without intellectual compromise.</p>
+      <p class="body-text">The layers are sequential. Without mental models, idea focus is unstable. Without idea focus, mindfulness becomes vague. Without all three, pitch becomes theatrical rather than precise. "Seven weeks cannot erase twelve years. It can expose the architecture of correction."</p>
+      <div class="callout">
+        <div class="callout-label">Where the framework was tested</div>
+        <p>The pyramid was tested through action research across agricultural and international cohorts. Mind maps were used to measure non-linear processing, and academic writing assignments tracked depth of analysis, gap articulation and independent insight. Performance metrics revealed a recurring pattern: linguistic polish exceeded analytical depth. The intervention targets that imbalance.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">The goal is not eloquence but disciplined thinking made visible.</h2>
+      <p class="sec-lead">"This framework is sequential, not decorative."</p>
+      <blockquote>
+        <p>The goal is not eloquence. It is disciplined thinking made visible.</p>
+        <cite>&mdash; Structure Before Language: Why I Start My Academic English Course with Mind Mapping</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Why mind mapping is the entry point</div>
+          <div class="arith-body">Because structure must be trained before expression. Reading trains structural detection, listening trains patience under uncertainty, writing trains hierarchy before drafting. "Without them, storytelling becomes performance without spine."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">How complexity is actually earned</div>
+          <div class="arith-body">Students begin with fragments, learn to construct hierarchy, learn to manage tension, learn to position contribution. "Complexity is not added through vocabulary. It is earned through structure."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the course is and is not about</div>
+          <div class="arith-body">"This course is not about speaking more. It is about thinking more clearly before speaking." When structure precedes language, confidence no longer depends on fluency alone — it depends on clarity, and clarity travels across contexts and cultures.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Buzan, T., &amp; Buzan, B. (1995). <em>The mind map book: Radiant thinking</em>. BBC Books.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T., Yudoko, G., &amp; Aldianto, L. (2024). Evaluating the impact of disciplined storytelling on student communication skills: Integrating cultural sensitivities in educational interventions. <em>The International Journal of Business &amp; Management, 12</em>(7), 1–10. https://doi.org/10.24940/theijbm/2024/v12/i7/BM2407-001</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Tambun, T. (2024). <em>Disciplined storytelling? Manual for teaching communications to introvert and extrovert, co-learning with my students</em>. Kindle Direct Publishing. https://a.co/d/1SwRBUe</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Utami, D., &amp; Tambun, T. (2024). <em>Semester course outline &amp; lesson plans: English for Academic Purposes (PNU20192206)</em>. Microbiology Department, Faculty of Agriculture, Universitas Gadjah Mada.</div>
+        <div class="ref-group-title">The author's earlier writing on storytelling and structure</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, T. (2020). <em>The craft of writing effectively — Learning from Larry McEnerney</em> [LinkedIn post]. LinkedIn. https://www.linkedin.com/posts/toronatatambun_the-craft-of-writing-effectively-uchicago-activity-6827523859747618816-deIx</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T. (2023, September 11). <em>The undying art of storytelling: Navigating 4,000 years of human connection</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/undying-art-storytelling-navigating-4000-years-human-toronata-tambun</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tambun, T. (2023, October 21). Traditional journalism: Trustworthy anchor in the digital age. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2023/10/21/traditional-journalism-trustworthy-anchor-in-the-digital-age.html</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2024, February 28). <em>Life is like a box of chocolates</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/life-like-box-chocolates-toronata-tambun-3nt5c</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2024, March 2). Rediscovering silence in the digital age: Introducing ‘among wektu.' <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2024/03/02/rediscovering-silence-in-the-digital-age-introducing-among-wektu.html</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2024, March 6). <em>Crafting compelling narratives: The art of thick description</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/crafting-compelling-narratives-art-thick-description-toronata-tambun-mlioc</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Tambun, T. (2024, March 10). <em>Conducting literature review and ethical studies</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/conducting-literature-review-ethical-studies-toronata-tambun-ecfac</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Tambun, T. (2024, March 11). <em>The value of academic writing: Insights from Larry McEnerney</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/value-academic-writing-insights-from-larry-mcenerney-toronata-tambun-fu6dc</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Tambun, T. (2024, March 16). Tools for introverts in education: A paradigm shift. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2024/03/16/tools-for-introverts-in-education-a-paradigm-shift.html</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Tambun, T. (2024, March 18). <em>Mastering communication skills: It's not just about being real</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/mastery-communication-elevating-beyond-authenticity-toronata-tambun-gcl5c</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tambun, T. (2024, March 19). <em>Storytelling mix in the making</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/storytelling-mix-making-toronata-tambun-b6npf</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Tambun, T. (2024, March 26). <em>Agriculture tech and culture, ideas and pointers: A compilation</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/discussion-ideas-pointers-agriculture-tech-culture-my-toronata-tambun-hatcc</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Tambun, T. (2024, March 26). <em>6 dimensions values among China, Indonesia, Japan, South Korea and Vietnam</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/6-dimensions-values-among-china-indonesia-japan-south-toronata-tambun-edwmc</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Tambun, T. (2024, March 26). <em>Transforming teaching: Addressing power distance and collectivism in the classroom — A manual</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/intervention-teaching-high-pdi-super-low-so-afraid-very-tambun-sxzdc</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>Tambun, T. (2024, April 4). <em>A mid-term turns into a story book</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/mid-term-turns-story-book-75-students-toronata-tambun-bizcc</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>Tambun, T. (2024, June 23). The art of waiting: A pointer guide for job seekers, decision-makers. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2024/06/23/the-art-of-waiting-a-pointer-guide-for-job-seekers-decision-makers.html</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[21]</span>Three changes have been made to the list as the article prints it, and this note is the record of all three. First, entries printed as Tambun, A. R. Y. T. and Utami, D., &amp; Tambun, A. R. Y. T. are normalised to Tambun, T., following the convention used across this archive. Second, the McEnerney LinkedIn post appears twice, identically, in the article's list; it is printed once here. Third, UTM and rcm tracking parameters on that entry have been stripped, per the standing rule for this archive.</div>
+        <div class="ref-entry"><span class="ref-num">[22]</span>The article carries three diagrams, all captioned as generated by Google's Gemini, plus an uncaptioned image credited to Tambun et al. (2024). These are images and do not survive text extraction. This deck reconstructs the framework they accompany from the article's prose; it does not reproduce the diagrams.</div>
+        <div class="ref-entry"><span class="ref-num">[23]</span>The action research described in the intervention section — agricultural and international cohorts, mind maps used to measure non-linear processing, writing assignments tracking analytical depth — is summarised in the article without sample sizes, instruments or effect measures. None are supplied here.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[24]</span>Tambun, T. (2026, March 2). <em>Structure Before Language: Why I Start My Academic English Course with Mind Mapping</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/structure-before-language-why-i-start-my-academic-english-tambun-gd1sc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/structure-before-language-why-i-start-my-academic-english-tambun-gd1sc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
