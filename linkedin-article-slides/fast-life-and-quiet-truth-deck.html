@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fast Life and The Quiet Truth &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Part I of III — The Fast Life and The Quiet Truth</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Prelude</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Costume</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Ledger</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Metric</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Two Civilizations</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Trap</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> What Now</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> To the Students</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Prelude</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Costume</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Ledger</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Metric</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Two Civilizations</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Trap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">What Now</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">To the Students</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Toro's Sunday Inquiry · Part I of III &nbsp;&middot;&nbsp; 3 November 2025</div>
+      <h1 class="title-main">The Fast Life and The Quiet Truth</h1>
+      <p class="title-thesis">I played the survival script exactly as written — fifty-two countries, twenty-six years, four countries in a single week — and found that victory does not bring rest. The system rewards speed and punishes stillness, and enough is a feeling it was never built to measure. I have outgrown survival.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Prelude</div>
+      <h2 class="sec-title">I watched the skyline form and never noticed my own life accelerating.</h2>
+      <p class="sec-lead">Half a life spent walking through airports — Cengkareng Terminal 2 first, then Changi.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>Terminal 2 was home: the yellow light near the drop-off, the smell of fuel mixed with damp morning air, the three a.m. wake-up every Monday for the SQ951. From the Silver Bird drop-off to the gate took maybe twenty minutes. "You could still walk without rushing, still greet someone you knew…"</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>Then Singapore, from 2008, and Changi as a second home — a body that learned its own map of the terminals. "I watched the skyline form through the taxi window and never noticed I was watching my own life accelerate too."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"At one point during my peak, I woke up in four different countries in a single week." Everything looked impressive from the outside. What was fading on the inside?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>The capacity to feel that any of it was enough. "The world became an airport lounge—efficient, sterile, strangely empty." "Terminal 2 worked because it was proportionate, not performative." The same could no longer be said of the life.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Costume</div>
+      <h2 class="sec-title">The recognition was a costume, and the things I bought mean nothing.</h2>
+      <p class="sec-lead">What the peak actually consisted of, itemised without flattery.</p>
+      <p class="body-text">The Zegna shoes bought compulsively in four colours. The Paul &amp; Shark shirts, all editions, folded too neatly. The noise-cancelling headsets, the travel electronics, every small device that promised control. "I told myself they were tools; they were comforts. In truth they were compulsions bought in vain."</p>
+      <p class="body-text">"The fake warmth at the boarding gate when the staff called my name made me feel important, as if recognition were proof of existence." PPS Lounge, first boarding, Bonvoy Platinum, IHG Life Gold — life measured by boarding calls.</p>
+      <p class="body-text">"That sweetness has turned bitter. The things I bought mean nothing; the recognition was a costume. Those moments were noise disguised as status."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Ledger</div>
+      <h2 class="sec-title">My passports filled and my memory did not.</h2>
+      <p class="sec-lead">What twenty-six years of it actually produced, on the author's own accounting.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">RECORDED A</div>
+          <div class="ev-title">Fifty-two countries in twenty-six years</div>
+          <div class="ev-body">"Now I'm fifty-five. I forget most of the faces, but I remember hotels by reception setup, airports by smell. My passports filled, my memory didn't." Everything looked organised, and inside there was an emptiness he did not want to name.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORDED B</div>
+          <div class="ev-title">Four countries in a single week</div>
+          <div class="ev-body">At the peak. Not an anomaly to be recounted as an achievement, but the ordinary shape of the schedule — and the reason the world reduced to a lounge.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORDED C</div>
+          <div class="ev-title">A birthday he had forgotten, in Cyprus</div>
+          <div class="ev-body">An immigration officer called him out of the line. "My heart dropped, but she only smiled and said happy birthday. I had forgotten it was my birthday. That one moment told me everything about my pace of living."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORDED D</div>
+          <div class="ev-title">A body that has not forgiven him</div>
+          <div class="ev-body">"My sleep rhythm is broken. Even though I live in GMT + 7, my body thinks it's + 1. I sleep best on airplanes, lying flat while engines roar outside. The rougher the weather, the deeper I sleep."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What was never learned</div>
+        <p>"I never learned slow living. I learned schedules, deadlines, rankings. I learned how to chase." The competence was real. It was simply competence at the wrong thing.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Metric</div>
+      <h2 class="sec-title">Enough is not a metric; it is a feeling the system never measured.</h2>
+      <p class="sec-lead">"For decades I lived exactly as the modern world trained me to: measurable, mobile, efficient."</p>
+      <p class="body-text">Every quarter brought new KPIs, new stamps on the passport, new proofs of relevance. "The system rewarded speed and punished stillness. But it could never give me enough. Because “enough” is not a metric; it is a feeling the system never meant to measure."</p>
+      <p class="body-text">The point is not that the measurement was inaccurate. It is that the thing worth having was never in the measurement set, so no amount of performance against it could deliver the thing.</p>
+      <p class="body-text">"For years I believed I was moving forward. In truth, I was only orbiting the same hunger the world taught me to feed. Efficiency without peace is still chaos—only faster."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Two Civilizations</div>
+      <h2 class="sec-title">One civilization lived with the world; the other lives from it.</h2>
+      <p class="sec-lead">"Perhaps the question is not whether science is wrong—it has saved lives—but whether we have mistaken its speed for wisdom."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">What Lived With the World</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"The first measured time in generations"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"The first asked what is good"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>An older algorithm: observe, respect, adapt, remember</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The Tata Somba houses in Benin — fortress homes that protected families yet stayed in harmony with the land, lasting centuries without destroying what fed them</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Villages that planted together, stored together, rested together — and knew when to stop</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">What Lives From It</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"the second measures it in quarters"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"the second asks what sells"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Precision added; reverence removed</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"Human used to work so their children would inherit the soil; now we work so shareholders inherit a report."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"Somewhere along that shift, we lost the sense of enough."</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Not a case against science</div>
+        <p>The article is explicit that science has saved lives, and lists it as one of six knowledge-acquisition paths alongside religion, culture, tradition, philosophy and art. The objection is to keeping one and calling it complete — or, equally, to choosing any single one of the six and believing it is the only one.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Trap</div>
+      <h2 class="sec-title">Survival is not an achievement but a trap evolution built into us.</h2>
+      <p class="sec-lead">"For most of history, it kept us alive; now it keeps us anxious."</p>
+      <p class="body-text">The alpha impulse is real. Every village has it; every city disguises it with titles and suits, but it is the same chemistry — serotonin, dominance, submission, hierarchy. It once told tribes who should hunt and who should guard.</p>
+      <p class="body-text">"It made sense when the threat was outside the cave. But now the threat lives inside—inside the workplace, the classroom, the timeline. We no longer fight tigers; we fight one another for recognition."</p>
+      <p class="body-text">"Biology says fight; conscience says stop. That is the crossroads where humanity stands. We inherited the brain of a fighter and built the tools of a god. That's why we can split the atom and still hate our neighbor."</p>
+      <p class="body-text">"To break the chain doesn't mean erasing evolution; it means recognizing it and choosing differently. The instinct whispers: compete, control, dominate. The moral brain—the one that grew later—can answer: enough."</p>
+      <div class="callout">
+        <div class="callout-label">Where greed actually comes from</div>
+        <p>"When greed arrived, it disguised itself as ambition. It took the noble instinct to survive and turned it into the fear of being ordinary." "Greed is not always money. Sometimes it's fear—the fear of being ordinary. I've seen that fear everywhere, even in universities and churches. Different words, same anxiety."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What Now</div>
+      <h2 class="sec-title">Success is not expansion but alignment to one's own rhythm.</h2>
+      <p class="sec-lead">"I am tired because I have reached the end of that evolutionary script." He played it perfectly — rise, travel, compete, win — and found that victory does not bring rest.</p>
+      <p class="body-text">"What I long for now is not another theory, but a quieter strength: the ability to live without fear of falling behind. That longing is not weakness. It is the beginning of wisdom. I have outgrown survival."</p>
+      <p class="body-text">"I used to think success was about expansion. Now I see it's about alignment—to know one's own rhythm, one's own clock. If another nation runs faster, let them. Our task is not to match their pace but to keep our soul."</p>
+      <p class="body-text">"Maybe that's what the old villages still understand. Their wisdom was not primitive; it was proportional. They knew when to stop. They knew that progress without reflection becomes destruction."</p>
+      <p class="body-text">"I want to be alive. I don't want to watch others perform their happiness on screens; I want to feel quiet joy in real time. I just want to stay somewhere long enough to belong to the air."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">To the Students</div>
+      <h2 class="sec-title">Enough is not less, and slow is not failure.</h2>
+      <p class="sec-lead">The message for those the article calls his honourable co-learners.</p>
+      <blockquote>
+        <p>Happiness is not about winning. It's about realizing that enough is sacred, that slow is safe, and that silence—when it grows into understanding—is the only real success left.</p>
+        <cite>&mdash; The Fast Life and The Quiet Truth</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Learn science, but also learn silence</div>
+          <div class="arith-body">"do not mistake survival for life. Learn science, but also learn silence. Not the silence of fear or exhaustion, but the silence that lets you listen and think before speaking." And notice your own bias and overconfidence — "That's the Dunning-Kruger trap. The more you know, the quieter you become. Depth doesn't shout."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Work that pushes back</div>
+          <div class="arith-body">"Silence also means using your hands, doing real work, feeling the world push back. That kind of work teaches humility better than any lecture." From there compassion starts quietly, not in slogans but in patience.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What to do with what you reach</div>
+          <div class="arith-body">"if one day you reach more than you dreamed of, let it become a blessing for others. Help them find their own rhythm. Let them live decently, not in luxury but in peace." "In the end, happiness is not built by what we achieve but by what we understand—that enough is not less, and that slow is not failure."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">The series</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Tambun, T. (2025, November 10). <em>Beyond Survival</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/beyond-survival-toronata-tambun-hkzmc — Part II of III.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T. (2025, November 14). <em>Part III – The Quiet Resistance</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/part-iii-quiet-resistance-toronata-tambun-uqwsc — Part III of III.</div>
+        <div class="ref-group-title">Notes on sources</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>The article cites no published sources. Two factual claims in it rest on works it names without referencing: the longest happiness study from Harvard, reported as finding that only relationships, the depth of those relationships, and health endure; and the Dunning-Kruger effect, named without citation. No references are inferred or supplied here.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>The Tata Somba houses of Benin are described from the author's reading, which the article does not identify.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>This is the first of three parts. The PDF records Part II as drafted on the same morning as this piece and Part III the following day, with the three released a week apart. They are one argument in three instalments, and each is registered separately in the archive.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T. (2025, November 3). <em>The Fast Life and The Quiet Truth</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/fast-life-quiet-truth-toronata-tambun-pp3tc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/fast-life-quiet-truth-toronata-tambun-pp3tc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
