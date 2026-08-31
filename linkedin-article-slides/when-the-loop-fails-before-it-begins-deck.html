@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When the Loop Fails Before It Begins: Culture, Feedback, and the Inhibition of Innovation Ecosystems &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">When the Loop Fails Before It Begins: Culture, Feedback, and the Inhibition of Innovation Ecosystems</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Structural Loops</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Frameworks</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Case</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Cultural Loops</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Structural Loops</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Frameworks</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Case</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Cultural Loops</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Feedback, Culture and Activation &nbsp;&middot;&nbsp; 15 June 2025</div>
+      <h1 class="title-main">When the Loop Fails Before It Begins: Culture, Feedback, and the Inhibition of Innovation Ecosystems</h1>
+      <p class="title-thesis">Innovation ecosystems do not stall for want of structure. Across twenty national systems the university is never the ignition point, and in one signed, funded, staffed partnership no pilot launched in two years — because the culture filtered out the rebel talent that the only reinforcing loop depends on. Activation is not a result of structure. It is a result of permission, and permission is a cultural variable.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">Presence is not activation, and infrastructure is not ignition.</h2>
+      <p class="sec-lead">"This is not a speech about policy recommendations. It is a system diagnostic."</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>"In academic institutions like ours, especially those that specialize in engineering, design, and innovation policy, we often carry the unspoken belief that if we build the right program, if we launch the right platform, if we train the right student—innovation will follow." "That belief feels safe. It is well-intentioned. It is formal, familiar, and fundable."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"But it is also wrong." "We praise experimentation but reward compliance. We celebrate innovation but reject the rebel. We assemble platforms but silence feedback." "We submit proposals. We frame partnerships. We redesign syllabi. But we rarely ask: will the loop run?"</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"We often mistake the presence of institutions for the presence of circulation. But presence ≠ flow." So what actually starts the motion?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>"Because what activates an innovation ecosystem is not structure—it is circulation. And what governs circulation is not policy—but feedback." "And feedback is not just a technical signal. It is shaped by culture."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Structural Loops</div>
+      <h2 class="sec-title">In none of the five structural loops is the university the initiator.</h2>
+      <p class="sec-lead">A causal loop model adapted from Passi et al. (2023), drawn from field research across twenty national innovation ecosystems — advanced, transitional and developing.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; R1 — Attractiveness (reinforcing)</div>
+          <div class="arith-body">An attractive ecosystem draws more firms, producing more ideas and variation, more co-development, more pilots — and successful pilots make the ecosystem more attractive still. "But notice the entry point: market attractiveness, not research quality. Universities participate in co-development, but they do not start the cycle."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; R2 — Research Investment (reinforcing)</div>
+          <div class="arith-body">More funding enables more joint research, producing knowledge outputs that feed co-development and pilots, which attract further funding. "Again: universities are in the middle. They amplify—but do not ignite." "The trigger is not curiosity or discovery. The trigger is finance."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; R3 — Visibility and Hype (reinforcing)</div>
+          <div class="arith-body">Media visibility boosts attractiveness, encourages firm entry, increases visible outcomes and fuels more hype. "This loop is not driven by evidence—it is driven by perception. And the actors who drive it are rarely academic."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; B1 — Ownership vs Openness (balancing)</div>
+          <div class="arith-body">Increased private capital reduces willingness to share openly, lowering co-development and pilots, which weakens the case for private investment. "This loop is a control reflex—the more capitalized the player, the less willing they are to engage in open innovation." Universities may argue for openness but are structurally subordinate to the financing entity.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; B2 — Stakeholder Expectation (balancing)</div>
+          <div class="arith-body">Failed pilots lower expectations, which lowers attractiveness, firm entry and further pilots, "reinforcing a mood of disillusionment". "This loop is rarely discussed, but it's the reason many ecosystems stall. It shows how one failure—if publicly mishandled—can shut down the entire engine."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The finding across all five</div>
+        <p>"In all five loops—whether reinforcing or balancing—the university is never the independent variable. It is not the one who starts the motion. It is the recipient of funding, the host of projects, the amplifier of ideas—but it is not the trigger."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Frameworks</div>
+      <h2 class="sec-title">Six influential frameworks describe the system without diagnosing why it stalls.</h2>
+      <p class="sec-lead">"If the university is not central, then why do so many theories treat it as such?" The article answers historically, then turns the question on the theories themselves.</p>
+      <p class="body-text">Triple Helix (Etzkowitz &amp; Leydesdorff, 2000) frames innovation as triadic co-evolution with the university as knowledge originator — but it assumes equal agency, and accounts for neither power asymmetry nor cultural friction. National Systems of Innovation (Lundvall, 1992) assumes that if all actors are present, interaction will emerge; it says nothing about why those interactions so often fail to materialise.</p>
+      <p class="body-text">Technology transfer theory (Bozeman, 2000) assumes transfer will occur if incentives align, and does not diagnose why innovation dies before entering the pipeline. Experiential learning (Kolb, 2015) trains students through immersion — but organisations may not be culturally ready to receive them. Innovation capability maturity (Corsi et al., 2006) benchmarks internal readiness, which is not the same as willingness to deviate. Person–environment fit (Kristof-Brown et al., 2005) explains retention, and equally explains why innovative individuals leave.</p>
+      <p class="body-text">"All of these models are structurally valid. But none of them are culturally self-aware." The article does not dispute their value; it argues that structural prescriptions alone do not guarantee system motion. "Presence is not activation. Infrastructure is not ignition. Policy is not permission."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Case</div>
+      <h2 class="sec-title">The lab had everything and launched nothing for two years.</h2>
+      <p class="sec-lead">A formal corporate–university partnership from the author's doctoral research, titled The Lab That Never Launched.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">RECORDED A</div>
+          <div class="ev-title">The partnership was signed</div>
+          <div class="ev-body">"This was a real initiative", and "The partnership was signed." The agreement existed, formally executed between a corporation and a university.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORDED B</div>
+          <div class="ev-title">Leadership, roadmap and budget were in place</div>
+          <div class="ev-body">"The project had leadership buy-in." "The roadmap and budget were finalized." None of the usual explanations for stalled initiatives — no sponsor, no plan, no money — applies here.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORDED C</div>
+          <div class="ev-title">The facility existed and staff were appointed</div>
+          <div class="ev-body">"The physical facility existed." "The staff was nominally appointed." Every structural component a framework would prescribe was present and countable.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORDED D</div>
+          <div class="ev-title">No pilot was ever launched</div>
+          <div class="ev-body">After two years, not one. "This is not a failure of planning. It is a failure of LOOP ACTIVATION. The ecosystem had components. What it lacked were CONDITIONS THAT PERMITTED THE LOOPS TO RUN."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Cultural Loops</div>
+      <h2 class="sec-title">The culture filtered out rebel talent, so the reinforcing loop never ignited.</h2>
+      <p class="sec-lead">Three loops from the case explain what went wrong — two that hold the system still, and one that could have moved it.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; B1 — Rebel Talent (balancing)</div>
+          <div class="arith-body">Short-term orientation with high uncertainty avoidance produces risk-averse shared values, which suppress a risk-taking culture and reduce the number of people willing to challenge or experiment. That raises preference for stable, low-variance jobs, attracting a conformity-driven talent pool and performance systems "optimized for delivery, not discovery". "In effect, the loop preserves cultural stability by preemptively rejecting innovation—not by accident, but by design."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; B2 — Corporate Conservatism (balancing)</div>
+          <div class="arith-body">Uncertainty avoidance produces a risk-averse culture, which selects risk-neutral talent, which reinforces a stable performance system that is difficult to challenge. Such systems perform well against delivery metrics — and as pressure to activate the innovation engine declines, appetite for innovation weakens. "This is a balancing loop, not because it fixes a problem—but because it prevents deviation. It sustains performance by silencing signals of change."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; R1 — Innovation Alignment (reinforcing, and the only one)</div>
+          <div class="arith-body">If rebel talent is integrated, internal innovation capability rises, generating pressure to activate the engine and raising appetite for innovation, which reinforces further integration. "This loop does not run by default. It remains conditional and fragile, dependent on the willingness of the system to welcome discomfort." "Without rebel integration, the loop stalls at the gate."</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">What the two diagrams show together</div>
+        <p>"What looks like a well-run firm is, in loop terms, a system self-protected from innovation." And of the case: "It wasn't broken. It was working exactly as built." The lab "never failed in the execution phase. It failed in the cultural conditions that precluded the system from ever launching."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Where permission is withheld, feedback dies and ecosystems stall.</h2>
+      <p class="sec-lead">"But structure alone does not generate circulation. No loop activates just because the design looks correct."</p>
+      <blockquote>
+        <p>Ecosystems do not fail for lack of planning. They fail when the system refuses to feel what it needs to learn.</p>
+        <cite>&mdash; When the Loop Fails Before It Begins</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The pattern that keeps repeating</div>
+          <div class="arith-body">"The architecture is in place.But feedback is filtered, risk is suppressed, deviance is penalized—and still we revise the framework again." "We keep redesigning the structure. We keep assembling the same actors, funding similar initiatives, hosting the same dialogues. And yet, the outcomes remain unchanged."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where the diagnosis actually points</div>
+          <div class="arith-body">"At some point, the issue is not policy or strategy. It is the REFUSAL TO CHANGE THE CONDITIONS UNDER WHICH THE SYSTEM LEARNS." "And if feedback is still blocked, if culture is still filtering the necessary friction, then we are not innovating." "We are rehearsing failure."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The question the speech ends on</div>
+          <div class="arith-body">"So the question is not: What will we build next?" It is: "WHAT ARE WE STILL REFUSING TO HEAR?" — and until that is addressed "not by documents, but by institutional behavior— no ecosystem, no matter how well designed, will run."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Bozeman, B. (2000). Technology transfer and public policy: A review of research and theory. <em>Research Policy, 29</em>(4–5), 627–655. https://doi.org/10.1016/S0048-7333(99)00093-1</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Corsi, M., Di Minin, A., &amp; Piccaluga, A. (2006). <em>Strategic management of innovation and technology</em>. Springer.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Etzkowitz, H., &amp; Leydesdorff, L. (2000). The dynamics of innovation: From National Systems and "Mode 2" to a Triple Helix of university–industry–government relations. <em>Research Policy, 29</em>(2), 109–123. https://doi.org/10.1016/S0048-7333(99)00055-4</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Kolb, D. A. (2015). <em>Experiential learning: Experience as the source of learning and development</em> (2nd ed.). Pearson Education.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Kristof-Brown, A. L., Zimmerman, R. D., &amp; Johnson, E. C. (2005). Consequences of individuals' fit at work: A meta-analysis of person–job, person–organization, person–group, and person–supervisor fit. <em>Personnel Psychology, 58</em>(2), 281–342. https://doi.org/10.1111/j.1744-6570.2005.00672.x</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Lundvall, B.-Å. (1992). <em>National systems of innovation: Towards a theory of innovation and interactive learning</em>. Pinter Publishers.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Passi, S., Moser, C., &amp; de Jong, M. (2023). Modeling the dynamics of innovation ecosystems: A system dynamics approach. <em>Technovation, 122</em>, 102689. https://doi.org/10.1016/j.technovation.2023.102689</div>
+        <div class="ref-group-title">The author's own work, as cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2025). <em>Corporate-backed university-based innovation entrepreneur ecosystem model in Indonesia</em> [PhD thesis]. Institut Teknologi Bandung.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2025). <em>The Lab That Never Launched: Innovation on delegated terms at Tirta Energi</em> [Case study]. Unpublished.</div>
+        <div class="ref-group-title">Notes on sources</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>The article's own author note states that the speech reflects an independent academic viewpoint; that the institutional identity has been withheld to maintain confidentiality; and that all system interpretations, feedback mappings and loop characterisations are the sole responsibility of the author and do not represent the formal position of any university, funding body or affiliated organisation.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>The case study is cited in the article under the title above; the article's body withholds the institutional identity, and nothing beyond the citation as printed is stated or inferred here.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>The article carries a copyright notice reserving all rights, and states that its figures and causal loop diagrams are used under academic fair use for research and educational purposes. The two diagrams — Figure 1 adapted from Passi et al. and Figure 2 from the author's own case — are images that do not survive text extraction. This deck reconstructs the loops from the article's prose descriptions of them.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>The article uses heavy capitalisation for emphasis throughout. Quotations here preserve it where it falls inside a quoted span.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Tambun, T. (2025, June 15). <em>When the Loop Fails Before It Begins: Culture, Feedback, and the Inhibition of Innovation Ecosystems</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/when-loop-fails-before-begins-culture-feedback-toronata-tambun-cq5zc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/when-loop-fails-before-begins-culture-feedback-toronata-tambun-cq5zc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
