@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Deception of Fame &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">The Deception of Fame</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Wilderness</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Cases</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Present</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Wilderness</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Cases</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Present</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Toro's Sunday Inquiry &nbsp;&middot;&nbsp; 8 June 2025</div>
+      <h1 class="title-main">The Deception of Fame</h1>
+      <p class="title-thesis">A churchgoing student said plainly that he wanted to be famous, and it triggered a filter in use since 1997: is this driven by fear of not having enough, by the desire to be admired, or by compromise with a power other than God? Three figures in Acts failed on exactly those grounds. Fame is not harmless vanity. It masquerades as something desirable, and it is the stuff of judgment.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A student said he wanted to be famous, and my heart sank.</h2>
+      <p class="sec-lead">"Not long ago, I was speaking with a bright young student about his aspirations."</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>"In the middle of our conversation, he looked me in the eye and said plainly, “I want to be famous.”"</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"In that moment, my heart sank." A deep pastoral grief — not anger but sorrow — for him and for many like him. "Here was a teenager who attends church regularly, yet his deepest ambition was not to be faithful or holy, but to be famous."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"His comment triggered something in me. It took me back to 1997, when I began using a personal framework to discern my own life decisions at critical crossroads." What does that framework ask?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Three questions drawn from the wilderness temptations. "And as soon as I heard “I want to be famous,” I recognized that old second temptation rearing its head."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Framework</div>
+      <h2 class="sec-title">Three questions from the wilderness have guarded the heart for decades.</h2>
+      <p class="sec-lead">At every major decision or tempting opportunity since, the article says, he asks himself three probing questions drawn from the wilderness temptations.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Is this driven by fear of not having enough?</div>
+          <div class="arith-body">It echoes "Satan's temptation for Jesus to turn stones into bread – a lure to self-provision out of anxiety after 40 days of hunger" (Matthew 4:3–4).</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Is this driven by a desire to be famous or admired?</div>
+          <div class="arith-body">It reflects the temptation to throw himself from the temple pinnacle — "a stunt that would surely attract public awe" (Matthew 4:5–7).</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Is this pressured by a compromise?</div>
+          <div class="arith-body">It mirrors "Satan's offer of all the world's kingdoms if Jesus would only worship him, a temptation to gain power by bending the knee to evil" (Matthew 4:8–10). "These three questions – fear, fame, and false worship – have helped guard my heart for decades."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why the second is the deceptive one</div>
+        <p>"Fame – that second question – is particularly deceptive because it masquerades as something harmless or even desirable (“I just want to make a difference, to be seen, to be appreciated”). But as we'll see, the pursuit of fame for its own sake is a deadly trap."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Wilderness</div>
+      <h2 class="sec-title">Even the Son of God was invited to chase fame and discerned the deception.</h2>
+      <p class="sec-lead">"Before we examine those human examples, we must start with Jesus."</p>
+      <p class="body-text">"“If you are the Son of God,” Satan said, “throw yourself down [from the highest point of the temple]”" (Matthew 4:6). "Imagine the scene: the holy city, the crowds at worship, and Jesus floating down from the temple peak, borne up by angels. What a headline that would make!"</p>
+      <p class="body-text">"The devil was enticing Jesus to dramatize His identity, to gain instant acclaim, and to test God's protection all at once. It was a temptation to fame and ego, a shortcut to messianic recognition without the cross."</p>
+      <p class="body-text">"But Jesus would have none of it." "In other words, seeking attention and forcing God to save you for show is not trust – it's sin. Our Lord refused to seek fame on the devil's terms."</p>
+      <p class="body-text">"Why start here? Because Jesus shows us that the craving to be spectacular – to be admired and famous – is a fundamental human temptation. Even the Son of God was invited to chase fame, but He discerned the deception and defeated it."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Cases</div>
+      <h2 class="sec-title">Hypocrisy, ambition and self-deification are three faces of the same craving.</h2>
+      <p class="sec-lead">"The Bible gives us clear examples of how the desire for fame and glory can lead to spiritual ruin."</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Ananias and Sapphira — hypocrisy for recognition (Acts 5)</div>
+          <div class="arith-body">Having seen the esteem Barnabas received, "Perhaps they saw the esteem Barnabas received and wanted the same reputation.". "In other words, they wanted the glory of being thought sacrificial and holy, without actually being fully sacrificial. They craved the image of generosity more than the reality of integrity." "if we are giving, serving, or worshiping with a secret aim to be seen and admired by others, we are in spiritual danger."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Simon the Sorcerer — ambition for power and prestige (Acts 8)</div>
+          <div class="arith-body">Before the gospel reached him, "Simon had built a brand around himself; he loved the applause and awe of the crowds". After baptism the old ambition resurfaced when he offered money for the power to impart the Spirit. "He wanted the Holy Spirit's power, but not for God's glory or the good of others – rather, so that he could regain his status as the great, impressive figure in town." Peter's answer named the root: "your heart is not right before God".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Herod Agrippa — the folly of self-glorification (Acts 12)</div>
+          <div class="arith-body">The crowd shouted that his was the voice of a god, not of a man. "And crucially, Herod accepted this praise. He did not correct them or give glory to the true God. He basked in the adulation." "Here we see a blatant instance of what we might call the worship of fame – a man glorifying himself, receiving the worship of people who have effectively made him an idol." "This is the ultimate outcome of unchecked thirst for fame: it destroys a person from the inside out."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What Simon's case shows that the others do not</div>
+        <p>"It is possible to be baptized, to be in the church, and yet to be entangled in the old lust for fame and influence." The desire to be famous "can survive even after we turn to Christ, unless we truly allow the Holy Spirit to change our heart's ambitions." "We must continually return to the question: “Am I doing this for Jesus' fame or my own?”"</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Present</div>
+      <h2 class="sec-title">Value is not visibility, whatever the platform teaches.</h2>
+      <p class="sec-lead">"By now it should be clear that the desire to “be famous” – to elevate ourselves – is a deadly deception. It promises significance but delivers spiritual bankruptcy."</p>
+      <p class="body-text">"It tempted Jesus, it corrupted a Christian couple, it nearly derailed a new believer, and it destroyed a king. Fame itself is fleeting; worse, the pursuit of fame can cost us our soul."</p>
+      <p class="body-text">The article puts the ancient question in current terms: "What good is it to gain a million followers, or a wall full of awards, or the admiration of our peers, if in the process our heart turns from God?"</p>
+      <p class="body-text">"My heart aches for that student who wanted to be famous, and for countless youths in a culture where being a celebrity is held as the ultimate goal. Many of them attend church regularly; they have an inherited form of religion but perhaps not a deeply rooted heart-relationship with Christ." "They are, in a sense, wandering in the wilderness, bombarded by Satan's offers – identity in possessions, identity in popularity, identity in power."</p>
+      <p class="body-text">"Let's intercede for a generation at risk of believing the serpent's lie that says, “Your value is in your visibility.” We must counter that with the truth: our value is in being known and loved by God."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">The only fame worth seeking is well done, good and faithful servant.</h2>
+      <p class="sec-lead">"First, I believe the Lord is calling each of us to repent of any way in which the deception of fame has taken hold of our hearts. Let's be honest: this temptation isn't just for other people out there; it hits us."</p>
+      <blockquote>
+        <p>All other applause will fade, but the honor that comes from God is eternal.</p>
+        <cite>&mdash; The Deception of Fame</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The three self-examinations</div>
+          <div class="arith-body">"Have you found yourself making decisions out of the fear of missing out or not having enough, rather than trusting God's provision? Have you caught yourself doing things – even good things – mainly to be seen and admired by others? Are you under pressure to compromise your values to get ahead in your career, to bow to an “idol” of success or popularity?"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why the framework ends in grace</div>
+          <div class="arith-body">"The good news is that because Jesus triumphed over these temptations, we can repent and find forgiveness and freedom. His victory in the wilderness is ours to claim." "There is grace waiting for the heart that turns from self-glorification…"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The inversion the kingdom runs on</div>
+          <div class="arith-body">In God's kingdom "the greatest is the servant, and the one who humbles himself will be exalted in due time" (Matthew 23:11–12). "The only fame worth seeking is to hear the Lord say," in the words of Matthew 25:21, "Well done, good and faithful servant".</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Bruce, F. F. (1988). Cited throughout for the Acts commentary — on Ananias and Sapphira (pp. 108–111), Simon in Samaria (pp. 167–170) and Herod's death (p. 244). No fuller reference is given in the article.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Carson, D. A. (1991). Cited for Satan's strategy of distorting divine identity through false promises of power and acclaim; no fuller reference is given.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Josephus. (1987). Cited for <em>Antiquities of the Jews</em>, Book 19, Chapter 8, §2 — Herod's silver garments, the crowd's praise, and his sudden affliction.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Marshall, I. H. (1980). Cited on Ananias and Sapphira (pp. 113–117) and Simon (pp. 157–158, 160–162); no fuller reference is given.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Peterson, D. G. (2009). Cited on Simon (pp. 288–291) and on the literary structure of Acts 12 presenting Herod's death as divine judgment; no fuller reference is given.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Schultze, Q. J. (2002). Cited for modern fame as a counterfeit form of spiritual fulfilment, and for curated visibility substituting for moral character; no fuller reference is given.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Turkle, S. (2011). Cited for digital platforms rewarding performative identity over authentic presence; no fuller reference is given.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Wright, N. T. (2004). Cited (pp. 27–31) for the three temptations as tests of identity, dependence and allegiance; no fuller reference is given.</div>
+        <div class="ref-group-title">Scripture cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Matthew 4:1–10 — the wilderness temptations, the framework's source.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Acts 4:36–37; 5:1–11 — Barnabas's gift, and Ananias and Sapphira.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Acts 8:9–24 — Simon the Sorcerer.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Acts 12:21–23 — Herod Agrippa's death.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>1 John 2:16; 1 John 1:9; Psalm 51:6; Psalm 115:1; Proverbs 16:18; Isaiah 2:12; Isaiah 42:8; Mark 8:36; Matthew 23:11–12; Matthew 25:21.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>All scriptural references follow the New International Version (NIV, 2011 and 2021 as cited in the text), per the article's author note.</div>
+        <div class="ref-group-title">Notes on sources</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>The article's author note states that the homiletic reflection was written for a public audience, especially those navigating questions of integrity in academic ambition; that it draws on Hebrew-Christian theology, contemporary funding dilemmas and real institutional examples; and that it was drafted independently, with citations manually curated and no generative AI used for conceptual content.</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>The article's in-text citations are author-date only, without a reference list. The entries above record what each is used for and state where no fuller reference is available; nothing has been inferred.</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>The student whose remark prompted the article is not named or otherwise identified, and no detail is added here.</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>This article and <em>Integrity in Ambition: Questioning the Ethics of Funding</em> were published on the same day, 8 June 2025, and carry an identical author note and disclaimer.</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>The article links a companion post through a shortened lnkd.in address that does not resolve to a stable canonical URL; it is therefore not reproduced.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>Tambun, T. (2025, June 8). <em>The Deception of Fame</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/deception-fame-toronata-tambun-eramc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/deception-fame-toronata-tambun-eramc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
