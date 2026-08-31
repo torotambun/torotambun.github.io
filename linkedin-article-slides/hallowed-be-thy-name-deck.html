@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(5 of 5) Hallowed Be Thy Name &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">(5 of 5) Hallowed Be Thy Name</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Collapse</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Surrender</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Mechanism</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Grace</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Hallowing</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Memory</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Witness</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Collapse</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Surrender</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Mechanism</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Grace</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Hallowing</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Memory</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Witness</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; The Lord's Prayer — 5 of 5 &nbsp;&middot;&nbsp; 12 April 2025</div>
+      <h1 class="title-main">(5 of 5) Hallowed Be Thy Name</h1>
+      <p class="title-thesis">If Abba redefines access and who is in the heavens preserves holiness, this line is where both converge — and it converges under collapse. The grammar is a divine passive: the one praying is not the agent of sanctification and has already failed to bear the name rightly. That is what makes the prayer speakable rather than disqualifying. The Cross hallows the name not by protecting it from distortion but by descending into it. The name survived the speaker, and so the speaker bears it again.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">This is not a commentary on the Lord's Prayer; it is a confession through it.</h2>
+      <p class="sec-lead">"This essay continues a theological series that began not with theory, but with a word: Abba."</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The series so far: the prayer framed as "memory, survival structure, and covenantal grammar"; then Abba as "a term both intimate and defiant" that "collapses gatekeeping"; then the phrase that follows it, which "reintroduces transcendence". "The one who is near remains holy. The God who invites does not abdicate majesty."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"If Abba redefines access, and “who is in the heavens” preserves holiness, then this line is where both converge. Here, language fails, grammar remains, and the soul speaks not to perform but to survive."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"The chapters that follow are structured not by doctrine but by transformation." What does the line do for someone who has already failed to bear the name?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>"This is not a theology of certainty. It is confession under weight. The speaker is not the sanctifier. The one who prays has already failed—and still, the prayer is permitted. That is what makes it holy."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Collapse</div>
+      <h2 class="sec-title">When language collapses, grammar remains.</h2>
+      <p class="sec-lead">"When language collapses, grammar remains. When the self fractures, the sentence does not. That is the enduring power of ancient prayer—not elegance, but stability."</p>
+      <p class="body-text">"“Hallowed be Thy name” does not arise from conceptual clarity. It arises when clarity is gone, and the soul clings to structure." "This line survives not because it explains. It holds. It is the mouth’s memory when the cortex fails to generate speech."</p>
+      <p class="body-text">"In trauma, grief, sin, or moral exhaustion, the brain does not invent new syntax. It retrieves what was encoded in repetition. That retrieval is not aesthetic. It is neurological survival."</p>
+      <p class="body-text">"This is not liturgical performance. It is theological regulation. Patterned prayer, when spoken under collapse, acts as neural scaffolding. It bridges limbic chaos and frontal lobe regulation. Repetition is not regression. It is prefrontal-limbic translation. Emotional overload is brought into sequence—not by explanation, but by rhythm."</p>
+      <p class="body-text">Call et al. observed that "emotionally encoded ritual speech patterns activate neural synchrony between affective and executive regions, especially during states of distress or moral injury." "This means that ancient grammar does more than express belief. It mediates psychological integrity. It lets the fractured person speak coherently without generating coherence."</p>
+      <p class="body-text">"Jesus gives this structure deliberately. “Hallowed be Thy name” is not the overflow of clarity. It is the anchor for collapse. When the name has been profaned, when the speaker has failed, and when no new insight arises—this sentence remains. It does not demand fluency. It permits utterance. And that is why it is holy."</p>
+      <p class="body-text">"This is why I write. Not as exposition. As retrieval. I have misrepresented the name. I cannot argue for my clarity. But I can return to its grammar. Not to analyze it. But to breathe inside it." "Generations of the failed have spoken this line and were not discarded."</p>
+      <div class="callout">
+        <div class="callout-label">Where the holiness of the sentence actually sits</div>
+        <p>"The holiness of this sentence is not in its language. It is in its refusal to collapse when the speaker does." "It does not keep the name holy by performance. It keeps the sinner able to speak—even when there are no new words."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Surrender</div>
+      <h2 class="sec-title">The divine passive removes the speaker as the agent of holiness.</h2>
+      <p class="sec-lead">"The line “Hallowed be Thy name” is not merely theological content. It is grammatical surrender."</p>
+      <p class="body-text">Jesus frames the request in the aorist passive imperative, "which reflects a construction known in biblical studies as the “divine passive”". "This grammatical form is used to refer to God’s action indirectly, avoiding direct imperatives addressed to the divine while still expressing petition. It mirrors traditional Jewish reverence: to speak of what God alone does without claiming agency."</p>
+      <p class="body-text">"By using the divine passive, Jesus disrupts any notion of human control over holiness. The prayer does not say, “Let us hallow Your name,” nor “Help us make Your name holy.” It says: “Let it be made holy.”" Two things follow: "(1) the one praying is not the agent of sanctification; and (2) only God can reveal His holiness rightly, especially when those who bear His name have profaned it".</p>
+      <p class="body-text">The precedent is Ezekiel 36, spoken to a morally collapsed Israel: "It is not for your sake… that I am about to act, but for the sake of My holy name… I will sanctify My great name, which has been profaned among the nations". "The one who prays is not initiating God’s holiness; they are yielding to God’s self-revelation despite their own failure".</p>
+      <p class="body-text">"This is not rhetorical flourish. It is anthropological honesty. The child who says Abba" — "intimate, daring—is the same one who confesses: “I will be in the way.” Not because of rebellion, but because the holiness of the name is too weighty to carry." "The access is real—but it does not negate awe. In fact, it heightens it."</p>
+      <p class="body-text">"The paradox lies in this: grace does not erase holiness. Grace is not an escape from holiness—it is its expression. The one who is forgiven still stands under the fire."</p>
+      <p class="body-text">"And so, to say “Hallowed be Thy name” is not to act. It is to yield. It is to hand back what was never ours to perform." The article puts the yielded form into words: "Let Your name be hallowed—not by my strength, but by Your mercy. Not by image management, but by faithful self-revelation. And if I am in the way, then carry the name through me without letting it be ruined by me."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Mechanism</div>
+      <h2 class="sec-title">Four brain structures map onto four postures of the soul.</h2>
+      <p class="sec-lead">"Holiness is not a metaphysical abstraction. It is a neural encounter." "None of this is mere metaphor. Each structure corresponds to a specific posture of the soul."</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">MECHANISM A</div>
+          <div class="ev-title">Amygdala — the fear of the Lord</div>
+          <div class="ev-body">It "is often activated when a person becomes aware of having violated a sacred norm. This activation is not pathological. It signals the brain’s recognition that a moral threshold has been crossed". But confession redirects it: "The brain does not escalate. It yields." "The amygdala’s alert becomes the fear of the Lord."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">MECHANISM B</div>
+          <div class="ev-title">Default Mode Network — the loss of self-centred narrative</div>
+          <div class="ev-body">The DMN "typically sustains self-referential thought and autobiographical narrative. In prayer, when the speaker acknowledges failure and ceases to justify, the DMN quiets". "Cognitive resources shift away from narrative defense and toward present, relational awareness. This is not dissociation. It is reorientation." "The DMN’s deactivation becomes the loss of self-centered narrative."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">MECHANISM C</div>
+          <div class="ev-title">Anterior cingulate cortex — confession without collapse</div>
+          <div class="ev-body">The ACC "activates—especially in contexts of social error, conflict monitoring, and moral decision-making". "But in prayer, this activation does not serve avoidance. It functions as confession: the recognition of having done wrong, without fleeing the relationship. Exposure does not terminate connection. It deepens it." "The ACC’s signal becomes confession without collapse."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">MECHANISM D</div>
+          <div class="ev-title">Insula — embodied humility</div>
+          <div class="ev-body">"The body becomes aware of itself—not in triumphant posturing, but in surrender. The speaker knows: I am not okay. But I am not silenced. The prayer allows the self to remain exposed without being ejected. That is theological safety encoded in neurobiological terms". "The insula’s data becomes embodied humility."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the alignment is not</div>
+        <p>"This is not therapeutic calm. It is theological disarmament." "This is not emotional manipulation. It is neural alignment with moral reality." "The brain does not perform holiness. It is restructured by it." And the weight moves rather than lifting: "The speaker does not say: “I will be holy.” He says, “Let Your name be made holy.”"</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Grace</div>
+      <h2 class="sec-title">Grace is not in the line, and without it the line cannot be spoken.</h2>
+      <p class="sec-lead">"Grace is not mentioned in the line “Hallowed be Thy name.” But without it, the prayer cannot be spoken."</p>
+      <p class="body-text">"The divine passive—“let it be made holy”—presumes the speaker has already failed. The one praying is not the agent of sanctification, nor the bearer of the name in moral strength. What makes the prayer possible is grace—not leniency, not sentiment, but divine initiative where collapse should have ended speech."</p>
+      <p class="body-text">Ezekiel 36:22 is read as the definition rather than the threat: "That statement is not a threat. It is grace defined. The holiness of God does not retreat in the face of betrayal. It moves toward it." "Grace is not delay. It is God's first act after distortion."</p>
+      <p class="body-text">"Neurocognitively, this act takes place when performance ceases." When narrative control stops, "grace enters—not as insight, but as undeserved reorientation." "The insula signals bodily exposure without shame: “I am seen—and not cast out”". "Grace does not bypass these neural shifts. It makes them possible."</p>
+      <p class="body-text">"This is the neurotheological meaning of Ezekiel’s “heart of stone” becoming a “heart of flesh.” Rigid neural pathways—formed by fear, self-defense, performance—are interrupted. Amygdala dominance is met not with escalation, but with interruption. The prefrontal cortex strengthens. Neuroplasticity reopens. This is not self-help. It is grace rewriting the body."</p>
+      <p class="body-text">Romans 12:2 carries the same grammar as the prayer: "The verb is passive. The transformation is not self-manufactured. It is permitted. Grace is the permitting force—the divine override when the system has hardened. Without grace, change becomes willpower. With grace, it becomes rewiring."</p>
+      <p class="body-text">"Grace, then, is not the opposite of holiness. It is its mechanism. Holiness that survives collapse is only visible through grace. The one who prays “Hallowed be Thy name” must know this: the name is holy not because we carried it well, but because God carried us even after we distorted it."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Hallowing</div>
+      <h2 class="sec-title">The Cross hallows the name by descending into its distortion.</h2>
+      <p class="sec-lead">"nowhere is that grammar more visible, or more necessary, than at the Cross."</p>
+      <p class="body-text">"The name of God is not a title. It is His revealed character" — declared in Exodus 34 after the golden calf, "in the midst of betrayal". But in Ezekiel the profanation is internal: "Ezekiel’s vision is not of outsiders offending the sacred. It is of the covenant people misrepresenting it. And still, God’s response is not rejection, but initiative."</p>
+      <p class="body-text">At the trial the distortion reaches its limit. Jesus, "the “exact imprint of God’s nature”", is condemned as a blasphemer; "The priests perform purity, yet crucify holiness itself. It is the deepest distortion: those meant to hallow the name have weaponized it."</p>
+      <p class="body-text">"Yet Jesus does not defend the name. He does not correct the misunderstanding. He does not assert His holiness. He hands the name back to the Father" — into Your hands I commit My spirit. "Even more astonishing, He pleads for those profaning it" — Father, forgive them, for they know not what they do.</p>
+      <p class="body-text">"The holiness of God is not preserved through distance or image control. It is revealed by walking through distortion and surviving it." On Wright's reading, "the resurrection is not simply God’s answer to death—it is God’s vindication of the One misnamed, misjudged, and misunderstood. God hallowed His name not by crushing the profaners, but by raising the one they rejected."</p>
+      <p class="body-text">"This is why the Cross is not peripheral to the hallowing. It is its form. The Name is not vindicated by preventing profanation. It is vindicated by descending into it. That descent is not divine compromise. It is divine clarity. The holiness of God is not proven by distance from sin, but by faithfulness within it."</p>
+      <p class="body-text">"The Name is dragged through shame. And still, He does not erase the Name to protect it. He lets it hang. But that is precisely when it is hallowed." "The holiness of the Name is not its insulation from offense. It is its capacity to absorb offense and still remain faithful. That is why grace is not softness. It is gravity."</p>
+      <div class="callout">
+        <div class="callout-label">What the line therefore is not</div>
+        <p>"“Hallowed be Thy name” is not a claim of purity. It is a confession of fracture." "To hallow the Name, then, is not to fix one’s behavior. It is to stand beneath that Cross and say: “I was part of the profaning. But I trust the One who still carried the Name.”" "Collapse is the location." "So the line is not a project. It is a witness."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Memory</div>
+      <h2 class="sec-title">Abba without trembling is sentimentality; trembling without Abba is alienation.</h2>
+      <p class="sec-lead">"Long before scripture, theology, or doctrine, people feared the holy. Thunder, plague, fire, eclipse—none of it was neutral." "Superstition is not ignorance. It is awe without grammar."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">Each half alone fails</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"To say Abba without trembling is sentimentality."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"To tremble without saying Abba is alienation."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Discarding the inherited fear wholesale is "not superior rationality—it is neurological amnesia."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"Superstition is not weakness. It is a first draft of reverence."</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">Held together, it is grace</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"But to do both is to live within the structure of grace."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"Jesus does not erase this tribal memory. He reframes it."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"The one who trembles is not dismissed. He is invited to speak."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"Only a child can say Abba and still tremble."</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why the tension is the design</div>
+        <p>"This paradox is not resolved by mystical fusion or moral ascent. It is sustained in covenantal tension. God is both proximate and unapproachable. Near and Other." "The speaker is allowed to approach, but not to domesticate." "The sacred is still fire. But now it is fire that purifies, not consumes."</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What religion is, on this account</div>
+        <p>"Religion, then, is not the enemy of truth. It is the social memory of how to speak in the presence of transcendence." "Memory is not nostalgia. It is structure encoded in reverence."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Witness</div>
+      <h2 class="sec-title">The name survived me, so I bear it again.</h2>
+      <p class="sec-lead">"This final segment is not theoretical. It is ethical. To bear the name is not to declare theological allegiance. It is to realize that wherever one goes, the name is carried—profane or holy."</p>
+      <blockquote>
+        <p>Not to clarify. Not to defend. But to carry.</p>
+        <cite>&mdash; (5 of 5) Hallowed Be Thy Name</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What permission does and does not do</div>
+          <div class="arith-body">"Israel bore the name and distorted it. So do we. But God’s response is not to revoke the bearing." "That is not permission. It is grace that holds." "The one misnamed bore the name rightly. And now the ones who profane it are still permitted to speak. That permission does not excuse. It assigns responsibility: the name is still here."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What witness after collapse looks like</div>
+          <div class="arith-body">"To bear the name after collapse is not to rise triumphant. It is to walk humbly—aware that the name survived the speaker’s distortion. This is not shame. It is clarity." "The one who prays “Hallowed be Thy name” after collapse does not present a cleaned narrative. They present a broken one that still points." "The one who says this prayer post-collapse is not more accurate. They are more honest."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why the cracked vessel is the argument</div>
+          <div class="arith-body">"When the name is carried through cracked vessels, it is not less holy. It is more visible. Not because of the vessel’s beauty, but because of what shines through it". "The holiness of God is not diluted by imperfection. It is made clearer by its persistence within imperfection." "Witness, then, is not sermon. It is presence. Not explanation. Endurance." "It is the refusal to silence holiness, even after disqualification."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Bailey, K. E. (2008). <em>Jesus through Middle Eastern eyes: Cultural studies in the Gospels</em>. IVP Academic.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Brewer, J. A., Worhunsky, P. D., Gray, J. R., Tang, Y. Y., Weber, J., &amp; Kober, H. (2011). Meditation experience is associated with increased cortical thickness. <em>NeuroReport, 22</em>(17), 1150–1154.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Brueggemann, W. (1997). <em>Theology of the Old Testament: Testimony, dispute, advocacy</em>. Fortress Press.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Bush, G., Luu, P., &amp; Posner, M. I. (2000). Cognitive and emotional influences in anterior cingulate cortex. <em>Trends in Cognitive Sciences, 4</em>(6), 215–222.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Call, C., Gruber, J., &amp; Tabet, A.-C. (2021). The role of ritual in moral repair: Emotion, synchronization, and healing. <em>Emotion Review, 13</em>(2), 118–129.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Craig, A. D. (2009). How do you feel—now? The anterior insula and human awareness. <em>Nature Reviews Neuroscience, 10</em>(1), 59–70.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>France, R. T. (2007). <em>The Gospel of Matthew</em>. Wm. B. Eerdmans Publishing.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Goldingay, J. (2006). <em>Old Testament theology: Israel's faith</em> (Vol. 2). IVP Academic.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Mobbs, D., Marchant, J. L., Hassabis, D., Seymour, B., Tan, G., Gray, M., … Frith, C. D. (2007). Simulating imagined threats. <em>NeuroImage, 37</em>(1), 507–514.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Schjoedt, U., Stødkilde-Jørgensen, H., Geertz, A. W., &amp; Roepstorff, A. (2011). Rewarding prayers. <em>Neuroscience Letters, 499</em>(2), 186–190.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Wright, N. T. (2003). <em>The resurrection of the Son of God</em>. Fortress Press.</div>
+        <div class="ref-group-title">Scripture cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Matthew 6:9; 26:65 — the petition, and the charge of blasphemy.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Ezekiel 36:22–23 — the name profaned by the covenant people, and sanctified by God's own initiative.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Exodus 34:6–7 — the name declared as revealed character after the golden calf.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Luke 23:34, 23:46 — the plea for the profaners, and the committal of the spirit.</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Hebrews 1:3; John 19:7; Isaiah 6:3; Romans 2:24; Romans 12:2; 2 Corinthians 4:7; Ephesians 2:8–9.</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Mark 14:36; Romans 8:15 — Abba in Jesus' private prayer and in Paul.</div>
+        <div class="ref-group-title">The series</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Tambun, T. (2025, March 23). (1 of 5) “Give us this day our daily bread” — Reminder from Eli Sharabi's fridge allegory. <em>LinkedIn</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>Tambun, T. (2025, April 10). (2 of 5) Why the brain returns to ritual — A series: Why I borrow the ancient prayer? <em>LinkedIn</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>Tambun, T. (2025, April 10). (3 of 5) Abba and disruption: One word that redefined access at infinite cost. <em>LinkedIn</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[21]</span>Tambun, T. (2025, April 10). (4 of 5) Not of this world, yet near: The phenomenon of 'Who is in the heavens'. <em>LinkedIn</em>.</div>
+        <div class="ref-group-title">Notes on sources</div>
+        <div class="ref-entry"><span class="ref-num">[22]</span>At 6,309 words this is the longest article in this archive, ahead of <em>The Empty Tomb and the Full Life</em> at 5,962.</div>
+        <div class="ref-entry"><span class="ref-num">[23]</span>The series was renumbered after publication. This instalment's own introduction refers to part two as the first article, part three as the second entry and part four as the third piece, and its published slug reads as part four of five. Part one was published on 23 March 2025, three weeks before the others, and appears to have been folded into the series afterwards.</div>
+        <div class="ref-entry"><span class="ref-num">[24]</span><em>The Empty Tomb and the Full Life</em>, published eight days later on 20 April 2025, cites Hallowed Be Thy Name as an unpublished manuscript and devotes its seventh section to this argument — the divine passive, re-permission after the collapse of holiness, the neurocognitive sequence, and the charcoal fire. Neither article states the relationship between that manuscript and this published instalment, and none is inferred here.</div>
+        <div class="ref-entry"><span class="ref-num">[25]</span>The article carries a table of contents and a figure captioned as the neurocognitive sequence of repentance. Both are images and do not survive text extraction; the mechanism section above is built from the article's own prose.</div>
+        <div class="ref-entry"><span class="ref-num">[26]</span>The Hebrew verb discussed in the surrender section appears in the article in Hebrew script. It does not survive text extraction with its vowel pointing intact and is not reproduced; the article's own transliteration and gloss are used.</div>
+        <div class="ref-entry"><span class="ref-num">[27]</span>The article carries the standing <em>Toro's Sunday Inquiry</em> disclaimer, and links the other instalments and a companion post through shortened lnkd.in addresses that do not resolve to stable canonical URLs; those links are not reproduced.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[28]</span>Tambun, T. (2025, April 12). <em>(5 of 5) Hallowed Be Thy Name</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/4-5-hallowed-thy-name-toronata-tambun-vldac" target="_blank" rel="noopener">https://www.linkedin.com/pulse/4-5-hallowed-thy-name-toronata-tambun-vldac</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

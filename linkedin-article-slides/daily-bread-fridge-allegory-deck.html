@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(1 of 5) "Give Us This Day Our Daily Bread" — Reminder from Eli Sharabi's Fridge Allegory &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">(1 of 5) Give Us This Day Our Daily Bread</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Petition</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Ancestors</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Word</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Precedent</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Petition</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Ancestors</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Word</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Precedent</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; The Lord's Prayer — 1 of 5 &nbsp;&middot;&nbsp; 23 March 2025</div>
+      <h1 class="title-main">(1 of 5) "Give Us This Day Our Daily Bread" — Reminder from Eli Sharabi's Fridge Allegory</h1>
+      <p class="title-thesis">A hostage who spent 491 days in captivity and a housewife looking at a full fridge said the same thing, and the sentence that holds them both is a petition older than the prayer it sits in. Three Jewish prayers were already asking daily for sustenance before Jesus taught it; the Greek word for daily appears essentially nowhere else; Agur asked for the same middle ground in Proverbs. The petition is plural, which makes it a claim not about my bread but about everyone's.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">Two voices, a tunnel and a kitchen, said the same thing about a full fridge.</h2>
+      <p class="sec-lead">The article begins with a testimony, not a text.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>Eli Sharabi, a survivor who endured 491 days in captivity, told his interviewer that the hardest struggle in captivity was the fight against hunger. "His words stunned me."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>That same morning, a housewife speaking about the rising costs of daily life said quietly: "I am grateful and relieved when I see my fridge is full." "These two voices—one from the silence of a tunnel, one from the quiet of a kitchen—spoke the same truth."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"I keep returning to his words—not for horror, not for vengeance, but for a reminder. A lesson. And more than that—a repentance from my end. A call to appreciate life more as a whole, not in fragments, not in convenience." What sentence already carries this?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>A line "repeated by millions across faiths, often without pause" — give us this day our daily bread. "it is a daily plea for sustenance, for survival, for enough."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Petition</div>
+      <h2 class="sec-title">The petition is not practical; it is the language of humility.</h2>
+      <p class="sec-lead">Why a request for food is a theological statement rather than a domestic one.</p>
+      <p class="body-text">"It is the language of humility. It speaks from a history of wilderness, manna, and rain. It appears in synagogues each morning, and in churches around the world."</p>
+      <p class="body-text">The article renders the request in its plainest form: "Today, Lord. Just enough for today. Not abundance. Just enough."</p>
+      <p class="body-text">"Bread is not about carbohydrates. It’s about stability. Dignity. Safety. Continuity." That list is what the hostage and the housewife were both describing, and neither of them used the word bread.</p>
+      <p class="body-text">"This is not just about pain, but about perspective. About remembering the sacredness of the ordinary." "If this reaches anyone whose life is spinning with distractions, this is a call back to the center. Life itself is the core. Life first."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Ancestors</div>
+      <h2 class="sec-title">Three Jewish prayers were already asking for exactly this.</h2>
+      <p class="sec-lead">"long before the Lord's Prayer was taught, Jewish worshippers were already praying daily for nourishment and thanking God for His provision." The article is explicit that no word-for-word equivalent exists — the continuity is of posture, not of phrasing.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Birkat HaShanim — the weekday Amidah's petition for the year</div>
+          <div class="arith-body">"One of the 19 blessings in the weekday Amidah is the Blessing for Sustenance, known as Birkat HaShanim. This is where Jews pray for daily provision." Recited three times a day, it asks: "Bless for us, Lord our God, this year and all its kinds of produce for good. Give dew and rain for a blessing upon the face of the earth. Satisfy us from its bounty, and bless our year like the good years." The article calls it "the most direct analogue to “give us today our daily bread” in terms of daily liturgical petition".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Birkat HaMazon — grace after eating</div>
+          <div class="arith-body">"Said after eating a meal that includes bread, this blessing thanks God for having already provided." God is praised as the one "Who nourishes the entire world in His goodness, with grace, kindness, and compassion." "While not phrased as a request, this is an acknowledgment of the same truth: food is not guaranteed—it is a gift." "It is a ritualized expression of dependence and remembrance: we ate, but not by our own power."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Birchot HaShachar — the morning blessings</div>
+          <div class="arith-body">"These are recited upon waking." One thanks God "Who has provided me with all my needs." "It is recited while putting on shoes—a subtle acknowledgment that even the mundane depends on divine care". "Although brief, this blessing is profoundly rooted in daily dependence. It mirrors the tone of daily bread—asking for just enough to start the day, physically and spiritually."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the three have in common</div>
+        <p>"Each of these practices frames human needs—seasonal, daily, or immediate—as subject to God’s sustaining will." "These three together form a daily rhythm of dependence, trust, and gratitude". The article's conclusion from this: the petition "did not introduce a new concept but re-emphasized a longstanding daily awareness".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Word</div>
+      <h2 class="sec-title">The Greek word for daily appears essentially nowhere else.</h2>
+      <p class="sec-lead">Both the Greek and the Aramaic carry the same restriction to the present day.</p>
+      <p class="body-text">"In Greek, Matthew’s Gospel uses the unique word epiousios (ἐπιούσιος), found nowhere else in ancient Greek texts." "This word is famously rare", and has been rendered as daily, as necessary for existence, or as bread for the coming day.</p>
+      <p class="body-text">The Aramaic carries a second register. "Some scholars observe that lachma resonates with a broad sense of nourishment, even having an echo with the Aramaic word for wisdom (hochma)." On that reading the petition "asks not only for bread in the physical sense, but also for all that we need to truly thrive."</p>
+      <p class="body-text">"Regardless of nuance, both Aramaic and Greek forms emphasize present-tense, daily reliance. The focus is on trusting God one day at a time."</p>
+      <p class="body-text">The precedent is the wilderness. "Just as the manna fell from heaven each morning and could not be hoarded for the future", the petition asks for a portion that cannot be stored — which is what makes it a daily discipline rather than a single request.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Precedent</div>
+      <h2 class="sec-title">Agur asked for the same middle ground a thousand years earlier.</h2>
+      <p class="sec-lead">Proverbs 30:8 records the request in almost the same words, and gives the reasoning the prayer leaves implicit.</p>
+      <p class="body-text">"Give me neither poverty nor riches, but give me only my daily bread".</p>
+      <p class="body-text">"The pious author, Agur, prays to have only what he needs each day, explaining that having too much might make him forget God, while having too little might tempt him to sin." "In other words, he seeks the middle ground of contentment, relying on God one day at a time."</p>
+      <p class="body-text">Both ends of the range are named as dangers, which is the part usually dropped. The petition is not a request for the minimum out of piety; it is a request to be kept away from the two conditions that break the relationship in opposite directions.</p>
+      <p class="body-text">N. T. Wright is quoted on the same posture: "In praying for bread, we acknowledge our absolute dependence on God for life itself". The effect, the article adds, is that "it re-centers attention not on the abundance of supply but on the Source." "This daily dependence is not meant to instill fear about tomorrow, but rather to free us from fear."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">The prayer is plural, and that makes it a claim about everyone's bread.</h2>
+      <p class="sec-lead">The grammatical detail the article ends on is the first-person plural.</p>
+      <blockquote>
+        <p>kings and peasants alike need to eat and need God's mercy to live.</p>
+        <cite>&mdash; (1 of 5) Give Us This Day Our Daily Bread</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Why the plural is the point</div>
+          <div class="arith-body">"Both Judaism and early Christianity linked food with justice and shared provision." "The Lord’s Prayer, then, is no prosperity formula. It is a communal expression of humility". "It aligns human need with divine provision, asking for enough and nothing more."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the plural obliges</div>
+          <div class="arith-body">"Just as God invites us to trust Him, He may be nudging us to be the instrument by which someone else’s prayer for daily bread is answered." On the early church: "Prayer led to action." "Truly trusting God for daily bread can make us more generous with the extra bread we find in our hands."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The equalising effect</div>
+          <div class="arith-body">"It recenters our focus on the Source, not the supply." "It strips us down to our shared humanity and dependence." Daily bread is called "a great equalizer". And the reach of that claim is stated without softening: "Not everyone opens a fridge with certainty. Not everyone prays" — "but everyone hungers."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Donin, H. H. (1980). <em>To pray as a Jew: A guide to the prayer book and the synagogue service</em>. Basic Books.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Fitzmyer, J. A. (1999). <em>The one who is to come</em>. Wm. B. Eerdmans Publishing.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Goldschmidt, E. D. (2000). <em>The Jewish prayer book (Siddur)</em>. Koren Publishers.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Hammer, R. (1994). <em>Entering Jewish prayer: A guide to personal devotion and the worship service</em>. Schocken Books.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Lohmeyer, E. (1965). <em>The Lord's Prayer</em>. Fortress Press.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Waltke, B. K. (2005). <em>The book of Proverbs: Chapters 15–31</em> (Vol. 2). Eerdmans.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Wenham, G. (2000). Cited in the article for the continuity between the manna narrative and later liturgical petition; no fuller reference is given.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Wright, N. T. (2001). <em>The Lord and His prayer</em>. Wm. B. Eerdmans Publishing.</div>
+        <div class="ref-group-title">Scripture and liturgy cited</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Matthew 6:11, 6:25–34; Luke 11:3 — the petition and the teaching that follows it.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Exodus 16:4, 16:19–20 — the manna that could not be hoarded.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Deuteronomy 8:3, 8:10 — man does not live by bread alone, and the command to bless after eating.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Proverbs 30:8 — Agur's request for neither poverty nor riches.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Acts 2:46; 4:34 — breaking bread in homes, and no needy persons among them.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Birkat HaShanim (weekday Amidah, ninth blessing); Birkat HaMazon; Birchot HaShachar — the three Jewish prayers set beside the petition.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Matthew 6:11 in the Syriac-Aramaic Peshitta tradition, quoted in the article in Syriac script with transliteration.</div>
+        <div class="ref-group-title">Notes on sources</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>The article names Eli Sharabi and reports that he endured 491 days in captivity, and that he described the fight against hunger as the hardest struggle, in an interview on the Uvda programme with Ilana Dayan. The characterisation of his captors is the author's own and names no group; nothing is added or inferred here.</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>The housewife quoted is not named or otherwise identified in the article, and no detail is added here.</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>The Hebrew, Syriac and Greek passages appear in the article in their original scripts with transliteration and translation. The scripts do not survive text extraction reliably and are not reproduced; the article's own English renderings are used above.</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>The article carries a summary table of the three Jewish prayers, which is an image and does not survive extraction. Its substance is carried in the section above.</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>This is part one of a five-part series on the Lord's Prayer. It was published on 23 March 2025, three weeks before parts two to five, and the series numbering was applied afterwards — see the note in the part-five deck.</div>
+        <div class="ref-entry"><span class="ref-num">[21]</span>The article carries the standing <em>Toro's Sunday Inquiry</em> disclaimer, and links the other instalments and an introductory post through shortened lnkd.in addresses that do not resolve to stable canonical URLs; those links are not reproduced.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[22]</span>Tambun, T. (2025, March 23). <em>(1 of 5) "Give Us This Day Our Daily Bread" — Reminder from Eli Sharabi's Fridge Allegory</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/give-us-day-our-daily-bread-personal-interpretation-toronata-tambun-c8fac" target="_blank" rel="noopener">https://www.linkedin.com/pulse/give-us-day-our-daily-bread-personal-interpretation-toronata-tambun-c8fac</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
