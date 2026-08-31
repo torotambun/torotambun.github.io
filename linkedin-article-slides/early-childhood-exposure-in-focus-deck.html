@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early Childhood Exposure in Focus: When an Interview Becomes a Learning Journey &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Early Childhood Exposure in Focus: When an Interview Becomes a Learning Journey</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Check</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Cost</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Record</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Translation</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Check</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Cost</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Record</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Translation</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Private Aspiration, Public Responsibility &nbsp;&middot;&nbsp; 20 September 2025</div>
+      <h1 class="title-main">Early Childhood Exposure in Focus: When an Interview Becomes a Learning Journey</h1>
+      <p class="title-thesis">A CEO's five goals for a life read as private aspiration until you notice that not one of them can be secured by an individual alone. Nutrition in the womb, dignified marriage, schools that form conscience, affordable housing, a just neighbourhood — each depends on the state doing its part. If these are the objectives of every citizen, government cannot stand apart from them.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">A CEO named five goals for a life, and they are not only private.</h2>
+      <p class="sec-lead">From an interview with Dr. Joko Triraharjo, CEO of PT Putra Perkasa Abadi.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>He reflected on what he called "five goals of becoming a human in economy": to be a pious man (ṣāliḥ), to have a pious wife (zawjah ṣāliḥah), to raise pious children (walad ṣāliḥ), to own good vehicles (markab hani'), and to live in a good house (maskan wāsi').</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>He attributed this to Islamic tradition. The list is coherent, memorable, and framed entirely as personal attainment — the kind of thing a successful man says about his own life.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If these are the objectives a citizen is expected to reach, can any of them actually be reached by a citizen acting alone?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>"If these are understood as the objectives of every citizen, then government and authority cannot stand apart. They must strive to make these goals achievable for all, not just for a privileged few."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Check</div>
+      <h2 class="sec-title">The hadith tradition adds a sixth he did not name: the good neighbour.</h2>
+      <p class="sec-lead">"Out of curiosity, I checked."</p>
+      <p class="body-text">"The hadith tradition does speak of these themes, though not in exactly this five-part form. His version is a fusion of authentic teachings on self-piety, family, housing, and vehicles." The five-part list is his own synthesis rather than a canonical enumeration, and the article says so plainly rather than letting the attribution stand unexamined.</p>
+      <p class="body-text">"In the hadith, one element often listed alongside spouse, house, and mount is the good neighbor." It is the one item the five-part version drops — and it is the only item on the list that cannot be acquired at all, because it depends entirely on other people.</p>
+      <p class="body-text">"While he did not state this explicitly, he addressed it implicitly when speaking of his networks, his circles of connection, and even his political aspirations — all of which reflect the broader meaning of cultivating good neighbors."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Cost</div>
+      <h2 class="sec-title">The children once mistook their father for one of their mother's patients.</h2>
+      <p class="sec-lead">After the five goals, the interview turned to his own family and how he raised his children. "One of them was my student."</p>
+      <p class="body-text">"When I asked if his son was raised with good nutrition, he answered yes — but then he told me the cost. Because of his demanding career, he came home only every two weeks."</p>
+      <p class="body-text">"Once, his young children even mistook him for one of their mother's patients." The detail is offered by the father himself, unprompted and without softening, in the middle of an account of successful parenting.</p>
+      <p class="body-text">"Still, he and his wife held firmly to their parenting choices…" What follows is not a defence of the absence but a description of what was built around it.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Record</div>
+      <h2 class="sec-title">Adab mattered more than knowledge, and childhood was deliberately protected.</h2>
+      <p class="sec-lead">The parenting choices as the interview reported them.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">REPORTED A</div>
+          <div class="ev-title">Faith was structured, not left to chance</div>
+          <div class="ev-body">"His children were taught to memorize the Qur'an. Religious learning was not left to chance or to the family alone." An Ustad accompanied and guided them in Qur'an, religious practice and Muslim tradition — "This made faith a structured and consistent part of their upbringing, extending beyond the home environment."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">REPORTED B</div>
+          <div class="ev-title">Responsibility was framed as training for adulthood</div>
+          <div class="ev-body">"They were also taught that every decision carried responsibility. Choices were not taken lightly; discipline was framed as accountability, empowering the children to live with the consequences of their own actions. Responsibility was treated as training for adulthood, not something to be postponed."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">REPORTED C</div>
+          <div class="ev-title">Difference sat at the same table</div>
+          <div class="ev-body">"A Chinese Christian classmate named Daniel, from a lower economic background, was always welcome in their home, eating together at the same table. The children did not see him as a foreigner; he was simply part of their circle of friends." "Adab (manners, discipline, character) mattered more than raw knowledge."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">REPORTED D</div>
+          <div class="ev-title">Childhood was protected, and play was physical</div>
+          <div class="ev-body">"Childhood was protected: no TV except Sundays, no mobile phones in the house." "Physical play replaced digital distractions." They joined neighbours' children in traditional games, wrestled in the field, swam in the river, ran in the rain. "By junior high, the children were sent to an Islamic boarding school (pesantren) where discipline around TV and phones was even stricter."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Who was actually present</div>
+        <p>"The mother's role was central. A general practitioner, she was the daily presence at home. The children grew very close to her, observing how she worked with patients inside their own house." And the children were not confined to it: as they grew older their father took them to project sites, client meetings and the office. "They saw both the doctor's care and the miner's business, learning from each."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Translation</div>
+      <h2 class="sec-title">If these are every citizen's objectives, government cannot stand apart.</h2>
+      <p class="sec-lead">Each of the five goals, read as a condition the state either creates or withholds.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Piety and family</div>
+          <div class="comp-name">Formation and dignity</div>
+          <div class="comp-body">"To cultivate piety and moral grounding, education must combine technical knowledge with ethical formation." "To secure righteous families, men and women must be able to marry with dignity, supported by health, safety, and stable income."</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Children</div>
+          <div class="comp-name">Nutrition in the womb, and schools that form conscience</div>
+          <div class="comp-body">"To raise righteous children, there must be nutrition in the womb, the eradication of stunting, and schools that nurture both skill and conscience." None of the three is available to a parent who wants it but cannot buy it.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">House, vehicle, neighbour</div>
+          <div class="comp-name">Livelihood, infrastructure, and justice</div>
+          <div class="comp-body">"To provide houses and vehicles, citizens must have fair access to livelihood, affordable housing, and infrastructure free from the distortions of corruption or greed." And the good neighbour "depends on a system of justice and fairness that government is bound to uphold."</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">What makes the goals hollow</div>
+        <p>"Without tackling corruption, greed, injustice, and neglect of basic education and health, these goals remain hollow. A nation can rise in corporate ranking yet fail its people in the most human of measures."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Otherwise the five goals become dreams for the privileged few.</h2>
+      <p class="sec-lead">"When a corporate leader frames life in terms of religious and moral objectives, it forces a wider reflection: are these goals only private aspirations, or should they be seen as public responsibilities?"</p>
+      <blockquote>
+        <p>Otherwise, these five goals risk becoming personal dreams for the privileged few, instead of achievable benchmarks for all citizens.</p>
+        <cite>&mdash; Early Childhood Exposure in Focus: When an Interview Becomes a Learning Journey</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What governance is being asked to do</div>
+          <div class="arith-body">"If every man and woman is expected to be pious, raise good children, and secure housing and livelihood, then the role of governance is to clear the path — through justice, fairness, and strong public institutions." Clearing the path, not walking it.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why the interview became the argument</div>
+          <div class="arith-body">The five goals were offered as one man's account of a life well aimed. Read as a specification for every citizen, they turn into a list of things a state must underwrite — which is how a private conversation became a public claim.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Hadith and scripture cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span><em>Al-Adab al-Mufrad</em> of Imām al-Bukhārī, hadith no. 457 (English commentary by Adil Salahi, The Islamic Foundation, 2007).</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span><em>Ṣaḥīḥ al-Bukhārī</em>; <em>Ṣaḥīḥ Muslim</em> (hadith on choosing a wife for religion).</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span><em>Ṣaḥīḥ Muslim</em> 1631 (hadith on righteous child who prays for parents).</div>
+        <div class="ref-group-title">Scholarship cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Ayubi, M. M. (2024). Neighbor's rights from the perspective of Islam. <em>International Journal of Social Science Research and Review, 7</em>(9). https://doi.org/10.47814/ijssrr.v7i9.2271</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Jailan, N. A. B., &amp; Kusrin, Z. M. (2023). Compatibility (kafa'ah) in Islamic marriage: A literature review. <em>International Journal of Academic Research in Business &amp; Social Sciences, 13</em>(11). https://doi.org/10.6007/IJARBSS/v13-i11/19167</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Musyahidah, S., Rahim, M. R., Syafri, M., Arman, M., &amp; Arifin, M. P. (2022). The concept of child rearing in the Qur'an. <em>Jurnal Adabiyah, 22</em>(2), 295–314. https://doi.org/10.24252/jad.v22i2a7</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Rohmah, S., Kusrin, Z. M., Majid, L. A., Yusuf, W., &amp; Kusrin, Z. (2024). The necessity for a guideline in selection of marriage partners based on the concept of compatibility (kafa'ah). <em>Global Business &amp; Management Research, 16</em>(2S).</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Shahama, A., et al. (2022). The pursuit of happiness within Islam: A systematic review of two decades of research on religiosity and happiness in Islamic groups. <em>Mental Health, Religion &amp; Culture</em>. https://doi.org/10.1080/13674676.2022.2028748</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2023, November 18). How 'pesantren' foster unconventional leaders. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2023/11/18/how-pesantren-foster-unconventional-leaders.html</div>
+        <div class="ref-group-title">Notes on sources</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>The article's own disclaimer reads: the references are included to ensure accuracy and respect; the intention is not interpretation, but to show that the interviewee's ideas connect with authentic hadith and recognized scholarship.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>The five-part formulation is identified in the article as the interviewee's own fusion of authentic teachings rather than a canonical hadith enumeration. That distinction is the article's, and it is preserved here.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>The article notes that the interviewee elaborated on four principles of the Muslim framework for husband and wife, and states that it will not elaborate on them. They are not reproduced here.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Dr. Joko Triraharjo is named in the article, as is his company and the fact that one of his children was the author's student. Nothing beyond what the article reports about his family is stated or inferred here, and the classmate Daniel is named only as the article names him.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>The Rohmah et al. (2024) entry carries no DOI in the article, which records that the journal archive confirms publication.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tambun, T. (2025, September 20). <em>Early Childhood Exposure in Focus: When an Interview Becomes a Learning Journey</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/early-childhood-exposure-focus-when-interview-becomes-toronata-tambun-81nrc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/early-childhood-exposure-focus-when-interview-becomes-toronata-tambun-81nrc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
