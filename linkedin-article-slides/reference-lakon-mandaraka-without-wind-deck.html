@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(5 of 5) Reference Lakon: Mandaraka Without Wind - The Reign of Prabu Jarasandha &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">(5 of 5) Mandaraka Without Wind</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The King</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Erosion</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Turns</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Scene</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> What It Revealed</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The King</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Erosion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Turns</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Scene</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">What It Revealed</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Can We Go Back — 5 of 5 &nbsp;&middot;&nbsp; 26 March 2025</div>
+      <h1 class="title-main">(5 of 5) Reference Lakon: Mandaraka Without Wind - The Reign of Prabu Jarasandha</h1>
+      <p class="title-thesis">The series closes as parable rather than argument. A king who waited twenty years inherits a throne already hollow, and loses it without a blow being struck — because what he spent those years doing was watching, not learning. The thing that cannot be returned to here is not childhood but discernment, and the lakon's claim is that its loss is never announced.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">The screen is set up to cast truth rather than shadows, and the fall it shows makes no sound.</h2>
+      <p class="body-text">"Wayang is not just shadow play. It is a keeper of memory, a lamp that casts light through parable and echoes."</p>
+      <p class="body-text">"It tells us that power, if not bound by discernment, will turn on itself."</p>
+      <p class="body-text">"In the stories of old and in the stories we live now, the fall never comes with thunder. It comes when no one listens, no one believes, and no one follows."</p>
+      <p class="body-text">The dalang opens in the same register: "Wayang is not merely a story—it is a mirror. Tonight, the screen shall not only cast shadows, but truth." And he names the three figures before the gamelan begins — "Of a king who waited too long. Of a prince who moved without stepping. Of a throne that crumbled without a sound."</p>
+      <div class="callout">
+        <div class="callout-label">How the transfer happened</div>
+        <p>"The throne of Mandaraka had been passed carefully, deliberately—like a ceremonial torch. No conquest, no insurrection. Only a transition. Not quite victory. Not quite surrender. Merely the illusion of continuity."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The King</div>
+      <h2 class="sec-title">Twenty years of waiting bought a throne and no capacity to sit on it.</h2>
+      <p class="sec-lead">"Prabu Jarasandha had ascended the throne not through valor or spiritual vision, but through patience."</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">OBSERVED A</div>
+          <div class="ev-title">What the waiting was spent on</div>
+          <div class="ev-body">"Twenty years of waiting, of watching, of longing—only to finally sit upon a throne that was already hollowed from within." "He had spent his years waiting, not seeking knowledge".</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">OBSERVED B</div>
+          <div class="ev-title">How he had risen in the first place</div>
+          <div class="ev-body">"Even in his younger days, Prabu Jarasandha had risen not through kawicaksanan, but through proximity—lifted by closeness rather than trials of virtue." "he was known for placing the wrong man in the wrong task at the wrong moment. That flaw, once whispered behind folded fans, returned in full now that he wore the crown."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">OBSERVED C</div>
+          <div class="ev-title">Who he filled the palace with</div>
+          <div class="ev-body">"He ruled not from wisdom, but from command." He filled his keraton "not with pinisepuh, sages, or patih of good judgment, but with bala prajurit—loyal warriors turned into caretakers of affairs they did not understand." "Around him now were not loyal abdi dalem, but penjilat and penyongkong, who echoed only what pleased him."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">OBSERVED D</div>
+          <div class="ev-title">What listeners began to hear</div>
+          <div class="ev-body">"And though his voice still rumbled through the pendhapa, those who listened heard something broken: phrases disjointed, meanings lost. He spoke with the thunder of old, but not its clarity." "the king's mind, once stubborn but coherent, had begun to drift like smoke after fire." "He rewarded those who bowed low and turned away from those who spoke plainly."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Erosion</div>
+      <h2 class="sec-title">The barns emptied by habit, and the king answered by speaking.</h2>
+      <p class="body-text">"Across Mandaraka, the lumbung-lumbung kerajaan that once overflowed with rice now stood quiet, their gates open but their barns bare."</p>
+      <p class="body-text">"The harvests were not poor, but the hands meant to guard the grain had turned inward—stealing by habit, not hunger." "Pajeg was demanded not once, but twice, and what reached the royal coffers was but the echo of what had been taken."</p>
+      <p class="body-text">Even the Patih "had become a shadow. His name was spoken with a smile that hid bitterness, for it was said that under his watch, the wolves wore royal cloth."</p>
+      <p class="body-text">"And still, Prabu Jarasandha did not act. He spoke. Often." "But those closest could see: his words circled, never landed. He spoke of restoring order, yet no one was dismissed. He called for honesty, yet never asked where the grain had gone. The theft continued—not in secret, but in habit."</p>
+      <p class="body-text">Beyond the borders the same story arrived by trade. One messenger reported: "The Prabu speaks as if Mandaraka is rich, but even the water jars in the guest hall were dry."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Turns</div>
+      <h2 class="sec-title">The prince rose by standing still while the king eroded in motion.</h2>
+      <p class="sec-lead">Raden Jayamurti is no more qualified than Jarasandha, and that turns out not to matter.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col missing">
+          <div class="diag-header">What Jayamurti did not have</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"Jayamurti never sought knowledge."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Sacred chronicles and old teachings "often returned unread, still sealed, or with only the first page disturbed"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"He listened politely to the empus who recited history, but his eyes wandered, and his mind drifted elsewhere."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"What he knew, he knew through whispers, through those who sat close to him and thought for him."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"He was no warrior of legend, no sage of council. But that did not matter."</span></div>
+        </div>
+        <div class="diag-col visible">
+          <div class="diag-header">What rose anyway</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"His strength was not in judgment, but in stillness."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>When protests were crushed "it was Jayamurti’s envoys who arrived with beras and soft words"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"He did not rise by force, but by remaining still—steady, calm, untouched by the noise that wore down his king."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Behind him stood "his rama, the former Prabu, and his father’s old council" — those "who once guided a kingdom and now whispered into the ears of one who said little and promised even less"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"Jarasandha, too full of his own echo, did not see how Jayamurti had begun to rise—not by stepping forward, but simply by standing still while the old king eroded."</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Scene</div>
+      <h2 class="sec-title">The break arrives as silence, and one bow ends a reign.</h2>
+      <p class="sec-lead">"The murmur grew not from hatred—but from fatigue. Not rebellion—but the weight of being ruled by a voice that no longer touched the ground."</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Perang Kembang</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">The whispers find words</div>
+            <div class="timeline-body">"In the barak, warriors muttered, “The old prabu would have acted.”" "In noble halls, bangsawan exchanged glances: “Perhaps the time has come.”" And still "Jarasandha believed he still held the reins."</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">The test</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">A probe at the border, unanswered</div>
+            <div class="timeline-body">"A skirmish broke at the eastern border. Not a full invasion, just a test. A probe. The kind of thing a firm ruler would answer swiftly." "But Jarasandha hesitated."</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">The pledge</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">One warrior bows to the wrong man</div>
+            <div class="timeline-body">"The crack did not come with a blow. It came as silence." A single warrior "known by rank but not by voice" turned "not to Jarasandha, but to Jayamurti" and lowered his head. "The silence that followed was heavier than war."</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Sanggar Pamujan</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">The reckoning, and the clown's question</div>
+            <div class="timeline-body">"No one answered." "Jayamurti did not gloat. He did not flinch. He simply bowed." Then Semar, "the palace clown and truth-teller", let slip a dry laugh: "Ah, Prabu Jarasandha… the warrior who thought himself unmoved. Has he ever heard how his namesake fell—raging, but already forgotten?"</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">The exchange</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Six words settle it</div>
+            <div class="timeline-body">"Did you ever mean to betray me?" "Jayamurti tilted his head." "I never had to."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What It Revealed</div>
+      <h2 class="sec-title">The throne was not taken; it stopped waiting.</h2>
+      <p class="sec-lead">"Would the old king step down? Maybe: not because he was forced, but because he had already fallen."</p>
+      <blockquote>
+        <p>Not by blow, but by erosion. The throne no longer waited for him. It had already chosen its next occupant.</p>
+        <cite>&mdash; (5 of 5) Mandaraka Without Wind</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the ending refuses to settle</div>
+          <div class="arith-body">The final scene is written as three questions, not three outcomes. "Would then Jayamurti rise? It was not his footsteps that mattered. It was the quiet movement behind him." And whether the father's hands "still rest quietly on the back of the throne" — "The boy may have ascended, but the realm might still be guided by a voice much older, much calmer, and far more deliberate."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The dalang's closing</div>
+          <div class="arith-body">"The puppets return to their box. But the questions remain in the air. A king who ruled without seeing, a prince who rose without reaching". "In Mandaraka, the voices faded—but echoes do not die.The rice barn empty, the courtyards silent—yet the throne… still there".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where the series ends</div>
+          <div class="arith-body">"Perhaps in another kingdom, another night, another name…The same shadow waits." The instalment makes no claim beyond that, and names no kingdom but Mandaraka.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">The form</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>The article is written as a wayang lakon in nine scenes with a prologue and epilogue, following the conventional sequence: Talu, Kadaton, Paseban Jawi, Perang Ampyak, Sabrangan, Gara-Gara, Perang Kembang, Sanggar Pamujan and Sampak or Kekayon.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>The gamelan pieces named in the overture are Gending Cucurbawuk, Gending Rebab, Ladrang Srikaton, Srepegan and Sampak.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Semar, the palace clown and truth-teller, appears in the reckoning scene. He is a punakawan of Javanese wayang, not of the Sanskrit epics.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Semar's line about the king's namesake refers to Jarasandha of the <em>Mahabharata</em>. The article makes the allusion and does not explain it, and no account of that death has been supplied here.</div>
+        <div class="ref-group-title">The series</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, T. (2025, March 25). <em>(1 of 5) Can we go back: A journey through time, entropy, and meaning</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/1-3-journey-through-time-entropy-meaning-toronata-tambun-heztc</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T. (2025, March 25). <em>(2 of 5) Reversing time: A technical return to entropy, arrows, and memory</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/article-2-technical-reversing-time-return-entropy-arrows-tambun-socuc</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tambun, T. (2025, March 26). <em>(3 of 5 Part 1) To wish to return to childhood: A philosophical reckoning</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/wish-return-childhood-philosophical-reckoning-toronata-tambun-h7quc</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2025, March 26). <em>(3 of 5 Part 2) Philosophy “desktop” exercise</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/2-3-part-philosophy-desktop-exercise-can-we-return-our-tambun-q4lyc</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2025, March 26). <em>(4 of 5) “Can we return to childhood?” — Borrowing theology as one of six knowledge acquisitions to answer</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/4-can-we-return-childhood-borrowing-theology-knowledge-tambun-ihn2c</div>
+        <div class="ref-group-title">Notes on sources</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Mandaraka is a kingdom of the Javanese wayang repertoire, and Prabu Jarasandha and Raden Jayamurti are named as its king and prince here. Whether this lakon is drawn from an existing repertoire or written for the series is not stated in the article.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>The article opens by saying the parable speaks to the stories of old and the stories we live now, and closes on another kingdom, another night, another name. It identifies no person, party, office or country beyond Mandaraka, and this deck identifies none either. Any present-day reading is the reader's, and the text does not license one.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>The article carries a creation timestamp of 21 March 2025 and a publication timestamp of 26 March — drafted five days before the series it closes was published, and four before the first instalment appeared.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Javanese and Indonesian terms are left untranslated in the article and are reproduced here as it has them: kawicaksanan, keraton, pinisepuh, patih, bala prajurit, abdi dalem, penjilat, penyongkong, pendhapa, lumbung, pajeg, dusun, padagang, pujangga, serat, empu, rakyat, beras, bangsawan, barak, pasar, tumenggung, adipati, tabib, resi, rama, kawi.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>The scene headings translate their own function in the source — Talu as overture, Kadaton as inner court, Paseban Jawi as outer court, Perang Ampyak as internal struggle, Sabrangan as external pressure, Gara-Gara as reflection and doubt, Perang Kembang as turning point, Sanggar Pamujan as reckoning, Kekayon as final curtain.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tambun, T. (2025, March 26). <em>(5 of 5) Reference Lakon: Mandaraka Without Wind - The Reign of Prabu Jarasandha</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/5-reference-lakon-mandaraka-without-wind-reign-prabu-tambun-eonnc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/5-reference-lakon-mandaraka-without-wind-reign-prabu-tambun-eonnc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
