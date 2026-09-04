@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(3 of 4) Addressing Broken Meritocracy? Pierre Bourdieu and Culture &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">(3 of 4) Broken Meritocracy — Bourdieu and Culture</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Diagnosis</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Design</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Reality Check</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Turn</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Recommendations</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Diagnosis</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Design</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Reality Check</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Turn</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Recommendations</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; The Meritocracy Series — 3 of 4 &nbsp;&middot;&nbsp; 12 January 2025</div>
+      <h1 class="title-main">(3 of 4) Addressing Broken Meritocracy? Pierre Bourdieu and Culture</h1>
+      <p class="title-thesis">The capitals are not blocked by bad policy alone. Every one of Hofstede's six dimensions, as Indonesia scores on them, pushes against merit — which is why reform designed against the culture fails, and reform routed through hierarchy and the group can work. Corruption here sits in the mental model, not only in the institutions, and cultural reformation on the author's own estimate takes two to three generations.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Fixing the pathways fails if the culture that closed them is left untouched.</h2>
+      <p class="sec-lead">The article opens by naming its object: "and by culture means I mean the shared assumptions, not artifacts" — his phrasing, typo included.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The previous instalment established that Indonesia's four capitals are unevenly accessible, and that symbolic capital flows where the others are shut.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"In high power distance societies, the erosion of meritocracy is not solely the result of hierarchical structures and collectivist tendencies but is deeply intertwined with other cultural dimensions that further entrench inequality."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If the blockage is cultural rather than only institutional, what kind of reform can move it?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Reform that works within existing cultural frameworks — embedding competence and ethical leadership into respected social symbols rather than asking a society to abandon them.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Diagnosis</div>
+      <h2 class="sec-title">Every one of Hofstede's six dimensions in Indonesia pushes against merit.</h2>
+      <p class="sec-lead">Not one dimension, and not only hierarchy. Six, each closing a different door.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Power distance (PDI 78)</div>
+          <div class="arith-body">Deference to authority and symbolic-capital bias overshadow competence. "These cultural dynamics create rigid hierarchies where opportunities are allocated based on relationships, family prestige, and institutional affiliations rather than individual ability or merit."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Extreme collectivism (IDV 5)</div>
+          <div class="arith-body">"In highly collectivist cultures, social cohesion and loyalty often take precedence over rewarding personal achievement." Talented individuals are frequently overlooked if their success threatens group harmony or challenges established hierarchies.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Moderate masculinity (MAS 46)</div>
+          <div class="arith-body">A culture valuing relationships and quality of life over competition and performance. "This softer stance on competition diminishes the drive for individual distinction and reinforces the cultural norm of prioritizing social relationships."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Uncertainty avoidance (UAI 48)</div>
+          <div class="arith-body">Risk-averse societies "favor stability and predictability, often resisting disruptive ideas or unconventional talent that could challenge the status quo" — strengthening reliance on familiar networks and traditional pathways.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Long-term orientation (LTO 62)</div>
+          <div class="arith-body">"Gradual change is culturally preferred over rapid transformation, making it difficult to dismantle entrenched systems of favoritism and inequality swiftly." Patience for slow progress lets corrupt practice persist as social stability.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Restraint (IVR 38)</div>
+          <div class="arith-body">Emphasis on self-discipline, social norms and traditional values "often leads to the suppression of assertiveness and ambition, qualities essential for advocating for fairness and change."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The synthesis</div>
+        <p>By acknowledging and addressing the full spectrum of cultural dimensions — "including hierarchical respect, collectivism, competitiveness, risk tolerance, time orientation, and restraint" — "societies can more effectively dismantle systemic favoritism and build inclusive systems where merit and competence truly determine success."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Design</div>
+      <h2 class="sec-title">So reform must travel through hierarchy and the group, not around them.</h2>
+      <p class="sec-lead">Six designs, each keyed to the dimensions it has to work with, and each stated with the capital pathway it moves.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Economic redistribution through hierarchies</div>
+          <div class="arith-body">"In high power distance and collectivist societies, redistribution must occur through trusted hierarchical structures." Microfinance and community grants administered by village chiefs and religious figures. Pathway: economic to social to symbolic to cultural.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Educational equity framed collectively</div>
+          <div class="arith-body">"Education must be framed as a collective benefit, emphasizing group success over individual gain." Scholarships prioritising professions that serve local needs, distributed by symbolic authorities. Pathway: cultural to symbolic to economic to social.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Inclusive networks built through authority</div>
+          <div class="arith-body">"Social capital must be expanded via top-down initiatives led by those with symbolic legitimacy." Elite networks are used to include the marginalised while the hierarchy itself is left standing. Pathway: social to symbolic to cultural to economic.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Competence integrated with status</div>
+          <div class="arith-body">"Meritocracy must align with existing status structures, where competence is recognized through symbolic validation" — awards and government recognition that put merit and status on the same side. Pathway: symbolic to cultural to economic to social.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Long-term orientation for systemic reforms</div>
+          <div class="arith-body">Structured reforms that minimise uncertainty and match the cultural patience for gradual change, framed by how they "benefit future generations and maintain social harmony." Pathway: cultural to economic to social to symbolic.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Addressing restraint through moral framing</div>
+          <div class="arith-body">"In a restrained culture, reforms must align with moral and societal norms, avoiding overt promotion of individualistic or indulgent values" — redistribution and education framed as moral imperatives tied to collective well-being. Pathway: social to cultural to economic to symbolic.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Reality Check</div>
+      <h2 class="sec-title">Then the textbook meets a country ranked 115 of 180 on corruption with a national average IQ of 85.</h2>
+      <p class="sec-lead">"But, reality strikes: text book vs context for Indonesia" Five conditions any design has to survive.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">CONDITION A</div>
+          <div class="ev-title">Corruption, ranked 115 of 180</div>
+          <div class="ev-body">"Corruption is deeply embedded in Indonesia's governmental, private, and community sectors." Public funds are misallocated, procurement favours the politically connected, the judiciary is exposed to interference, and even religious organizations and cooperatives are often controlled by local elites.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CONDITION B</div>
+          <div class="ev-title">National IQ, 85</div>
+          <div class="ev-body">"The low national average IQ indicates systemic failures in early childhood development, largely driven by inadequate access to quality education, poor nutrition, and limited cognitive stimulation during formative years." Malnutrition, rural underfunding and scarce early education compound each other.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CONDITION C</div>
+          <div class="ev-title">Industrial absorption</div>
+          <div class="ev-body">"The skills taught in educational institutions often do not align with industry demands, leading to a surplus of graduates with theoretical knowledge but lacking practical, job-relevant skills." Where the formal sector cannot absorb labour, graduates move into informal, unstable, low-paying work.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CONDITION D</div>
+          <div class="ev-title">Public distrust and economic fragility</div>
+          <div class="ev-body">Citizens distrust organizations and cooperatives after repeated corruption and mismanagement, while microfinance defaults follow from "poorly structured loans, high-interest rates, and inadequate borrower financial literacy." Both make any reform harder to land.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Turn</div>
+      <h2 class="sec-title">Corruption here is not a deviation from the norm — it is the mental model.</h2>
+      <p class="sec-lead">The article's own heading for this section: "Ooops, Corruption is within The Mental Model"</p>
+      <blockquote>
+        <p>These cultural dynamics explain why corruption in Indonesia is not merely a deviation from the norm but an accepted part of daily interactions.</p>
+        <cite>&mdash; Dr. A.R.Y. Toronata Tambun</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">How the dimensions combine</div>
+          <div class="arith-body">High power distance means questioning those in power is discouraged, so elites operate with minimal accountability. Extreme collectivism makes nepotism socially acceptable. Moderate uncertainty avoidance normalises bribery as a way past bureaucratic delay. Restraint discourages confrontation, so unethical behaviour goes unchallenged.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why it resists reform</div>
+          <div class="arith-body">"Bribery, nepotism, and favoritism are often rationalized as necessary tools for navigating complex bureaucracies." That rationalisation is what makes it durable — "This collective mindset makes corruption deeply resilient"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The limit of the framework</div>
+          <div class="arith-body">Hofstede's dimensions "do not fully capture how these cultural traits evolve into deeply entrenched behaviors that perpetuate corruption and systemic inefficiency" — the author says so himself, of the framework he is using.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Recommendations</div>
+      <h2 class="sec-title">Eleven interventions earn their place by being small, collective and culturally legible.</h2>
+      <p class="sec-lead">"Recommendations: Grounded in Indonesia's Realities" Each carries the capital pathway it moves.</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">Community-owned cooperatives, transparent and small-scale</div>
+            <div class="rec-body">Local delivery systems run by community members under transparent rules monitored by third-party NGOs, rather than large platform models. Social to economic to symbolic to cultural.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Vocational training for low-skilled, high-demand jobs</div>
+            <div class="rec-body">Agriculture logistics, basic solar installation, food processing. "These roles require fewer cognitive skills but are critical for industrial growth." Cultural to economic to social to symbolic.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Incentivise group-based entrepreneurship, not individual</div>
+            <div class="rec-body">"In a collectivist society like Indonesia (Individualism score: 5), group-based initiatives create accountability and align with cultural norms." Agricultural cooperatives, shared hawker setups, community tourism. Social to cultural to economic to symbolic.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Prioritise basic infrastructure over high-tech gigs</div>
+            <div class="rec-body">Water, electricity, internet, cold storage and simple supply chains that lift productivity in industries people already work in. Economic to social to cultural to symbolic.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">5</div>
+          <div class="rec-content">
+            <div class="rec-title">Embed ethical frameworks and anti-corruption safeguards</div>
+            <div class="rec-body">Decentralised ledgers, automated payment mechanisms and culturally adapted campaigns — blockchain-backed agricultural supply chains, transparent cooperative revenue-sharing. Symbolic to social to economic to cultural.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">6</div>
+          <div class="rec-content">
+            <div class="rec-title">Decentralised education initiatives</div>
+            <div class="rec-body">Technology-enabled remote learning, skills training and certification, delivered through localized digital learning centers in rural areas with public-private partnerships. Cultural to economic to social to symbolic.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">7</div>
+          <div class="rec-content">
+            <div class="rec-title">Industry-aligned job creation and entrepreneurship</div>
+            <div class="rec-body">Tax benefits for startups in emerging sectors, gig platforms and entrepreneurship in agriculture and renewable energy, supported by public-private partnerships. Social to economic to cultural to symbolic.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">8</div>
+          <div class="rec-content">
+            <div class="rec-title">Nutrition and health-first interventions</div>
+            <div class="rec-body">"Launch direct meal programs for schoolchildren with fortified foods and health supplements to address deficiencies." delivered to schools through verifiable logistics. Economic to cultural to social to symbolic.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">9</div>
+          <div class="rec-content">
+            <div class="rec-title">Educational equity and cognitive development</div>
+            <div class="rec-body">Early childhood interventions in nutrition and preschool alongside universal primary and secondary access, with vocational training emphasised over theoretical higher education. Cultural to economic to social to symbolic.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">10</div>
+          <div class="rec-content">
+            <div class="rec-title">Industrial absorption and job creation</div>
+            <div class="rec-body">Industrial policy and SME incentives to generate the jobs graduates currently cannot find, with vocational training aligned to renewable energy and the digital economy. Social to cultural to economic to symbolic.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">11</div>
+          <div class="rec-content">
+            <div class="rec-title">Tackling malnutrition to address IQ deficits</div>
+            <div class="rec-body">School meal programs and public health initiatives for rural children, paired with educational reform for early stimulation. Economic to cultural to social to symbolic.</div>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>By prioritizing practical livelihoods, essential infrastructure, and ethical governance, these strategies establish a strong foundation for sustainable, scalable growth that can gradually transform Indonesia's socio-economic landscape.</p>
+        <cite>&mdash; Dr. A.R.Y. Toronata Tambun</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Cultural reformation may take two to three generations, and that horizon is the finding, not an excuse.</h2>
+      <p class="sec-lead">The article ends by naming its own timescale, which is the least comfortable thing in it.</p>
+      <p class="body-text">"Indonesia stands at a critical crossroads where addressing systemic inequality and restoring meritocracy is essential for sustainable national progress." The entrenched imbalance of the four capitals, magnified by corruption and cultural norms, perpetuates stagnation and blocks upward mobility for many.</p>
+      <p class="body-text">"Real change requires more than isolated reforms" — it demands comprehensive, culturally adaptive strategies that bridge theory and practice, which is what the eleven recommendations attempt.</p>
+      <p class="body-text">Then the horizon. "Deep-rooted societal norms and behaviors evolve gradually over generations." True reform, especially cultural reformation, "may take two to three generations, or 50 to 75 years, to fully materialize." That estimate is stated as a requirement for persistent commitment, patience and strategic planning — not as a reason to wait.</p>
+      <p class="body-text">"The path forward will undoubtedly be challenging, but by embracing these transformative reforms with a generational perspective, Indonesia can foster a more just, equitable, and dynamic society—one where every individual has the genuine opportunity to contribute and thrive based on their abilities and efforts."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Frameworks used</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Hofstede's six cultural dimensions supply the diagnostic frame. The article credits the scores and the comparative material to The Culture Factor — “Credit 100% to @The Culture Factor” — and reproduces the appendix material under that credit; no Hofstede publication is cited by the article, and none is supplied here.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Bourdieu's four capitals are carried forward from part two of this series, where they are cited in full.</div>
+        <div class="ref-group-title">Note on figures and data</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>The corruption ranking (115 of 180) and the national average IQ (85) are stated in the article without a named source, dataset or year. Both are reproduced as the author gives them; neither has been independently checked, and no citation has been supplied for either.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>The national IQ figure is a contested measure in the research literature. The article treats it as an indicator of early childhood development conditions and argues from it accordingly; that reading is the author's.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>The Hofstede scores quoted throughout (PDI 78, IDV 5, MAS 46, UAI 48, LTO 62, IVR 38) are the article's own figures for Indonesia.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>The article's appendix comparison of Indonesia against Japan, China and India is set partly as images and does not fully survive text extraction; this deck works from the prose.</div>
+        <div class="ref-group-title">Note on the recommendations</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>The article numbers its recommendations one to eleven but uses the number five twice, so the printed list runs to eleven items under ten numbers. The eleven are reproduced here in the article's own order and wording.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>The generational estimate — two to three generations, or 50 to 75 years — is the author's own projection. No model, study or comparative case is cited in support of it.</div>
+        <div class="ref-group-title">The series</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2025, January 12). <em>(1 of 4) Rushing won’t get you there: What padi farmers teach about long-term success</em> [LinkedIn article]. LinkedIn.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2025, January 12). <em>(2 of 4) Pierre Bourdieu’s theory of capitals and meritocracy — Mathematical model</em> [LinkedIn article]. LinkedIn. — the instalment this one continues, marked CONTINUED at its close.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Tambun, T. (2025, January 20). <em>(4 of 4) Are you making the right career decisions, applying Bourdieu’s capitals framework</em> [LinkedIn article]. LinkedIn.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Tambun, T. (2025, January 12). <em>(3 of 4) Addressing Broken Meritocracy? Pierre Bourdieu and Culture</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/addressing-broken-meritocracy-pierre-bourdieu-culture-toronata-tambun-vjiuc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/addressing-broken-meritocracy-pierre-bourdieu-culture-toronata-tambun-vjiuc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
