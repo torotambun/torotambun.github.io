@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trained Like ChatGPT: Lessons from Starting a Career Abroad in Schlumberger Wireline, 1994 &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Trained Like ChatGPT</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Failure</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Turn</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Mirror</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Limit</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> What It Settles</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Failure</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Turn</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Mirror</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Limit</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">What It Settles</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Cross-Cultural Communication &nbsp;&middot;&nbsp; 4 January 2025</div>
+      <h1 class="title-main">Trained Like ChatGPT: Lessons from Starting a Career Abroad in Schlumberger Wireline, 1994</h1>
+      <p class="title-thesis">A filtering discipline that took years to acquire abroad — ignore the noise, read the intent — turned out to be what a machine does by design, and turned out to be insufficient the moment he came home.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">A recruiter told him his Indonesian instinct to read tone would cost him his performance.</h2>
+      <p class="sec-lead">Alexandria, ETC-46, November 1994. Before the first international assignment, the instruction that shaped everything after it.</p>
+      <p class="body-text">In 1994 he was beginning "a career that would span 26 years across 51 countries, primarily in individualistic cultures." His recruiter, Ainul Azhar Ainul Jamal, gave him advice about communication before he left.</p>
+      <p class="body-text">"As an Indonesian, you may overthink what people say, and that could affect your performance." The instruction that followed was to learn to disregard the noise — to ignore emotions, tone, or strong words — "and focus on what the speaker is trying to achieve."</p>
+      <p class="body-text">It is worth naming what that advice actually asks of a person. It does not ask for thicker skin. It asks him to treat the emotional register of a conversation as interference in the channel rather than as part of the message, and to route around it.</p>
+      <div class="callout">
+        <div class="callout-label">The instruction, in one line</div>
+        <p>Separate the signal from the delivery, and act only on the signal.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Failure</div>
+      <h2 class="sec-title">He failed miserably at the advice before it became second nature.</h2>
+      <p class="sec-lead">The skill did not arrive with the instruction. It arrived years later, through error.</p>
+      <p class="body-text">"At first, he struggled to apply this advice." More than struggled: "he failed miserably and ironically, often misinterpreting or overreacting to feedback."</p>
+      <p class="body-text">The cost was not abstract. "His tendency to overanalyze emotions and tone in conversations created unnecessary tension and even held him back in his early assignments." A communication habit that works at home was, in that environment, a performance problem.</p>
+      <p class="body-text">"But these failures became his greatest teachers." Through trial and error he learned to filter out the noise in conversations "and focus solely on the intent behind the message." The article is explicit that "This transformation didn't happen overnight" — and that only once the skill became second nature did it help him in environments "where clarity and problem-solving often matter more than emotional nuance."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Turn</div>
+      <h2 class="sec-title">Sales management required a second skill, aimed beneath the words rather than past them.</h2>
+      <p class="sec-lead">Promotion did not extend the first discipline. It asked for something close to its opposite.</p>
+      <p class="body-text">Still at Schlumberger, promoted to Sales Manager, "he was trained even further" — this time to probe and to listen actively, uncovering what the article calls the reasons behind the reasons.</p>
+      <p class="body-text">"This deeper skill set taught him how to go beyond words to understand motivations and underlying concerns, sharpening his ability to communicate and negotiate effectively."</p>
+      <p class="body-text">The two disciplines are not the same, and the sequence matters. The first discards what sits on the surface of a conversation. The second digs beneath it. Together they describe a person trained to treat everything except stated intent as either noise to drop or a clue to follow — which is precisely the position from which the next observation becomes possible.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Mirror</div>
+      <h2 class="sec-title">ChatGPT described his hard-won filtering as its own default setting.</h2>
+      <p class="sec-lead">He asked the model how it handles frustration or anger, especially when people curse or use strong language while chatting with it.</p>
+      <blockquote>
+        <p>When you express anger or frustration, even with strong language, I interpret it as feedback that something didn't meet your expectations.</p>
+        <cite>&mdash; ChatGPT, quoted in the article</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The rest of the answer</div>
+          <div class="arith-body">It went on: "I focus on identifying where I might have missed the mark" — whether that is tone, relevance, or precision — "and work to correct it immediately."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why it landed</div>
+          <div class="arith-body">"Hearing this, he laughed at how closely this mirrored his own journey." Like the model, he had learned to focus on intent, tune out the noise, and respond with purpose. What cost him years of failed assignments is, for the machine, the specification.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The turn inside the recognition</div>
+          <div class="arith-body">The mirror is not the point of the piece. "But this reflection also made him think about the limits of that approach." Recognising that a skill can be described as a rule is also recognising that it will be applied where it does not fit.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Limit</div>
+      <h2 class="sec-title">Coming home, the noise he had trained himself to discard was the message.</h2>
+      <p class="sec-lead">"While filtering noise and focusing on intent had worked well internationally, he realized it wasn't always enough in every context."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">What the training assumed</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Tone, emotion and word choice are interference around a message</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Clarity and problem-solving outrank emotional nuance</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The speaker's stated intent is the thing to act on</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>A single communication strategy travels across contexts</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Efficiency in reading people is the measure of skill</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">What he found on returning</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"When he returned to his home country after years abroad, he encountered a communication style that placed significant weight on emotions, tone, and word choice"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"The nuances of how something was said often mattered as much as the message itself"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>What was efficient abroad read as inattention at home</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"What had been an effective global communication strategy sometimes led to misunderstandings at home"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>The filter was still working; it was filtering out the content</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The lesson he draws</div>
+        <p>"This realization taught him an important lesson: while filtering noise is an essential skill, it must be balanced with adaptability and cultural sensitivity. Communication is not just about delivering a message but also about meeting people where they are."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What It Settles</div>
+      <h2 class="sec-title">Filtering is a skill; knowing when to stop filtering is the harder one.</h2>
+      <p class="sec-lead">The article addresses itself to students preparing for global careers, professionals managing diverse teams, and executives striving to lead internationally, and leaves them two lessons rather than a programme.</p>
+      <blockquote>
+        <p>Communication isn't just about speaking or listening; it's about understanding the people and the environment in which we connect.</p>
+        <cite>&mdash; Dr. Toronata Tambun</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Lesson one</div>
+          <div class="arith-body">"The ability to focus on intent and disregard “noise” is critical for success in global settings."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Lesson two</div>
+          <div class="arith-body">"Adapting your communication to different audiences is equally essential" — "building trust and understanding starts with meeting people where they are."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why both are needed at once</div>
+          <div class="arith-body">"This dual lesson—balancing clarity with adaptability—holds value for anyone navigating global or diverse contexts." Neither discipline is retired by the other; the difficulty is holding both and knowing which context is which.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where it leaves him</div>
+          <div class="arith-body">"His journey of unlearning and relearning continues to inspire those around him." The account does not close the loop — it reports a person still switching between two settings, twenty-six years after being told to keep only one.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Further reading listed in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Tambun, T. (2023, August 12). How to thrive in an individualistic corporate maze. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2023/08/12/how-to-thrive-in-an-individualistic-corporate-maze.html</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T. (2023, September 23). Embracing cultural differences: A tale of two corporate sherpas. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2023/09/23/embracing-cultural-differences-a-tale-of-two-corporate-sherpas.html</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Tambun, T. (2024, March 12). <em>“Travel is the fatal enemy of prejudice” - Mark Twain, but what kind of travel?</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/travel-fatal-enemy-prejudice-mark-twain-what-kind-toronata-tambun-caxbc</div>
+        <div class="ref-group-title">Note on the account</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>The article is written in the third person about “my friend.” The friend is the author. The deck follows the article's own device and keeps the third person throughout.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>The evidence base is the author's own recollection of a career at Schlumberger from 1994 onward. No document, personnel record or contemporaneous note corroborates the recruiter's advice, the early assignment difficulties, or the promotion to Sales Manager.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>The recruiter, Ainul Azhar Ainul Jamal, is named in the article and named here as the source of the advice.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>The ChatGPT exchange is quoted from the article as the author recorded it. No date, model version or transcript is given, and none has been reconstructed.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2025, January 4). <em>Trained Like ChatGPT: Lessons from Starting a Career Abroad in Schlumberger Wireline, 1994</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/trained-like-chatgpt-lesson-from-1994-toronata-tambun-7dlcc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/trained-like-chatgpt-lesson-from-1994-toronata-tambun-7dlcc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
