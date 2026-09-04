@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(3 of 7) What Biases Involved When Founders Commit Fraud? &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">(3 of 7) What Biases Involved When Founders Commit Fraud?</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Fraud-Bias Series — 3 of 7 &nbsp;&middot;&nbsp; 4 February 2025</div>
+      <h1 class="title-main">(3 of 7) What Biases Involved When Founders Commit Fraud?</h1>
+      <p class="title-thesis">Founders rarely inflate revenue through a single rational calculation; eleven overlapping biases do the rationalizing for them, and the biases founders can consciously counteract were themselves shaped, years earlier, by how thoroughly a stress-honesty tradeoff got wired into the brain during childhood pruning and myelination.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Founders rarely inflate revenue through one clean, rational choice.</h2>
+      <p class="sec-lead">This piece opens a three-block argument: the biases behind fraud, the countermeasures founders can build, and the childhood roots of whichever capacity wins out under pressure.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>When founders inflate revenues in financial statements, the decision is treated in most commentary as either deliberate deception or a moment of desperation.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>Neither framing accounts for what is actually happening moment to moment: a cluster of ordinary cognitive and behavioral biases distorting judgment and supplying the founder with justification before the act, not only after it.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>Which biases are doing that work, can a founder learn to counteract them, and why do some founders resist the pressure while others do not?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Eleven biases recur across fraud cases, nine practical habits can blunt them, and the difference in who holds the line traces back to early neural wiring around ethics and delayed gratification.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">Eleven biases recur, and each one supplies its own alibi.</h2>
+      <p class="sec-lead">Section A of the argument: the cognitive and behavioral biases that distort a founder's judgment once fraud becomes a live option.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Overconfidence</div>
+          <div class="arith-body">Founders overestimate their ability to steer the company back to success, treating fraud as a temporary fix they expect to outrun.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Optimism bias</div>
+          <div class="arith-body">Belief in the vision is strong enough that the odds of being caught feel minimal, so the deception looks justified in advance.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Sunk cost fallacy</div>
+          <div class="arith-body">Having already invested years and resources, founders rationalize fraud as protecting that prior investment rather than starting a new harm.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Confirmation bias</div>
+          <div class="arith-body">Founders seek out examples confirming the belief that "other startups did this and got away with it", reinforcing the decision and screening out contrary evidence.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Anchoring bias</div>
+          <div class="arith-body">Fixation on an arbitrary revenue milestone or valuation target makes manipulating the numbers feel like closing a gap rather than committing fraud.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Loss aversion</div>
+          <div class="arith-body">The fear of losing funding or reputation outweighs the fear of being caught, so inflating revenue reads as avoiding a loss, not causing one.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; Social proof</div>
+          <div class="arith-body">A competitive ecosystem where "everyone inflates their metrics to survive" normalizes the behavior and lowers hesitation.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">8 &nbsp;&middot;&nbsp; Self-serving bias</div>
+          <div class="arith-body">Founders frame the deception as serving the greater good — saving jobs, protecting the company — which downplays the harm caused.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">9 &nbsp;&middot;&nbsp; Temporal discounting</div>
+          <div class="arith-body">Immediate pressures, such as impressing investors this quarter, outweigh long-term consequences that feel abstract by comparison.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">10 &nbsp;&middot;&nbsp; Moral licensing</div>
+          <div class="arith-body">Founders who see themselves as hardworking or visionary feel entitled to bend the rules as a reward for the sacrifices already made.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">11 &nbsp;&middot;&nbsp; Anchoring on peers</div>
+          <div class="arith-body">A second pass at confirmation bias: citing other startups' unpunished misconduct as evidence that the practice is survivable.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Nine habits counteract the biases, but only if practiced before the pressure arrives.</h2>
+      <p class="sec-lead">Section B: behavioral-science interventions a founder can build into ordinary operating habits.</p>
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Awareness</div>
+          <div class="comp-name">Frequent reflection and bias literacy</div>
+          <div class="comp-body">Founders who can name overconfidence, loss aversion and anchoring in themselves are better placed to notice the moment those biases are steering a decision.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Structure</div>
+          <div class="comp-name">Transparency, pause-and-reflect, ethical frameworks</div>
+          <div class="comp-body">Slowing the decision down, committing to open books, and running choices through a written framework counteracts the impulsiveness that temporal discounting produces.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Accountability</div>
+          <div class="comp-name">External audits, board oversight, codes of conduct</div>
+          <div class="comp-body">Independent checks remove the founder's sole discretion over the numbers, which is where most of the biases above do their damage.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">Culture</div>
+          <div class="comp-name">Reframing failure, simulated dilemmas, incentivizing honesty</div>
+          <div class="comp-body">Treating setbacks as part of the process rather than existential threats, and rehearsing ethical dilemmas before they are live, builds the habit before the stakes are real.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Section C reframes the question: what built the capacity to resist in the first place?</h2>
+      <p class="sec-lead">Biases (A) drive the decision; countermeasures (B) can blunt it; but B's availability under real pressure is shaped by habits and emotional patterns laid down in childhood (C).</p>
+      <p class="body-text">Parental and societal modeling teaches a child, long before any startup exists, whether ethical dilemmas get navigated honestly or avoided. Early education in critical thinking — debating fairness, reasoning through problems — strengthens the same muscle.</p>
+      <p class="body-text">How a child is taught to relate to failure matters as much as any of that: a value-based growth mindset toward setbacks, rather than treating failure as catastrophic, carries forward into how an adult founder handles a bad quarter.</p>
+      <p class="body-text">Resilience and self-regulation — the capacity to delay gratification, to manage frustration — are what temporal discounting exploits in adulthood when they were never built in childhood.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">The argument is neurobiological, not metaphorical: pruning and myelination make ethics automatic.</h2>
+      <p class="sec-lead">During childhood and adolescence, synaptic pruning strengthens or eliminates neural connections based on repeated experience; myelination then makes the surviving pathways fast and close to automatic under stress.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">ARGUED A</div>
+          <div class="ev-title">Repeated ethical exposure builds default pathways</div>
+          <div class="ev-body">Experiences that emphasize honesty and resilience strengthen those neural connections into the brain's dominant default mode, rather than a conscious override it has to reach for under pressure.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ARGUED B</div>
+          <div class="ev-title">Myelination is what makes it hold under stress</div>
+          <div class="ev-body">If integrity and accountability are reinforced repeatedly during critical developmental stages, the resulting pathways process fast enough that the behavior looks instinctive rather than effortful.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ARGUED C</div>
+          <div class="ev-title">Weak early wiring leaves the biases room to win</div>
+          <div class="ev-body">Individuals who lack that reinforcement have poorer-myelinated pathways for ethical decision-making, and under pressure are more likely to succumb to the eleven biases above rather than override them.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ARGUED D</div>
+          <div class="ev-title">Strong wiring is not immunity, only resistance</div>
+          <div class="ev-body">Extreme emotional distress, systemic corruption, or a total absence of accountability can still push even a well-myelinated individual to rationalize fraud — these are exceptions, not evidence against the pattern.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">What this does not claim</div>
+        <p>Early ethical development is presented here as a resilient moral compass under situational pressure, not as a guarantee. The argument explicitly allows for well-formed individuals who still fail under extreme enough conditions.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">Individuals with well-pruned ethical pathways are far less likely to commit fraud, even under pressure.</h2>
+      <p class="sec-lead">The piece closes by drawing the societal implication out of the neurological claim: this is a case for investing in early ethical development, not just in founder-stage compliance training.</p>
+      <blockquote>
+        <p>This underscores the need for a societal focus on early ethical development as a foundation for long-term behavioral integrity.</p>
+        <cite>&mdash; (3 of 7) What Biases Involved When Founders Commit Fraud?</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Investing in early ethical education</div>
+          <div class="arith-body">Schools, families and communities are asked to emphasize honesty, accountability and resilience specifically during the developmental windows when pruning and myelination are active.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Resilience-building programs</div>
+          <div class="arith-body">Teaching children to manage failure and regulate emotion is framed as hardwiring the capacities that later resist temporal discounting and loss aversion.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The role of parents and role models</div>
+          <div class="arith-body">Children mirror the ethical behavior they repeatedly see; parental modeling is where the neural pathways this piece describes actually get built.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Further reading</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">On moral development and cognition</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Bandura, A. (1991). Social cognitive theory of moral thought and action. In W. M. Kurtines &amp; J. L. Gewirtz (Eds.), <em>Handbook of moral behavior and development</em> (Vol. 1, pp. 45–103). Lawrence Erlbaum Associates.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Blasi, A. (1980). Bridging moral cognition and moral action: A critical review of the literature. <em>Psychological Bulletin, 88</em>(1), 1–45. https://doi.org/10.1037/0033-2909.88.1.1</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Gibbs, J. C. (2013). <em>Moral development and reality: Beyond the theories of Kohlberg and Hoffman</em> (3rd ed.). Oxford University Press.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Haidt, J. (2001). The emotional dog and its rational tail: A social intuitionist approach to moral judgment. <em>Psychological Review, 108</em>(4), 814–834. https://doi.org/10.1037/0033-295X.108.4.814</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Hauser, M. D. (2006). <em>Moral minds: How nature designed our universal sense of right and wrong</em>. HarperCollins.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Kohlberg, L. (1981). <em>Essays on moral development: Vol. I. The philosophy of moral development</em>. Harper &amp; Row.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Narvaez, D. (2008). <em>Handbook of moral and character education</em>. Routledge.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Piaget, J. (1932). <em>The moral judgment of the child</em>. Routledge &amp; Kegan Paul.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Rest, J. R. (1986). <em>Moral development: Advances in research and theory</em>. Praeger.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Rest, J. R., Narvaez, D., Bebeau, M. J., &amp; Thoma, S. J. (1999). <em>Postconventional moral thinking: A neo-Kohlbergian approach</em>. Lawrence Erlbaum Associates.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Decety, J., &amp; Cowell, J. M. (2014). The complex relation between morality and empathy. <em>Trends in Cognitive Sciences, 18</em>(7), 337–339. https://doi.org/10.1016/j.tics.2014.04.008</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Gino, F., Ayal, S., &amp; Ariely, D. (2009). Contagion and differentiation in unethical behavior: The effect of one bad apple on the barrel. <em>Psychological Science, 20</em>(3), 393–398. https://doi.org/10.1111/j.1467-9280.2009.02306.x</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Treviño, L. K., Weaver, G. R., &amp; Reynolds, S. J. (2006). Behavioral ethics in organizations: A review. <em>Journal of Management, 32</em>(6), 951–990. https://doi.org/10.1177/0149206306294258</div>
+        <div class="ref-group-title">On self-regulation, delay of gratification, and risk decisions in founders</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Duckworth, A. L., &amp; Seligman, M. E. P. (2005). Self-discipline outdoes IQ in predicting academic performance of adolescents. <em>Psychological Science, 16</em>(12), 939–944. https://doi.org/10.1111/j.1467-9280.2005.01641.x</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Mischel, W., Shoda, Y., &amp; Rodriguez, M. L. (1989). Delay of gratification in children. <em>Science, 244</em>(4907), 933–938. https://doi.org/10.1126/science.2658056</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Fischhoff, B., &amp; Beyth, R. (1975). "I knew it would happen": Remembered probabilities of once-future things. <em>Organizational Behavior and Human Performance, 13</em>(1), 1–16. https://doi.org/10.1016/0030-5073(75)90002-1</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Kahneman, D., &amp; Tversky, A. (1979). Prospect theory: An analysis of decision under risk. <em>Econometrica, 47</em>(2), 263–291. https://doi.org/10.2307/1914185</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Busenitz, L. W., &amp; Barney, J. B. (1997). Differences between entrepreneurs and managers in large organizations: Biases and heuristics in strategic decision-making. <em>Journal of Business Venturing, 12</em>(1), 9–30. https://doi.org/10.1016/S0883-9026(96)00003-1</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>Simon, M., Houghton, S. M., &amp; Aquino, K. (2000). Cognitive biases, risk perception, and venture formation: How individuals decide to start companies. <em>Journal of Business Venturing, 15</em>(2), 113–134. https://doi.org/10.1016/S0883-9026(98)00003-2</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>Zacharakis, A. L., &amp; Shepherd, D. A. (2001). The nature of information and overconfidence on venture capitalists' decision making. <em>Journal of Business Venturing, 16</em>(4), 311–332. https://doi.org/10.1016/S0883-9026(99)00052-X</div>
+        <div class="ref-group-title">On brain development during childhood and adolescence</div>
+        <div class="ref-entry"><span class="ref-num">[21]</span>Giedd, J. N., Blumenthal, J., Jeffries, N. O., Castellanos, F. X., Liu, H., Zijdenbos, A., Paus, T., Evans, A. C., &amp; Rapoport, J. L. (1999). Brain development during childhood and adolescence: A longitudinal MRI study. <em>Nature Neuroscience, 2</em>(10), 861–863. https://doi.org/10.1038/13158</div>
+        <div class="ref-entry"><span class="ref-num">[22]</span>Selemon, L. D. (2013). A role for synaptic plasticity in the adolescent development of executive function. <em>Translational Psychiatry, 3</em>(3), e238. https://doi.org/10.1038/tp.2013.7</div>
+        <div class="ref-entry"><span class="ref-num">[23]</span>Stiles, J., &amp; Jernigan, T. L. (2010). The basics of brain development. <em>Neuropsychology Review, 20</em>(4), 327–348. https://doi.org/10.1007/s11065-010-9148-4</div>
+        <div class="ref-entry"><span class="ref-num">[24]</span>Tau, G. Z., &amp; Peterson, B. S. (2010). Normal development of brain circuits. <em>Neuropsychopharmacology, 35</em>(1), 147–168. https://doi.org/10.1038/npp.2009.115</div>
+        <div class="ref-entry"><span class="ref-num">[25]</span>Uddin, L. Q., Supekar, K., Ryali, S., &amp; Menon, V. (2011). Dynamic reconfiguration of structural and functional connectivity across core neurocognitive brain networks with development. <em>Journal of Neuroscience, 31</em>(50), 18578–18589. https://doi.org/10.1523/JNEUROSCI.4465-11.2011</div>
+        <div class="ref-group-title">Note on sources</div>
+        <div class="ref-entry"><span class="ref-num">[26]</span>The article lists 26 numbered entries under Further Reading; the final entry is a promotional pointer to a third-party website ("the Center for Behavioral Decisions") rather than an academic citation, and is omitted here as not a reference in the scholarly sense the rest of the list uses.</div>
+        <div class="ref-entry"><span class="ref-num">[27]</span>All 25 genuine citations from the article's Further Reading list are reproduced above, grouped by theme rather than left in their original single unbroken numbered sequence.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[28]</span>Tambun, T. (2025, February 4). <em>(3 of 7) What Biases Involved When Founders Commit Fraud?</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/what-biases-involve-when-startup-founders-commits-fraud-tambun-hunlc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/what-biases-involve-when-startup-founders-commits-fraud-tambun-hunlc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
