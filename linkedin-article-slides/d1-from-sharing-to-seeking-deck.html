@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-1 From Sharing to Seeking: How Validation Risks Undermine Writing Purpose &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">D-1 From Sharing to Seeking</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Diagnosis</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Consequences</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Correction</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Habits</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Nudge</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Diagnosis</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Consequences</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Correction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Habits</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Nudge</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; D-1 · End-of-Year Countdown 2024 &nbsp;&middot;&nbsp; 30 December 2024</div>
+      <h1 class="title-main">D-1 From Sharing to Seeking: How Validation Risks Undermine Writing Purpose</h1>
+      <p class="title-thesis">Writing that begins as contribution is converted into validation-seeking by the platform's design rather than by the writer's weakness — so the defence has to be procedural, built into what happens after the post goes up, not a resolution to care less.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Writing that begins as contribution is converted into validation-seeking by design, not by weakness.</h2>
+      <p class="sec-lead">The article is built on its own What / But / Then spine, and the three moves below are its own.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>"Writing on platforms like LinkedIn often begins with the pure intention to share knowledge, spark discussions, and contribute value. It feels purposeful—a way to grow professionally, leave a legacy, or simply engage intellectually."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"The subtle design of social media platforms and human psychology make it easy to slip into validation-seeking behaviors. Likes, shares, and comments—the metrics of online engagement—can start to shape how content is perceived and created."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If "Even the most neutral and well-intentioned contributors are susceptible to these pitfalls", what actually protects the original intent?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Not resolve. "Reframing success as the impact of ideas rather than the number of likes, diversifying content, and intentionally detaching from immediate feedback are essential strategies" — and the article then supplies seventeen concrete ones.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Diagnosis</div>
+      <h2 class="sec-title">The conversion runs through five mechanisms, beginning with a platform engineered on intermittent reinforcement.</h2>
+      <p class="sec-lead">The article's "But" — five routes by which a contribution habit becomes an approval habit.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Platform design</div>
+          <div class="arith-body">"Social media platforms thrive on metrics like likes and shares, which are designed to exploit the brain's reward system through intermittent reinforcement (Fogg, 2009; Alter, 2017)." The mechanism is engineered, not incidental.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Human psychology</div>
+          <div class="arith-body">"Sharing often carries an implicit expectation of acknowledgment. Over time, the focus can shift from intrinsic satisfaction to chasing external validation (Ryan &amp; Deci, 2000)."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; The social feedback loop</div>
+          <div class="arith-body">"Positive feedback reinforces the urge to replicate successful content, transforming writing into a cycle of approval-seeking rather than impact-driven sharing (Schneider et al., 2017)." Success is what teaches the wrong lesson.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Comparison dynamics</div>
+          <div class="arith-body">"Observing others' higher engagement can spark" self-doubt "and questions about one's approach or worth (Festinger, 1954)."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Emotional investment</div>
+          <div class="arith-body">"Writing often feels personal, so low engagement can feel like a rejection of not only the post but also the effort and ideas behind it (Twenge, 2017)." The more the writing matters, the sharper the exposure.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Consequences</div>
+      <h2 class="sec-title">The cost is not vanity but anxiety, cognitive overload, wasted hours and isolation.</h2>
+      <p class="sec-lead">The article's "Then": "This validation-seeking cycle creates dissatisfaction and unhappiness. The original purpose of writing—driven by curiosity and contribution—shifts to meeting external expectations."</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">COST A</div>
+          <div class="ev-title">Variable rewards</div>
+          <div class="ev-body">"The unpredictability of engagement (likes and comments) generates anxiety and compulsion to keep checking for feedback (Alter, 2017)." Unpredictability is the active ingredient, not volume.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">COST B</div>
+          <div class="ev-title">Cognitive overload and comparison</div>
+          <div class="ev-body">"Constant engagement with metrics overwhelms the mind, draining the joy of creation (Browning et al., 2021)." And alongside it: "Comparing one's engagement metrics with others leads to feelings of inadequacy, undermining confidence (Festinger, 1954)."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">COST C</div>
+          <div class="ev-title">Time dissociation</div>
+          <div class="ev-body">"Hours spent chasing engagement create a sense of wasted time and regret (Alter, 2017)."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">COST D</div>
+          <div class="ev-title">Social isolation</div>
+          <div class="ev-body">"Dependence on virtual approval can replace genuine connections, exacerbating loneliness (Twenge, 2017)." The activity undertaken to connect is what displaces connection.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Correction</div>
+      <h2 class="sec-title">Reframing success as the impact of the idea is the only defence that survives a bad week.</h2>
+      <p class="sec-lead">"Acknowledging these risks is critical to maintaining the purity of intent in writing."</p>
+      <p class="body-text">The correction named is a change of measure rather than a change of feeling: "Reframing success as the impact of ideas rather than the number of likes, diversifying content, and intentionally detaching from immediate feedback are essential strategies."</p>
+      <p class="body-text">"Writing should remain a pursuit of intellectual growth, thought leadership, and authentic contribution, not a metric-driven quest for validation."</p>
+      <p class="body-text">And the article is explicit that this is a standing tension rather than a solved problem: "The tension between intrinsic and extrinsic motivation reflects the broader challenges of engaging with social media."</p>
+      <p class="body-text">Which is why what follows is not advice about attitude. If the mechanism is engineered and the exposure is permanent, the only durable answer is a set of habits that hold when motivation does not.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Habits</div>
+      <h2 class="sec-title">Ten habits keep the writing intrinsic, and every one of them is procedural rather than attitudinal.</h2>
+      <p class="sec-lead">The article's first appendix, reproduced in its order and wording: "practical and simple action items to stay on the happy path as a writer and avoid chasing validation".</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">Set clear goals</div>
+            <div class="rec-body">"Decide why the piece is being written—whether it's to share knowledge, explore ideas, or document thoughts. Focus on these goals, not how many likes or comments it gets."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Limit checking social media</div>
+            <div class="rec-body">"Avoid checking for likes or comments immediately after posting. Set a specific time to review engagement, like once a day or every few days."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Write for the right audience</div>
+            <div class="rec-body">"Picture the people who will benefit from the content. Write for them, not for the numbers."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Mix platforms</div>
+            <div class="rec-body">"Write in places where instant feedback isn't the norm, like personal blogs or journals, to reduce the focus on likes and shares."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">5</div>
+          <div class="rec-content">
+            <div class="rec-title">Ask for real feedback</div>
+            <div class="rec-body">"Share content with trusted friends or colleagues and ask for their opinions. Honest feedback from people you respect is more meaningful than social media reactions."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">6</div>
+          <div class="rec-content">
+            <div class="rec-title">Celebrate the effort</div>
+            <div class="rec-body">"Acknowledge the time and effort put into writing, no matter how the post performs. Take pride in completing and sharing it."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">7</div>
+          <div class="rec-content">
+            <div class="rec-title">Take breaks</div>
+            <div class="rec-body">"Spend time away from screens—go for a walk, exercise, or read. This keeps the mind fresh and reduces overthinking about online reactions."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">8</div>
+          <div class="rec-content">
+            <div class="rec-title">Track progress, not likes</div>
+            <div class="rec-body">"Compare current writing to earlier work. Notice improvements in clarity, depth, or style rather than focusing on engagement metrics."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">9</div>
+          <div class="rec-content">
+            <div class="rec-title">Write regularly, share selectively</div>
+            <div class="rec-body">"Write more than is shared online. Some pieces can stay personal or offline, making writing feel less dependent on public response."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">10</div>
+          <div class="rec-content">
+            <div class="rec-title">Stay grateful</div>
+            <div class="rec-body">"Appreciate any engagement, even if it's from one person. Focus on how writing adds value to those who see it."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Nudge</div>
+      <h2 class="sec-title">Seven substitutions break the loop at the moment it forms: right after posting.</h2>
+      <p class="sec-lead">The second appendix, aimed at a single point in time. "A strong nudge for not returning to LinkedIn immediately after posting is to create a satisfying post-writing ritual that shifts focus away from the platform."</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Immediate task shift</div>
+          <div class="arith-body">"Plan a specific activity immediately after posting—such as brewing coffee, taking a short walk, or diving into another task. This gives the brain a quick reward for finishing the post without needing to check LinkedIn."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Use a timer</div>
+          <div class="arith-body">"Set a timer (e.g., 2 or 3 hours) during which LinkedIn stays" off-limits. "Pair it with a reward after the timer expires, like a favorite snack or a relaxing activity."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Log out or turn off notifications</div>
+          <div class="arith-body">"Log out of LinkedIn or disable app notifications after posting. This adds a small barrier to re-opening the platform and nudges attention elsewhere."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Write the next post draft</div>
+          <div class="arith-body">"Start drafting the next article immediately after posting. It keeps the focus on creating rather than waiting for engagement."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Set a return time</div>
+          <div class="arith-body">"Decide beforehand when LinkedIn will be checked again, such as the next morning or evening. Pair this with a reminder to celebrate posting, not just the feedback."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Replace the habit loop</div>
+          <div class="arith-body">"Substitute the urge to check LinkedIn with a healthier dopamine boost—like a short workout, a mindfulness exercise, or reading something inspiring."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; Anchor to a bigger purpose</div>
+          <div class="arith-body">"Write down the purpose of the post before hitting publish, such as “This is to share knowledge, not chase likes.” Read it again when tempted to return".</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why the moment matters</div>
+        <p>Every one of the seven acts on the same interval — the minutes between publishing and the first check. That is where the intermittent-reinforcement mechanism named in the diagnosis actually operates, and it is the only place a habit can intercept it.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">To write authentically is to resist the pull of validation.</h2>
+      <p class="sec-lead">The article closes on the tension rather than on a claim to have resolved it.</p>
+      <blockquote>
+        <p>To write authentically is to resist the pull of validation and stay true to the purpose of creating meaningful work.</p>
+        <cite>&mdash; Dr. Toronata Tambun</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the seventeen items are for</div>
+          <div class="arith-body">"These actions will help keep writing enjoyable and purposeful, avoiding the stress of chasing validation." The claim is modest and procedural: they keep the writing enjoyable, not the writer indifferent.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The word doing the work in the last sentence</div>
+          <div class="arith-body">Resist. Not overcome, not outgrow. The pull is treated as permanent and the writer's task as ongoing — which is consistent with a diagnosis that located the cause in the platform rather than in the person.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where it sits in the countdown</div>
+          <div class="arith-body">This is the second-to-last entry of 2024, published the day before the year's final piece. A writer publishing daily through the end of December, on the risks of writing for engagement, is describing conditions he is inside of.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Alter, A. (2017). <em>Irresistible: The rise of addictive technology and the business of keeping us hooked</em>. Penguin Press.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Browning, M. H., Lee, K., &amp; Saeidi-Rizi, F. (2021). The mental health benefits of engaging with nature versus social media: A systematic review. <em>Environmental Research, 197</em>, 111106. https://doi.org/10.1016/j.envres.2021.111106</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Festinger, L. (1954). A theory of social comparison processes. <em>Human Relations, 7</em>(2), 117–140. https://doi.org/10.1177/001872675400700202</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Fogg, B. J. (2009). <em>Persuasive technology: Using computers to change what we think and do</em>. Morgan Kaufmann.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Ryan, R. M., &amp; Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist, 55</em>(1), 68–78. https://doi.org/10.1037/0003-066X.55.1.68</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Schneider, S., Zwicker, M., &amp; Hitz, M. (2017). Engagement in online communities: A study of Facebook users. <em>Cyberpsychology, Behavior, and Social Networking, 20</em>(1), 14–18. https://doi.org/10.1089/cyber.2016.0328</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Twenge, J. M. (2017). <em>iGen: Why today's super-connected kids are growing up less rebellious, more tolerant, less happy—and completely unprepared for adulthood</em>. Atria Books.</div>
+        <div class="ref-group-title">Note on the two appendices</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>The seventeen items are reproduced in the article's own order and wording, split across two sections here because the article itself presents them as two separate appendices — ten action items and seven nudges — addressed to different moments.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>The action items and nudges carry no citations in the article. They are the author's own prescriptions rather than findings drawn from the seven works listed above.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2024, December 30). <em>D-1 From Sharing to Seeking: How Validation Risks Undermine Writing Purpose</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/d-1-from-sharing-seeking-how-validation-risks-undermine-tambun-vflnc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/d-1-from-sharing-seeking-how-validation-risks-undermine-tambun-vflnc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-Day End 2024 &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">D-Day End 2024</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Void</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The First Answer</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Ground</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Search</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Turn</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> The Name</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> The Objection</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> The Unresolved</div>
+    <div class="nav-item" data-target="slide-10"><span class="nav-num">10</span> Dawn</div>
+    <div class="nav-item" data-target="slide-11"><span class="nav-num">11</span> What I Carry</div>
+    <div class="nav-item" data-target="slide-12"><span class="nav-num">12</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Void</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The First Answer</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Ground</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Search</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Turn</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">The Name</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">The Objection</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">The Unresolved</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-10"><div class="car-num">10</div><div class="car-label">Dawn</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-11"><div class="car-num">11</div><div class="car-label">What I Carry</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-12"><div class="car-num">12</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; D-Day · End-of-Year Countdown 2024 &nbsp;&middot;&nbsp; 31 December 2024</div>
+      <h1 class="title-main">D-Day End 2024</h1>
+      <p class="title-thesis">A search for a God who was not the Jesus of his upbringing ran through invented archetypes and borrowed traditions and arrived back at the Hebrew name given at the burning bush — and the piece ends twice, once as a homecoming and once as a refusal of every label, without reconciling the two.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">The question was not whether God exists but whether there was anyone left to turn to.</h2>
+      <p class="sec-lead">"There are times when life weighs so heavily that even simple tasks feel impossible, and the search for meaning fades to a distant, unreachable horizon."</p>
+      <p class="body-text">The question arrives at night, in a voice "heavy with unspoken struggle": "What if there were a figure—a cosmic presence—I could turn to?" The words "tumbled out, as if they had been waiting for years to surface."</p>
+      <p class="body-text">"This wasn't a fleeting thought but a visceral yearning—a need for someone or something to lean on. A presence to guide him through the fog of doubt, to break through barriers when all seemed lost, and, when nothing else sufficed, to intervene in ways that defied understanding."</p>
+      <p class="body-text">Note what is being asked for, because the whole piece turns on its specificity. Not an explanation, not a doctrine, not comfort. A presence capable of intervening.</p>
+      <p class="body-text">"This question marked the beginning of his search. It wasn't driven by mere curiosity but by a deep, primal need for hope, clarity, and transcendence."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Void</div>
+      <h2 class="sec-title">Jesus had become a symbol rather than a certainty, and the space he occupied stayed empty.</h2>
+      <p class="sec-lead">"He had grown up with Jesus as this guiding figure—a source of strength, compassion, and connection. But over time, his understanding shifted."</p>
+      <p class="body-text">"Jesus, once the cornerstone of his faith, had become a symbol—more myth than historical certainty, more construct than reality. Yet the void Jesus once filled remained, and his longing for guidance grew more profound."</p>
+      <p class="body-text">The question that follows is the piece's engine: "If not Jesus, then who? Who could embody the qualities he yearned for—wisdom, strength, compassion, and timely intervention? Who—or what—could step in when life felt unbearable?"</p>
+      <p class="body-text">"For a time, he wrestled with the absence of such a figure. The Jesus of his youth had faded, leaving behind an emptiness he couldn't ignore. In an attempt to fill that space, he turned to history and myth, exploring archetypes that had shaped human understanding for centuries."</p>
+      <p class="body-text">"Buddha's serenity, Krishna's playful guidance, and the nurturing patience of the Mother Archetype offered glimpses of what he sought. But none felt complete."</p>
+      <p class="body-text">And then a pattern, which is also an indictment: the figures available "were human creations, shaped and refined over centuries. Each emerged from the collective imagination of a tribe or culture, each tribe yearning for an exclusive guiding figure who would embody their hopes and surpass the deities of others." That competitive cycle "seemed less about universal truth and more about asserting dominance".</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The First Answer</div>
+      <h2 class="sec-title">A figure you create is still yours to lean on — and that is exactly how the golden calf began.</h2>
+      <p class="sec-lead">"This cosmic figure… is it my creation?" The answer given is yes, and then a long argument for why yes is not a dismissal — followed immediately by the objection that undoes it.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">Why a created figure still works</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"If you create this cosmic figure, it would be your creation—a projection of your deepest values, aspirations, and needs. However, that doesn't diminish its power or significance"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"Human history" is "full of people creating archetypes, symbols, and deities to represent ideals or provide guidance in moments of uncertainty"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"These figures become meaningful because of the trust and energy poured into them. They're more than just ideas" — "they're touchstones, anchors"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"While this figure may originate from your imagination, its impact on your psyche and emotional well-being can be profound. It's not just a concept—it becomes a part of your reality"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>It can be tied outward rather than inward: "you can connect your cosmic figure to the greater mysteries of the universe—something vast and unknowable"</span></div>
+        </div>
+        <div class="diag-col wrong">
+          <div class="diag-header">Why that answer does not hold</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"wasn't this how all those figures had begun? As personal, intimate connections, eventually morphing into shared beliefs laden with rituals, symbols, and doctrines?"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The Israelites at Sinai: "Their anxiety gave birth to a golden calf—a symbol to cling to, yet one that brought condemnation for what it represented: idolatry, a blasphemy against the real G_d"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"He hesitated, aware of the thin line between seeking guidance and creating something that could become a distraction, or worse, an affront to the divine"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The objection from inside: "doesn't that make it feel… small? Like it's just me talking to myself?"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"The figure he sought could not just be another replacement or proxy, but the real mysterious G_d"</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the section settles</div>
+        <p>The created figure is rejected not because it would fail to console but because consolation was never the requirement. "This wasn't about shaping a deity to fit his needs but aligning himself with the One who transcended human understanding".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Ground</div>
+      <h2 class="sec-title">The crisis was liquidity, not poverty, which is why no practical answer would settle it.</h2>
+      <p class="sec-lead">The piece stops here to state its material facts, in a register deliberately at odds with everything around it — "his pragmatism and critical realist perspective grounded his thoughts."</p>
+      <p class="body-text">"I'm not broke," he admitted to himself. "It's a cash flow problem. I have assets—more than several million dollars' worth" — "but they're not so easily accessible. I need this super cosmic figure, someone real and supreme. It cannot be Jesus because he feels mythical to me, and I wish I didn't have to create one. I want the real G_d, a supreme being."</p>
+      <p class="body-text">"In that moment, he realized his yearning wasn't just for financial stability but for something deeper—a connection to a higher power, a force that could offer both guidance and intervention."</p>
+      <p class="body-text">This is the paragraph that makes the rest of the piece legible. A search for a supreme being conducted by someone in financial difficulty invites an obvious reduction — that the theology is the distress talking. The article forecloses it by stating the balance sheet: the problem is access to assets, not their absence, and the yearning outlasts the arithmetic.</p>
+      <p class="body-text">"The challenge, he thought, was aligning this need with his understanding of existence—one that avoided myths but still embraced transcendence."</p>
+      <div class="callout">
+        <div class="callout-label">The constraint that shapes the whole search</div>
+        <p>"If I cannot turn to my parent's Jesus, perhaps I can explore broader paths, spiritual or philosophical, to find this supreme being who resonates with my reality." Everything that follows is bounded by that condition: transcendence without myth.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Search</div>
+      <h2 class="sec-title">Contemplation of the infinite and agnostic theism kept the mystery without requiring the doctrine.</h2>
+      <p class="sec-lead">Two named positions, arrived at separately and then combined. Both are chosen for the same property: they permit a relationship without demanding a claim he cannot make.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">First</div>
+          <div class="comp-name">Contemplation of the Infinite</div>
+          <div class="comp-body">Under a canopy of stars, "the vastness of the universe overwhelmed him." And it was not aesthetic: "it wasn't mere admiration for physical beauty. It was a recognition of something greater—a presence beyond human understanding." The question put to the sky, as the article sets it: if a supreme being exists, "could it be present in all this?"</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Second</div>
+          <div class="comp-name">Agnostic Theism</div>
+          <div class="comp-body">"It wasn't about rigid belief in a defined deity, nor was it a denial of the divine. Instead, it was an acknowledgment of a supreme force coupled with an openness to its mystery. This freed him from the constraints of dogma and allowed space for a personal, evolving relationship with the divine."</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Together</div>
+          <div class="comp-name">What the pairing buys</div>
+          <div class="comp-body">"Contemplation of the Infinite helped him cultivate awe and connection with the cosmos as an expression of the supreme. Agnostic Theism allowed him to form a personal relationship with this force, one grounded in humility and authenticity. Together, these paths bypassed man-made constructs while nurturing an evolving, intimate connection with the divine."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The method that goes with the position</div>
+        <p>"Rather than chasing definitive answers, he learned to focus on being present and asking the right questions." And the expectation set accordingly: "If this being exists," he thought, "it will reveal itself not through doctrine but in moments that resonate deeply with my soul."</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What counted as evidence</div>
+        <p>Not revelation but coincidence held loosely — "an old friend reaching out unexpectedly, a chance encounter with someone offering fresh insight, or a wave of calm that settled over him in the midst of chaos." His own reading: "not through dramatic interventions but in subtle, deliberate ways that we only hear when we're paying attention."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Turn</div>
+      <h2 class="sec-title">Contemplation was not enough, so he asked for the prayers of his childhood back.</h2>
+      <p class="sec-lead">"Enough with the contemplation," he said. "I need actions. I need a shift in energy or frequency—something to break the bondage of financial problems. Contemplation is fine, but now I need real, tangible change."</p>
+      <p class="body-text">The request that follows is the piece's sharpest reversal. Having spent pages establishing that the Jesus of his upbringing had become myth, he asks to borrow that upbringing's language anyway: "since I was raised in Christianity, maybe borrowing prayers and proverbs from the Bible would feel less foreign, more grounded."</p>
+      <p class="body-text">The answer treats this as continuity rather than retreat. Such prayers "can provide a comforting and familiar structure" and "can serve as a bridge between your upbringing and the spiritual journey you're on now."</p>
+      <p class="body-text">What is offered is six passages, each with an adapted personal version alongside it — the Lord's Prayer from Matthew 6:9–13, the Prayer of Jabez from 1 Chronicles 4:10, Psalm 37:25, Proverbs 3:5–6, Psalm 23:1–3 and Deuteronomy 8:18. The adaptations are explicit about the financial situation: "Lord, provide for my immediate needs. Open ways to resolve my financial burdens and deliver me from the chains of scarcity."</p>
+      <p class="body-text">"This approach blends your Christian roots with the personal journey you're on now," he concluded. "It allows you to connect with the divine in a way that feels authentic, empowering, and true to who you are." The reply: "It feels like a way to honor where I've come from while still moving forward."</p>
+      <div class="callout">
+        <div class="callout-label">The other counsel offered, before the prayers</div>
+        <p>"To invite change—perhaps even miracles—requires something deeper than effort alone," he began. "It's about creating a space for clarity and trust to emerge." And on what to watch for: "Sometimes what we call miracles aren't thunderous revelations. They're quiet nudges—a memory stirred, a phone call at the right moment, a sudden idea that feels like it came from nowhere."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Name</div>
+      <h2 class="sec-title">The search arrived at the name given at the burning bush.</h2>
+      <p class="sec-lead">"To whom am I praying?" he asked. "What's His—or Her—name? Perhaps I'm cycling back to the questions asked thousands of years ago."</p>
+      <blockquote>
+        <p>the name ‘I Am Who I Am' originates from the Torah, specifically in Exodus 3:14. It's the name God revealed to Moses at the burning bush—a name that carries profound meaning.</p>
+        <cite>&mdash; Dr. Toronata Tambun</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the name is said to convey</div>
+          <div class="arith-body">"Often rendered as “Adonai”, it conveys eternal existence, self-sufficiency, and transcendence. This name tells us that God is not bound by time, space, or human constructs."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why this name and not another</div>
+          <div class="arith-body">It meets the condition set at the start — transcendence without myth. "If this resonates with your quest for a supreme being who is real, transcendent, and not confined to mythological narratives, then ‘I Am Who I Am’ could be your focal point."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">How it is to be used</div>
+          <div class="arith-body">Three practices: invocation — "Begin your prayers or meditations by addressing ‘I Am Who I Am.’"; reflection on what the name signifies; and personal affirmation, because "The name doesn't just point outward; it reminds you of your own connection to the divine."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What it becomes</div>
+          <div class="arith-body">"‘I Am Who I Am’ becomes not just a name but a profound invitation—to trust in an unchanging, infinite reality that transcends all human limitations." And the reply to that: "It's both a name and a promise—a connection to a reality that is vast, eternal, and ever-present. And now, it's yours to call upon."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Objection</div>
+      <h2 class="sec-title">Arriving there felt like square one; the answer offered was circling deeper, not circling back.</h2>
+      <p class="sec-lead">"Am I cycling back?" he asked, almost rhetorically. "Now I cannot seem to run from the Hebrew God. It feels like I'm back to square one." The objection is raised by the piece against itself, and it is the most honest moment in it.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">The case that nothing moved</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"I've tried to move beyond this—beyond the God of my upbringing. Yet here I am, caught in the same narrative"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"It feels inescapable"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The search set out to avoid myth and ended at the God of the Torah</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Every alternative examined — Buddha, Krishna, the Mother Archetype, Deism, Taoism — was passed over</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The prayers borrowed back are the prayers he was raised on</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">The case that the distance is real</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"you're not cycling back, but circling deeper"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"Before, the name so resembles the Hebrew God may have felt like a myth, confined to stories and traditions that no longer resonated with you"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"Now, ‘I Am Who I Am’ has become something vast, unbounded, and personal" — "a presence not tied to doctrine but to existence itself"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"When you started, you were questioning the existence of a supreme being entirely. Now, you've arrived at a name that holds profound meaning"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"Returning to ‘I Am Who I Am’ isn't retreating; it's finding depth in simplicity. It's realizing that this presence was never about religion or myth—it was always about connection"</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Where it lands</div>
+        <p>"Maybe you're right," he said. "Maybe it's not square one after all. Maybe it's a deeper step forward." Three uses of maybe in three sentences — the assent is given, and given tentatively.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Unresolved</div>
+      <h2 class="sec-title">If He can intervene and does not, the absence is either cruelty or an invitation, and the piece refuses to choose.</h2>
+      <p class="sec-lead">"But is He truly omnipotent?" he asked. "And if He is, does that mean He can break His own laws—His own rules? Or is that a contradiction?"</p>
+      <p class="body-text">The first answer sets a boundary that is not a limit: omnipotence "speaks to God's ultimate authority and ability to do anything that is logically possible. But it also acknowledges that this power operates within the consistency of God's nature, which includes justice, truth, and purpose." So: "even in this limitless power, God doesn't act arbitrarily or contradict His own essence."</p>
+      <p class="body-text">On miracles: "Miracles are often misunderstood as breaking the universe's laws. They aren't about God ‘breaking' the laws of the universe. Instead, they reveal a higher reality" — "God's sovereignty over creation." The Red Sea is offered as the case, "Whether one interprets it literally or symbolically" — a hedge the article makes and does not resolve.</p>
+      <p class="body-text">Then the question the piece cannot dispose of: "But if He can intervene, why doesn't He do it all the time? Why allow suffering, chaos, or struggle?" The answer given is free will and the integrity of natural law — "Constant intervention would undermine the integrity of those systems and our ability to choose, learn, and grow."</p>
+      <p class="body-text">It does not settle the matter, and the piece says so by asking again: "So He's powerful enough to intervene but chooses not to? Isn't that… cruel?" The reply concedes the force of it — "It can feel that way" — before offering the alternative reading: "Sometimes, the absence of intervention isn't neglect—it's an invitation to trust, to seek, and to grow in ways we might not otherwise."</p>
+      <p class="body-text">"It's hard to trust something you don't fully understand." The reply: "It is," and then "But trust isn't about having all the answers. It's about believing that there's a greater purpose, even when we can't see it."</p>
+      <div class="warning-callout">
+        <div class="callout-label">The admission the section ends on</div>
+        <p>"I just want to know it's worth it," The answer offered is not that it will work: "Not because everything will be perfect or easy, but because in seeking this connection, you're aligning with something infinite, something beyond the limits of human understanding." And then: "I guess I need to sit with that for a while," he said.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-10">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Dawn</div>
+      <h2 class="sec-title">By morning he was not seeking but being found.</h2>
+      <p class="sec-lead">"As the dawn light seeped into the room, he seemed different—lighter, like a weight had lifted. The darkness hadn't disappeared, but the morning had begun."</p>
+      <blockquote>
+        <p>Like a prodigal son, he wasn't just seeking; he was being found.</p>
+        <cite>&mdash; Dr. Toronata Tambun</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the image claims</div>
+          <div class="arith-body">"As he sat there, his shoulders trembling with quiet sobs, it was as if he had finally come home—not to a place, but to himself." The grammar carries the argument: the verb moves from active to passive, from searching to being found.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What is not claimed</div>
+          <div class="arith-body">"The longing was still there, but it no longer felt like a burden. Instead, it was a reminder—a quiet prayer—for something greater." Nothing is resolved and nothing is received. What changes is the weight of the wanting.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The last four words</div>
+          <div class="arith-body">"Perhaps that was enough." The dialogue's final sentence is conditional. It is the strongest resolution the piece offers, and it is offered as a possibility.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-11">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What I Carry</div>
+      <h2 class="sec-title">The closing taxonomy names seven positions and then declines every one of them.</h2>
+      <p class="sec-lead">Three pages after the dawn, the piece changes voice and register entirely — "Takeaways for me as the Reader" — and sets out how the writer might be described "within the taxonomy of religion and spirituality".</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Spiritual but not religious</div>
+          <div class="arith-body">"I see myself as spiritual in the sense that I believe in higher powers or deeper meaning, but I don't subscribe to the dogmas or rituals of organized religion."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Seeker</div>
+          <div class="arith-body">"I am someone searching for spiritual truth and meaning outside traditional religious institutions. My path is a journey, not a destination."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Freethinker</div>
+          <div class="arith-body">"I form my beliefs based on reason, personal experience, and intuition rather than relying on inherited doctrines. I question what doesn't resonate and value independent thought."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Eclectic</div>
+          <div class="arith-body">"I draw from various religious, spiritual, and philosophical traditions to shape a belief system that feels true to me."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Agnostic or atheistic spiritualist</div>
+          <div class="arith-body">"My spirituality may not be centered on a deity. I stay open to the possibility of spiritual realities without committing to specific supernatural claims".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Humanist</div>
+          <div class="arith-body">"I might also align with humanism if I root my beliefs in human values, ethics, and the lived experiences of people, rather than in spiritual or supernatural frameworks."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; Philosophical seeker</div>
+          <div class="arith-body">"My approach may be more philosophical than religious. I care less about rituals or labels and more about meaning, coherence, and ethical clarity."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The sentence that withdraws all seven</div>
+        <p>"I understand that these labels are only broad categories. My path is personal and evolving" — "too complex to be fully captured by any single term."</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The two endings, which the piece does not reconcile</div>
+        <p>The dialogue closes on the prodigal son and the burning-bush name — a homecoming. The post-reflection closes on a taxonomy built from positions outside organised religion, then refuses the taxonomy too. Both endings are in the published article, three pages apart, and nothing in it joins them. This deck holds both and resolves neither.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-12">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Scripture quoted or cited</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Exodus 3:14 — the name given at the burning bush, which the article renders ‘I Am Who I Am’.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Matthew 6:9–13, the Lord's Prayer; 1 Chronicles 4:10, the Prayer of Jabez; Psalm 37:25; Proverbs 3:5–6; Psalm 23:1–3; Deuteronomy 8:18 — the six passages offered, each with an adapted personal version alongside it.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Jeremiah 32:17 and Numbers 23:19 — quoted in the discussion of omnipotence.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>The golden calf at Sinai, the parting of the Red Sea and the parable of the prodigal son are referred to without chapter or verse.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>No translation is named for any passage in the article, and none has been supplied here. Several are quoted in wordings closest to the New King James tradition; that has not been treated as an attribution.</div>
+        <div class="ref-group-title">Traditions and figures named</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Buddha, Krishna and the Mother Archetype are named as archetypes considered and set aside. Deism and Taoism are named as perspectives explored. Rumi and Spinoza are named as writers whose work he considered turning to. No work is cited for any of them.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>The article carries no reference list. Every name above is recorded for the use the article makes of it rather than resolved to a source the article does not give.</div>
+        <div class="ref-group-title">Note on the account</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>The article is written as a dialogue between “I” and “my friend.” Both voices are the author. The deck follows the article's own form, keeping the third person for the seeker and the first person for the counsellor, and the final section keeps the article's own first person.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>The whole account is the author's own, disclosed without corroboration: the loss of Jesus as historical certainty, the financial position, the night of questions and the sobbing at dawn. No document supports any of it and none is claimed.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>The piece was created on 21 December 2024 — three days before the first entry of the countdown was written — and published on 31 December. It is the only part of the series drafted before the series began.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>The article's closing matrix of the seven positions is set as an image and does not survive text extraction. The seven entries above are taken from the prose that precedes it; no matrix content has been reconstructed.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Tambun, T. (2024, December 31). <em>D-Day End 2024</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/d-day-end-2024-reflection-2025-toronata-tambun-955yc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/d-day-end-2024-reflection-2025-toronata-tambun-955yc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10", "slide-11", "slide-12"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-7 Betrayal: There Is Nothing New Under the Sun &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">D-7 Betrayal</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Diagnosis</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Real Question</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Framework</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Older Record</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Response</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Diagnosis</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Real Question</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Older Record</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Response</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; D-7 · End-of-Year Countdown 2024 &nbsp;&middot;&nbsp; 24 December 2024</div>
+      <h1 class="title-main">D-7 Betrayal: There Is Nothing New Under the Sun</h1>
+      <p class="title-thesis">Repeated betrayal is explained by the betrayer's intrinsic traits rather than by the trust extended to him — so the question that actually needs answering is why the betrayed party kept returning, and cutting ties is the rational answer rather than a betrayal in kind.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Trust is what makes shared opportunity possible, and it is exactly what betrayal spends.</h2>
+      <p class="sec-lead">"Trust is a cornerstone of meaningful relationships. It enables collaboration, builds connections, and allows us to share opportunities with others."</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>You extend a hand, share your network, and offer someone access to opportunities they could never reach on their own — in the hope "that such trust will be valued and returned."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"Yet, once they gain the foothold they wanted, they repeatedly disregard your contribution, sidestep your relationship, and march forward as if you never mattered." And it repeats.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"Why do they keep doing this? Why didn't I walk away sooner?"</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>The first question has an answer in the research and it is about them. The second has an answer in your own biases — and it is the one that decides what happens next.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Diagnosis</div>
+      <h2 class="sec-title">The research puts the cause in the betrayer's traits, not in the trust you extended.</h2>
+      <p class="sec-lead">"This scenario aligns with patterns of betrayal narratives identified in research."</p>
+      <p class="body-text">Fanny Lalot (2023) categorised betrayals of this shape under "manipulating or taking advantage" and "cutting ties unexpectedly," highlighting how these actions stem from intrinsic traits of the betrayer.</p>
+      <p class="body-text">"These categories emphasize selfishness and opportunism, directly undermining the trust and integrity foundational to meaningful relationships." The breach is achieved through those traits, "leaving the betrayed party hurt or confused."</p>
+      <p class="body-text">The attribution matters more than it first appears. Lalot "emphasizes that causal attributions for these betrayals often point to intrinsic characteristics of the betrayer, such as selfishness or opportunism. These traits drive the betrayal, revealing that the problem lies with the betrayer, not with the one who placed their trust in them."</p>
+      <p class="body-text">The damage is cumulative rather than episodic. "The sting of such actions is not just personal—it accumulates, deeply disorienting your trust in relationships." Each incident pushes toward confrontation or retaliation, and the pattern forces a reckoning "not just with the individual, but with your boundaries, values, and capacity for self-preservation."</p>
+      <div class="callout">
+        <div class="callout-label">What this does not license</div>
+        <p>Locating the cause in the betrayer settles the attribution question. It does not settle the decision question — which is why the article moves straight to why the betrayed party stayed.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Real Question</div>
+      <h2 class="sec-title">So the harder question is not why they did it but why you went back.</h2>
+      <p class="sec-lead">"Yet, why do we often tolerate repeated betrayal? This question challenges us to confront the biases and personal values that can cloud our judgment."</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; The Halo Effect</div>
+          <div class="arith-body">It "might make us focus on the betrayer's outward persona—a self-proclaimed “God-fearing” philanthropist or their wealth and success—rather than their actions." The persona is doing the work the conduct cannot.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; The Sunk Cost Fallacy</div>
+          <div class="arith-body">It "might compel us to salvage the relationship due to the emotional or professional investments already made." What has already been spent argues for spending more.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Confirmation Bias</div>
+          <div class="arith-body">It "can lead us to emphasize their positive traits while rationalizing or downplaying their betrayals." The evidence is available; the weighting is not neutral.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Forgiveness held as a virtue</div>
+          <div class="arith-body">"Forgiving others is often seen as a virtue, and a desire to avoid conflict may make it harder to sever ties." A value that is genuinely good becomes the mechanism of the harm.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; The projected image of integrity</div>
+          <div class="arith-body">"Moreover, the betrayer's ability to project an image of moral integrity can create an illusion of reciprocity, making their actions even harder to confront." You are not only forgiving him; you are being managed.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why the article asks this at all</div>
+        <p>"Understanding these patterns not only clarifies our reasons for staying but also prepares us for the pivotal decision to prioritize self-preservation by severing ties." The purpose of the diagnosis is the decision it makes possible.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Trust survives everything except self-interest in the denominator.</h2>
+      <p class="sec-lead">The Trusted Advisor's Equation "provides a useful lens through which to understand trust and betrayal, especially in recognizing and addressing betrayal."</p>
+      <p class="body-text">"The equation suggests that trustworthiness is determined by credibility, reliability, intimacy, and the absence of self-interest. When self-interest is too high, trust erodes."</p>
+      <p class="body-text">Applied to the case at hand: "In the case of “manipulating or taking advantage,” the betrayer's overwhelming self-interest undermines their value as a trusted advisor, reducing the equation's outcome and leading to inevitable distrust."</p>
+      <p class="body-text">The framework's usefulness here is diagnostic rather than consoling. It says the collapse was structural — three components can be entirely intact while the fourth destroys the result. "This framework underscores the importance of identifying and addressing behaviors that undermine trust to protect oneself from exploitation."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Older Record</div>
+      <h2 class="sec-title">The Proverbs describe the same person, down to the charming speech.</h2>
+      <p class="sec-lead">"Proverbs from the Hebrew Bible echo the wisdom of discernment in relationships, building on Lalot's (2023) insights about intrinsic traits of betrayers." Proverbs 26:23–25 warns against deceptive appearances; the four traits below are the ones the article says apply.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">TRAIT A</div>
+          <div class="ev-title">A lying tongue</div>
+          <div class="ev-body">Manipulating through dishonesty to gain trust. Second of the seven listed in Proverbs 6:16–19, which the article identifies as the "seven abominations" referenced in 26:25.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">TRAIT B</div>
+          <div class="ev-title">A heart that devises wicked schemes</div>
+          <div class="ev-body">Planning to take advantage of someone's goodwill. Not opportunism discovered in the moment, but intent formed in advance.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">TRAIT C</div>
+          <div class="ev-title">A false witness who pours out lies</div>
+          <div class="ev-body">Misrepresenting intentions or actions — which is what makes the pattern hard to name while it is happening.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">TRAIT D</div>
+          <div class="ev-title">A person who stirs up conflict</div>
+          <div class="ev-body">Leaving relational damage or mistrust in their wake. The harm outlives the individual relationship.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The warning itself</div>
+        <p>"Like a coating of silver dross on earthenware are fervent lips with an evil heart. Enemies disguise themselves with their lips, but in their hearts they harbor deceit. Though their speech is charming, do not believe them, for seven abominations fill their hearts."</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the passage is for</div>
+        <p>"Betrayers often present themselves with charm and apparent goodwill but conceal harmful intentions beneath the surface. It advises caution, urging us to guard against manipulation and prioritize prudence in relationships."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Response</div>
+      <h2 class="sec-title">Cutting ties in response to harm is self-preservation, and it is not the same act as cutting ties without warning.</h2>
+      <p class="sec-lead">"When faced with betrayal, the healthiest response is often to sever ties." Lalot's research "notes that behavioral responses to betrayal frequently include cutting ties to protect oneself from further exploitation."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">Cutting ties as betrayal</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Done without explanation or justification</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Initiated by the party who caused no harm</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Leaves the other person without a reason</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>One of Lalot's two named betrayal categories</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Breaks a relationship that was still functioning</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">Cutting ties as self-preservation</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"Severing connections in these cases isn't a failure; it's self-preservation"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>A reaction to harm already repeatedly done</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"On the contrary, it is a protective and rational action to maintain emotional stability"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"It sets boundaries and ensures that relationships are built on mutual trust and respect"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"By stepping away from toxic relationships, you reclaim control over your emotional and mental well-being"</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The distinction stated plainly</div>
+        <p>"Cutting ties as a response does not make one a betrayer." The article grants that "cutting ties unexpectedly" can itself be a betrayal — and then says why this is not that: "severing connections as a reaction to harm is an act of self-respect."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Forgiveness frees the heart without requiring restoration.</h2>
+      <p class="sec-lead">"The Christmas season offers an opportunity to reflect on our relationships and the values we hold dear."</p>
+      <blockquote>
+        <p>Faithful are the wounds of a friend, but deceitful are the kisses of an enemy</p>
+        <cite>&mdash; Proverbs 27:6, quoted in the article</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the season is being asked to do</div>
+          <div class="arith-body">"This reflection calls us to discern between true friends and those who exploit trust." The task is discernment, not warmth — and the article puts it in the season rather than despite it.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The line that keeps both</div>
+          <div class="arith-body">"Forgiveness does not always mean restoration, but it does free the heart from resentment." Neither half is dropped: the grievance is released and the relationship is not resumed.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What walking away is not</div>
+          <div class="arith-body">"Walking away from harmful connections is not an act of hostility but a necessary step toward creating a life filled with trust, respect, and genuine care."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where it leaves the reader</div>
+          <div class="arith-body">"Not all connections are meant to last—and recognizing when to let go is essential for restoring peace of mind." The article ends on a wish rather than an instruction: "This Christmas, may we find strength in setting boundaries and focus on cultivating relationships that uplift and inspire."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Lalot, F. (2023). The unkindest cut of all: A quantitative study of betrayal narratives. <em>Journal of Community &amp; Applied Social Psychology, 33</em>(6), 1580–1601. https://doi.org/10.1002/casp.2738</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Maister, D. H., Green, C. H., &amp; Galford, R. M. (2000). <em>The trusted advisor</em>. Free Press.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Thorndike, E. L. (1920). A constant error in psychological ratings. <em>Journal of Applied Psychology, 4</em>(1), 25–29. https://doi.org/10.1037/h0071663</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Arkes, H. R., &amp; Blumer, C. (1985). The psychology of sunk cost. <em>Organizational Behavior and Human Decision Processes, 35</em>(1), 124–140. https://doi.org/10.1016/0749-5978(85)90049-4</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Nickerson, R. S. (1998). Confirmation bias: A ubiquitous phenomenon in many guises. <em>Review of General Psychology, 2</em>(2), 175–220. https://doi.org/10.1037/1089-2680.2.2.175</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Fehr, E., &amp; Gächter, S. (2000). Fairness and retaliation: The economics of reciprocity. <em>Journal of Economic Perspectives, 14</em>(3), 159–181. https://doi.org/10.1257/jep.14.3.159</div>
+        <div class="ref-group-title">Scripture</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Proverbs 26:23–25, Proverbs 6:16–19 and Proverbs 27:6 are quoted in the article. No translation is named for any of the three, and none has been supplied here.</div>
+        <div class="ref-group-title">Note on the account and the companion piece</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>The betrayal described is given in the second person as a scenario rather than as a documented case. No individual is named, no organisation is identified, and nothing in the article establishes whether the pattern is the author's own experience, a composite, or an illustration.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Fehr and Gächter (2000) on retaliation is listed in the article's references but is not cited anywhere in its text. It is reproduced here as published.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>The article opens by offering a fable version of the same argument at a shortened link. That link is not reproduced here because a shortened URL does not resolve to a stable canonical address, and the fable is not among the archived articles.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>The published LinkedIn address for this piece preserves an earlier title — it reads “forgive me my reflection christmas nothing new under sun” rather than the D-7 heading the article now carries. A LinkedIn slug is fixed at first publish and does not follow a retitle, so the two disagree; the deck uses the article's own printed title.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Tambun, T. (2024, December 24). <em>D-7 Betrayal: There Is Nothing New Under the Sun</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/forgive-me-my-reflection-christmas-nothing-new-under-sun-tambun-y8ouc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/forgive-me-my-reflection-christmas-nothing-new-under-sun-tambun-y8ouc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
