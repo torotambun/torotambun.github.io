@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Woods to World-Changing Ideas: Personal Discipline Meets MIT’s Ecosystem &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">From Woods to World-Changing Ideas</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Path</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Gap</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Framework</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Details</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Parallel</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> What I Carry</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Path</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Parallel</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">What I Carry</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Autoethnography · Proximity and Discipline &nbsp;&middot;&nbsp; 8 September 2024</div>
+      <h1 class="title-main">From Woods to World-Changing Ideas: Personal Discipline Meets MIT’s Ecosystem</h1>
+      <p class="title-thesis">The campus he arrived at in 1973 was cramped, and the crampedness turned out to be the mechanism: proximity forced the crossings that made the ideas. His own life runs on the same principle at personal scale — a mile and a half through the woods every day — and both are the frame for a dissertation on entrepreneurial ecosystems in Indonesia.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">The man beside me had quietly shaped fifty years of energy engineering.</h2>
+      <p class="sec-lead">A ten-seat dinner table at the entrance, in the centre of the room, at an MIT Club of Indonesia event in Jakarta.</p>
+      <p class="body-text">It was not the most private seating arrangement, and it was the third time our paths had crossed — but sitting next to him, the conversation felt more personal than it had before. We reflected on professional journeys that had both passed through MIT, at different times and with different focuses.</p>
+      <p class="body-text">At the start I handed him a copy of my book, Disciplined Storytelling, published in April 2024. It reflects my journey through leadership, innovation and storytelling, and was inspired by MIT's Patrick Winston, who emphasised "storytelling, writing ability, and quality of ideas—in that order." He had not taught me personally; sharing the book felt like contributing to an intellectual legacy MIT fosters among its alumni.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Path</div>
+      <h2 class="sec-title">He reached MIT in 1973 as the first non-MIT alumnus on the chemical engineering faculty.</h2>
+      <p class="sec-lead">A route through the places where American energy was being built.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">The 1950s</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">A childhood inside the energy industry</div>
+            <div class="timeline-body">His early years were spent in regions central to the burgeoning energy industry of the decade, surrounded by oil refineries and the development of new technologies. His schooling took place in key energy hubs, shaping an early understanding of how power and industry intertwine.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Undergraduate</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Heat transfer, learned in the South</div>
+            <div class="timeline-body">He pursued engineering at a prominent technical institute in the South, refining his understanding of complex systems such as heat transfer — which would later become pivotal to his work.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Graduate</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">The Midwest, and a widening of the field</div>
+            <div class="timeline-body">At a renowned Midwestern university with a strong engineering programme, the combination of industrial exposure and cutting-edge research broadened his expertise in chemical engineering.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">1973</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">MIT, and a bridge to nuclear energy</div>
+            <div class="timeline-body">He became the first non-MIT alumni faculty member in the Chemical Engineering Department — a pivotal moment that bridged chemical engineering with the emerging field of nuclear energy.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Gap</div>
+      <h2 class="sec-title">The cramped campus he resented turned out to be the mechanism.</h2>
+      <p class="sec-lead">Coming from a scenic Midwestern campus, MIT's urban setting was a stark contrast.</p>
+      <p class="body-text">The campus felt cramped, the buildings tightly clustered, and the Charles River alongside it was heavily polluted. Back then, he recalled, "the Charles was not the clean, inviting river it is today. Sailing was popular at MIT, but if your boat capsized, you had to be pulled out quickly and taken to the medical center for a tetanus booster."</p>
+      <p class="body-text">Over time he saw the advantage of the compact environment. Walking down a hallway meant passing from chemical engineering to chemistry, then biology, and even biotechnology or physics. Those interactions were not merely convenient; they were critical to the interdisciplinary collaborations that sparked new ideas.</p>
+      <p class="body-text">The proximity was not a byproduct of the campus layout — it was the foundation of MIT's success as a hub for innovation. Nobel laureates including David Baltimore and Phillip Sharp, whose work in biology often intersected with chemical engineering, were regular collaborators (Boud &amp; Lee, 2005; Kezar &amp; Gehrke, 2017).</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Proximity, recruitment and orchestration are what make the ecosystem work.</h2>
+      <p class="sec-lead">Three mechanisms, none of which is a building or a budget line.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Distance</div>
+          <div class="comp-name">Proximity across disciplines</div>
+          <div class="comp-body">A layout that makes crossing between fields unavoidable produces daily interaction between departments at a level the article calls unparalleled. The culture of interdisciplinary engagement is ingrained in the structure itself.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Hiring</div>
+          <div class="comp-name">Experience gained elsewhere first</div>
+          <div class="comp-body">MIT's recruitment culture encourages its alumni to gain experience elsewhere before returning to teach, which ensures faculty bring diverse perspectives into the interdisciplinary environment rather than reproducing it unchanged.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Coordination</div>
+          <div class="comp-name">The ecosystem orchestrator</div>
+          <div class="comp-body">Budden and Murray describe MIT as an "ecosystem orchestrator", integrating academia, industry and government to foster entrepreneurial activity. The orchestration of those relationships, formal and informal, is the transferable part.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Chemical engineering built the first reactors, and hydro made them workable.</h2>
+      <p class="sec-lead">The part of the conversation that landed on the author's own first discipline.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Where the nuclear industry got its framework</div>
+          <div class="arith-body">Much of the American nuclear industry's design and operational framework came from chemical engineering principles in the 1950s, especially in heat transfer and reactor design.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Why hydro plants sat next door</div>
+          <div class="arith-body">Early reactors required steady-state operation to maintain efficiency and could not easily ramp power up or down. Hydroelectric plants were often located nearby to manage the load, providing peak power while the nuclear plants ran constant — and recharging during off-peak hours.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Why the pairing was a safety matter</div>
+          <div class="arith-body">Unlike modern designs, older systems depended on a complex relationship between reactor control rods and external energy systems. Adjusting the rods to manage the fission reaction was less precise then, which made the hydroelectric backup critical to overall system safety and stability.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">An aside, carried as his</div>
+        <p>He noted that Pope Francis trained as a chemical engineer in Argentina before his religious calling, and mentioned that President Xi Jinping holds a chemical engineering degree from Tsinghua University in Beijing, earned in the mid-1970s as the country's energy and industrial activities were rapidly expanding. Both points are relayed as his, in the article's own reporting register.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Parallel</div>
+      <h2 class="sec-title">He walked a mile and a half through the woods; I sold all my cars.</h2>
+      <p class="sec-lead">Two disciplines arrived at separately, recognised across a dinner table.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">His practice</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>For nearly a decade he chose not to own a car</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"I walked a mile and a half through the woods every day" — near his home in Lexington, then a commuter bus to MIT</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A student in China was shocked that an American professor did not own a car</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A daily walking and jogging routine, carried with Thich Nhat Hanh recited along it</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>His phone opened once in the whole conversation, to show a collection of those books</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">Mine</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>In 2017 I sold all my cars</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>After a sustainability course at MIT led by Professor John Sterman in October 2016</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The transition was not easy — there were challenges at home, especially convincing my wife</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A disciplined exercise routine of my own, aligning daily habits with broader principles</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The same shape of decision, reached from a different direction</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What he recited on the walk</div>
+        <p>"I have arrived, I am home. In the here, in the now. I am solid, I am free. In the ultimate I dwell." It was not just about exercise — it was how he approaches life, balancing innovation with personal well-being, and it showed in his being fully present at a table where others would have reached for a phone.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What I Carry</div>
+      <h2 class="sec-title">The teaching that lasts is the permission to apply a principle anywhere.</h2>
+      <p class="sec-lead">A design course he taught, and what he wanted from it.</p>
+      <blockquote>
+        <p>I wanted them to see that their principles could be applied to anything</p>
+        <cite>&mdash; The professor, quoted in the article</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The result he can point to</div>
+          <div class="arith-body">Many of his students went on to build successful companies — a testament to the open-minded approach, and a mirror of the author's own teaching philosophy of helping students think beyond what is expected.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Fifty years in, still forward-looking</div>
+          <div class="arith-body">He spoke with excitement about an upcoming study on fusion energy, bringing together experts from multiple disciplines to explore fusion's potential in a deeply decarbonised future. The enthusiasm remained undimmed.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why this conversation is in a dissertation</div>
+          <div class="arith-body">Innovation ecosystems arise from diverse, interacting components (Autio &amp; Thomas, 2014), and MIT's blending of academia and industry is the model the author carries into research on entrepreneurial ecosystems in Indonesia. The small deliberate actions — walking miles to cut a carbon footprint, guiding students past traditional boundaries — are the same principle at personal scale.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <p class="sec-lead">Reproduced as the article lists them, in APA 7th. The professor is deliberately unnamed throughout the article and is unnamed here, as are the two universities he attended before MIT, which the article describes rather than names. His account of his own career, the Charles River, the China anecdote and the fusion study are his as recorded at the dinner, not independently verified, and the points about Pope Francis and President Xi Jinping are relayed as his.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Innovation Ecosystems</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Autio, E., &amp; Thomas, L. (2014). Innovation ecosystems: Implications for innovation management. In <em>Oxford handbook of innovation management</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Budden, P., &amp; Murray, F. (2018). <em>MIT's innovation ecosystem: Building the world's most successful innovation hub</em>. Innovation Ecosystems at MIT.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Etzkowitz, H., &amp; Leydesdorff, L. (2000). The dynamics of innovation: From national systems and “Mode 2” to a Triple Helix of university-industry-government relations. <em>Research Policy, 29</em>(2), 109–123.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Etzkowitz, H., &amp; Zhou, C. (2017). <em>The Triple Helix: University-industry-government innovation and entrepreneurship</em>. Routledge.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Thomas, L., &amp; Autio, E. (2015). The process of ecosystem emergence. <em>Academy of Management Journal</em>.</div>
+        <div class="ref-group-title">Learning and Collaboration</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Boud, D., &amp; Lee, A. (2005). Peer learning as pedagogic discourse for research education. <em>Studies in Higher Education, 30</em>(5), 501–516.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Kezar, A., &amp; Gehrke, S. (2017). Communities of transformation and their work scaling STEM reform. <em>American Educational Research Journal, 54</em>(3), 484–526.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Piaget, J. (1972). <em>The psychology of the child</em>. Basic Books.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Vygotsky, L. S. (1978). <em>Mind in society: The development of higher psychological processes</em>. Harvard University Press.</div>
+        <div class="ref-group-title">The Author's Own Work</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2024). <em>Disciplined storytelling: Communications for the introvert co-learning journey</em>. Amazon KDP.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Tambun, T. (2024, September 8). <em>From Woods to World-Changing Ideas: Personal Discipline Meets MIT’s Ecosystem</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/from-woods-world-changing-ideas-personal-discipline-meets-tambun-trsac" target="_blank" rel="noopener">https://www.linkedin.com/pulse/from-woods-world-changing-ideas-personal-discipline-meets-tambun-trsac</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
