@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Durna: A Revered Wayang Figure and His Echo in Leadership, Parenting, and Society &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Durna</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Teacher</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Thumb</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Method</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Trilemma</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Child</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> The Echo</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Where It Breaks</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Takeaways</div>
+    <div class="nav-item" data-target="slide-10"><span class="nav-num">10</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Teacher</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Thumb</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Method</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Trilemma</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Child</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">The Echo</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Where It Breaks</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Takeaways</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-10"><div class="car-num">10</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Wayang and Leadership &nbsp;&middot;&nbsp; 20 December 2024</div>
+      <h1 class="title-main">Durna: A Revered Wayang Figure and His Echo in Leadership, Parenting, and Society</h1>
+      <p class="title-thesis">Durna is admired for an intellect that is real, but what actually recurs in him is selective loyalty, transactional allegiance and quiet manipulation — so a child who admires him without a mentor will copy the compromises rather than the brilliance.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Durna is revered and contested at once, and the contest is the point.</h2>
+      <p class="sec-lead">"In the captivating world of Wayang, Durna (or Dronacharya in the Mahabharata) stands as a figure both revered and contested."</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>"His name evokes images of wisdom, intellect, and the delicate art of strategy." As a teacher he shaped "the greatest warriors of his time—both heroes and villains"; as a strategist he "navigated a complex web of loyalties and power with subtlety and precision."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"Yet, he is also remembered as a man whose moral compass often bent to pragmatic demands." He is "the brilliant mind whose intellect is unmatched but whose actions often provoke questions about integrity and ethics."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If the intellect and the compromises are inseparable, which of them does an admirer actually learn?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>"His traits—subtlety, pragmatism, and reliance on alliances—mirror modern leadership styles and provoke reflection on the balance between ambition and integrit." The article's word, printed as published.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Teacher</div>
+      <h2 class="sec-title">He earned the court through knowledge, and then taught both sides of the war that destroyed it.</h2>
+      <p class="sec-lead">"Durna's origins are modest, setting the stage for his eventual rise through intellect and skill."</p>
+      <p class="body-text">"Born into a family of Brahmins, he is initially bound by the constraints of poverty, a reality that shapes his worldview." He does not seek power by conventional means: "he carves his path through knowledge and mastery of warfare, earning his place in the royal court."</p>
+      <p class="body-text">"His role as a teacher defines much of his legacy. Entrusted with the education of the Pandavas and Kauravas, the princes of Hastinapura, Durna becomes a cornerstone of their development." He teaches "the art of archery, combat, and strategy, ensuring that they are equipped to navigate the challenges of kingship and warfare."</p>
+      <p class="body-text">"His most famous disciple, Arjuna, is regarded as one of the greatest warriors of all time, a testament to Durna's skill as a mentor."</p>
+      <p class="body-text">But the same teaching arms both sides of the coming war, and the loyalty holding it together is of a particular kind. "Loyalty, for Durna, is not unconditional but transactional." "Though he owes much to the royal family, his allegiance often shifts depending on circumstances. He is deeply loyal to those who serve his interests but can be ruthless when protecting his favored alliances."</p>
+      <div class="callout">
+        <div class="callout-label">What the article refuses to do</div>
+        <p>"But Durna's character is far from idealized." The piece is not a defence and not a takedown; it holds the brilliance and the compromise in the same frame throughout, which is what makes the later question about the child possible.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Thumb</div>
+      <h2 class="sec-title">Ekalavya's thumb is the price of Arjuna's supremacy, and it is the clearest thing Durna ever did.</h2>
+      <p class="sec-lead">"One of the defining moments in Durna's story is the episode involving Ekalavya, a young tribal prince."</p>
+      <p class="body-text">"Ekalavya, though not formally accepted as Durna's student, learns from him by observing his lessons from afar. Over time, Ekalavya surpasses even Arjuna, Durna's favorite pupil, in skill."</p>
+      <p class="body-text">"When this comes to light, Durna feels compelled to act. To ensure Arjuna's supremacy, he demands Ekalavya's thumb as a symbolic payment for the lessons. This cripples Ekalavya's abilities, eliminating him as a threat to Arjuna."</p>
+      <p class="body-text">"This episode reveals the complexity of Durna's character. On one hand, he is fiercely protective of his students, particularly Arjuna, whom he views as an extension of his legacy. On the other hand, his actions are morally questionable, prioritizing loyalty to a favored few over the principles of fairness and meritocracy."</p>
+      <p class="body-text">Karna receives the same logic from the other direction. "Despite Karna's extraordinary talent, he is dismissed because of his status as the son of a charioteer. Durna's refusal to nurture Karna's potential highlights his preoccupation with societal hierarchies and favoritism, leaving Karna embittered and pushing him toward allegiance with the Kauravas." And the consequence outlives the decision: it "inadvertently sets the stage for future conflicts and tragedies."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Method</div>
+      <h2 class="sec-title">He never fought in the open, and working from behind is what made him suspect.</h2>
+      <p class="sec-lead">"He is not a warrior in the traditional sense; he does not wield swords or charge into battle. Instead, he operates behind the scenes, using his intellect to influence events and shape outcomes."</p>
+      <p class="body-text">"One of Durna's greatest strengths is his understanding of human nature. He recognizes the ambitions, fears, and weaknesses of those around him and uses this knowledge to his advantage."</p>
+      <p class="body-text">The contrast the article draws is with those who work from principle: "Unlike figures such as Bhishma or Arjuna, who are driven by ideals and principles, Durna's actions are guided by pragmatism. He understands that loyalty is often a transaction, and he aligns himself with those who can provide him with security and influence."</p>
+      <p class="body-text">"This pragmatism is both his strength and his flaw. While it allows him to maintain his position in the court of Hastinapura, it also leads to decisions that undermine his reputation."</p>
+      <p class="body-text">And the method has a cost that is separate from any individual decision. "His ability to operate in the shadows, influencing decisions without direct confrontation, makes him a master of strategy but also a figure of suspicion." "Those around him are left questioning his true intentions, as his actions are seldom transparent. This lack of openness undermines his relationships and diminishes his moral authority as a teacher."</p>
+      <div class="callout">
+        <div class="callout-label">The war, and what it reveals</div>
+        <p>"Though he is loyal to Hastinapura, his heart is not entirely in the fight. He knows that the Kauravas' cause is unjust, but his sense of duty binds him to their side." His hesitation on the battlefield "while human, weakens his leadership and ultimately contributes to the downfall of the Kaurava army."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Trilemma</div>
+      <h2 class="sec-title">Three patterns recur: selective loyalty, transactional allegiance, quiet manipulation.</h2>
+      <p class="sec-lead">"Durna's life presents a trilemma that challenges even the most discerning mind, let alone a young boy's. His actions reflect three recurring patterns".</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Selective loyalty</div>
+          <div class="arith-body">"Durna's favoritism toward Arjuna, while strategically sound, alienates others, including Karna and his own son, Aswatthama. This creates divisions and resentment, weakening his relationships and authority."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Transactional relationships</div>
+          <div class="arith-body">"Durna's loyalty to the Kaurava throne is rooted in gratitude rather than shared ideals. This blinds him to the larger ethical implications of his choices and perpetuates systems of injustice and corruption."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Quiet manipulation</div>
+          <div class="arith-body">"Preferring subtle influence over direct confrontation, Durna relies on manipulation to achieve his goals. While effective in the short term, this approach fosters mistrust and diminishes his moral authority."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The question the trilemma poses</div>
+        <p>"can loyalty, pragmatism, and morality coexist, or must one always be sacrificed for the others?" The article puts this as the puzzle that surfaces only with maturity — "For the boy who admires Durna, these patterns are not immediately apparent."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Child</div>
+      <h2 class="sec-title">A boy learns from his mother that success means reading people, and Durna gives that lesson a hero.</h2>
+      <p class="sec-lead">"What kind of environment produces a child who sees Durna not as a morally flawed character but as a figure to be admired and emulated?"</p>
+      <p class="body-text">"Imagine a boy growing up in a modest Javanese village, the son of a merchant mother who lives among peasants. His family is not wealthy, but his mother's resilience in the market provides stability and a sense of possibility."</p>
+      <p class="body-text">"Each morning, the boy observes her negotiating with customers, adapting to their needs, and balancing relationships with practicality. She may not realize it, but her example becomes a lesson for her son: success requires understanding people, their desires, and their fears."</p>
+      <p class="body-text">The article is specific about how a lesson becomes a commitment. It takes what it calls a sparkling moment — "a sudden, intense experience that fires a particular neural connection—to make these ideas stick." "Perhaps it happens when he watches his mother outwit a difficult customer, or when he sees her successfully navigate a conflict with another merchant."</p>
+      <p class="body-text">Then the evenings, and the shadow puppets. Durna "is not the strongest nor the most virtuous, but his intellect and subtlety make him indispensable. The boy watches as Durna navigates situations not with brute strength but with strategy and foresight."</p>
+      <p class="body-text">"In that brief moment, the boy feels a spark—neurons firing and wiring together to form a lasting impression. Intelligence and strategy, he begins to believe, can overcome even the most overwhelming obstacles. From that moment on, Durna becomes more than a character; he becomes a figure to aspire toward."</p>
+      <div class="callout">
+        <div class="callout-label">The other source, and why it does not settle it</div>
+        <p>"At the local pesantren, he is taught discipline, humility, and the importance of submission to a higher power. These teachings provide a framework of ideals, but his fascination with Durna's pragmatism persists." Two systems of knowledge, and the one that arrived through fascination wins.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Echo</div>
+      <h2 class="sec-title">The same traits appear in leaders who rise by alliance rather than confrontation.</h2>
+      <p class="sec-lead">"While his story is rooted in the shadow puppets of Wayang, the essence of his character is vividly reflected in modern leadership."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col visible">
+          <div class="diag-header">What is presented outward</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>A rise "from modest beginnings"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>A public image of humility and relatability</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"approachable and people-centric"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Avoidance of "direct conflict"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"many leaders ascend not through confrontation or sheer force"</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">What the pattern actually is</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"building relationships with powerful entities to gain their favor"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"working behind the scenes to consolidate their power"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"a strategic intent to ensure their influence extends far beyond their immediate role"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"Much like Durna borrowing weapons and resources, such leaders rely on the strength of their alliances"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"They may quietly position family members or trusted allies in key roles, ensuring continuity of influence"</span></div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">What the parallel is for</div>
+        <p>"At the heart of Durna's parallel in contemporary leadership is a question of ethics." "Leaders who emulate Durna walk a fine line between brilliance and manipulation, between ensuring stability and eroding trust."</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Family as a mechanism rather than an affection</div>
+        <p>"Blood ties offer a sense of reliability and loyalty, providing a convenient mechanism for sustaining power across generations." The article's harder formulation: "family, as a political or leadership unit, can serve as the cheapest and most reliable mechanism for preserving influence."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Where It Breaks</div>
+      <h2 class="sec-title">The analogy fails at the one place Durna chose the ablest disciple over his own son.</h2>
+      <p class="sec-lead">The article devotes a chapter to limiting its own comparison — "This chapter explores how the comparison between Durna's story from Wayang and leadership archetypes breaks down in critical ways."</p>
+      <p class="body-text">"While Durna is characterized by his relentless dedication to his chosen disciple, Arjuna, some leaders prioritize their families, emphasizing blood ties over merit or external alliances. This fundamental difference highlights an important distinction in leadership styles and their eventual consequences."</p>
+      <p class="body-text">On Durna's side: "Durna, despite his flaws, is meticulously disciplined in his pursuit of legacy. His unwavering commitment to Arjuna is not driven by emotion but by a calculated strategy to preserve and amplify his teachings. Every move he makes in shaping Arjuna is deliberate".</p>
+      <p class="body-text">On the other: "leaders who focus heavily on their families often let emotional considerations influence their decisions. While familial loyalty has its strengths, a lack of strategic rigor can lead to vulnerabilities. Decisions driven by affection or the desire to secure a family legacy may overlook broader consequences, resulting in inconsistencies that undermine long-term stability."</p>
+      <p class="body-text">Neither is endorsed. "Durna's approach reflects a highly disciplined pursuit of excellence through protégés, but his selective favoritism ultimately becomes a source of instability." The chapter's finding is symmetrical: "unbalanced leadership priorities often lead to instability and eventual downfall."</p>
+      <p class="body-text">This is the piece's own hedge and it should not be read past. Having built the parallel for three chapters, the author states where it stops holding — Durna passed over his own son Aswatthama for the abler student, which is the opposite of the pattern the earlier chapters describe.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Takeaways</div>
+      <h2 class="sec-title">Intellect and strategy are valuable only when grounded in ethical principles.</h2>
+      <p class="sec-lead">The article closes on seven takeaways, reproduced here in its order and wording.</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">A teacher above all else</div>
+            <div class="rec-body">"Durna's identity as a teacher underscores his commitment to merit and excellence." His allegiance is "to his disciple—a reflection of his belief in cultivating ability over blood ties."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">The child's misstep — misinterpreting a giant</div>
+            <div class="rec-body">"The child's uncritical admiration for Durna demonstrates the risk of idolizing complexity without understanding it." And: "To reduce him to a symbol of pragmatism or self-serving ambition fails to capture the depth of his character."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Selective loyalty — a strength and a caution</div>
+            <div class="rec-body">"His neglect of his own son, Aswatthama, and others like Karna illustrates how favoritism can alienate those outside his favored circle, leading to division and resentment."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Loyalty without shared values leads to fragility</div>
+            <div class="rec-body">"Durna's transactional relationships—rooted in gratitude rather than shared ideals—show the dangers of alliances built solely on obligation." "This serves as a reminder that alignment with principles, not just power, ensures sustainability in leadership and relationships."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">5</div>
+          <div class="rec-content">
+            <div class="rec-title">The power of mentorship beyond family</div>
+            <div class="rec-body">"His focus on teaching and mentoring Arjuna demonstrates the enduring impact of investing in capable individuals outside one's immediate family."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">6</div>
+          <div class="rec-content">
+            <div class="rec-title">The importance of ethical anchors</div>
+            <div class="rec-body">"His story is a cautionary tale about the cost of strategy without transparency and pragmatism without accountability."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">7</div>
+          <div class="rec-content">
+            <div class="rec-title">Navigating admiration with guidance</div>
+            <div class="rec-body">"By fostering critical thinking, mentors can help admirers discern which aspects of Durna's character to emulate and which to avoid."</div>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>True greatness lies not in adopting Durna's compromises but in learning from them to navigate life with both ambition and integrity.</p>
+        <cite>&mdash; Dr. Toronata Tambun</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-10">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Wayang scholarship cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Amir, H. (1997). <em>Nilai-nilai etis dalam wayang</em>. Sinar Harapan.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Aryandini, W. (2002). <em>Wayang dan lingkungan</em>. Penerbit UI-Press.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Haditjaroko, S. (1981). <em>Ramayana: Indonesian wayang show</em>. Djambatan.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Hardjowirogo, R. (1952). <em>Sedjarah wajang purwa</em>. Balai Pustaka.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Kasidi, K. (2016). <em>Estetika pedalangan: Rawatan murwakala kajian estetika dan etika budaya Jawa</em>. Badan Penerbit ISI Yogyakarta.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Magnis-Suseno, F. (1991). <em>Wayang dan panggilan manusia</em>. Gramedia Pustaka Utama.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Moerdowo, R. M. (1982). <em>Wayang: Its significance in Indonesian society</em>. Balai Pustaka.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Mulyono, S. (1975). <em>Wayang: Asal usul, filsafat &amp; masa depannya</em>. Alda.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Mulyono, S. (1976). <em>Wayang dan karakter manusia</em>. Pepadi.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Mulyono, S. (1987). <em>Wayang dan filsafat Nusantara</em>. Gunung Agung.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Mulyono, S. (1989). <em>Wayang dan karakter wanita</em>. CV Haji Masagung.</div>
+        <div class="ref-group-title">Wayang scholarship, continued</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Saksono, I. G. (2016). <em>Hukum karma dalam pewayangan</em>. Ampera Utama.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Sayid, R. M. (1981). <em>Ringkasan sejarah wayang</em>. Pradnya Paramita.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Soetarno, R. (1992). <em>Ensiklopedia wayang</em>. Dahara Prize.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Solichin, S., &amp; Suyanto, S. (2011). <em>Pendidikan budi pekerti dalam pertunjukan wayang</em>. Badan Pengembangan Sumber Daya Kementerian Ekonomi Kreatif.</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Sucipta, M. (2016). <em>Kitab lengkap tokoh-tokoh wayang &amp; silsilahnya</em>. Narasi.</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Sujamto, S. (1992). <em>Wayang &amp; budaya Jawa</em>. Dahara Prize.</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Suryadi, S. (1984). <em>Menuju pembentukan wayang Nusantara</em>. Balai Pustaka.</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>Urip, S. (1990). <em>Bisma: Warrior priest of the Mahabharata</em>. Sinar Harapan.</div>
+        <div class="ref-group-title">Note on what the article is about</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>The author has confirmed that this piece is written about an identifiable public figure, and that the wayang register is deliberate: no person is named in the article and none is named here. The deck stays inside the allegory throughout, as the article does.</div>
+        <div class="ref-entry"><span class="ref-num">[21]</span>The biographical sketch in the chapter on the child — a Javanese village, a merchant mother, a pesantren — is written in the conditional as an imagined case ("Imagine a boy…"). It is reproduced in that register and is not treated here as a claim about any person.</div>
+        <div class="ref-entry"><span class="ref-num">[22]</span>The chapter titled "Where the Analogy Falls Apart" is the author's own limit on his comparison, and it is carried in full rather than summarised away. A reader who takes the earlier chapters as a verdict is reading past the chapter in which he withdraws it.</div>
+        <div class="ref-entry"><span class="ref-num">[23]</span>Durna's story is given as the article gives it, drawn from the Wayang tradition and the Mahabharata. Episodes are attributed to that tradition rather than to any single work in the list above; the article cites its nineteen sources collectively and does not attach them to specific claims.</div>
+        <div class="ref-entry"><span class="ref-num">[24]</span>This article is not the fable version of any other piece in the archive. Two December 2024 articles offer separate, unlocated fable versions of themselves at shortened links; this is not one of them.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[25]</span>Tambun, T. (2024, December 20). <em>Durna: A Revered Wayang Figure and His Echo in Leadership, Parenting, and Society</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/durna-revered-wayang-figure-his-echo-leadership-parenting-tambun-twjfc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/durna-revered-wayang-figure-his-echo-leadership-parenting-tambun-twjfc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
