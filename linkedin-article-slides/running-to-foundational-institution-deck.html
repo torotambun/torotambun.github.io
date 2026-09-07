@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From "Running" to Foundational Institution: Startups on Sustainability (or on any other industries) - An Autoethnographic Note &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">From "Running" to Foundational Institution</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Field Notes</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Turn</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Cases</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Implications</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Framework</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Closing</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Field Notes</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Turn</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Cases</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Closing</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Innovation Ecosystems · ITB CEO Summit 2024 &nbsp;&middot;&nbsp; 20 August 2024</div>
+      <h1 class="title-main">From "Running" to Foundational Institution: Startups on Sustainability (or on any other industries) - An Autoethnographic Note</h1>
+      <p class="title-thesis">The visible markers of an innovative city — clean air, safe paths, respect on the street — are artifacts: compounded outputs of shared values, not their cause. A startup on sustainability inherits the same substrate. Where the shared values and the basic needs are not there, ESG talk is one more artifact, and it does not sustain.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">Running became the way I read a city's values, not just its streets.</h2>
+      <p class="sec-lead">The habit began at Harvard Business School's General Management Program in 2019, with regular walks averaging 6.1 km per day, and it turned into running only where the environment supported it.</p>
+      <p class="body-text">The article calls running "a deeply reflective practice, one that allows me to engage with the fabric of a city, to feel its pulse, and to understand its values." That is a method claim as much as a personal one: the run is the instrument, and what it measures is whether a place has arranged itself so that a person can move freely and safely.</p>
+      <p class="body-text">The piece was presented at the ITB CEO Summit 2024 on Thursday, 22 August 2024, at Aula Barat, ITB. Its exploration of the innovation-and-entrepreneurship ecosystem is credited to a course on innovation ecosystems taken with Dr. Phil Budden and Prof. Fiona Murray as an extra provisional course in the ACE Program at MIT Sloan Executive Education in 2018.</p>
+      <div class="callout">
+        <div class="callout-label">The instrument</div>
+        <p>The choice of where to run is not incidental to the argument. He runs only where the artifacts are present, which makes the running log a record of which cities have made that arrangement and which have not.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Field Notes</div>
+      <h2 class="sec-title">The artifacts are conveniences on the surface and commitments underneath.</h2>
+      <p class="sec-lead">One week in the journal: 42.9 km across Boston, Cambridge and Narita, with an additional 31.5 km on longer runs.</p>
+      <p class="body-text">Of the artifacts documented in his journal, the article says: "These artifacts aren't just about convenience; they are manifestations of shared values that prioritize public health, safety, and respect for the environment." The distinction it then draws is the one the whole piece turns on — that it is the shared values "that set truly innovative cities apart from others that might have similar physical features but lack the underlying cultural commitment."</p>
+      <p class="body-text">Of that week's cities the article says only this: they had "clean air, respectful cultures, and safe paths," which "made running not just a physical activity but a deeply fulfilling experience." The catalogue of artifacts itself is a slide in the source and does not survive text extraction.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Turn</div>
+      <h2 class="sec-title">Not every city with these artifacts is innovative — the artifacts are byproducts, not causes.</h2>
+      <p class="sec-lead">The article states the correlation and then refuses to read it as causation, which is where the running note becomes an argument about ecosystems.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col visible">
+          <div class="diag-header">What is visible</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Clean air, safe paths, well-maintained public spaces</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"It's not a coincidence that cities with higher innovation indices often have these same features"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>A city or a movement preaching at length about ESG, sustainability or climate change</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">What the visible rests on</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"However, it's important to note that not every city with these artifacts is necessarily innovative"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The artifacts are "byproducts of a deeper, more intrinsic set of shared values that define an innovative city"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Values that "are not created overnight; they are ingrained in the social fabric"</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Preaching is itself an artifact</div>
+        <p>"A city or movement can preach extensively about ESG, sustainability, or climate change, but these are all artifacts—visible outputs that stem from a deeper foundation." The sentence puts advocacy on the same shelf as the bike lane: an output, not a cause.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Cases</div>
+      <h2 class="sec-title">Japan's 1980s artifacts were laid down by Meiji-era teachers, and Norway was still solving waste disposal in the 1960s.</h2>
+      <p class="sec-lead">Two national cases, each chosen because the artifacts arrived decades after the values that produced them.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">CASE A</div>
+          <div class="ev-title">Japan, from the Meiji Restoration to the 1980s</div>
+          <div class="ev-body">Of the post-war recovery the article says it "wasn't just about rebuilding physical infrastructure—it was rooted in the human resources that" had been developed since the Meiji Restoration, the availability of teachers, and a societal commitment to education and progress. "By the 1980s, these shared values had materialized into the very artifacts of innovation that we observe today." The lag is the point: the artifacts are downstream by roughly a century.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CASE B</div>
+          <div class="ev-title">Norway, from waste disposal to sustainability leadership</div>
+          <div class="ev-body">The transformation "didn't begin with preaching about climate change. In the 1960s, they were still dealing with basic environmental issues like waste disposal." What the article credits is a governance system "rooted in shared values of diversity, a strong sense of community, a forward-thinking mindset, and a willingness to take risks" — not an environmental campaign.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">A startup on sustainability is not an orphan product; it inherits the ecosystem it is born into.</h2>
+      <p class="sec-lead">The transfer from cities to startups is made in one sentence, and it is the sentence the ITB audience was there for.</p>
+      <p class="body-text">"Just as a city's innovative status is not solely dependent on its artifacts but on the shared values that underpin them, a startup is not an independent or orphan product. It is deeply dependent on the ecosystem in which it operates, an ecosystem that relies on shared values rather than just physical or visible markers."</p>
+      <p class="body-text">The consequence the article draws is blunt and it is stated with a concession attached: without shared values and the fulfilment of basic needs, "people will just talk and dream about environment sustainability" — which the article immediately grants is better than doing nothing — but which does not sustain.</p>
+      <p class="body-text">Two of the slides at this point in the article are the author's own Jakarta Post columns on platform-matchmaking startups and on AI-based startups, posed as a question rather than an assertion: are these hypes? The columns are cited; the question is left open.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Foundational institutions are the rules nobody notices until they are missing.</h2>
+      <p class="sec-lead">The MIT definition the article quotes is what gives the running note its title, and it is the only borrowed framework in the piece.</p>
+      <p class="body-text">Budden, Murray and Turskaya define them as "those institutions, rules, practices and norms that are often taken for granted, but ensure that investments in a wide variety of capacities and assets can be effectively protected and leveraged to the benefit of the economy." At the core, the article records, they include rule of law and the corresponding absence of corruption, protection of property rights and especially intellectual property, financial institutions, freedom for new ideas including scientific openness, and general ease of doing business.</p>
+      <p class="body-text">The article's own contribution sits alongside that definition rather than inside it: the artifacts he runs by are "compounded power of shared values, a large chunk of foundational institution of a vibrant I-e ecosystem". Shared values are placed as a foundational institution in their own right — which is what makes the running log evidence rather than anecdote.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Closing</div>
+      <h2 class="sec-title">So I asked the Summit what our shared values are, rather than telling them.</h2>
+      <p class="sec-lead">The piece ends in the interrogative, on three reflections put to the audience and left unanswered.</p>
+      <blockquote>
+        <p>To my audience on 22nd August: What shared values do we have? Or what are our shared values?</p>
+        <cite>&mdash; From "Running" to Foundational Institution, 20 August 2024</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Reflection 1 — alignment, not conformity</div>
+          <div class="arith-body">"While our shared values may not always align seamlessly with certain innovation norms, I believe there are opportunities to collaborate and find solutions together." The gap between local values and innovation norms is named, and treated as workable rather than as a deficit.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Reflection 2 — partnership or compliance</div>
+          <div class="arith-body">He asks how educational institutions and large corporations can strengthen their partnerships for corporate innovation, and asks whether they are "truly geared towards long-term success, or are they primarily driven by CSR commitments?"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Reflection 3 — why VCs prefer graduates who studied abroad</div>
+          <div class="arith-body">He asks what steps would get local and regional investors to recognise the school's contribution to developing future leaders and technocrats, and asks directly why many VCs focused on Indonesian talent "often prefer graduates who have studied abroad." The question about what advantages those returning graduates possess is put and not answered.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <p class="sec-lead">The article carries a six-entry reference list, reproduced here. Eight of its illustrations are slides from the ITB CEO Summit presentation — the running journal for 13-19 August 2024, the catalogue of innovative-city artifacts, and the slides drawn from four Jakarta Post columns — and they are images that do not survive text extraction; the deck is built from the prose. The reference list gives Tambun 2023a through 2023d, but two of the in-body slide credits read only "Tambun, 2023" without a letter, so which column each slide reproduces is not fully determined by the source and is not inferred here. The eight-point methodological appendix on what makes the piece autoethnographic is generic apparatus and is not decked.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Budden, P., Murray, F., &amp; Turskaya, A. (2019). <em>A systematic MIT approach for assessing "innovation-driven entrepreneurship" in ecosystems.</em> http://innovationecosystems.mit.edu</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T. (2023, March 1). Elements that determine innovative nations: The case of Japan. <em>The Jakarta Post.</em> https://www.thejakartapost.com/opinion/2023/03/01/elements-that-determine-innovative-nations-the-case-of-japan.html</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Tambun, T. (2023, July 21). Shared values for sustainable progress: Learning from Norway. <em>The Jakarta Post.</em> https://www.thejakartapost.com/opinion/2023/07/21/shared-values-for-sustainable-progress-learning-from-norway.html</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Tambun, T. (2023, August 26). Fostering a culturally ready, innovative, and safe cybernation. <em>The Jakarta Post.</em> https://www.thejakartapost.com/opinion/2023/08/26/fostering-a-culturally-ready-innovative-and-safe-cybernation.html</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, T. (2023, September 9). Understanding the misguided praise for platform matchmaking. <em>The Jakarta Post.</em> https://www.thejakartapost.com/opinion/2023/09/09/understanding-the-misguided-praise-for-platform-matchmaking.html</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T., Yudoko, G., &amp; Aldianto, L. (2023). Exploring shared values in innovation and tourism: A case study approach from Japan, Norway, and Vietnam. <em>Proceedings of the 2023 MAG Scholar Conference in Business, Marketing &amp; Tourism</em>, 198.</div>
+        <div class="ref-group-title">Credited by the author</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>The exploration of the innovation-and-entrepreneurship ecosystem is credited to a course on innovation ecosystems taken with Dr. Phil Budden and Prof. Fiona Murray as an extra provisional course in the ACE Program at MIT Sloan Executive Education, 2018.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>The article was presented at the ITB CEO Summit 2024, Thursday 22 August 2024, Aula Barat, ITB.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2024, August 20). <em>From "Running" to Foundational Institution: Startups on Sustainability (or on any other industries) - An Autoethnographic Note</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/running-through-innovation-autoethnographic-its-startups-tambun-metuf" target="_blank" rel="noopener">https://www.linkedin.com/pulse/running-through-innovation-autoethnographic-its-startups-tambun-metuf</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
