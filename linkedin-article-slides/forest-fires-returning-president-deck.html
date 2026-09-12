@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Forest Fires Keep Returning to the President &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Why Forest Fires Keep Returning to the President</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Decision</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Calculation</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Peat</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Instruction</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Authority</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Displacement</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Empathy</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> The Same Standard</div>
+    <div class="nav-item" data-target="slide-10"><span class="nav-num">10</span> Implications</div>
+    <div class="nav-item" data-target="slide-11"><span class="nav-num">11</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-12"><span class="nav-num">12</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Decision</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Calculation</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Peat</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Instruction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Authority</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Displacement</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Empathy</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">The Same Standard</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-10"><div class="car-num">10</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-11"><div class="car-num">11</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-12"><div class="car-num">12</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Fire Governance &nbsp;&middot;&nbsp; 6 September 2026</div>
+      <h1 class="title-main">Why Forest Fires Keep Returning to the President</h1>
+      <p class="title-thesis">The fires recur for reasons of plantation economics, peat drainage and weather. They also recur because institutions treat an instruction issued as a responsibility discharged. Where recognition attaches to the identifiable activity rather than to the condition of the land, prevention is the work that is never assessed, and the same emergency returns.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">The habitat is demonstrably under threat, which is reason enough for concern without unverified claims attached to photographs.</h2>
+      <p class="sec-lead">"The sadness surrounding the fires in Sumatra and Kalimantan is difficult to separate from the knowledge that orangutans depend on the affected forests for food and shelter."</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>On 13 August 2026 the Borneo Orangutan Survival Foundation "reported that more than 43 hectares within its Mawas conservation landscape had already been burned and affected". Its appeal described the threat alongside "the patrols, water management, equipment, and community cooperation needed to prevent further damage".</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>The evidence is bounded, and the article says so. "The report does not establish a current count of orangutans dying or suffering hunger. It does establish that the habitat supporting their survival is under threat."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>By 26 August the ASEAN Specialised Meteorological Centre had activated Alert Level 3, reporting haze "drifting northward from West Kalimantan", so that "People beyond the burned areas were consequently exposed to harm arising from land they neither owned nor managed". Why does this keep happening?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>"Plantation development, peat drainage, weather, and enforcement belong in the explanation, but so does the way institutions determine whether their responsibilities have been fulfilled."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Decision</div>
+      <h2 class="sec-title">Burning is a land-management choice rather than a requirement of oil-palm cultivation, and has been documented as such since 2006.</h2>
+      <p class="sec-lead">"Burning can reduce the immediate expense of clearing land."</p>
+      <p class="body-text">CIFOR "documented its use by plantation companies, smallholders, and other land users in 2006, while also identifying fires associated with access to resources and land disputes".</p>
+      <p class="body-text">Its recommendations "included support for alternatives to burning, showing that fire was understood as a land-management choice rather than a requirement of oil-palm cultivation".</p>
+      <p class="body-text">That framing matters for attribution. A practice that is chosen can be changed, and the absence of change becomes a question for whoever is responsible for the alternatives.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Calculation</div>
+      <h2 class="sec-title">The cost advantage survives only because the losses fall on people who are not doing the calculating.</h2>
+      <p class="sec-lead">"The cost advantage depends on what enters the calculation."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">Inside the land user's calculation</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Clearing expenses avoided</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The immediate cost of the method to the user</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A boundary that appears to contain the decision</span></div>
+        </div>
+        <div class="diag-col wrong">
+          <div class="diag-header">Outside it, and borne by others</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"surrounding communities bear losses from smoke, disrupted work, and damaged resources"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Effects "on health, agricultural production, schooling, and public resources diverted to firefighting" (CIFOR, 2006)</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"Judging the method only by its immediate cost to the user would exclude these consequences"</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Peat</div>
+      <h2 class="sec-title">Drainage inside a concession raises the fire risk outside it, so the property boundary cannot contain the responsibility.</h2>
+      <p class="sec-lead">"Peat drainage makes the relationship between private decisions and wider harm particularly important."</p>
+      <p class="body-text">"Drained and degraded peat becomes susceptible to fire, while the resulting smoke can affect neighbouring countries" (Kopansky, 2017).</p>
+      <p class="body-text">"Research on Indonesian concessions found that drainage within a concession could increase fire vulnerability outside it. Fires could also spread across boundaries that did not always correspond with actual land occupation" (Gaveau et al., 2017).</p>
+      <p class="body-text">So a hotspot location is not an answer. An investigation "must establish who controlled the land, where ignition occurred, and whether surrounding management practices contributed to the spread". Gaveau et al. found "independent farmers occupying some concession land and companies operating beyond registered boundaries, making field investigation necessary for attributing responsibility".</p>
+      <div class="callout">
+        <div class="callout-label">Why naming the igniter is not enough</div>
+        <p>"Identifying whoever started a fire may leave unanswered the earlier decisions that made it difficult to contain."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Instruction</div>
+      <h2 class="sec-title">Presidential attention has been explicit since 2016, which makes recurrence a question about implementation rather than awareness.</h2>
+      <p class="sec-lead">The obligations were assigned years before this season, and that is what shifts the burden of assessment.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Sep 2019</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Prevention named as the cheaper path</div>
+            <div class="timeline-body">During a visit to a fire site in Riau, President Joko Widodo "emphasized that prevention was more effective and less expensive than extinguishing established fires".</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Feb 2020</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">The meeting is already a routine</div>
+            <div class="timeline-body">He "described the coordination meeting as an annual routine held since 2016".</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Mar 2020</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Presidential Instruction No. 3 of 2020</div>
+            <div class="timeline-body">It "addressed prevention, suppression, recovery, enforcement, and coordination across national and local institutions".</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">The assessment that follows</div>
+            <div class="timeline-body">"Because these obligations were already assigned, assessing a subsequent intervention requires following what happened to the preceding instructions."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Authority</div>
+      <h2 class="sec-title">An instruction proves the power of office was exercised; only implementation proves it reached the ground.</h2>
+      <p class="sec-lead">"The distinction between formal authority and practical influence becomes relevant at this point."</p>
+      <p class="body-text">"An instruction demonstrates that someone has exercised the power of office. Evidence that the instruction changed field conditions must come from implementation."</p>
+      <p class="body-text">The failure mode is a public one. "When the first is accepted as proof of the second, public assessment stops before the consequences have been examined."</p>
+      <p class="body-text">"The condition described as kuasa tanpa prabawa concerns this separation between position and practical effect" (Tambun, 2025). The operative test is "whether the authority exercised through meetings and instructions reaches the maintenance of peatland conditions, the readiness of local teams, and the completion of investigations".</p>
+      <div class="callout">
+        <div class="callout-label">The claim the article declines to make</div>
+        <p>"Presidential involvement may be necessary to mobilize resources during a serious emergency. Its recurrence does not prove that local institutions are inactive." What it does make appropriate is scrutiny of continuity: "whether responsibilities remain funded and operational when senior attention moves elsewhere".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Displacement</div>
+      <h2 class="sec-title">Where recognition attaches to the identifiable activity, prevention becomes the work nobody has to demonstrate.</h2>
+      <p class="sec-lead">"The way institutions recognize achievement can affect that continuity."</p>
+      <p class="body-text">The asymmetry is structural. "A meeting, deployment, or inspection is an identifiable activity. Demonstrating successful prevention requires following conditions over time and examining whether the work reduced vulnerability."</p>
+      <p class="body-text">"If recognition rests mainly on completed activities, officials may receive credit for a response without an equivalent examination of preparation." It extends the argument about performative innovation, "where titles, affiliations, and ceremonies can carry more weight than what an initiative actually produces" (Tambun, 2026).</p>
+      <p class="body-text">The imbalance is not new. CIFOR's 2006 diagnosis "identified an emphasis on suppression that diverted resources from prevention and underlying causes. It also identified unclear institutional responsibilities and weak judicial follow-through".</p>
+      <p class="body-text">"The cultural question concerns how a fulfilled obligation is understood. If producing a report or carrying out a deployment is sufficient, unresolved vulnerability can remain outside the assessment."</p>
+      <div class="callout">
+        <div class="callout-label">What the sources do not settle</div>
+        <p>The later presidential emphasis on prevention "shows that the need was recognized, although the sources assembled here do not establish how far those earlier weaknesses have since been corrected".</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">And what is not being alleged</div>
+        <p>"This does not require assuming that Indonesians are indifferent to forests." BOS Foundation's account "documents sustained work by staff and communities, including patrols and water management".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Empathy</div>
+      <h2 class="sec-title">A report can record personnel and equipment while saying little about whether anyone received protection.</h2>
+      <p class="sec-lead">"The consequences experienced by affected communities provide another way to evaluate institutional activity."</p>
+      <p class="body-text">"A report may record personnel and equipment deployed while saying little about whether people received the protection or assistance they needed. Those operational figures remain useful, but their meaning depends on the conditions they were intended to improve."</p>
+      <p class="body-text">An earlier reflection on crisis leadership "identified honesty, a rational basis for hope, and authentic empathy as expectations of leaders" (Tambun, 2020). In a recurring emergency, "honesty includes an account of unresolved risks and incomplete obligations".</p>
+      <p class="body-text">The rakyat jelata column "concerned the responsibility of officials to understand how words reach people from a position of authority" (Tambun, 2024). "That responsibility extends to explaining a response in terms meaningful to those living with its consequences."</p>
+      <p class="body-text">And the harm does not stop at the border. Smoke crossing national boundaries was documented in the August alert, so "The location of the fire does not confine the responsibility to understand its effects".</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Same Standard</div>
+      <h2 class="sec-title">Affiliation is not an argument, and the test applied to officials has to be applied to educated circles as well.</h2>
+      <p class="sec-lead">"The dependence on visible standing also deserves examination within professional and alumni networks." A recent appeal to speak "as intellectuals under the MIT name" expressed concern about the fires, "but introduced affiliation as part of the justification for speaking".</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">What a name cannot do</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"An institutional name can indicate access to education and networks"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"It does not establish the relevance or quality of a particular contribution"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Allowed to supply that judgment in advance, it "resembles the substitution of status for demonstrated results criticized elsewhere"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The same standard "should apply when examining officials and ourselves"</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">What can actually be assessed</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"the evidence offered"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"the expertise relevant to the problem"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"the work undertaken"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Participation "proportionate to what is available without requiring a declaration of intellectual distinction"</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Two diagnoses explicitly refused</div>
+        <p>"This does not support a judgment that MIT alumni as a group are insensitive." And on the reply that it has nothing to do with me: "the sources discussed here do not establish that middle-class instability causes diminished empathy. Treating that connection as a finding would turn a plausible question into an unsupported diagnosis."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-10">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">Five matters can be followed past the emergency, and reporting them against earlier commitments is what would make prevention visible.</h2>
+      <p class="sec-lead">"The evidence identifies several matters that can be followed beyond the emergency" (CIFOR, 2006; Gaveau et al., 2017; Kopansky, 2017).</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">The management of vulnerable peat</div>
+            <div class="rec-body">The condition that converts a local clearing decision into transboundary harm, and the one that persists between seasons.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Support for alternatives to burning</div>
+            <div class="rec-body">CIFOR's own recommendation, and the test of whether fire is still being treated as a choice that can be changed.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Local preparedness</div>
+            <div class="rec-body">Whether the people carrying preventive responsibilities "receive dependable support" once senior attention moves elsewhere.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Investigation of land control and ignition</div>
+            <div class="rec-body">Establishing who controlled the land and whether surrounding practices contributed to the spread, which requires field investigation rather than hotspot mapping.</div>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>Public reporting would be more informative if it connected these matters with earlier commitments. That would allow an assessment of completed work, remaining risks, and the institutions responsible for them.</p>
+        <cite>&mdash; Dr. Toronata Tambun, Why Forest Fires Keep Returning to the President</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-11">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Following the work across seasons is what would turn concern into a practical direction.</h2>
+      <p class="sec-lead">"The sadness about orangutans belongs within this assessment because their survival depends on the forest remaining capable of feeding and sheltering them." BOS Foundation's account "describes work that must continue across seasons, regardless of whether the fires are receiving national attention".</p>
+      <blockquote>
+        <p>It would also bring the discussion of authority back to the consequences of its exercise, where the condition of the forest matters more than the prominence of the person announcing its protection.</p>
+        <cite>&mdash; Dr. Toronata Tambun, Why Forest Fires Keep Returning to the President</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-12">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources cited in the article, in APA 7th.</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">References, as cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>ASEAN Specialised Meteorological Centre. (2026, August 26). <em>Activation of Alert Level 3 for the southern ASEAN region</em>. https://asmc.asean.org/alert20260826-activation-of-alert-level-3-for-the-southern-asean-region/</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Borneo Orangutan Survival Foundation. (2026, August 13). <em>Stand between fire and the forest!</em> https://www.orangutan.or.id/fightfires</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Cabinet Secretariat of the Republic of Indonesia. (2019, September 17). <em>Forest fire prevention is pivotal, President Jokowi says</em>. https://setkab.go.id/en/forest-fire-prevention-is-pivotal-president-jokowi-says/</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Cabinet Secretariat of the Republic of Indonesia. (2020a, February 6). <em>President Jokowi reminds officials on efforts to fight wildfires</em>. https://setkab.go.id/en/president-jokowi-reminds-officials-on-efforts-to-fight-wildfires/</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Cabinet Secretariat of the Republic of Indonesia. (2020b, March 7). <em>President Jokowi signs presidential instruction on forest, land fires mitigation</em>. https://setkab.go.id/en/president-jokowi-signs-presidential-instruction-on-forest-land-fires-mitigation/</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Center for International Forestry Research. (2006, October 18). <em>Media backgrounder: Region’s fires and haze problem needs clarity on causes, consequences, and targeted responses</em>. https://www.cifor.org/press-release/media-backgrounder-regions-fires-and-haze-problem-needs-clarity-on-causes-consequences-and-targeted-responses/</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Gaveau, D. L. A., Pirard, R., Salim, M. A., Tonoto, P., Yaen, H., Parks, S. A., &amp;amp; Carmenta, R. (2017). Overlapping land claims limit the use of satellites to monitor no-deforestation commitments and no-burning compliance. <em>Conservation Letters, 10</em>(2), 257–264. https://doi.org/10.1111/conl.12256</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Kopansky, D. (2017, May 9). <em>Managing peatlands and keeping carbon dioxide under control</em>. United Nations Environment Programme. https://www.unep.org/news-and-stories/story/managing-peatlands-and-keeping-carbon-dioxide-under-control</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2020, April 10). <em>I hope our leaders had attended the sessions chaired by Prof. Dutch Leonard and Prof. Amy Edmondson of Harvard Business School</em> [Post]. LinkedIn. https://www.linkedin.com/feed/update/urn%3Ali%3Ashare%3A6654364912862760960</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2024, December 29). ‘Rakyat jelata’ controversy shows how words can be a sword. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2024/12/29/rakyat-jelata-controversy-shows-how-words-can-be-a-sword</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Tambun, T. (2025, April 19). Javanese sayings for a world losing its way. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2025/04/19/javanese-sayings-for-a-world-losing-its-way</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Tambun, T. (2026, March 14). Feudalism, meritocracy and why innovation becomes performative. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2026/03/14/feudalism-meritocracy-and-why-innovation-becomes-performative.html</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>The article’s empirical base is deliberately narrow: two 2026 situation reports (BOS Foundation, ASMC), two peer-reviewed or institutional sources on peat and concessions (Kopansky, Gaveau et al.), one 2006 CIFOR diagnosis, and three Cabinet Secretariat records. Four of the twelve entries are the author’s own earlier writing, used to carry forward arguments rather than to supply evidence.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>The term <em>kuasa tanpa prabawa</em> is carried from the author’s April 2025 Jakarta Post column and is glossed in the article as the separation between position and practical effect.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tambun, T. (2026, September 6). <em>Why Forest Fires Keep Returning to the President</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/why-forest-fires-keep-returning-president-dr-toronata-tambun-shk3c/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/why-forest-fires-keep-returning-president-dr-toronata-tambun-shk3c/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10", "slide-11", "slide-12"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

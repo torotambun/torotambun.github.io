@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Child Before the Leader &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">The Child Before the Leader</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Claim</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Second Limit</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Development</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Mechanism</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Archive</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Framework</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Implications</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Evidence</div>
+    <div class="nav-item" data-target="slide-10"><span class="nav-num">10</span> Recommendations</div>
+    <div class="nav-item" data-target="slide-11"><span class="nav-num">11</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-12"><span class="nav-num">12</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Claim</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Second Limit</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Development</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Mechanism</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Archive</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-10"><div class="car-num">10</div><div class="car-label">Recommendations</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-11"><div class="car-num">11</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-12"><div class="car-num">12</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Early Formation &nbsp;&middot;&nbsp; 7 September 2026</div>
+      <h1 class="title-main">The Child Before the Leader</h1>
+      <p class="title-thesis">Early experience does not determine destiny; it builds the architecture through which later experience is interpreted. Because the largest theoretical weight sits before age seven while public urgency arrives long afterwards, Indonesia's problem is not a shortage of programmes or knowledge but a misallocation of attention.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">A boy asleep beside his mother's cart, a few kilometres from the Palace, is already being taught what the state is.</h2>
+      <p class="sec-lead">"I first remember Rosyid as a baby being breastfed beside his mother’s tahu goreng cart in Menteng."</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>Years later he is in primary school. "Because there is nobody at home to look after him after school, his father brings him to the cart." He has been seen there "with a tablet, beneath a tarpaulin when it rains, and late at night asleep on the pavement beside his mother". "The cart stands only a few kilometres from the Palace."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"This is not a sentimental opening about poverty. It is a question about national vision." Which circuits are being exercised repeatedly, and which "expectations about safety, attention, work, strangers, technology, fairness and the state are becoming familiar before he has the language to explain them?"</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"And why does government usually become most visible much later—when it wants his examination scores, employability, obedience, productivity or vote?"</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>The archive leads to a proposition: "we spend too much time trying to repair the adult and too little time understanding the child who preceded the adult".</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Claim</div>
+      <h2 class="sec-title">Early formation carries the largest weight in the model, and declared character the smallest.</h2>
+      <p class="sec-lead">The peer-reviewed paper assigns approximate explanatory weights of "45 percent to early neural pathways, 22 percent to cognitive biases, 18 percent to external pressures, 10 percent to context and 5 percent to individual character".</p>
+      <p class="body-text">"The hierarchy is the argument. Early formation receives the largest weight; bias is second; pressure and context remain powerful; consciously declared character is the smallest component."</p>
+      <p class="body-text">That ordering is what unsettles the usual account. "This challenges the comfortable assumption that a good adult is simply someone who “has character.”" An executive "may sincerely value honesty yet rationalize a small exception, follow a compromised group, obey an authority, respond to a threat or gradually accept conduct that would once have felt wrong".</p>
+      <p class="body-text">"Research on ethical fading, gradual moral erosion and organizational misconduct explains why neither intention nor a values poster is enough."</p>
+      <div class="warning-callout">
+        <div class="callout-label">The limit stated by the author, not by a critic</div>
+        <p>"The 45 percent is not a biomarker, a national statistic or the result of following children for decades." The paper is "a conceptual narrative literature review" whose weights are "a disciplined theoretical allocation, not an experimentally estimated population variance".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Second Limit</div>
+      <h2 class="sec-title">Biography can generate patterns, but it cannot show the synapse that produced an adult decision.</h2>
+      <p class="sec-lead">"Intellectual honesty requires one more limit. Biography cannot prove a neural mechanism."</p>
+      <p class="body-text">A remembered kitchen or childhood humiliation "may reveal a plausible continuity. It cannot show us the synapse that produced an adult decision."</p>
+      <p class="body-text">The distortions are named rather than waved away. "Retrospective stories are selective; successful people are overrepresented; narrators search for coherence; observers, including me, bring theories to what they hear."</p>
+      <p class="body-text">So the evidential status is fixed in advance. The field notes "should therefore be read as pattern-generating evidence placed beside developmental science—not as a substitute for longitudinal research".</p>
+      <div class="callout">
+        <div class="callout-label">The term that replaces fate</div>
+        <p>"The scientific term to emphasize is therefore not fate but developmental probability." It "neither creates an unchangeable adult nor absolves the adult of responsibility".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Development</div>
+      <h2 class="sec-title">Formation begins long before the classroom, and the units have to be kept distinct to keep the claim honest.</h2>
+      <p class="sec-lead">"Yet three is not the true beginning." From pregnancy through the first three years at least five processes run together, and the brain is "constructing, selecting, reorganizing and improving communication across networks at the same time".</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Pregnancy to three</div>
+          <div class="arith-body">"Across much of the period, formation outpaces elimination, producing net expansion, but sensory and association regions follow different schedules." Synaptic density peaked "at about three months in auditory cortex but not until after fifteen months in middle frontal cortex".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Three to seven</div>
+          <div class="arith-body">High turnover with increasingly complex social learning. Genes associated with synaptic function in the prefrontal cortex "peaked around age five". That is "important evidence for prolonged prefrontal synaptic development", and "not a measurement of whole-brain neuronal firing".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Eight to seventeen, then seventeen to twenty-four</div>
+          <div class="arith-body">"Pruning did not suddenly begin at eight. What changes is the balance." The later band is "an interpretive extension in my ongoing postdoctoral work, not an exact age boundary established by that paper".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Then adult institutions</div>
+          <div class="arith-body">They "activate, reward, constrain or corrupt what is available. Pressure does not merely reveal a fixed character; it interacts with learned expectations, bias, social identity and incentives."</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">A number the article refuses to repeat</div>
+        <p>A neuron is a cell, a synapse a connection, and "A spike, or firing event, is a momentary electrical signal and must be counted over a specified period". Against an estimate of "approximately 86 billion neurons in the adult human brain", the claim of "350 trillion firing neurons" is incorrect. "I will not use neurons, synapses and firing events interchangeably."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Mechanism</div>
+      <h2 class="sec-title">Repetition builds the baseline; a salient episode alters the weight; only their coincidence is unusually influential.</h2>
+      <p class="sec-lead">A sparkling moment is "an emotionally salient, novel or identity-relevant experience that becomes unusually available as a reference point for later interpretation and action". "“Sparkling” describes intensity and persistence, not goodness."</p>
+      <p class="body-text">"Repeated worlds create the baseline: the ordinary pattern of who responds, who disappears, what is praised, what is punished and what a child learns to expect." Sparkling moments "alter the weight".</p>
+      <p class="body-text">"Repetition without salience can make a practice familiar. Salience without repetition can make an event memorable. When both coincide, an experience may become especially influential. Even then, influence is a probability, not a verdict."</p>
+      <p class="body-text">The author corrects his own earlier use of the idea. In the Durna article "I described a sparkling moment too literally as an intense experience firing a particular neural connection. A human experience is not stored on one isolated wire."</p>
+      <p class="body-text">And corrects his own chronology. "My first clearly remembered sparkling moment was not my 1987 encounter with Prof. Sri Margono. It came in 1981", in the air-conditioned library of an American Baptist church, reading magazines about studying in America. "This recollection has not appeared in my published corpus; I record it here for the first time."</p>
+      <div class="callout">
+        <div class="callout-label">Why it is not a sixth percentage</div>
+        <p>"Nor is the sparkling moment a sixth percentage to be added to 45–22–18–10–5. It is a proposed mechanism for explaining why exposures within those domains are unevenly weighted."</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What policy can and cannot do with it</div>
+        <p>"No ministry can schedule a child’s spark. It can, however, widen the field in which constructive sparks are possible—and reduce the frequency with which fear, neglect and humiliation become the moments a child remembers with greatest force."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Archive</div>
+      <h2 class="sec-title">The archive earns its authority at the points where it refuses to explain.</h2>
+      <p class="sec-lead">Across encounters with academics, generals, entrepreneurs and parents, the discipline is in the disclaimers rather than the resemblances.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">FIELD NOTE A</div>
+          <div class="ev-title">Marbles did not produce ethics</div>
+          <div class="ev-body">On Prof. Djumilah Hadiwidjojo: "The honest inference is not that marbles produced ethical leadership." Play, sibling life and later models "supplied repeated material from which cooperation, persistence and independence could develop".</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">FIELD NOTE B</div>
+          <div class="ev-title">A transmitted value is not its method</div>
+          <div class="ev-body">On General Johnny Lumintang: the line from discipline and shortage to service "does not require us to approve of violence used against a child. Rapid learning under a whip is not evidence that whipping is good pedagogy."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">FIELD NOTE C</div>
+          <div class="ev-title">Adversity is not a training programme</div>
+          <div class="ev-body">On Francis Ngannou: "Divorce does not manufacture champions. Hardship is not a neurological training programme." The responsible conclusion is "difficulty and care interact".</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">FIELD NOTE D</div>
+          <div class="ev-title">The limit case that stays a limit</div>
+          <div class="ev-body">On Todung Mulya Lubis: "My present archive does not contain enough verified childhood material to tell readers where those convictions began. To invent an origin would weaken both his story and my theory."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The refusal is itself a result</div>
+        <p>"This boundary-setting is not a failure of the archive. It is one of its findings. Not every admirable adult gives us childhood evidence, and not every childhood story explains the adult."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Separating five processes stops the child from carrying burdens that belong to the school, market or state.</h2>
+      <p class="sec-lead">"The archive became more useful when I separated formation, refinement, consolidation, redirection and testing." "A single life can contain all five."</p>
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Earliest years</div>
+          <div class="comp-name">Formation</div>
+          <div class="comp-body">"the recurring environments and relationships of the earliest years"</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Childhood to adolescence</div>
+          <div class="comp-name">Refinement</div>
+          <div class="comp-body">"the pruning and reorganization that continue through childhood and adolescence"</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Repeated recruitment</div>
+          <div class="comp-name">Consolidation</div>
+          <div class="comp-body">"increasingly efficient use of repeatedly recruited pathways, a process to which continued myelination can contribute"</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">A mentor or institution</div>
+          <div class="comp-name">Redirection</div>
+          <div class="comp-body">"a mentor, institution or encounter that makes another route imaginable"</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">05</div>
+          <div class="comp-sub">Adult pressure</div>
+          <div class="comp-name">Testing</div>
+          <div class="comp-body">"the pressure under which an adult either maintains, modifies or abandons a value"</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">A country cannot preach character to children and then blame character when adults conform to its institutions.</h2>
+      <p class="sec-lead">"If early pathways hold the largest theoretical weight, the practical conclusion is not that parents must engineer future CEOs, generals or professors." That "would replace neglect with another form of violence: treating a child as a project designed to satisfy adult ambition".</p>
+      <p class="body-text">The aim is "to increase the probability that widely useful human capacities become practiced before high-stakes life begins": secure attachment, language-rich interaction, curiosity, perspective-taking, emotional regulation, bodily play, "repair after conflict, contact across difference, and experience of rules applied with reasonable consistency".</p>
+      <p class="body-text">Moral education changes shape too. "Children need more than instructions to be honest. They need repeated experience of adults telling the truth when truth is inconvenient; rules that do not disappear for powerful families; mistakes followed by repair rather than humiliation."</p>
+      <p class="body-text">"Silence does not create neutrality. It leaves children to infer the social order from what adults repeatedly do."</p>
+      <p class="body-text">Each remaining weight carries its own instruction: bias means teaching people "to notice the shortcuts of their own minds"; external pressure means "institutions must not demand heroism as their only control system"; character "means personal responsibility remains real but cannot carry the whole explanatory load".</p>
+      <div class="callout">
+        <div class="callout-label">The sentence that does the work</div>
+        <p>"Put differently: a country cannot preach character to children, expose them to contradictory institutions for twenty years, and then blame individual character when adults conform to those institutions."</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">And the guard against misuse</div>
+        <p>"If explanation is mistaken for excuse, prevention becomes impossible. If responsibility is mistaken for a complete causal theory, punishment becomes our only policy."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Thirty-six percent enrolment at ages three to six is not a failed system but an unfinanced one.</h2>
+      <p class="sec-lead">"Indonesia already possesses important elements of an early-childhood system." PAUD-HI integrates education, health, nutrition, care and protection. The financing does not match.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">ON THE RECORD A</div>
+          <div class="ev-title">Coverage</div>
+          <div class="ev-body">The 2023 net enrolment rate for children aged three to six was "about 36 percent and about 33 percent among poorer households", with "still lower rates in some eastern provinces".</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ON THE RECORD B</div>
+          <div class="ev-title">Who delivers it</div>
+          <div class="ev-body">"extensive reliance on privately operated centres, very low pay for many non-civil-service early-childhood educators, limited professional development".</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ON THE RECORD C</div>
+          <div class="ev-title">What cannot be seen</div>
+          <div class="ev-body">"difficulty tracking spending consistently across ministries and levels of government".</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">ON THE RECORD D</div>
+          <div class="ev-title">How to read the figures</div>
+          <div class="ev-body">"These figures are not evidence that PAUD has failed. They are evidence that the country has not yet financed the formative years in proportion to the importance it assigns them rhetorically."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why policy cannot start at the school gate</div>
+        <p>"A child’s first three years are largely spent in households, neighbourhoods, clinics, informal childcare and public space. Rosyid’s first learning environment included a food cart." Policy "must therefore follow the child across settings rather than require the child to appear inside one ministry’s institution before becoming visible".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-10">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Recommendations</div>
+      <h2 class="sec-title">A Pregnancy-to-Seven Formation Compact would move the policy clock to where the weight actually sits.</h2>
+      <p class="sec-lead">Six commitments are proposed. The first four reset the unit of policy; the last two decide whether the investment survives contact with the rest of the system.</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">Make the unit of policy the child-caregiver relationship</div>
+            <div class="rec-body">Responsive back-and-forth interaction supports early language and brain architecture, but caregivers can provide it "only when they themselves have time, health, safety and support". Without that, "Parenting advice" becomes "moral blame directed at mothers".</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Connect prenatal care, nutrition, health, protection and early learning</div>
+            <div class="rec-body">"Pregnancy to age three cannot remain a preface to “real education.”" A child at risk "should not have to be rediscovered separately by every service".</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Treat PAUD educators as formation professionals</div>
+            <div class="rec-body">"Raising pay without improving practice is incomplete; demanding quality without raising pay is exploitation."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Protect play, and measure environments rather than only enrolment</div>
+            <div class="rec-body">"Early learning is not a smaller version of secondary school." A dashboard should track "continuity of caregivers and teachers, responsive interaction, safety, inclusion, access to play". "The object is not to rank toddlers."</div>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>Early investment is wasted if later schools humiliate curiosity, if universities reward recitation, if workplaces normalize gradual misconduct, or if government demonstrates that rules depend on rank.</p>
+        <cite>&mdash; The sixth commitment: childhood is foundational, not sufficient</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-11">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">What Indonesia lacks is not programmes or knowledge but proportionality.</h2>
+      <p class="sec-lead">"The biographies in my archive do not prove that the years before seven manufacture destiny. They show why it is irrational to act as though adult character appears from nowhere."</p>
+      <blockquote>
+        <p>Indonesia does not lack programmes, committed teachers, caring families or knowledge. It lacks proportionality. We continue to invest public urgency after the most developmentally sensitive years, then ask individuals to compensate through motivation, religion, training, discipline or punishment.</p>
+        <cite>&mdash; Dr. Toronata Tambun, The Child Before the Leader</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">He is already a citizen</div>
+          <div class="arith-body">"But the child is not merely a preliminary version of someone the state will value later." "He is already a citizen whose environment is teaching him what citizenship means."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-12">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources behind the claims made in this deck, in APA 7th.</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">Peer-reviewed foundation</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Tambun, T., Yudoko, G., &amp;amp; Aldianto, L. (2025). Neural development in early childhood and the emergence of moral cognition: A developmental perspective. <em>International Journal of Early Childhood</em>. https://doi.org/10.1007/s13158-025-00449-x</div>
+        <div class="ref-group-title">Developmental evidence cited in this deck</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Azevedo, F. A. C., Carvalho, L. R. B., Grinberg, L. T., Farfel, J. M., Ferretti, R. E. L., Leite, R. E. P., Jacob Filho, W., Lent, R., &amp;amp; Herculano-Houzel, S. (2009). Equal numbers of neuronal and nonneuronal cells make the human brain an isometrically scaled-up primate brain. <em>Journal of Comparative Neurology, 513</em>(5), 532–541. https://doi.org/10.1002/cne.21974</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Huttenlocher, P. R., &amp;amp; Dabholkar, A. S. (1997). Regional differences in synaptogenesis in human cerebral cortex. <em>Journal of Comparative Neurology, 387</em>(2), 167–178.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Liu, X., Somel, M., Tang, L., Yan, Z., Jiang, X., Guo, S., … Khaitovich, P. (2012). Extension of cortical synaptic development distinguishes humans from chimpanzees and macaques. <em>Genome Research, 22</em>(4), 611–622. https://doi.org/10.1101/gr.127324.111</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Zecevic, N. (1998). Synaptogenesis in layer I of the human cerebral cortex in the first half of gestation. <em>Cerebral Cortex, 8</em>(3), 245–252. https://doi.org/10.1093/cercor/8.3.245</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Johnson, M. H., Grossmann, T., &amp;amp; Cohen Kadosh, R. (2015). The developing social brain in infancy and early childhood. <em>Nature Reviews Neuroscience, 16</em>(4), 219–231. https://doi.org/10.1038/nrn3951</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Knudsen, E. I. (2004). Sensitive periods in the development of the brain and behavior. <em>Journal of Cognitive Neuroscience, 16</em>(8), 1412–1425. https://doi.org/10.1162/0898929042304796</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tooley, U. A., Bassett, D. S., &amp;amp; Mackey, A. P. (2021). Environmental influences on the pace of brain development. <em>Nature Reviews Neuroscience, 22</em>, 372–384. https://doi.org/10.1038/s41583-021-00457-5</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Gino, F., &amp;amp; Bazerman, M. H. (2009). When misconduct goes unnoticed: The acceptability of gradual erosion in others’ unethical behavior. <em>Journal of Experimental Social Psychology, 45</em>(4), 708–719. https://doi.org/10.1016/j.jesp.2009.03.013</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Munawar, K., Kuhn, S. K., &amp;amp; Haque, S. (2018). Understanding the reminiscence bump: A systematic review. <em>PLOS ONE, 13</em>(12), e0208595. https://doi.org/10.1371/journal.pone.0208595</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Redondo, R. L., &amp;amp; Morris, R. G. M. (2011). Making memories last: The synaptic tagging and capture hypothesis. <em>Nature Reviews Neuroscience, 12</em>(1), 17–30. https://doi.org/10.1038/nrn2963</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>National Scientific Council on the Developing Child. (2020). <em>Connecting the brain to the rest of the body</em> (Working Paper No. 15). Center on the Developing Child at Harvard University.</div>
+        <div class="ref-group-title">Policy sources</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>World Health Organization, United Nations Children’s Fund, &amp;amp; World Bank Group. (2018). <em>Nurturing care for early childhood development</em>. World Health Organization. https://www.who.int/publications/i/item/9789241514064</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>UNICEF Indonesia. (2025). <em>Enhancing public finance for better early childhood education services in Indonesia: 2024 budget brief</em>. https://www.unicef.org/indonesia/media/23846/file/budget-brief-early-childhood-education.pdf</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Center on the Developing Child at Harvard University. (n.d.). <em>Serve and return</em>. https://developingchild.harvard.edu/key-concept/serve-and-return/</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>The article carries a full archival bibliography of roughly sixty entries, organised into a peer-reviewed foundation, two author-archive groups, developmental neuroscience, and historical and policy evidence. This deck lists only the sources behind claims it actually makes; the complete bibliography remains in the article.</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>The article’s own list styles the peer-reviewed paper’s first author as “Tambun, A. R. Y. T.” It is rendered here as <em>Tambun, T.</em> to match the citation standard used across this archive. The divergence is recorded rather than silently corrected.</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>The article closes with a source-control note that this deck does not reproduce but should be read with it. It records where the archive holds only adult observation and no childhood evidence, preserves two earlier pseudonymity decisions, and states that the 1981 church-library recollection is previously unpublished and deliberately carries no archival citation.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>Tambun, T. (2026, September 7). <em>The Child Before the Leader</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/child-before-leader-dr-toronata-tambun-wriac/" target="_blank" rel="noopener">https://www.linkedin.com/pulse/child-before-leader-dr-toronata-tambun-wriac/</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10", "slide-11", "slide-12"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
