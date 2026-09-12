@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conducting Literature Review and Ethical Studies &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Literature Review and Ethics</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Turn</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Field Notes</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Turn</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Field Notes</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Doctoral Method · Neuman Chapter 5 &nbsp;&middot;&nbsp; 10 March 2024</div>
+      <h1 class="title-main">Conducting Literature Review and Ethical Studies</h1>
+      <p class="title-thesis">The article is a summary of Neuman's chapter on the literature review, and what makes it more than a summary is the order in which it happened: the author read the chapter after submitting his own State of the Art, so the reading became an audit of finished work rather than a guide to unstarted work. Neuman's six types give him a name for what his SOTA is, the self-study type becomes a review template of his own, and the criterion he brings to the whole exercise is the one from the McEnerney piece he published the same afternoon — see through the reader's eyes.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">The book arrived from Amazon in four days and took me back to a Wisconsin lecture hall.</h2>
+      <p class="sec-lead">The article opens on the physical object, and the feeling it produced, before any method appears.</p>
+      <p class="body-text">"As an old-timer, my mind quickly expands, reminiscent of being transported to a Wisconsin lecture hall, the very place where Neuman's book was crafted."</p>
+      <p class="body-text">The prompt was a class, and the delivery was fast: "The touch of the book, prompted by Prof. Gatot Yudoko 's Quantitative Methodology Class, ignites a swift journey to the classroom." The book "only took four days to arrive from Amazon" and "evoked the heartwarming anticipation I felt as a child, waiting for my parents to return from work."</p>
+      <p class="body-text">What he did with it was deliberately unhurried: "Immersing myself in its chapters, I found myself engrossed, contemplating an all-nighter with the literature. But instead, I chose to reflect and digest the material."</p>
+      <p class="body-text">And the reason he could afford to: "This isn't for a grade; my State of the Art (SOTA) document was joyfully submitted in January, even though a two-week overhaul was needed."</p>
+      <div class="callout">
+        <div class="callout-label">The debt the article records</div>
+        <p>The overhaul "however rigorous, was made enjoyable thanks to the discipline instilled in me, for which I must thank Dr. Leo Aldianto, my co-promotor, who pushed for a fresh start." A fresh start on a document already written is the hardest instruction a supervisor gives.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Turn</div>
+      <h2 class="sec-title">I read the chapter on conducting a literature review after I had already submitted mine.</h2>
+      <p class="sec-lead">This is the sentence that makes the piece an argument rather than a set of notes.</p>
+      <p class="body-text">The reading becomes retrospective assessment: "Summarizing Chapter 5, the literature review chapter, I found myself in a reflective moment, pondering on what could have been improved."</p>
+      <p class="body-text">And the criterion he judges it by comes from his own teaching, not from Neuman: "Integrating this with my communication class on 'writing,' I emphasized the importance of seeing through the reader's eyes."</p>
+      <p class="body-text">That criterion is the argument of the McEnerney article he published seven hours later the same day — that value in academic writing is conferred by the reader's community rather than earned by the writer's effort. The two pieces are one thought, read from two directions.</p>
+      <p class="body-text">The article's cover caption names what the whole exercise is for: finding joy in reading a physical book.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Neuman's six types let me name what my State of the Art actually is.</h2>
+      <p class="sec-lead">The six types of literature review as the source slides set them out, all credited to Neuman's Chapter 5.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Context review</div>
+          <div class="arith-body">Linking a study to broader knowledge, introducing the study within a larger framework, and building on developing thought or study.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Historical review</div>
+          <div class="arith-body">Tracing an issue's evolution over time, combining with theoretical and methodological review, and developing concepts, theories or methods over time.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Integrative review</div>
+          <div class="arith-body">Summarising a state of knowledge, highlighting agreements and disagreements, and standing as an independent article that is a service to other researchers. This is the type the author's own SOTA belongs to, and the slide carrying his December 2023 submission is captioned as an integrative review.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Methodological review</div>
+          <div class="arith-body">Comparing methodological strengths, examining different methodologies and their varying results, and assessing methodological impacts on findings.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Self-study review</div>
+          <div class="arith-body">Demonstrating an author's familiarity with a subject, forming part of an educational or course requirement, and demonstrating knowledge in an area.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Theoretical review</div>
+          <div class="arith-body">Presenting and comparing theories, examining assumptions, logical consistency and explanation scope, and focusing on theory development and comparison.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What a literature review is for, on Neuman's account</div>
+        <p>The four goals given in the slides are demonstrating familiarity with a body of knowledge, showing the path of prior research and its relevance, integrating and summarising what is known, and learning from others while stimulating new ideas.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">The self-study type became a three-block review template of my own.</h2>
+      <p class="sec-lead">The one slide in the set that is not Neuman's — the author's own template for reviewing a journal article. Its wording does not survive text extraction and is transcribed here from a rendered page of the source, so it is given unquoted.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub"></div>
+          <div class="comp-name">Article being reviewed</div>
+          <div class="comp-body">The slide asks for a brief title reflecting the main idea of the review. The block that forces the reviewer to state what the article is about before saying anything about it.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub"></div>
+          <div class="comp-name">Critical evaluation</div>
+          <div class="comp-body">The slide names this section the heart of the review, and asks the reviewer to discuss the strengths and weaknesses of the article. Named as the heart of the exercise, and placed in the middle.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub"></div>
+          <div class="comp-name">Personal reflection</div>
+          <div class="comp-body">The slide describes a more subjective section covering what was learned from the article, what questions it raised, and how it might influence the reviewer's own work or thinking — including comparing the journal against one's own dissertation chapter and quoting it in the review where relevant.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why the third block is the useful one</div>
+        <p>The first two blocks describe the article. Only the third connects it to the reader's own work in progress, which is the mechanism by which reading becomes revision — the same mechanism the whole piece is an instance of.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Field Notes</div>
+      <h2 class="sec-title">Where to find literature, and what ethics has to do with a reading chapter.</h2>
+      <p class="sec-lead">The remaining slides cover sources and then turn, in the chapter's own structure, to research ethics.</p>
+      <p class="body-text">The publication types are set out as scholarly journals, books, dissertations, government documents, and policy reports and presented papers — each with its own characteristics and its own standing as evidence.</p>
+      <p class="body-text">The chapter then moves to ethics in social research, and the framing given on the slide is a tension rather than a checklist: the importance of ethical considerations is presented as balancing scientific knowledge pursuit against participant rights.</p>
+      <p class="body-text">That pairing is why the article's title carries both halves. A literature review and a research-ethics review are the two obligations a researcher discharges before the first datum is collected, and Neuman's chapter treats them together.</p>
+      <p class="body-text">The article closes with a wish list rather than a conclusion: a comparison table of reviewed manuscripts, especially in how they address the research questions, credited to a classmate's handout.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Reading it afterwards taught me to see through the reader's eyes.</h2>
+      <p class="sec-lead">The article's own closing thought, which is the only claim in it that is not Neuman's.</p>
+      <blockquote>
+        <p>Integrating this with my communication class on 'writing,' I emphasized the importance of seeing through the reader's eyes.</p>
+        <cite>&mdash; Conducting Literature Review and Ethical Studies, 10 March 2024</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Why the order matters</div>
+          <div class="arith-body">A methods chapter read before writing is instruction. The same chapter read after submission is an audit, and it produces a different kind of knowledge — not what to do, but what was missed. The article is a record of the second kind.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What was already done well</div>
+          <div class="arith-body">The SOTA was submitted in January and the two-week overhaul had already happened, prompted by a co-promotor who asked for a fresh start. The reflection is not regret; it is an experienced writer checking finished work against a standard he met afterwards.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where the standard came from</div>
+          <div class="arith-body">Not from Neuman, whose chapter is about method, but from the author's own communication teaching and from McEnerney — whose handout is the first entry in this article's reference list, and whose argument the author published in full the same afternoon.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <p class="sec-lead">The article carries a four-entry reference list, reproduced here. Thirty-three of its thirty-four slides summarise Neuman's Chapter 5 and are captioned to it throughout; that material is his and is presented as his. The exceptions are the slide reproducing the author's own State of the Art cover page and the self-study review template, both of which are the author's. The slides do not survive text extraction and were read from rendered pages of the source PDF; the identifying number printed on the State of the Art cover page is not reproduced here. Prof. Gatot Yudoko is named as the instructor of the class that prompted the reading and Dr. Leo Aldianto as the co-promotor who asked for the overhaul; no student is named anywhere in the source.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Neuman, W. L. (2011). <em>Social research methods: Qualitative and quantitative approaches</em> (7th ed.). Pearson. Chapter 5, pp. 123–162.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>McEnerney, L. (2014). <em>The value of academic writing</em> [Handout]. The University of Chicago Writing Program.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Wisesa, A. (2023). <em>Preparation examination: Introduction to the course</em> [Class handout, DSM-9 Prep Exam Class]. SBM-ITB, Jakarta.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Tambun, T. (2024). <em>Corporate-backed university-based ecosystem model in Indonesia</em> [State of the Art for Preparation Exam]. SBM-ITB, Jakarta.</div>
+        <div class="ref-group-title">Related in the archive</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, T. (2024, March 10). <em>The Value of Academic Writing: Insights from Larry McEnerney</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/value-academic-writing-insights-from-larry-mcenerney-toronata-tambun-fu6dc</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T. (2024, March 10). <em>Conducting Literature Review and Ethical Studies</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/conducting-literature-review-ethical-studies-toronata-tambun-ecfac" target="_blank" rel="noopener">https://www.linkedin.com/pulse/conducting-literature-review-ethical-studies-toronata-tambun-ecfac</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
