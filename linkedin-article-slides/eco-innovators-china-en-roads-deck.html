@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eco-Innovators: Preparing China's Youth for Sustainable Futures with Interactive Tools -My Essay &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Eco-Innovators: China's Youth and En-ROADS</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Gap</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Context</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Implications</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Context</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Environmental Education · Guangzhou &nbsp;&middot;&nbsp; 7 April 2024</div>
+      <h1 class="title-main">Eco-Innovators: Preparing China's Youth for Sustainable Futures with Interactive Tools -My Essay</h1>
+      <p class="title-thesis">Environmental education fails when it transfers facts, because climate is a systems problem and facts do not carry system behaviour. An interactive simulator lets a student watch their own decision fail, which makes system dynamics the actual subject rather than the delivery method. In China the argument has a second leg: the tool aligns with eco-civilization and a traditional value of harmony between people and nature, so it can be adopted rather than imported.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>En-ROADS Climate Simulation Ambassador</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A letter to co-lecturers, written for a school in Guangzhou.</h2>
+      <p class="sec-lead">The essay is addressed to teaching colleagues rather than to a general reader, and it signs off as a letter does.</p>
+      <p class="body-text">The first chapter carries the address in its own heading: "A Letter to The Co-Lecturers: Harnessing Interactive Learning Tools for Environmental Education in China". It closes the same way — "Sincerely, Toronata Tambun - En-Roads Climate Simulation Ambassador".</p>
+      <p class="body-text">The claim it makes for the tool is stated at the top: the essay "explores the transformative role of interactive learning tools in environmental education within China, spotlighting the En-ROADS climate simulator as a prime example of how technology can revolutionize understanding and engagement among students."</p>
+      <p class="body-text">And the gap it is aimed at is a transfer problem rather than a content problem. Interactive tools "emerge as crucial in bridging theoretical knowledge with practical application", with the potential "to enhance student comprehension of complex environmental dynamics, facilitating a hands-on learning experience that fosters deeper insight into climate change and sustainability challenges."</p>
+      <div class="callout">
+        <div class="callout-label">Where it was delivered</div>
+        <p>The essay is dated to Guangzhou SCA School, 9 April 2024, and refers to work carried out between November 2023 and January 2024. It is teaching material written for a specific school, published openly.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Gap</div>
+      <h2 class="sec-title">Facts about climate do not transfer; a simulator lets a student watch their own decision fail.</h2>
+      <p class="sec-lead">The argument for interactivity is made in terms of ownership rather than engagement, which is a stronger claim.</p>
+      <p class="body-text">"Students are more likely to be captivated by hands-on learning experiences where they can see the immediate impact of their decisions within the simulation." The mechanism is the feedback loop, not the novelty.</p>
+      <p class="body-text">What changes when the student builds the output rather than receives it: "When students are tasked with developing their own presentations, they take ownership of the learning process. This increases their engagement and motivation to understand the material deeply."</p>
+      <p class="body-text">And the constraint is deliberately loose. Working from guidelines rather than a script, "students are encouraged to think critically about how to present the information in a way that is both informative and engaging. This fosters creativity as they consider different ways to structure their presentations and what additional information, or visual aids might enhance their message." The essay also asks for transfer outward, through assignments "that require students to apply what they've learned" beyond the simulation.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">En-ROADS is a system-dynamics model, and system dynamics is the actual subject.</h2>
+      <p class="sec-lead">The tool is described by what it is built on, which is where the pedagogical claim comes from.</p>
+      <p class="body-text">En-ROADS stands for Energy-Rapid Overview and Decision-Support, developed by Climate Interactive with the MIT Sloan Sustainability Initiative and UMass Lowell's Climate Change Initiative, and building on the earlier C-ROADS model associated with Prof. John Sterman and Dr. Tom Fiddaman.</p>
+      <p class="body-text">What the essay singles out is not the interface but the model underneath: "The En-ROADS model emphasizes the system-" dynamics view of the climate and energy problem. A learner moving one lever sees the others respond, which is the thing a lecture cannot show.</p>
+      <p class="body-text">The academic frame comes from sustainability-competence research. "Wiek, Withycombe, and Redman provided a valuable framework for developing academic programs around sustainability education, emphasizing the competencies needed for effective engagement with environmental issues" (Wiek et al., 2011).</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Context</div>
+      <h2 class="sec-title">China has pledged carbon neutrality by 2060 and leads the world in renewable investment.</h2>
+      <p class="sec-lead">The national frame the essay teaches into, and the reason it treats the audience as already committed.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">CONTEXT A</div>
+          <div class="ev-title">The commitment</div>
+          <div class="ev-body">The essay asks teachers to "Highlight China's achievements and commitments to reducing carbon emissions, such as the nation's pledge to become carbon neutral by 2060 and its significant investments in renewable energy." The stated purpose of doing so is motivational: it "aligns with the national agenda and instills a sense of pride and responsibility."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CONTEXT B</div>
+          <div class="ev-title">How to teach the target</div>
+          <div class="ev-body">"Explain "carbon neutrality" and why the year 2060 is a realistic yet ambitious target, considering China's economic and industrial structure. Illustrate how expanding forest coverage not only captures CO2 but also enhances biodiversity and supports rural economies."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CONTEXT C</div>
+          <div class="ev-title">The position to be explained</div>
+          <div class="ev-body">"Discuss the significance of China's commitment within the global context, emphasizing its role as a major emitter turning towards sustainability." The essay asks the teacher to hold both halves of that sentence at once rather than either alone.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CONTEXT D</div>
+          <div class="ev-title">The infrastructure that makes it possible</div>
+          <div class="ev-body">"The country's investment in e-learning systems, as discussed by Hong et al. (2016), showcases the infrastructure in place to support innovative educational approaches" — which matters because tools like En-ROADS "require robust digital platforms to be effectively integrated into educational curriculums."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">The tool aligns with eco-civilization, which is what lets it be adopted rather than imported.</h2>
+      <p class="sec-lead">The essay's most interesting move is cultural rather than technical, and it is the one that makes the recommendation actionable.</p>
+      <p class="body-text">The alignment is claimed directly: the adoption of these practices "is not only aligned with China's commitment to sustainable development but also resonates with traditional Chinese values of harmony between humans and nature."</p>
+      <p class="body-text">That resonance is what the concluding chapter treats as the finding: "The cultural integration of traditional values with modern technological advancements has revealed a unique pathway for environmental education—one that honors the past while forging a sustainable future." A tool that has to be argued for against a culture will be used once; one that a culture already recognises can become curriculum.</p>
+      <p class="body-text">The essay also looks sideways rather than only inward. "Drawing parallels with policy innovations in Singapore, as Wu and Ramesh (2014) explore, China can further leverage these interactive learning tools to enhance environmental education, adapting successful strategies to its unique context." Adapting, not copying — the same distinction the cultural argument rests on.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Technology and tradition converge, or the next generation learns neither.</h2>
+      <p class="sec-lead">The essay ends on youth engagement, and on a claim about what education is for.</p>
+      <blockquote>
+        <p>The path forward is clear: by leveraging technology, embracing our cultural heritage, and engaging our youth, we can cultivate a more sustainable world for generations to come.</p>
+        <cite>&mdash; Eco-Innovators: Preparing China's Youth for Sustainable Futures, 7 April 2024</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Awareness is not the goal</div>
+          <div class="arith-body">The integration of environmental policy into teaching should ensure "that the next generation is not only aware of the challenges that lie ahead but is also equipped with the knowledge and skills to address them." Awareness is the thing the essay is trying to get past.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Not a solitary undertaking</div>
+          <div class="arith-body">"The collective journey towards sustainability is not a solitary one; it requires the collaboration and shared purpose of communities, educators, policymakers, and students alike."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What is being asked for next</div>
+          <div class="arith-body">"The challenge now is to continue this momentum, to innovate, and to expand these educational practices, ensuring that every student is prepared to participate in a sustainable future." The essay reads youth engagement as the return on the whole method — it "offers a beacon of hope", and "underscores the" critical role of education in equipping young minds to act.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <p class="sec-lead">The essay carries a formal abstract, keywords, table of contents and reference list, and is presented as a paper rather than a post; the cited works below are reproduced from that list. It also carries a Recommended Readings section consisting almost entirely of the author's own eighteen earlier LinkedIn posts and articles on En-ROADS, which are not reproduced here. Numerous figures across its twenty-five pages — the sea-level map, the government-initiative panels and the illustrated slides — are images that do not survive text extraction, and the deck is built from the prose. The essay is teaching material prepared for a named school and is decked on its argument.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the essay</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Hong, J. C., Hwang, M. Y., Szeto, E., Tsai, C. R., Kuo, Y. C., &amp; Hsu, W. Y. (2016). Internet cognitive failure relevant to users' satisfaction with content and interface design to reflect continuance intention to use a government e-learning system. <em>Computers in Human Behavior, 59</em>, 387–398.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Rieckmann, M. (2018). Learning to transform the world: Key competencies in sustainability. <em>Higher Education Policy, 31</em>(3), 285–303.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Sterman, J. D., Fiddaman, T., Franck, T., Jones, A., McCauley, S., Rice, P., Sawin, E., &amp; Siegel, L. (2012). Climate interactive: The C-ROADS climate policy model. <em>System Dynamics Review, 28</em>(3), 295–305.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Flood Tree. (2023). <em>Sea level rise.</em> https://flood.firetree.net/</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Wiek, A., Withycombe, L., &amp; Redman, C. — cited in the essay for a framework of sustainability competencies; the reference list gives no further detail and none is inferred here.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Wu, X., &amp; Ramesh, M. (2014) — cited in the essay for policy innovation in Singapore; the reference list gives no further detail and none is inferred here.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tambun, T. (2024, April 7). <em>Eco-Innovators: Preparing China's Youth for Sustainable Futures with Interactive Tools -My Essay</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/eco-innovators-preparing-chinas-youth-sustainable-futures-tambun-3dstc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/eco-innovators-preparing-chinas-youth-sustainable-futures-tambun-3dstc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

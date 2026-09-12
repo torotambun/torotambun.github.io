@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-Team in the "Epic Voyage of the Endurance" led by Ernest Shackleton: Toro's Case-study Note &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">X-Team in the Epic Voyage of the Endurance</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Case</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> What It Revealed</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Case</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">What It Revealed</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Case-Study Note · MB5701 Entrepreneurial Leadership &nbsp;&middot;&nbsp; 3 April 2024</div>
+      <h1 class="title-main">X-Team in the "Epic Voyage of the Endurance" led by Ernest Shackleton: Toro's Case-study Note</h1>
+      <p class="title-thesis">Shackleton's 1914 expedition is the cleanest available demonstration of a 2007 leadership framework, because every one of its capabilities has a dated incident attached rather than an assertion. The pedagogical claim runs alongside it: sixteen hours of preparation and no PowerPoint produced three hours and forty minutes that nobody noticed passing, which is what a case discussion is supposed to do and rarely does.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">Sixteen hours of preparation, no PowerPoint, and three hours forty that passed without notice.</h2>
+      <p class="sec-lead">MB5701 Entrepreneurial Leadership, SBM-ITB, 3 April 2024. The note records the teaching before it records the case.</p>
+      <p class="body-text">The preparation is stated as a hedge against everything that could go wrong: "Approaching the class with a mix of anticipation and preparedness, I recognized the challenges inherent in engaging students who might not have pre-read the case or grasped its complexities. With 16 hours of meticulous preparation, I strategized for various scenarios, from lack of prior engagement to difficulties in understanding the case's nuances."</p>
+      <p class="body-text">The instruments were chosen against the default: "Eschewing traditional PowerPoint presentations for a more interactive setup, I armed myself with an IPEVO overhead projector, multiple whiteboards, and a wealth of printed materials to facilitate a dynamic learning environment—all set against the backdrop of an amphitheater setup, conducive to vibrant discussion and engagement."</p>
+      <p class="body-text">And the outcome is measured in the only unit that matters for a discussion class: "As time seemingly folded into itself, 3 hours and 40 minutes passed without notice, a testament to the riveting exploration of leadership in crisis and the power of collective inquiry." The fear he names beforehand — "any fears of hostility or disengagement" — was not realised.</p>
+      <div class="callout">
+        <div class="callout-label">The class is acknowledged, not named</div>
+        <p>The article lists roughly twenty-eight participants by name in credit, together with two faculty colleagues. Following this archive's standing practice, no student is named here and the cohort is acknowledged collectively; Dr. Leo Aldianto and Dr. Yos Sunitiyoso, who are faculty, are named.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Case</div>
+      <h2 class="sec-title">Shackleton changed his objective from crossing Antarctica to bringing twenty-eight men home.</h2>
+      <p class="sec-lead">Leadership in Crisis: Ernest Shackleton and the Epic Voyage of the Endurance (Koehn, 2003), and what it is set up to examine.</p>
+      <p class="body-text">The case "provides an opportunity to examine list of signature leadership so -called 4CAPS+ and entrepreneurship in the context of Ernest Shackleton's 1914 Antarctic expedition, a compelling story of crisis, survival, and triumph."</p>
+      <p class="body-text">Its pivot is the fact everything else hangs on: after the vessel became trapped in ice and the crew abandoned ship, "the commander shifted his objectives and responsibilities from completing an historic march to ensuring the survival of all 28 expedition members." An objective abandoned entirely, and a new one adopted without loss of authority.</p>
+      <p class="body-text">What the two years then required is stated as the case's real subject: "Shackleton's efforts to maintain his team's morale, loyalty, and commitment in the face of extraordinary mental and physical trials during almost two years in the Antarctic."</p>
+      <p class="body-text">The second frame is the one the article adds: the crew is read as "a concept that works well if you an organization experiences distress" — an X-Team, an external team, whose ambassadorial, task-coordination and scouting functions are what carried it.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Every one of the four capabilities has an incident attached to it.</h2>
+      <p class="sec-lead">The 4-CAP+ mapping, worked through the expedition rather than asserted over it.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Sensemaking</div>
+          <div class="arith-body">"His ability to understand and navigate the changing and challenging conditions of the Antarctic landscape demonstrates "Open-Mindedness" and "Experimenting," as he continuously adapted his plans based on the situation, such as when he decided to change the expedition's goal from crossing Antarctica to survival and rescue after the Endurance was trapped in ice."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Visioning</div>
+          <div class="arith-body">"Shackleton's vision of crossing Antarctica and later ensuring the survival and rescue of his crew showcases his "Building and Sharing a Shared Vision" and "Creating Urgency for Change." Despite the extreme adversity faced, Shackleton maintained a clear vision for survival and inspired his men to persevere through seemingly insurmountable challenges."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Relating</div>
+          <div class="arith-body">"This is evident in how he managed interpersonal dynamics, such as addressing grievances and ensuring that the crew's morale remained high through shared meals, entertainment, and equitable division of labor, demonstrating "Inquiring" and "Supporting &amp; Coaching"." Shared meals and equitable labour are administrative decisions read as leadership ones.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Inventing</div>
+          <div class="arith-body">""Inventing" was critical to the crew's survival. Shackleton and his men created solutions on the spot, from converting lifeboats for an open sea journey to improvising survival strategies on Elephant Island."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Building credibility</div>
+          <div class="arith-body">"His decision-making process, particularly when abandoning the ship and choosing to risk a small crew to seek rescue, demonstrated "Acting as a Principled Leader" and "Committing to the Greater Good" by prioritizing his men's safety over the mission's original goals." Credibility here is built by what he gave up.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Adaptability quotient, and the effectiveness index</div>
+          <div class="arith-body">"His leadership exemplified "Anti-Fragile," "Emotional Intelligence," and "Paradoxical Thinking" as he navigated the crew through physical and psychological extremes. The effectiveness of Shackleton's leadership can be measured by the survival of his entire crew against all odds." Every man came home, and the original mission did not.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">VUCA, TUNA and BANI are three names for the water he was actually in.</h2>
+      <p class="sec-lead">The article uses all three vocabularies rather than choosing one, which is a claim that no single acronym covers the case.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">What the expedition faced</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Ice that closed without warning and did not open again</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A ship abandoned, then crushed, with no possibility of resupply</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>An open-boat crossing improvised from lifeboats</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Almost two years with no external contact and no confirmed rescue</span></div>
+        </div>
+        <div class="diag-col visible">
+          <div class="diag-header">What the frameworks call it</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>VUCA — volatility, uncertainty, complexity, ambiguity, from the U.S. Army War College</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>TUNA — "turbulent, uncertain, novel, and ambiguous"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>BANI — "brittle, anxious, non-linear and incomprehensible", named in the article alongside the other two</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>The article reads Shackleton as an X-Team "where the ambassador function, the task coordination function and the scouting function are predominant"</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why a 1914 case answers a 2007 framework</div>
+        <p>The article treats the X-Team as "a concept that works well if you an organization experiences distress or VUCA or BANI" or TUNA, and reads Shackleton's crew as exactly that. The claim runs both ways: a framework that fits a case a century older than itself is being tested, not merely illustrated.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What It Revealed</div>
+      <h2 class="sec-title">A 1914 expedition is the cleanest demonstration of the framework I can put in front of a class.</h2>
+      <p class="sec-lead">What the session produced, and why the pairing of case and framework is the pedagogical point rather than a decoration.</p>
+      <blockquote>
+        <p>Shackleton's leadership during the Endurance expedition is a compelling case study of the 4CAPS+ framework, demonstrating how effective leadership can guide a team through unprecedented adversity.</p>
+        <cite>&mdash; X-Team in the "Epic Voyage of the Endurance", 3 April 2024</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The question the class opened on</div>
+          <div class="arith-body">"is Shackleton an entrepreneur not?" — put as a cold call and answered, the article records, warmly and firmly in the negative. A discussion that begins by denying the premise is one where the framework has to earn its application.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the interactive setup produced</div>
+          <div class="arith-body">"This interactive approach not only enriched the learning experience but also highlighted the importance of adaptability and team cohesion, mirroring the very essence of Shackleton's leadership during the Antarctic expedition." The method and the subject matched.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where the framework is set out</div>
+          <div class="arith-body">The companion article of the previous day sets out the x360 model and the 4-CAP+ capabilities in the abstract; a third, published the following day, reads the same four capabilities through Javanese espoused values. This note is the case that sits between them.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article carries no formal reference list. Its source case is Nancy Koehn's Leadership in Crisis: Ernest Shackleton and the Epic Voyage of the Endurance, cited in the body as Koehn, 2003, with no publisher or case number given and none inferred. The 4-CAP+ capabilities and the X-Team concept are Ancona and Bresman's, set out in the companion article of 2 April 2024. VUCA is attributed in the body to the U.S. Army War College with a general reference to Wikipedia; TUNA and BANI are described without attribution, and the companion article of 2 April states plainly that no proponent for BANI could be identified. A BBC News photo essay of 20 November 2015 is credited beneath an image. Roughly twenty-eight class participants are named in the source in credit; none is named here, per this archive's practice, and the cohort is acknowledged instead. Numerous figures across the article's thirty-one pages are images that do not survive text extraction.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">The series in this archive</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Tambun, T. (2024, April 2). <em>X360 Leadership Development Models (4CAPS +)</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/x360-leadership-development-models-4caps-toronata-tambun-4bu8c</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T. (2024, April 4). <em>X-Team in Javanese World View</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/x-team-javanese-world-view-toronata-tambun-9izuc</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>The three were published on consecutive days and set out the framework, this historical case, and a cultural reading of the same four capabilities. None labels itself part of a series.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Tambun, T. (2024, April 3). <em>X-Team in the "Epic Voyage of the Endurance" led by Ernest Shackleton: Toro's Case-study Note</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/x-team-epic-voyage-endurance-led-ernest-shackleton-toros-tambun-oc23c" target="_blank" rel="noopener">https://www.linkedin.com/pulse/x-team-epic-voyage-endurance-led-ernest-shackleton-toros-tambun-oc23c</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

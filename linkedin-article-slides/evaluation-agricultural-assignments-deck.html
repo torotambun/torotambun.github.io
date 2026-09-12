@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluation of My Student's Performance on Agricultural Assignments &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Evaluating Student Performance</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Findings</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Reading</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Recommendations</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Reflection</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Findings</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Reading</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Recommendations</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Reflection</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Assessment · Agricultural Assignments &nbsp;&middot;&nbsp; 4 April 2024</div>
+      <h1 class="title-main">Evaluation of My Student's Performance on Agricultural Assignments</h1>
+      <p class="title-thesis">A four-criterion rubric applied across a class produces a distribution with a legible shape: grammar scores highest and critical thinking lowest, by five points of mode. The submissions are linguistically polished and analytically shallow, and the report names proofreading tools as a likely reason. The instruction that follows is directed at instructors rather than students — ask for challenged assumptions, because the language is already fixed.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A grading rubric produced a distribution, and the distribution has a shape.</h2>
+      <p class="sec-lead">Four categories, twenty-five points each, applied across a class and then read statistically rather than case by case.</p>
+      <p class="body-text">"This report aims to evaluate student group performance on assignments within the agricultural domain" (Tambun, 2024c). "By analyzing metrics such as critical thinking, depth of analysis, engagement with content, and grammatical precision, the report identifies patterns and areas for development."</p>
+      <p class="body-text">The method is what makes it a report rather than a set of marks: "The evaluation utilizes a normal distribution analysis of overall scores to segment performances into distinct categories." Individual grades are the input; the object of study is the class.</p>
+      <p class="body-text">The rubric behind it is reproduced in full as an appendix — four criteria of twenty-five points, each with four described bands. Critical thinking at the top band "Demonstrates an excellent ability to think independently, critically evaluates assumptions, identifies broader implications, and generates original insights"; at the bottom, it "Lacks critical thinking; fails to question assumptions or identify implications."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Findings</div>
+      <h2 class="sec-title">Grammar scored 23 out of 25 and critical thinking scored 18.</h2>
+      <p class="sec-lead">The modal score in each category, which is the finding the whole report turns on.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">SCORED A</div>
+          <div class="ev-title">Critical thinking and depth of analysis — mode 18</div>
+          <div class="ev-body">"Both categories frequently scored at 18, indicating a foundational yet surface-level engagement with the topics." Eighteen falls in the rubric's Good band, which begins at fifteen — competent, and short of the band that requires original insight.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">SCORED B</div>
+          <div class="ev-title">Engagement with content — mode 20</div>
+          <div class="ev-body">"This category's mode was 20, reflecting a higher level of interaction with the material, albeit with room for deeper exploration." Students engaged with the material more than they analysed it.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">SCORED C</div>
+          <div class="ev-title">Grammar — mode 23</div>
+          <div class="ev-body">"A mode score of 23 across submissions suggests grammatical accuracy, potentially aided by proofreading tools." Twenty-three of twenty-five, in the top band, and the report immediately supplies a mechanism rather than a compliment.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">SCORED D</div>
+          <div class="ev-title">The gap between them</div>
+          <div class="ev-body">"The observed trends underscore a disparity between grammatical accuracy and the depth of engagement. While submissions are linguistically polished, there is a notable need for enhanced critical analysis and a deeper exploration of topics." Five points of mode separate how the work reads from what it contains.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Reading</div>
+      <h2 class="sec-title">Polished language is not thought, and proofreading tools may be what closed the gap.</h2>
+      <p class="sec-lead">The report does not treat the high grammar score as good news, which is the analytically interesting move.</p>
+      <p class="body-text">The inference drawn from the modes is about preference rather than ability: "The modes in critical thinking and depth of analysis suggest a preference for straightforward approaches over in-depth examination." A preference is a choice, and choices can be redirected.</p>
+      <p class="body-text">On the tools, the report is even-handed rather than prohibitive: "While the use of tools like ChatGPT for grammatical refinement is acknowledged, students should ensure these technologies complement rather than substitute their analytical and critical engagement with the content." Complement rather than substitute is the whole position.</p>
+      <p class="body-text">And the distribution itself carries an oddity the report flags: "no groups were categorized within the "Next 13.5%" segment following the "Second 34%", revealing a distinct clustering of performances without intermediate levels." One group sat alone at the bottom needing improvement across every category, and one alone at the top, "setting a benchmark for comprehensive analysis and engagement."</p>
+      <div class="callout">
+        <div class="callout-label">The same finding, fourteen months later</div>
+        <p>In June 2025 the author applied a different eight-criterion rubric to case-study presentations by six teams and found the same shape: authority and evidence scored highest, narrative and original insight lowest. Two different cohorts, two different instruments, one result — students can source and cannot yet think aloud.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Recommendations</div>
+      <h2 class="sec-title">Instructors should be asking students to challenge assumptions, not to correct commas.</h2>
+      <p class="sec-lead">The recommendations are addressed to teaching staff, which follows from a finding about what teaching currently rewards.</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">Ask for depth explicitly</div>
+            <div class="rec-body">"Encourage students to go beyond surface-level analysis by integrating diverse perspectives and critically evaluating their topics." And in the closing set: "Instructors should guide students to challenge assumptions, thoroughly explore their topics, and connect with broader agricultural and environmental contexts."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Build the demand into the curriculum</div>
+            <div class="rec-body">"Incorporate exercises that explicitly require critical analysis and engagement, potentially through case studies, debates, and research projects." If the assignment does not require it, the rubric will keep measuring its absence.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Make feedback carry the standard</div>
+            <div class="rec-body">"Provide detailed, constructive feedback emphasizing the importance of depth and critical thinking in academic and professional pursuits within the agriculture sector."</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Treat the assignment as a contribution, not a task</div>
+            <div class="rec-body">"Assignments should not only serve as academic tasks but as opportunities to connect with and contribute to critical discussions on sustainability and agriculture." The report asks students to "harness their passion for the subject matter to drive their investigations and presentations."</div>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>This report advocates for a balanced approach, where linguistic precision is matched with analytical rigor and passion for the subject, thereby enhancing the educational journey in agricultural studies.</p>
+        <cite>&mdash; Evaluation of My Student's Performance on Agricultural Assignments, 4 April 2024</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Reflection</div>
+      <h2 class="sec-title">Ten years of schooling formed these habits, so one course will not undo them.</h2>
+      <p class="sec-lead">The report ends by widening from a class to the system that produced it, and lowers its own expectations accordingly.</p>
+      <p class="body-text">"In alignment with previous research on the complexities of altering established educational processes, this report acknowledges the significant role of preexisting mental models and cultural factors that influence both communication practices and mindset formation."</p>
+      <p class="body-text">The scale of the intervention is named honestly: "The interdepartmental complex process of intervening in a system that students have been steeped in for over a decade underscores the need for an educational approach that is scaffolded and attuned to cultural sensitivities." Scaffolded, because a decade of habit is not addressed in a semester.</p>
+      <p class="body-text">The cultural frame is his own earlier work: the report "integrates Hofstede's cultural dimensions with a particular focus on their relevance to the Indonesian educational context", highlighting "the essentiality of recognizing and leveraging cultural and psychological factors in the design and implementation of educational programs, especially within the spheres of communication and agricultural studies."</p>
+      <p class="body-text">And the claim it ends on is larger than the marks: "this evaluation extends beyond a mere assessment of student performance; it contextualizes the findings amidst broader educational challenges and objectives."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">References</h2>
+      <p class="sec-lead">The article carries a four-entry reference list, all of it the author's own prior work, reproduced here without the shortened links it uses. Hofstede's cultural dimensions are invoked through that prior work rather than cited directly, and no primary source for them is given or supplied. Three figures — the overall score table, the groups requiring attention, and the segmentation summary matrix — are images that do not survive text extraction, as is the intervention-framework diagram and the rubric summary; the deck is built from the prose and the appendix text. No individual student is named in the article. The article does identify two groups by number and links to a public post listing their members; those identifiers and that link are withheld here, on the archive's standing practice of not reproducing anything that identifies a student's graded work.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Tambun, T. (2024, March 26). <em>6 Dimensions values among China, Indonesia, Japan, South Korea, and Vietnam</em> [Infographic]. LinkedIn.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T. (2024, March 26). <em>Transforming teaching: Addressing power distance and collectivism in the classroom — A manual.</em> LinkedIn.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Tambun, T. (2024, March 26). <em>Agriculture tech and culture, ideas and pointers: A compilation.</em> LinkedIn.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Tambun, T. (2024). <em>Disciplined storytelling? Co-learn with my students.</em> Amazon KDP.</div>
+        <div class="ref-group-title">Related in the archive</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, T. (2024, June 5). <em>What to look for in evaluating a Case-Study?</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/what-look-case-study-toronata-tambun-yk7jc</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T. (2024, April 4). <em>Evaluation of My Student's Performance on Agricultural Assignments</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/evaluation-my-students-performance-agricultural-toronata-tambun-3ze4c" target="_blank" rel="noopener">https://www.linkedin.com/pulse/evaluation-my-students-performance-agricultural-toronata-tambun-3ze4c</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
