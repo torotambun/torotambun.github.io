@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond Shame: Ethical Dimensions of Mindsets in Corruption &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Beyond Shame</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Mechanism</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Paradox</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Model</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Mechanism</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Paradox</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Model</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Mindset and Ethics · Shame, Recovery and Corruption &nbsp;&middot;&nbsp; 2 December 2023</div>
+      <h1 class="title-main">Beyond Shame: Ethical Dimensions of Mindsets in Corruption</h1>
+      <p class="title-thesis">The growth mindset is treated everywhere as an unqualified good, and this piece finds a reinforcing negative loop inside it. Shame is what should deter wrongdoing, and the growth mindset's characteristic strength is fluency in recovering from shame, so the trait that makes a person resilient also makes a corruptor recoverable. The argument runs through Benedict's shame and guilt cultures, placed by Koentjaraningrat in Indonesia and mapped onto older and newer regions of the brain. Its resolution is that mindset alone predicts nothing: what decides behaviour is the combination of mindset with either an upheld ethics or a surrender to instinct, which is what the 2x2 is for.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">The growth mindset is celebrated, and it makes shame easier to survive, including for a corruptor.</h2>
+      <p class="body-text">The piece opens by naming its own paradox rather than building to it. Relating shame to Carol Dweck's fixed and growth mindsets gives a useful account of how people react to their own failures, and then the same framework turns on itself.</p>
+      <p class="body-text">The mechanism is stated in one sentence and it is uncomfortable by design. The more a person holds a growth mindset, the more fluently they handle shamefulness and recover from the shame itself, which is exactly the quality that makes the trait desirable.</p>
+      <p class="body-text">Applied to corruption, that fluency stops being a virtue. The article's claim is that the celebrated mindset's corruptor recovers more easily, and more victoriously, than someone conventionally written off as fixed mindset.</p>
+      <p class="body-text">The loop is what the article calls it: a reinforcing negative feedback loop, in which the mechanism that should deter is dissolved by the trait everyone is being encouraged to build.</p>
+      <div class="callout">
+        <div class="callout-label">What this piece is</div>
+        <p>"This is an excerpt of my original article entitled “Value Driven Growth Mindset and Value Driven Fixed Mindset?”…" The original is a co-authored journal article; the deck carries the excerpt as published here, and the full reference is on the Sources slide.</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The loop, in the article's own words</div>
+        <p>"The more growth mindset one is, the more able and fluent one handles the shamefulness / recover the shame itself." And on who benefits: "Because the so much adored growth mindset's corruptor will recover easily and more victoriously from their shame or failure compared with those who are traditionally doomed as being fixed mindset."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Benedict's shame culture and guilt culture divide on whether wrongness is felt when nobody sees.</h2>
+      <p class="sec-lead">The distinction comes from Ruth Benedict (1946), cited in the article through Koentjaraningrat (1969), and the dividing line is the presence or absence of an observer.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">Shame culture</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The primary goal of work is position and rank</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A mistake is not a major concern while it goes unnoticed</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>What matters is whether it leads to loss of face</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Attitude is unaffected and conscience undisturbed</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The feeling of wrongness does not arise from the wrongdoing itself</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">Guilt culture</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Wrongdoing is felt as wrong on its own terms</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Guilt arises whether or not superiors know</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Visibility to others is not the trigger</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The conscience continues to be disturbed</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>The feeling attaches to the act rather than to exposure</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Where the article places Indonesia</div>
+        <p>Koentjaraningrat (1969) is cited as holding that Indonesians predominantly adhere to a shame culture rather than a guilt culture, attributed to what he calls the priyayi mentality, in which being an employee shapes the approach to mistakes so that they count as serious only once a superior knows. The article notes that this can produce panic and potential mental disturbance when a mistake is exposed.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Mechanism</div>
+      <h2 class="sec-title">Shame culture sits in the brain stem and guilt culture in the neocortex.</h2>
+      <p class="body-text">The article's next move takes the cultural distinction into neuroanatomy, and this is where its claim becomes physical rather than sociological. Shame culture is located in an older region functioning as a survival mechanism; guilt culture is associated with a relatively newer one.</p>
+      <p class="body-text">The comparative figure it reaches for is the brain stem's overlap with another species, cited to Sagan and Druyan (1992), and it is offered as evidence that the responses involved are instinctive rather than considered.</p>
+      <p class="body-text">The article then draws an inference from that mapping about the kinds of society in which each culture prevails. It is stated with hedges, twice, and those hedges are the author's own; they are reproduced below exactly as written rather than resolved into an assertion.</p>
+      <p class="body-text">What the mapping is finally for is the argument about recovery. If shame is instinctive and older, then the capacity to process and move past it is a later, learned facility, which sets up the claim about who recovers and how fast.</p>
+      <div class="callout">
+        <div class="callout-label">The anatomical claim</div>
+        <p>"Shame culture is rooted in the brain stem, a much older part of the brain, functioning as a survival mechanism, whereas guilt culture is associated with the neocortex, a relatively newer region of the brain." The article adds that the brain stem's realm, governing instinctive responses, "shares a remarkable 96% similarity with the brain functions of chimpanzees" citing Sagan and Druyan (1992).</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The inference the article draws from it, with its own hedges</div>
+        <p>"This similarity suggests that shame culture, regulated by these more primal brain areas, is characteristic of what might be considered less sophisticated societies. In contrast, guilt culture, linked to the more evolved neocortex, tends to be prevalent in societies deemed more sophisticated." The qualifications “might be considered” and “deemed” are the article's.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">A fixed mindset internalises failure as permanent deficiency, so shame lands hardest there.</h2>
+      <p class="sec-lead">Before the paradox can be stated, the article establishes what the two mindsets each do with a failure.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">Fixed mindset</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Failures internalised as personal deficiencies</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Shortcomings read as evidence of an unchangeable self</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Deep shame at failure, taken as proof of inadequacy</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Avoidance of challenges</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Lower resilience to shame</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">Growth mindset</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Mistakes viewed as learning opportunities</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Failure not read as a reflection of the core self</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Less likely to experience debilitating shame</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Constructive engagement with shortcomings</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Failures used as catalysts for development</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The qualification the article insists on</div>
+        <p>"A growth mindset does not make one immune to feeling shame in response to social judgment, failures, or mistakes." The difference is not exemption but processing: such individuals are better equipped to move past shame and to use it as a springboard.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Paradox</div>
+      <h2 class="sec-title">Recovery fluency is a double-edged sword, and it may explain why a corruptor leaving prison is forgiven and forgotten.</h2>
+      <p class="body-text">Everything to this point reads as a case for cultivating the growth mindset in educational, professional and personal settings, and the article makes that case explicitly: shifting focus from inherent ability to effort and learning lets people use failure for development rather than as a source of shame.</p>
+      <p class="body-text">Then it turns the same sentence over. The approach is called a double-edged sword, and the edge that cuts the other way is applied to the one population where society relies on shame doing its work.</p>
+      <p class="body-text">The consequence is stated without softening, and it is the piece's sharpest line. A capacity built as resilience becomes, in this application, a capacity to be readmitted.</p>
+      <p class="body-text">Nothing is proposed as a remedy here. The article's word is "may", and it leaves the observation standing as a problem for anyone recommending the growth mindset without asking what else is in place.</p>
+      <div class="warning-callout">
+        <div class="callout-label">The claim, as written</div>
+        <p>"It may explain why individuals leaving penitentiaries after serving time for corruption can be forgiven or forgotten due to their apparent growth mindset traits."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Model</div>
+      <h2 class="sec-title">Mindset alone predicts nothing, so the 2x2 crosses it with whether ethics hold or brain stem impulse wins.</h2>
+      <p class="sec-lead">The article's own contribution is a two-by-two placing the mindset axis against an ethical one, and it is the answer to the paradox rather than a summary of it.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Growth mindset with upheld ethics and morale</div>
+          <div class="arith-body">Belief in personal development underpinned by strong adherence to ethical and moral values, producing what the article calls a dynamic yet principled approach to challenges and learning, adaptable without compromising integrity.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Fixed mindset with upheld ethics and morale</div>
+          <div class="arith-body">A rigid perception of one's own abilities balanced by steadfast commitment to ethics. Reluctant to embrace change, but guided by strong values into consistent and principled decision-making.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Growth mindset succumbing to brain stem impulse</div>
+          <div class="arith-body">Belief in one's capacity to grow, with actions driven by primal instinct. The article's concern here is behaviour that prioritises immediate instinctual response over ethical consideration, which is the quadrant the corruptor occupies.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Fixed mindset succumbing to brain stem impulse</div>
+          <div class="arith-body">Resistance to growth combined with action driven by basic survival impulse. Lacking both the drive for development and moral restraint, the article describes this as potentially harmful, marked by stagnation and impulsivity.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the model establishes</div>
+        <p>That neither mindset alone suffices to predict behaviour. The article's position is that it is the combination with an ethical compass or with instinctual drive that produces a complete picture, which is why a deck could not stop at the growth mindset and call it good.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Values are a deeper choice than mindset, and the article leaves open which combination is worse.</h2>
+      <p class="sec-lead">The closing passages are posed as questions rather than findings, and the article does not answer them.</p>
+      <blockquote>
+        <p>Values, raison d'être, and purpose in life may be distinct from the concepts of growth and fixed mindsets, as they stem from a deeper, more conscious choice, as deep as brain stem.</p>
+        <cite>&mdash; Beyond Shame: Ethical Dimensions of Mindsets in Corruption, 2 December 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What mindsets do not supply</div>
+          <div class="arith-body">Mindsets shape how challenges and learning are approached. Values and purpose supply the ethical framework and the motivation, which the article treats as a different order of thing rather than a further property of mindset.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The first question it leaves open</div>
+          <div class="arith-body">"Is it perhaps true that having a growth mindset without underlying values can lead to a sense of aimlessness and misery." The drive for improvement, unanchored by a moral compass, is held to lead to unethical choices and a lack of fulfilment.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The second</div>
+          <div class="arith-body">Or whether a fixed mindset devoid of values is worse still, producing rigidity and resistance to change without the principles needed to act ethically. The article states both and adjudicates neither.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What both share</div>
+          <div class="arith-body">The absence of values. The article's only firm conclusion is that either mindset without them produces a life lacking direction and moral grounding, which is why the 2x2 has an ethical axis at all.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article states that it is an excerpt of a longer original, and that original has been identified and is given in full below. The same title also ran as a Jakarta Post column on the day of publication, credited on the article's cover as page 11, and that column carries its own deck. Two figures, the author's Value Based Mindset Matrix and Dweck's model, are images that do not survive text extraction and are described in the deck rather than quoted. The block the article heads “COMPLETE REFERENCE from the original article” reproduces a LinkedIn post acknowledging the journal acceptance; that post is dated 31 December 2023 inside an article published on 2 December 2023, and both dates are recorded here as they stand. The passage placing shame and guilt cultures in societies described as less or more sophisticated is quoted verbatim on the slide above, with the author's own qualifications intact.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">The original article and its companion column</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Tambun, T., &amp; Irawanto, D. W. (2023). Value driven growth mindset and value driven fixed mindset? <em>Asia Pacific Management and Business Application, 12</em>(2), 137–142. Named in the article as the original from which this piece is excerpted; P-ISSN 2252-8997.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T. (2023, December 2). Beyond shame: Ethical dimensions of mindsets in corruption. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2023/12/02/beyond-shame-ethical-dimensions-of-mindsets-in-corruption.html</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Prof. Dodi Wirawan Irawanto is named in the article as co-author, as the author's supervisor at the time of writing, and as an authority on Bapakism.</div>
+        <div class="ref-group-title">Cited in the body of the excerpt</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Benedict, R. (1946). <em>The chrysanthemum and the sword.</em> Houghton Mifflin.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Koentjaraningrat. (1969). <em>Rintangan2 mental dalam pembangunan ekonomi di Indonesia</em> (Seri No. 1/2, Terbitan Tak Berkala). Bhratara.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Sagan, C., &amp; Druyan, A. (1992). <em>Shadows of forgotten ancestors.</em> Ballantine Books.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Dweck, C. S. (2007). <em>Mindset.</em> Ballantine Books.</div>
+        <div class="ref-group-title">Carried over from the original article's reference list</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Bazelais, P., Lemay, D. J., Doleck, T., Hu, X. S., Vu, A. T. T., &amp; Yao, J. (2018). Grit, mindset, and academic performance: A study of pre-university science students. <em>Eurasia Journal of Mathematics Science and Technology Education.</em></div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Campbell, A., Craig, T. S., &amp; Collier-Reed, B. I. (2019). A framework for using learning theories to inform “growth mindset” activities. <em>International Journal of Mathematical Education in Science and Technology.</em></div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Churchland, A. K., Kiani, R., Chaudhuri, R., Wang, X. J., Pouget, A., &amp; Shadlen, M. N. (2011). Variance as a signature of neural computations during decision making. <em>Neuron.</em></div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Ferguson, H. J. (n.d.). Mindset, academic motivation, and academic self-efficacy as correlates of academic achievement among undergraduate students in communication sciences and disorders programs.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Haimovitz, K., &amp; Dweck, C. S. (2017). The origins of children's growth and fixed mindsets: New research and a new proposal. <em>Child Development.</em></div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Hass, R. W., Katz-Buonincontro, J., &amp; Reiter-Palmon, R. (2016). Disentangling creative mindsets from creative self-efficacy and creative identity. <em>Psychology of Aesthetics Creativity and the Arts.</em></div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Huang, Z. (2023). How do teachers mindsets impact students learning motivation in Chinese public schools and international schools? <em>Lecture Notes in Education Psychology and Public Media.</em></div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Marley, S. C., &amp; Wilcox, M. J. (2022). Implicit theories of intelligence and achievement goal orientations. <em>Social Education Research.</em></div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Puusepp, I., Tammi, T., Huotilainen, M., Kujala, T., Kuusisto, E., Laine, S., &amp; Tirri, K. (2019). Mindsets and failures: Neural differences in reactions to mistakes among second-grade Finnish girls.</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Repuya, C. R., &amp; Esterninos, J. (2022). Enhancing mathematics learning by integrating growth mindset principles in ninth-grade supplementary materials. <em>Southeast Asian Mathematics Education Journal.</em></div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Villanueva, K. (2016). A comparison of mindsets and goal orientations using number line estimation software.</div>
+        <div class="ref-group-title">Noted about the source document</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>The article footnotes priyayi as referring in Javanese culture to the traditional aristocratic or noble class, translatable as aristocrat or noble, denoting those in governance, administration or other positions of authority and prestige.</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>The acknowledgement block reproduced in the article carries several shortened links to the post, the journal and the article; the journal article itself has been matched and is given in full above.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[21]</span>Tambun, T. (2023, December 2). <em>Beyond Shame: Ethical Dimensions of Mindsets in Corruption</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/beyond-shame-ethical-dimensions-mindsets-corruption-toronata-tambun-dzkxc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/beyond-shame-ethical-dimensions-mindsets-corruption-toronata-tambun-dzkxc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

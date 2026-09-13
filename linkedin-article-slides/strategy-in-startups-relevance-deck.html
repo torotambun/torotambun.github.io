@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategy in Startups: Its Relevance &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Strategy in Startups</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Details</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Application</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Details</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Gap</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Method</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Application</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Method</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Strategy · Scorecard, Metrics and the Statement Most Schools Skip &nbsp;&middot;&nbsp; 26 November 2023</div>
+      <h1 class="title-main">Strategy in Startups: Its Relevance</h1>
+      <p class="title-thesis">The article is a strategy syllabus deliberately run backwards. It opens at the Balanced Scorecard because that is where strategy either becomes a measurable deliverable or stands revealed as an MBA exercise, works back through financial theory and the metrics a small firm can actually carry, and ends at the strategy statement, which it says most schools skip. Its test for that statement is not analytical rigour but comprehensibility: anyone in the building must be able to read it and know what it means. The three maps that build it culminate in a scope map, whose whole function is to record what the firm has decided not to do.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">I start from the end, because strategy that never reaches a scorecard is an MBA exercise.</h2>
+      <p class="body-text">The article announces its own inversion in the first line and gives the reason in the second. Mission, values, vision and strategy, both deliberate and emergent, are all named as necessary; none of them is treated as sufficient.</p>
+      <p class="body-text">The test applied to them is translation. If the effort behind them does not arrive in the Balanced Scorecard as a deliverable, the article's verdict on the whole exercise is unsparing and is stated in its own words rather than softened.</p>
+      <p class="body-text">The route is then laid out explicitly: scorecard first, sense-making named as the utmost important skill, and the strategy statement last. The article says it will elaborate sense-making in its latter part.</p>
+      <p class="body-text">That elaboration does not appear in this piece. A companion article on sense-making was published the same morning, an hour after this one, and is where the elaboration is found.</p>
+      <div class="warning-callout">
+        <div class="callout-label">The verdict</div>
+        <p>"To have mission, values, vision, strategy (both deliberate strategy and emergent strategy) are necessary, but if these tremendous effort are not translated into deliverable in balance scorecard basket, it merely an MBA exercise."</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What it names as the essential skill</div>
+        <p>"Then I cannot emphasize the utmost important skill : sense-making. I elaborate this in the latter part of this article."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">The Balanced Scorecard answers four questions and only one of them is financial.</h2>
+      <p class="sec-lead">Kaplan and Norton's framework, developed in the early 1990s, is presented as a corrective to measuring performance on financial terms alone. Each perspective is defined here by the question it answers.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Financial</div>
+          <div class="arith-body">Asks how the organisation looks to shareholders. Measured by traditional metrics such as revenue, profit margins and return on investment, with examples including net profit, sales growth and economic value added.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Customer</div>
+          <div class="arith-body">Asks how customers see the organisation, covering how well it serves them and the value it provides. Measured by customer satisfaction, retention rate and complaint rate.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Internal business processes</div>
+          <div class="arith-body">Asks what the organisation must excel at, covering the efficiency and effectiveness of internal operations. Measured by process efficiency, quality measures and cycle time.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Learning and growth</div>
+          <div class="arith-body">Asks whether the organisation can continue to improve and create value, covering its capacity to learn, innovate and improve through training, culture and infrastructure. Sometimes called the organisational capacity perspective.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What it became</div>
+        <p>The article notes that the scorecard has grown from a performance measurement framework into a full strategic planning and management system, aligning day-to-day activity with strategic objectives, prioritising initiatives, and monitoring progress toward goals.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Seven dividend theories disagree, and a firm blends them against its own constraints.</h2>
+      <p class="sec-lead">The article turns to why firms distribute profits, and sets out seven positions that reach different conclusions from the same question.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Dividend irrelevance (Miller and Modigliani)</div>
+          <div class="arith-body">Firm value is determined by earnings and the risk of the underlying assets, not by how earnings are split between dividends and retained earnings. In a perfect market with no taxes or transaction costs, dividend policy would be irrelevant to value.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Bird-in-the-hand (Gordon and Shapiro)</div>
+          <div class="arith-body">Investors prefer certain returns today over uncertain capital gains later, so firms with higher payouts can be perceived as more valuable because dividends read as less risky.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Tax preference</div>
+          <div class="arith-body">Investors prefer capital gains because many tax systems tax them more lightly than dividends, which can push firms toward retaining earnings or repurchasing shares.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Signalling</div>
+          <div class="arith-body">Management knows more about prospects than investors do, so a change in dividend policy is read as information. An increase signals confidence in future earnings; a cut signals the reverse.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Clientele effect</div>
+          <div class="arith-body">Different investor groups prefer different policies according to their objectives and tax positions, so a retiree needing income and a younger investor seeking appreciation are drawn to different firms.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Residual dividend</div>
+          <div class="arith-body">Dividends are paid from what remains after every positive net present value investment has been financed, so payouts fall when opportunities are plentiful and rise when they are scarce.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; Agency costs</div>
+          <div class="arith-body">Retained profits leave managers free to invest in unprofitable projects, so regular dividends reduce the funds under management's control and discipline what gets funded.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">How the article resolves the disagreement</div>
+        <p>It does not. Firms are said to consider a blend of these theories in practice, together with their own constraints and opportunities, which is consistent with the article's wider position that frameworks inform judgement rather than replace it.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Application</div>
+      <h2 class="sec-title">A micro-SME needs a limited set of KPIs, because overloading on metrics dilutes focus.</h2>
+      <p class="body-text">The article states its reason for the turn: these theories matter to its startup students only once they reach real-time application, and the application it chooses is the financial KPI in a small firm.</p>
+      <p class="body-text">The premise is that small firms are structurally different rather than merely smaller. Resource constraints, more direct managerial oversight and quicker decision-making change what can be measured and what measurement costs.</p>
+      <p class="body-text">Five families are set out. Financial covers revenue growth rate, gross margin percentage, net profit margin, current ratio and accounts receivable turnover. Customer covers acquisition cost, retention rate, net promoter score and lifetime customer value. Operational covers inventory turnover, order fulfilment time, product return rate and operational efficiency. Employee and organisational covers turnover rate, productivity, satisfaction and training hours. Growth and sustainability covers market share, new customer growth rate and, where relevant, metrics such as carbon footprint and waste reduction.</p>
+      <p class="body-text">The instruction that follows matters more than the list. Selection is the discipline, not collection, and the article adds that KPIs should be read against industry benchmarks or historical data, and against the company's lifecycle stage and external economic conditions, rather than in isolation.</p>
+      <div class="callout">
+        <div class="callout-label">The constraint that governs the choice</div>
+        <p>"Overloading on metrics can dilute focus and divert resources." The article's requirement is a limited set aligned to strategic goals, chosen for the industry, the audience and the specific business.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Vision says what, mission says how and why, and objectives say by when.</h2>
+      <p class="sec-lead">The article separates three things habitually run together, and gives each a test rather than a definition.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">The what</div>
+          <div class="comp-name">Vision</div>
+          <div class="comp-body">Reduced by the article to three rules of thumb: clear and inspiring, so it can be understood and can motivate; future-oriented and feasible, ambitious enough to challenge the status quo while remaining believable; and distinctive and aligned with values, setting the company apart while staying true to what it is.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">The how and why</div>
+          <div class="comp-name">Mission</div>
+          <div class="comp-body">Also three: purposeful and value-driven, conveying a core purpose beyond profit; specific and actionable, concrete enough that daily decisions can be aligned to it; and stakeholder-centric, recognising customers, employees, shareholders and the wider community as interconnected.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">The by when</div>
+          <div class="comp-name">Objectives</div>
+          <div class="comp-body">Specific, measurable steps toward mission and vision. The article offers SMART and its alternative FAST, which asks that goals be frequently discussed, ambitious, specific and transparent, with everyone able to see everyone else's goals.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">On whether geography belongs in either</div>
+        <p>The article treats it as optional rather than required, appropriate where a regional or local focus is core to identity, and cautions that tying a mission or vision too closely to a geography can limit expansion or force frequent revision.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Gap</div>
+      <h2 class="sec-title">The strategy statement is what most schools skip, and the toilet cleaner must be able to read it.</h2>
+      <p class="body-text">The article names this as where most class time went, and as something not widely taught. The reading list it gives is short and specific: Collis and Rukstad, Porter, Collis, Collis and Hartman, and Inkpen.</p>
+      <p class="body-text">The test it sets is comprehensibility rather than sophistication, and it is set at the least senior person in the organisation. That is a deliberately low bar in one sense and an extremely demanding one in another, since most strategy documents fail it.</p>
+      <p class="body-text">Two further disqualifications are named. The statement is not a paperwork exercise, and it is not wishful thinking, which rules out both the document produced to satisfy a process and the document that describes an aspiration with no mechanism.</p>
+      <p class="body-text">What remains is a statement built from evidence about the firm's actual activities, which is what the three maps that follow are for.</p>
+      <div class="callout">
+        <div class="callout-label">The test, in the article's own words</div>
+        <p>"Your toilet cleaner must be able to grasp the reading and the meaning of it. It is not a wishful thinking."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Method</div>
+      <h2 class="sec-title">Three maps build it, and the scope map works by naming what the firm will not do.</h2>
+      <p class="sec-lead">The article gives three visual tools, worked in class against the Edward Jones and Southwest Airlines cases. The third is the one that does work the other two cannot.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">First</div>
+          <div class="comp-name">Activity Systems Bubble Map</div>
+          <div class="comp-body">Bubbles representing activities, connected by lines showing interdependence, used to show how a firm's activities fit together to create a value proposition and reinforce one another. It makes visible the fit among activities that is central to Porter's idea of strategy, and that competitors find hard to match.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Second</div>
+          <div class="comp-name">Strategy Canvas</div>
+          <div class="comp-body">Plots the factors an industry competes on against the offering level buyers receive, producing a value curve. It visualises competition from the buyer's point of view, shows where resources are going, and identifies where a firm could reduce, eliminate, raise or create factors to open new space.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Third</div>
+          <div class="comp-name">Business Scope Map</div>
+          <div class="comp-body">Maps the segments, customers, processes, products and services the firm has deliberately excluded. The article's principle is that what a company decides not to do is as important as what it chooses to do, and the map exists to make the trade-offs and the resulting clarity explicit.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why exclusion is the sharper instrument</div>
+        <p>An activity map and a canvas both describe what a firm does, and a firm can describe a great deal without choosing. The scope map records decisions already refused, which is why the article treats it as a decision-making framework for assessing new opportunities rather than only as a description.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Objective, scope and competitive advantage are the whole of the statement.</h2>
+      <p class="sec-lead">The article closes on three elements, and the compression is the point: everything above reduces to these.</p>
+      <blockquote>
+        <p>If you recall the strategy statement is not a paperwork exercise to make it meaningful. Your toilet cleaner must be able to grasp the reading and the meaning of it.</p>
+        <cite>&mdash; Strategy in Startups: Its Relevance, 26 November 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Objective</div>
+          <div class="arith-body">The primary goal or goals that motivate behaviour in the organisation. Stated first, because scope and advantage are meaningless without something they are in service of.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Scope</div>
+          <div class="arith-body">Definition of the domain in which the company will operate, which is where the business scope map's record of exclusions becomes a sentence rather than a diagram.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Competitive advantage</div>
+          <div class="arith-body">What the firm does differently, better or uniquely compared to all other competitors: the value proposition that makes customers pay, together with the functional policies and supporting activities that drive and source that advantage.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where it returns to</div>
+          <div class="arith-body">The scorecard the article started from. Three elements stated in a sentence anyone can read, translated into measures across four perspectives, is the whole route the piece runs in reverse.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article carries a reference list and a disclaimer, both reproduced below. Its disclaimer is the most methodologically precise AI disclosure in the archive: it excludes ChatGPT from the reference list on the stated ground that a personal communication provides no recoverable data, which is the correct treatment rather than an omission. One section, on a framework called FUSE, is left in the assistant's own voice and states that the framework may not be widely recognised and that the description is inferred from its component words; that hedge is preserved rather than tidied, and the deck does not present FUSE as a sourced framework. Inkpen is cited as 2018 in the body and listed as 2017 in the reference list. Several tables and figures, including the KPI lists as originally presented, are images that do not survive text extraction and are described rather than quoted.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Casadesus-Masanell, R. (2014). Strategy reading: Setting aspirations — Mission, vision, and values. In <em>Core Curriculum Readings Series</em> (No. 8114). Harvard Business Publishing.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Collis, D. J., &amp; Rukstad, M. G. (2008). Can you say what your strategy is? <em>Harvard Business Review, 86</em>(4). Noted in the source as the 50th Anniversary McKinsey Award winner for best article in Harvard Business Review, 2009.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Collis, D. J. (2019). Why has strategy become irrelevant? Understanding the complete strategy landscape. Harvard Business School Strategy Unit Working Paper No. 20-027.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Collis, D., &amp; Hartman, A. (2018). <em>Edward Jones: Implementing the solutions approach</em> (HBS No. 9-719-411). Harvard Business School case study.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Inkpen, A. (2017). <em>Southwest Airlines.</em> Thunderbird case study. Cited in the body as Inkpen (2018).</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Porter, M. E. (1996). What is strategy? <em>Harvard Business Review, 74</em>(6), 61–78.</div>
+        <div class="ref-group-title">The author's disclaimer</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>The article states that ChatGPT is an AI language model developed by OpenAI, used for querying specific topics and generating responses from its training data, and that "From time to time, I consulted OpenAI's ChatGPT 4.0 (April 2023), which is not cited in the reference list as it is a personal communication and does not provide recoverable data".</div>
+        <div class="ref-group-title">Named in the article without a citation</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Kaplan, R., &amp; Norton, D. Named as the originators of the Balanced Scorecard in the early 1990s; no work is cited.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Miller and Modigliani, Gordon and Shapiro. Named as the originators of the dividend irrelevance and bird-in-the-hand theories; no works are cited.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>FUSE: Foresight-Driven Understanding Strategy and Execution. Described in the article as possibly not widely recognised or proprietary, with the account given built from the component words rather than from a source.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>SMART and FAST. Given as objective-setting frameworks without attribution.</div>
+        <div class="ref-group-title">The series</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span><em>Sense-Making: The Foundation of Strategy (and others)</em>, published the same day at 10:06, an hour after this piece, and carrying the elaboration of sense-making that this article announces. https://www.linkedin.com/pulse/sense-making-foundation-strategy-toronata-tambun-quzec</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Tambun, T. (2023, November 26). <em>Strategy in Startups: Its Relevance</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/strategy-startups-its-relevance-toronata-tambun-l7bnc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/strategy-startups-its-relevance-toronata-tambun-l7bnc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
