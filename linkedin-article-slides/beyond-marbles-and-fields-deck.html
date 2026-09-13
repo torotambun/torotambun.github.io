@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond Marbles and Fields: The Role of Childhood in Shaping the Leaders of Tomorrow &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Beyond Marbles and Fields</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Subject</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Field Notes</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> The Turns</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> The Mechanism</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Implications</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Subject</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Field Notes</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">The Turns</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">The Mechanism</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Formation · A 1950s Childhood and the Architecture It Built &nbsp;&middot;&nbsp; 15 December 2023</div>
+      <h1 class="title-main">Beyond Marbles and Fields: The Role of Childhood in Shaping the Leaders of Tomorrow</h1>
+      <p class="title-thesis">A portrait of one professor is used to make a claim about formation. The article traces her refusal to bend, her distance from patronage and her capacity to keep learning at seventy-nine back to a 1950s childhood of open fields, physical risk, improvised study and family adversity, and it names the mechanism explicitly: synaptic pruning keeps what a childhood uses and discards the rest, so exposure becomes architecture. The contrast it then draws is with children growing up now amid inequality, screens and a discipline treated as an infringement. The stake is stated as a national one, and the article's position is that the talents a country needs are made early or not at all.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">Proverbs 13:7 says a person may seem simple and be rich, and I met the proverb before I met the professor.</h2>
+      <p class="body-text">The article opens on a sequence rather than an introduction: a proverb arrived in the author's mind at the moment of first meeting Prof. Dr. Djumilah Hadiwidjojo, SE, and the rest of the piece works out why.</p>
+      <p class="body-text">The reading he gives it is explicit. True prosperity is not measured by material possession or external appearance; it lies in the depth of character, the warmth of the heart, and the impact made on the lives of others. That is the standard the portrait is then built against.</p>
+      <p class="body-text">The subject is introduced as a seventy-nine-year-old professor and, in the article's phrase, going strong. The author records having admired her deeply and having spent four months interviewing her and exchanging ideas before writing.</p>
+      <div class="callout">
+        <div class="callout-label">The proverb, as the article renders it</div>
+        <p>"One person acts as if they are simple, yet possesses abundant wealth; another person appears rich but has nothing of true value." The article attributes this to Proverbs 13:7.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Subject</div>
+      <h2 class="sec-title">She is seventy-nine, keeps her distance from authority and subsidised projects, and has been marginalised for not bending.</h2>
+      <p class="body-text">The article frames her survival as a puzzle before describing her character. Its question is how a rebel talent persisted in an environment combining a high power distance index with very low individualism and high uncertainty avoidance, and it notes that her career was not easy as a female researcher in a male-dominated leadership culture.</p>
+      <p class="body-text">The evidence of character is domestic and specific. Six staff have each served her for around two decades; she lives in an elite area of Malang without flaunting wealth or success; she addresses students as my child; she helps students in need, opens her home to foreigners and extends a hand to the poor. The article also records the loss of her husband at the age of sixty-four.</p>
+      <p class="body-text">What gives the portrait its edge is the discipline attached to the warmth. She keeps a measured distance from authority and from subsidised projects that might compromise her principles, which converts generosity from temperament into position.</p>
+      <p class="body-text">Her convictions are placed as firmly as her kindness. Rooted in a Javanese upbringing that prizes harmony, she nonetheless holds firm on economic principles and the role of government in industry, shaped by Keynesian economics, and the article states plainly that those stances have sometimes led to her being marginalised without her wavering under pressure.</p>
+      <div class="callout">
+        <div class="callout-label">The distinction the article draws</div>
+        <p>"Her focus is not on climbing the ladder of success but on making a meaningful difference in the lives of others through her unwavering dedication to service."</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the environment asked of her</div>
+        <p>"Her career was far from easy being a female researcher in a very male dominated leadership culture environment."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Fluid and crystallized intelligence run together in her, which is rarer than either alone.</h2>
+      <p class="sec-lead">The article reads her through a distinction it takes from Brooks and Schlesinger, and its observation is that both forms are active at once rather than one having replaced the other.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">Fluid intelligence, still active</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Adaptability and openness to new experience</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Receptive to the needs of those around her</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Adjusts her actions to make a positive impact</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Keeps up with contemporary discussion and reads online</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Engages new ideas inquisitively and asks insightful questions</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">Crystallized intelligence, accumulated</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A vast reservoir of knowledge and wisdom</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Decades of accumulated experience and insight</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Shared generously rather than held</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Distilled and summarised continually into new understanding</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Studied with Nobel laureate Prof. Muhammad Yunus</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What she took from Yunus</div>
+        <p>The article records that she is one of the few to have studied with Muhammad Yunus, that she learned from him the transformative power of compassion and empathy, and that witnessing his care for his own staff shaped her towards a life of purpose.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Field Notes</div>
+      <h2 class="sec-title">Marbles in the paddy fields, crickets at night and lessons shouted into open air built the exposure.</h2>
+      <p class="sec-lead">The childhood material comes from her own recollection, illustrated by sketches drawn by her niece. The article states its evidentiary position on this material directly, and that statement is reproduced below.</p>
+      <p class="body-text">The setting is Blitar in the early 1950s, under an open sky. Marbles were a daily ritual played with an older brother and two younger ones, with the earth as playground; she is marked with the initial D in the sketch, and the article describes her as the strategist of the group and the keeper of its rules.</p>
+      <p class="body-text">The detail the article dwells on is the absence of constraint. The practical celana monyet disregarded the usual gender norms of dress, hair was cropped short, and the upbringing is described as no-fuss and unencumbered by vanity.</p>
+      <p class="body-text">Risk was ordinary. Walking home from high school across the rice fields at noon, she met a snake and ran, school bag swinging; the article treats the episode as evidence of a daily proximity to the natural world rather than as an anecdote.</p>
+      <p class="body-text">Study happened outdoors too. The paddies behind the house were a study hall where lessons could be shouted without restraint, away from a lively household, with breaks of boiled cassava, peanuts and bananas. At night, guided by her older brother and with a younger one alongside, she left through windows to hunt crickets, disguised by their mother in hats, sarongs and shirts so as to be indistinguishable from the village boys. She bathed in the river, joined the football games, and carried the deep tan of it.</p>
+      <div class="warning-callout">
+        <div class="callout-label">The author's own evidentiary position on all of the above</div>
+        <p>"While those exposures above are private and only Prof. Djumilah remembered and I have no intention to triangulate them, it provides me a strong presence of what kind of exposure and environment that shape her to become what she has been and she is now."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Turns</div>
+      <h2 class="sec-title">Adversity arrived in her third year of school and the siblings went into collective survival mode.</h2>
+      <p class="body-text">The family is the second half of the formation account. She is one of fifteen children, raised by a traditional Javanese mother and a father the article describes as a strong hard worker, and the relentless effort it took her mother to provide for that many deeply affected her.</p>
+      <p class="body-text">What she took from it was a resolution rather than a grievance. She resolved to carve out a future in which her mother's hardships would not be her own, and the article is careful that this did not overshadow the warmth of the childhood or the love her mother gave each child.</p>
+      <p class="body-text">The ambitions in the house were varied. Four siblings joined the Military Officer School and served as rear admirals and major generals; her youngest sister began with a vocational degree in nursing and eventually made a home in Germany.</p>
+      <p class="body-text">Then the family's financial stability was upended, in her third year of high school, through the deceitful actions of a corrupt official in their hometown. The article records that the crisis rallied the siblings into a collective survival mode and that each pressed forward regardless: her eldest sister balanced law studies at a prominent East Java university with work as a tailor, and she herself reached Universitas Gadjah Mada with the support of an aunt in Singosari.</p>
+      <div class="callout">
+        <div class="callout-label">What the account is offered as</div>
+        <p>A narrative of tenacity, familial love and the pursuit of a better life, shared by her siblings, which the article presents as a story about a family that refused to be defined by circumstance rather than as a record of hardship.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Mechanism</div>
+      <h2 class="sec-title">Synaptic pruning keeps what a childhood uses and discards the rest, so the exposure became the architecture.</h2>
+      <p class="body-text">The article's afterthought is where the portrait becomes an argument. Early experience is said to shape the neural architecture of the brain, and with it the capacity to dream, to achieve, and to hold integrity under societal pressure.</p>
+      <p class="body-text">The process is named and described. Neural connections are refined by experience during childhood and adolescence, and the refinement is selective in a way the article treats as decisive for everything above.</p>
+      <p class="body-text">Applied back to the portrait, the claim is that the fields, the games, the open-air study and the adversity were not idle. They are held to have created a dense network of connections, reinforcing pathways associated with curiosity, persistence and ethical reasoning, alongside the contribution of nature, physical activity and family values.</p>
+      <p class="body-text">Two further conditions are named as equally necessary. Nutrition supplies the building blocks of the brain and its deficiency can impair cognition, and a hygienic environment reduces infections that affect development. A nurturing environment of people with strong values is described as the scaffolding on which a child builds a moral compass, and education instilling shared values early is said to automate them into System 1 thinking, so that ethical action becomes reflexive rather than deliberated.</p>
+      <div class="callout">
+        <div class="callout-label">The mechanism, in the article's words</div>
+        <p>"Synapses that are frequently used are strengthened, while those that are not are pruned away." The article adds that the richness of a child's experience can therefore have a lasting impact on mental agility and character formation.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">Today's children meet inequality, screens and a discipline now treated as an infringement.</h2>
+      <p class="sec-lead">The article sets the 1950s childhood against the present one, and the comparison is the piece's actual argument rather than its nostalgia.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">What shaped her</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Fresh air and open fields</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Sibling solidarity under shared pressure</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Direct contact with the natural world</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Study improvised outdoors, aloud</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Discipline as the foundation of character</span></div>
+        </div>
+        <div class="diag-col missing">
+          <div class="diag-header">What many meet now</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Wealth inequality closing the ladder of opportunity</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Nutritious food and clean environments dependent on elusive financial stability</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Internet costs taking a significant share of family income</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Minds shaped by transient content and isolating virtual interaction</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Discipline accused of being stress or an infringement on liberty</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What inequality does to ambition</div>
+        <p>"For these children, aspirations are not a matter of choice but a luxury they can't afford."</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">On discipline</div>
+        <p>"Discipline was once the foundation of education and character development, but it is now frequently accused of being a source of stress or an infringement on individual liberty." The article's judgement is that the equilibrium has shifted, altering the essence of childhood itself.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">A nation reaching 2045 needs rebel talents, and they are made in childhood or not at all.</h2>
+      <p class="sec-lead">The article closes by converting one biography into a national condition, with a date attached.</p>
+      <blockquote>
+        <p>Prof. Djumilah's narrative is a source of inspiration and a reminder that character, tenacity, and a life filled with rich experiences constitute the essence of true wealth.</p>
+        <cite>&mdash; Beyond Marbles and Fields, 15 December 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the country is held to need</div>
+          <div class="arith-body">A citizenry possessing what the article terms rebel talent: people who question the status quo, think creatively and act with integrity, of whom Prof. Djumilah is offered as the worked example.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where such talent comes from</div>
+          <div class="arith-body">Childhood, on the article's account, cultivated through education systems and societal structures that encourage critical thinking, creativity and moral fortitude.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What is at risk</div>
+          <div class="arith-body">The article states the stake plainly: without an environment nurturing such talents, the backbone necessary to support a prosperous future for the nation may itself be at risk.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where the proverb lands</div>
+          <div class="arith-body">The piece returns to where it started. A life of service and character is offered as the true prosperity the proverb described, and the closing move is the author's own resolution to follow it.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The childhood account rests on Prof. Djumilah's own recollection and the article says so: the author records that these exposures are private, remembered only by her, and that he has no intention of triangulating them. The deck carries them at that weight. Her three brothers are named in the source's sketch description and are referred to here by relation only. The reference list has three features a reader should have. The label 2023a is used for two different works; an in-text citation to Tambun (2023d) has no corresponding entry; and an entry dated 2024 appears in an article published in December 2023. Two of the five cited works were matched to the archive and are given with their URLs below. Three were not located and are recorded as the article prints them, with nothing supplied. The sketches by her niece and a linked image caption do not survive text extraction and are described rather than quoted.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article and located</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Tambun, T. (2023, January 20). <em>Not So Often Published: The Other Face of Younger Generation — Brutal Honest Facts — What Can We Do?</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/so-often-published-other-face-younger-generation-brutal-tambun</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Tambun, T. (2023, August 24). <em>Firing Neurons: Why Entrepreneurship Education Must Start Early</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/firing-neurons-why-entrepreneurship-education-must-start-tambun</div>
+        <div class="ref-group-title">Cited in the article and not located</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Tambun, T. (2023c). The Proverbs 13:7 [LinkedIn post]. No post under this title was found in the author's published archive.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Tambun, T. (2023a). Proof of crystalized intelligence [LinkedIn post]. Cited as the place where Brooks and Schlesinger are carried; no post under this title was found in the archive, and the label 2023a is also used for the article above.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, T. (2024). Thick Descriptive [LinkedIn article]. Dated 2024 in an article published on 15 December 2023. The nearest entry in the archive is <em>Crafting Compelling Narratives: The Art of Thick Description</em> of 6 March 2024, published under a different title and three months later; no identification is asserted here.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun (2023d). Cited in the body where the contrast with Indonesian children today is introduced. No entry carrying this label appears in the article's reference list.</div>
+        <div class="ref-group-title">Named in the article</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Brooks, A., &amp; Schlesinger, L. (2022, June). <em>Strength to strength: Happiness and success at every stage of life.</em> Class material, Harvard Business School Reunion, Cambridge. Given in the source as carried within one of the author's own posts.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Proverbs 13:7. Quoted in the opening in the author's own rendering; no translation is named.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Prof. Dr. Djumilah Hadiwidjojo, SE — the subject of the article, interviewed by the author over four months, and credited on the cover image.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Prof. Muhammad Yunus — named as the Nobel laureate with whom she studied.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Tambun, T. (2023, December 15). <em>Beyond Marbles and Fields: The Role of Childhood in Shaping the Leaders of Tomorrow</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/beyond-marbles-fields-role-childhood-shaping-leaders-tomorrow-tambun-dzvnf" target="_blank" rel="noopener">https://www.linkedin.com/pulse/beyond-marbles-fields-role-childhood-shaping-leaders-tomorrow-tambun-dzvnf</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
