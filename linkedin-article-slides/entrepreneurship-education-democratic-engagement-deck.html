@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Role of Entrepreneurship Education in Democratic Engagement &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Entrepreneurship Education and Democratic Engagement</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Evidence</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Implications</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Entrepreneurship Education · Democracy and Civic Formation &nbsp;&middot;&nbsp; 15 February 2024</div>
+      <h1 class="title-main">The Role of Entrepreneurship Education in Democratic Engagement</h1>
+      <p class="title-thesis">Written the day after an election, the article argues that entrepreneurship education and political formation train the same capacities: resilience, anti-fragility, ethical leadership and problem solving. Its sharper move is to hold the celebration and the record together. The same season that produced a democratic milestone also produced legal challenges against journalists, threats against researchers and censorship of artists, and the article names illiberal democracy as the shape that combination takes. It does not conclude in disillusionment. It concludes that the vote is the practical lever and that responsible speech is the obligation attached to it.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">The correlation runs opposite to expectation: what makes an anti-fragile entrepreneur is what makes an ethical politician.</h2>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>Entrepreneurship education is understood, inside and outside the classroom, as preparation for starting companies, and is assessed on the ventures it produces.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>An election has just concluded, and the qualities the author teaches for business turn out to be the qualities the political arena most visibly lacks; the article opens by conceding that it ventures away from his usual focus.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>If the capacities are the same, what belongs in the curriculum, and what does an election reveal about what has been left out of it?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Democracy, elections and oppression belong inside the entrepreneurship curriculum, because the discipline being taught is ethical resilience under pressure, and that discipline is politically consequential whether or not it is named as such.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The article's own claim</div>
+        <p>"As strange as it may seem, there exists a strong positive correlation between the principles of learning entrepreneurship and becoming an effective politician."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">The mission was never starting companies, it is cultivating people who hold their principles against corruption.</h2>
+      <p class="sec-lead">The article sets out four capacities that entrepreneurship education is actually building, each of which it argues transfers directly into political and civic life.</p>
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">First</div>
+          <div class="comp-name">Ethical leadership</div>
+          <div class="comp-body">Entrepreneurs and politicians alike hold significant influence over society. Instilling a commitment to ethical leadership, with a relentless opposition to corruption and a dedication to fairness, prepares students for roles that extend past business into the political sphere.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Second</div>
+          <div class="comp-name">Anti-fragility</div>
+          <div class="comp-body">Taught as more than resilience. In the article's words, "It's about cultivating the ability to thrive amidst uncertainty and disruption, qualities invaluable not just in business but also in politics and social reform."</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Third</div>
+          <div class="comp-name">Problem solving and civic engagement</div>
+          <div class="comp-body">Entrepreneurs are innovators seeking solutions to societal issues, and the article argues that this capacity is needed in political leadership precisely where the challenges arise from oppression and from mismanaged democratic processes.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">Fourth</div>
+          <div class="comp-name">Purpose and values</div>
+          <div class="comp-body">Holding a true north, expressed in the article as aspiring to be rahmatan lil'alamin, a blessing to all human races and nature, and treated as a call to action for entrepreneurs and politicians alike rather than as a private conviction.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The mission, as stated</div>
+        <p>"I've recognized our core mission extends far beyond merely initiating startups." The article goes on to define that mission as cultivating individuals who stand firm against corruption, steadfastly adhering to their principles.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Journalists faced legal challenges, researchers threats and artists censorship, in the same season the election was celebrated.</h2>
+      <p class="sec-lead">The article calls this a critical juncture and sets the milestone and the record side by side without resolving them in favour of either.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">REPORTED A</div>
+          <div class="ev-title">The three instances, as the article records them</div>
+          <div class="ev-body">"journalists, for their investigative endeavors, face legal challenges; researchers, for presenting findings that cast a critical light on our systems, are met with threats; and artists, for their performances that voice protests injustice and oppression, encounter censorship."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">REPORTED B</div>
+          <div class="ev-title">What the article says they show</div>
+          <div class="ev-body">That a delicate balance has to hold between law enforcement, governance, and the ideals of freedom and justice that are supposed to anchor the society. The instances are presented as evidence that the balance is under strain, not as a verdict on who strained it.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">REPORTED C</div>
+          <div class="ev-title">The collision it names</div>
+          <div class="ev-body">Advocacy fuelled by commitment and passion ran up against the rigid structures of legal frameworks, which is what prompts the article's turn into philosophy rather than into complaint.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">REPORTED D</div>
+          <div class="ev-title">What is not supplied</div>
+          <div class="ev-body">The article names no case, no journalist, no researcher and no artist, and cites no report. The instances are given as a characterisation of the period by a participant in it, and the deck carries them at that weight.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Law's authority and law's morality can come apart, and five traditions say how.</h2>
+      <p class="sec-lead">The article turns the electoral episode into a question about the nature of law itself, and sets out five positions on it.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Legal positivism against natural law</div>
+          <div class="arith-body">Positivism holds that law's authority derives from its formal establishment, whatever the moral considerations. Natural law theory holds that laws should align with inherent human rights and moral principles, which is what makes an oppressive law identifiable as a disconnect rather than merely a rule.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Arendt on the banality of evil</div>
+          <div class="arith-body">Drawn from the Eichmann trial, the insight is that ordinary people can take part in grave injustices under the pretext of duty. Systemic oppression therefore need not originate with malevolent leaders; it can arise through the routine actions of ordinary individuals.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Foucault on power and knowledge</div>
+          <div class="arith-body">Power and knowledge are intertwined, so authority shows itself through the societal norms that knowledge shapes. The article uses this to ask how legal and governance structures might endorse oppression without intending to.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Mill's harm principle</div>
+          <div class="arith-body">Individual action should be limited only to prevent harm to others, which forces a reassessment of how far and on what grounds legal intervention into personal freedoms can reach.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Critical legal studies</div>
+          <div class="arith-body">Challenges the premise that law is neutral and apolitical, arguing instead that laws often perpetuate social inequalities and benefit those already holding power.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why five and not one</div>
+        <p>The article does not adjudicate between them. It uses the five together to establish that the authority of a law and the morality of a law are separable questions, which is the premise the next section needs.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">Illiberal democracy wears the veneer of participation while withholding justice, which is why the vote remains the practical lever.</h2>
+      <p class="body-text">The article names the failure mode directly. Its concern is not the absence of democratic machinery but the presence of machinery that does not deliver what it appears to promise, and it argues that recognising this is what makes realignment with morality, fairness, equality and human dignity urgent rather than decorative.</p>
+      <p class="body-text">Having identified a systemic problem, the article declines the conclusion that individual action is therefore futile. It moves instead to the smallest available act, voting, and argues that it is the practical avenue by which theoretical ideals become concrete.</p>
+      <p class="body-text">That position was tested before publication. The author records that in the days before the election many approached him with questions about the efficacy of voting, expressing disillusionment with the process, and that his answer did not move.</p>
+      <p class="body-text">Socrates is brought in for the same reason. The article notes that despite his criticisms of democracy's vulnerabilities he engaged deeply with the Athenian democracy of his time, and that his dialectic method encouraged critical thinking and active engagement in public discourse. Criticism of a system and participation in it are presented as compatible, which is the article's own stance.</p>
+      <div class="callout">
+        <div class="callout-label">The diagnosis</div>
+        <p>"The rise of illiberal democracies, which present a veneer of democratic engagement while failing to genuinely uphold justice and equity, highlights the critical importance of this realignment."</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The answer he gave</div>
+        <p>"My response was unwavering: to vote is to exercise our most fundamental democratic right." And on the day itself: "Election day is more than a mere obligation, it represents not just a duty but a celebration of democracy, an opportunity for each voice to be heard, regardless of the outcome."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Responsible speech is the demand that follows: no defamation, no hoaxes, no hatred, no racism.</h2>
+      <p class="sec-lead">The article closes by prescribing, which is unusual for it, and the prescriptions bind the speaker rather than the state.</p>
+      <div class="rec-list">
+        <div class="rec-item">
+          <div class="rec-num">1</div>
+          <div class="rec-content">
+            <div class="rec-title">Advocate against defamation</div>
+            <div class="rec-body">Named first among the obligations of responsible discourse, and directed at participants in the democratic process rather than at those who police it.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">2</div>
+          <div class="rec-content">
+            <div class="rec-title">Take full responsibility for your statements</div>
+            <div class="rec-body">Ownership of what is said is treated as the precondition of the free expression being defended, not as a limit imposed on it from outside.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">3</div>
+          <div class="rec-content">
+            <div class="rec-title">Refuse to spread hoaxes, hatred or racism</div>
+            <div class="rec-body">Stated as a steadfast refusal rather than as a preference, and placed alongside defamation as the three ways responsible discourse fails.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">4</div>
+          <div class="rec-content">
+            <div class="rec-title">Hold dialogue to respect, factuality and empathy</div>
+            <div class="rec-body">Each participant is asked to speak with a consciousness of the impact their words may have, so that discussion which is robust and diverse still rests on mutual respect and a shared commitment to truth.</div>
+          </div>
+        </div>
+        <div class="rec-item">
+          <div class="rec-num">5</div>
+          <div class="rec-content">
+            <div class="rec-title">Carry the same values into the curriculum</div>
+            <div class="rec-body">The article's final move returns the whole argument to teaching: integrating these themes prepares students to be leaders capable of addressing present challenges, and treats entrepreneurship as a platform for ethical leadership and societal impact.</div>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>This means actively advocating against defamation, ensuring that we take full responsibility for our statements, and steadfastly refusing to disseminate hoaxes, fuel hatred, or propagate racism.</p>
+        <cite>&mdash; The Role of Entrepreneurship Education in Democratic Engagement, 15 February 2024</cite>
+      </blockquote>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article carries no reference list. Five philosophical positions and one classical figure are named in the body without citations, and they are listed below by their referents rather than by works the article identifies. The three instances of legal challenge, threat and censorship are the author's characterisation of the period, with no case, name or report given; the deck reproduces them at that weight and supplies nothing further. The election referred to throughout is named in the article only as the recent celebrated Election Day.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Named in the article without a citation</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Arendt, H. <em>Eichmann in Jerusalem: A report on the banality of evil.</em> Referred to in the article as Arendt's insights from Adolf Eichmann's trial; no edition or year is given in the source.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Foucault, M. The power/knowledge relationship. Named in the article as Michel Foucault's concept; no work is cited.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Mill, J. S. The harm principle. Named in the article as John Stuart Mill's principle; no work is cited.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Legal positivism and natural law theory. Named as contrasting positions on the source of legal authority, without reference to particular theorists.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Critical legal studies. Named as a perspective challenging the neutrality of law, without reference to particular theorists.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Socrates. Discussed in relation to Athenian democracy and the dialectic method, without reference to a dialogue or source.</div>
+        <div class="ref-group-title">Invoked in the article</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Rahmatan lil'alamin. Rendered in the article as a blessing to all human races and nature, and used as the article's statement of purpose; no textual citation is given.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2024, February 15). <em>The Role of Entrepreneurship Education in Democratic Engagement</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/role-entrepreneurship-education-democratic-engagement-toronata-tambun-ueamc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/role-entrepreneurship-education-democratic-engagement-toronata-tambun-ueamc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
