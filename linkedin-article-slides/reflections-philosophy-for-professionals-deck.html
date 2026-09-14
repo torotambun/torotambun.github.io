@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflections on "Philosophy for Professionals" &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Philosophy for Professionals</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Gap</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Formation · Thirteen Philosophers, Each Given a Profession &nbsp;&middot;&nbsp; 4 September 2023</div>
+      <h1 class="title-main">Reflections on "Philosophy for Professionals"</h1>
+      <p class="title-thesis">An account of an executive philosophy course at STF Driyarkara, taken on a friend's recommendation and with openly low expectations, and the article is most interesting where it argues against its own enthusiasm. The course's method is what made it land: rather than teaching philosophy as a subject, it attached each philosopher to a working life, so Plato speaks to professional commitment, Hegel to work as liberation, Simmel to the broker and the designer, Marcuse to advertising, Merleau-Ponty to medicine and Midgley to science. Having reported the benefit, the article then concedes the strongest objection to it, that everything philosophy develops can be developed through entrepreneurship, mathematics, physics or anthropology instead, and accepts the concession as valid. What it claims for philosophy in the end is not exclusivity but method: logical rigour, clear definition of terms, and the construction and deconstruction of arguments, which for a doctoral student is precisely what is being examined.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">The course was taken on a recommendation and with low expectations, and the article says so.</h2>
+      <p class="body-text">The opening is unusually candid about the frame the author brought to it, which is what makes the reversal worth reporting.</p>
+      <p class="body-text">The route in was personal: "Starting this year, a recommendation from my friend Dr. Johan Hasan at Universitas Ciputra Surabaya led me to an executive philosophy course at Sekolah Tinggi Filsafat Driyarkara."</p>
+      <p class="body-text">The expectation was low and measured against a specific benchmark. He approached it "with an open mind, uncertain if it would match the impact of my previous executive courses from different institutions", adding in parenthesis a friend's advice that "toning down mentions of these schools keeps things grounded".</p>
+      <p class="body-text">The reversal is stated without hedging: "Little did I know, this decision would introduce a fresh wave of insights and novel perspectives, reshaping how I view both my professional and personal spheres."</p>
+      <div class="callout">
+        <div class="callout-label">The course's organising method</div>
+        <p>The course is titled Filsafat Untuk Para Professional, philosophy for professionals, and its structure is what the article credits: each philosopher is attached to a profession or a domain of life rather than taught as a position in intellectual history. The article reproduces that structure, taking thirteen philosophers in turn with a quotation for each.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Each philosopher arrives attached to a working life, which is why the material lands.</h2>
+      <p class="sec-lead">The article works through thirteen, and the pattern in each case is the same: a philosopher, an application to a profession, and a line quoted from them.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Plato, Epicurus, Hegel</div>
+          <div class="arith-body">Plato on professional commitment: "The direction in which education starts a man will determine his future life." Epicurus on diet and moderation: "Not what we have, but what we enjoy, constitutes our abundance." Hegel on work as liberation, which the article says produced a paradigm shift in how it saw its own career: "Freedom is the recognition of necessity."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Freire and Simmel</div>
+          <div class="arith-body">Paulo Freire reshaped its understanding of teaching, toward fostering critical thinking and seeing the teacher as "an agent of empowerment": "Education... becomes the practice of freedom." Georg Simmel supplied a lens on professions as social interplay, applied to stock brokers and fashion designers: "Society is the web of interactions of individuals."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Marcuse, Merleau-Ponty, Bauman</div>
+          <div class="arith-body">Herbert Marcuse on advertising and consumer culture: "The people recognize themselves in their commodities." Merleau-Ponty on medicine and embodied experience: "The body is our general medium for having a world." Zygmunt Bauman on tourists and wanderers, where the article resolves to choose "depth over superficiality" and engagement as a wanderer over the tourist's experience.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Bernadine, Laudato Si', Collingwood, Midgley</div>
+          <div class="arith-body">Saint Bernadine of Siena on ethical entrepreneurship: "The deeds you do may be the only sermon some persons will hear today." Laudato Si' on ecological stewardship. Collingwood on history as empathetic reconstruction. And Mary Midgley on ethics in science: "To see science as one enterprise and ethics as another is no longer an option."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The one it interprets at length rather than quoting</div>
+        <p>Heidegger on retirement gets three paragraphs of exegesis. Withdrawal is read through Heidegger's concern with revealing and concealing, the primordial source through his question of Being, and the whole as "an opportunity to withdraw from the superficialities and distractions of life to deeply reconnect with and understand oneself at a foundational level."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">The article then concedes the strongest objection to itself, and accepts it.</h2>
+      <p class="sec-lead">Having reported the value, the piece turns and states the case against, which is the passage that makes it worth reading rather than merely worth skimming.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col ">
+          <div class="diag-header">The objection, as the article puts it</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Entrepreneurship confronts value, ethics, purpose and human behaviour directly</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Mathematics demands the same logical rigour and abstraction</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Physics asks about reality, causality and the structure of the universe</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Anthropology explores ethics, human nature and societal constructs</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>So the insights are reachable without studying philosophy at all</span></div>
+        </div>
+        <div class="diag-col ">
+          <div class="diag-header">What it still claims for philosophy</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Dedication to the most foundational and abstract questions as such</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A distinctive method of inquiry, not a distinctive subject</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Historical perspective on how ideas shaped disciplines and cultures</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Systematic examination of other disciplines' own assumptions</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Intellectual virtues: humility, courage, perseverance</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The concession, stated in full</div>
+        <p>"In general, it's valid to say that many of the skills or insights gained from studying philosophy can also be developed through other means: from my interactions as entrepreneurs, from mathematics, from physics, from anthropology." And the position that follows it: "the value of philosophy isn't in its exclusivity but in its approach."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">What philosophy has that the alternatives do not is the method, stated precisely.</h2>
+      <p class="body-text">The article's claim narrows once the concession is made, and the narrowing is what gives it force.</p>
+      <p class="body-text">The method is described rather than asserted: "The philosophical method of inquiry is distinctive. It emphasizes logical rigor, clear definition of terms, and the construction and deconstruction of arguments in a way that few other disciplines do."</p>
+      <p class="body-text">Its second distinctive move is directed at other fields rather than at itself. Philosophy "often dives deep into the underlying assumptions of other disciplines. For example, the philosophy of science examines the foundational assumptions of scientific inquiry."</p>
+      <p class="body-text">And the skills it produces are portable, which is the pragmatic case: "The skills you hone in philosophy—critical thinking, clear writing, argument analysis—are highly transferable and can enhance performance in other academic and professional areas."</p>
+      <div class="callout">
+        <div class="callout-label">Where it refuses to prescribe</div>
+        <p>"It's true that not everyone needs to study philosophy formally to develop critical thinking or to engage with deep questions. Many people find other paths to these skills and insights." The article leaves the choice open: "Different people resonate with different paths of inquiry and learning."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">For a doctoral student the method is not optional, because the method is what is being examined.</h2>
+      <p class="sec-lead">The closing section shifts from the professional to the doctoral case, where the article's argument stops being a recommendation and becomes a requirement.</p>
+      <blockquote>
+        <p>At the doctoral level, students are expected to contribute original research to their field. To do so effectively, they need a solid understanding of the foundational principles of research, including the philosophical underpinnings of how knowledge is constructed in their discipline.</p>
+        <cite>&mdash; Reflections on "Philosophy for Professionals", 4 September 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Why method courses exist in doctoral programmes</div>
+          <div class="arith-body">The article observes that many programmes include coursework on research methods and the philosophy of science or epistemology, and gives seven reasons, beginning with the foundation of knowledge and critical thinking: these courses "foster critical thinking by requiring students to examine the assumptions, principles, and methods that underlie research."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Choosing between methods</div>
+          <div class="arith-body">"In many fields, there are multiple research methods available. Understanding the philosophy behind each method can help students choose the most appropriate method for their research questions." This is the argument the Stop series, published a week later, sets out at length.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Defending the choice afterward</div>
+          <div class="arith-body">"By understanding the philosophy and methodology of research, students can more effectively communicate their research findings, defend their research choices, and critique the work of others." A viva examines the choice as much as the finding.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the article leaves open</div>
+          <div class="arith-body">"the specifics of such courses can vary widely by discipline and university", with quantitative methods prioritised in some fields and qualitative in others. The overarching goal it names is preparing candidates "to conduct rigorous, original, and meaningful research."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">No reference list. Thirteen philosophers are quoted, none with a work or date, and several of the attributed lines are widely circulated paraphrases rather than sourced quotations; the deck reproduces them as the article gives them without verifying them against the originals. The article carries unedited second-person address in its middle section, including a passage beginning "That's a completely valid perspective, and your observation touches upon an important point", which marks it as a lightly edited conversational transcript; that passage is described rather than quoted here.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">The course and the recommendation</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Sekolah Tinggi Filsafat Driyarkara, Extension Course Filsafat, Filsafat Untuk Para Professional.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Hasan, J., Universitas Ciputra Surabaya, named as the friend whose recommendation led to the course.</div>
+        <div class="ref-group-title">Quoted in the article, without works or dates</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Plato; Epicurus; Hegel, G. W. F.; Freire, P.; Simmel, G.; Marcuse, H.; Merleau-Ponty, M.; Bauman, Z.; Bernadine of Siena; Collingwood, R. G.; Midgley, M.; Heidegger, M.; Marx, K.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Pope Francis, quoted from <em>Laudato Si'</em> on the Earth and belonging.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Feuerbach, L. Named alongside Marx on religious workers, not quoted.</div>
+        <div class="ref-group-title">Original publication</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, A.R.Y.T. (2023, September 4). <em>Reflections on “Philosophy for Professionals”.</em> LinkedIn.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tambun, T. (2023, September 4). <em>Reflections on "Philosophy for Professionals"</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/reflections-philosophy-professionals-enrichment-journey-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/reflections-philosophy-professionals-enrichment-journey-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

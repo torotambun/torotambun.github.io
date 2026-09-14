@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Lévi-Strauss and Structuralism: A Philosophical Journey, then arriving in Post-Structuralism &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Lévi-Strauss and Structuralism</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Details</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> The Objection</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">The Objection</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Grand Theory Thread · The Critique, In Its Primary Form &nbsp;&middot;&nbsp; 26 August 2023</div>
+      <h1 class="title-main">Claude Lévi-Strauss and Structuralism: A Philosophical Journey, then arriving in Post-Structuralism</h1>
+      <p class="title-thesis">The article does two things, and the second is why it matters beyond its own subject. First it refuses to treat structuralism as a twentieth-century invention, tracing it back through Plato's forms, scholastic order, Renaissance observation and Kant's innate structures of mind, on the stated ground that knowing the lineage is what keeps the work founded on science rather than on hunch. It then sets out the axiology usually skipped in accounts of Lévi-Strauss: universal human intellect, opposition to ethnocentrism, depth over surface, and myths as structures rather than tales. Second, and decisively for the archive, it carries a section headed with a named critic. Professor PM Laksono's ten objections to structuralism appear here in full, and two of them, that it is deterministic and that it cannot account for change, are exactly the objections the author answers a month later in the article that closes the same thread. This is the primary record of a criticism the later piece reports at second hand.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">The article states why lineage matters before it traces any, and the reason is methodological.</h2>
+      <p class="body-text">It opens by naming what the previous article established and what this one adds, which places it inside a working sequence rather than at the start of one.</p>
+      <p class="body-text">The prior claim: "In my last article, I tried to show that Edgar Schein's taxonomy of culture have strong proponents who were prominent anthropologists." And the new one: "In my search, I found structuralism of Lévi-Strauss may be the reason of existence for the Basic Underlying Assumption, Espoused Values and Artifacts framework."</p>
+      <p class="body-text">The reach backward is deliberate. "The structuralism I learn can be dated back to the onset of philosophy in history."</p>
+      <p class="body-text">And the justification for that reach is given in three parts, the middle one being the operative one: "It is important for me to know this so I don't loose the big picture, to make sure my work is founded upon science (not just hunch or say-so), and to remind me that I am just a tiny part of the universe."</p>
+      <div class="callout">
+        <div class="callout-label">Three names in the header</div>
+        <p>The article is dedicated to Prof. Bambang Hudayang, Prof. Heddy Ahimsa-Putra and Prof. PM Laksono, thanked by name. The last of the three supplies the critique that closes the piece, and that reappears in the thread a month later.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Structuralism has antecedents in every major philosophical epoch, which is the point of the exercise.</h2>
+      <p class="sec-lead">Five periods are set out, each showing a precursor to the idea that a hidden structure governs what appears on the surface.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Classical Greece</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Plato's theory of forms</div>
+            <div class="timeline-body">"Just as Plato posited an eternal world of forms behind the ever-changing material world, Lévi-Strauss identified underlying structures of human thought behind the diversity of human cultures. Both emphasized the abstract and timeless over the concrete and temporal."</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Middle Ages</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Scholasticism and Aquinas</div>
+            <div class="timeline-body">Scholastic thinkers reconciling Christian dogma with Aristotelian logic worked by a method that was "rigorous and systematic, mirroring Lévi-Strauss's systematic search for underlying patterns in human cultures". And they believed in "an ordained order set by God, similar to Lévi-Strauss's conviction of universal cognitive structures."</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Renaissance</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Humanism and direct observation</div>
+            <div class="timeline-body">A return to primary sources and direct observation of human nature and cultures. "This return to direct observation and the desire to find common patterns among the diversity can be likened to Lévi-Strauss's approach to anthropology", which observes cultures directly and looks for common structures.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Modern era</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Kant, and Freud alongside him</div>
+            <div class="timeline-body">"Kant believed that the human mind has innate structures that determine how we perceive the world." The article marks the difference precisely: Lévi-Strauss sought innate structures of culture and myth rather than of perception. His belief that "the unconscious steers behavior" is tied to Freud's exploration of the subconscious in the same period.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Contemporary</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Postmodernism, both precursor and opponent</div>
+            <div class="timeline-body">Structuralism offers "a “grand narrative” of universal structures in human thought", which postmodernism is defined against. Yet its emphasis on the unconscious and "the primacy of structure over individual agency can be seen as a precursor to postmodernist ideas."</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the lineage establishes</div>
+        <p>"while his work was revolutionary, it was also a continuation of a long-standing philosophical tradition seeking to understand the patterns and structures that underpin human existence." A framework with a two-thousand-year antecedent is harder to dismiss as a passing method.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">The axiology is the part usually skipped, and it is where the ethics of the method sit.</h2>
+      <p class="sec-lead">Seven value orientations are drawn out, on the basis that axiology "concerns itself with the study of values, encompassing both aesthetics (study of beauty and taste) and ethics (study of moral values and principles)." Here it is applied to a theory rather than to a practice.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Universal human intellect</div>
+          <div class="arith-body">"Lévi-Strauss believed that the human intellect, regardless of culture or civilization, has a universal quality." The Savage Mind is credited with valuing "the intricate intellectual achievements of non-Western societies, debunking any idea of them being 'simpler' or 'inferior.'"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Opposition to ethnocentrism</div>
+          <div class="arith-body">He "was critical of Western ethnocentrism—the belief in the inherent superiority of one's own ethnic group or culture", holding that "every culture has its own order and coherence, and understanding it requires a suspension of our own cultural biases."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Depth over surface, and the value of myths</div>
+          <div class="arith-body">Structuralism "delves deep beneath surface appearances and manifestations to identify underlying structures", showing "a value for deeper, universal truths over fleeting, superficial observations". Myths "weren't just rudimentary tales but intricate structures of thought that communicated essential societal truths."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Objectivity, relativism, and conservation</div>
+          <div class="arith-body">He "sought to detach his personal values and biases from his research, aiming for a neutral perspective that could reveal universal truths." Cultural relativism follows as an ethical stance, "where moral and ethical systems are seen relative to their cultural context". And the work implicitly values the conservation of indigenous cultures.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The works and the field, as the article gives them</div>
+        <p>Tristes Tropiques (1955), part memoir and part anthropological analysis. The Savage Mind (1962), on the bricoleur. The Elementary Structures of Kinship (1949). And Mythologiques in four volumes (1964 to 1971), demonstrating "that myths operate within a system, similar to language." His fieldwork centred on indigenous tribes in Brazil.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Objection</div>
+      <h2 class="sec-title">Then comes the critique, under a named professor, and ten objections are set out in full.</h2>
+      <p class="sec-lead">The section is headed Critique from Prof. Laksono, and it is the only place in the archive where a named scholar's objections to the author's framework are reproduced at length rather than summarised.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Binary oppositions and ahistoricism</div>
+          <div class="arith-body">Critics argue that binary oppositions "can oversimplify complex cultural phenomena, reduce nuances, and perpetuate false dichotomies." And that structuralism "often neglects historical and social contexts. By focusing on timeless structures, it sometimes ignores the historical processes that lead to the formation of these structures."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Determinism, and the inability to account for change</div>
+          <div class="arith-body">"By arguing that individuals' behaviors, thoughts, and perceptions are determined by underlying structures, structuralism can be seen as reducing human agency and individuality." And structuralism "tends to emphasize the unchanging nature of structures, making it less adept at explaining societal and cultural changes or evolution." These two are the objections the thread returns to a month later.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Abstraction, reductionism, and the post-structuralist challenge</div>
+          <div class="arith-body">That it becomes "too abstract and disconnected from real-world phenomena", and that its focus on systems is reductionist, "overlooking the complexities and variances of individual instances". Derrida and Foucault "argue that meanings and identities are not fixed but are instead constantly shifting and redefined through discourse."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Applicability, ethnocentric risk, and over-reliance on Saussure</div>
+          <div class="arith-body">That it is not universally applicable across disciplines. That applied in anthropology it "can sometimes unconsciously impose Western conceptual frameworks onto non-Western cultures", which cuts directly against the axiology set out above. And that applying Saussure's signifier and signified "too broadly to other disciplines can be problematic."</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Why this section matters beyond this article</div>
+        <p>The article of 27 September 2023, Balancing Structuralism &amp; Post Structuralism: Result of an Open Research, reports Professor Laksono's criticism and answers it by distinguishing Schein's evolving layers from Lévi-Strauss's fixed structures. That later piece summarises the objection in a sentence. This is where the objection is recorded in full, a month earlier, in the critic's own framing.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">The criticism is recorded without being answered, which is what makes the later answer worth something.</h2>
+      <p class="sec-lead">The article does not defend structuralism against the ten objections. It closes by stating what the framework contributed despite them, and leaves the resolution to later work.</p>
+      <blockquote>
+        <p>Despite these criticisms, structuralism has made significant contributions to various fields and has laid the foundation for many subsequent theories and movements, including post-structuralism, semiotics and deconstruction.</p>
+        <cite>&mdash; Claude Lévi-Strauss and Structuralism, 26 August 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the article says structuralism is</div>
+          <div class="arith-body">In the critique section's own definition, "an intellectual movement that posits that elements of human culture must be understood in terms of their relationship to a broader system", asserting that "the “structure” of interrelated parts is more important than individual parts in isolation."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The company Lévi-Strauss kept</div>
+          <div class="arith-body">Barthes on semiotics, Lacan integrating structuralist ideas into his reading of Freud, Foucault who "would later critique certain aspects of structuralism", Jakobson whose structural linguistics influenced him, and Saussure whose work was foundational for structural anthropology. Sartre, Queneau and Braudel are named alongside them.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where the thread goes from here</div>
+          <div class="arith-body">The objections recorded here are answered on 27 September, in the piece subtitled Result of an Open Research, which concludes that structuralism and post-structuralism should be scoped alongside each other rather than one chosen over the other. The title of this article already names that destination.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the ten objections are worth</div>
+          <div class="arith-body">Read together they are an argument that structuralism describes a world that does not move. Two of them say so directly. That is precisely the charge Schein's model is later used to answer, since its deepest layer is held to evolve when confronted with anomalies.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">No formal reference list. Lévi-Strauss's four major works are named with dates in the body, which makes the biographical section checkable; nothing else is. The critique attributed to Professor Laksono is reproduced without a citation to where it was made, so it is not possible to establish from the text whether it was delivered in writing, in person or in correspondence. Note that this article's pulse slug carries percent-encoding for the accented character in Lévi-Strauss, which is preserved exactly as the archive records it. The article is the earliest piece in this batch by three weeks.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Named in the header</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Hudayang, B., Prof.; Ahimsa-Putra, H., Prof.; Laksono, P. M., Prof. Thanked by name. Laksono is Professor of Anthropology at Universitas Gadjah Mada, with a doctorate from Cornell, as the later article of 27 September records.</div>
+        <div class="ref-group-title">Works of Lévi-Strauss, named with dates</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Lévi-Strauss, C. (1949). <em>The Elementary Structures of Kinship.</em></div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Lévi-Strauss, C. (1955). <em>Tristes Tropiques.</em></div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Lévi-Strauss, C. (1962). <em>The Savage Mind.</em></div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Lévi-Strauss, C. (1964-1971). <em>Mythologiques</em>, four volumes.</div>
+        <div class="ref-group-title">Named without works</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Plato; Aquinas, T.; Kant, I.; Freud, S.; Saussure, F. de; Jakobson, R.; Barthes, R.; Lacan, J.; Foucault, M.; Derrida, J.; Sartre, J.-P.; Queneau, R.; Braudel, F.; Schein, E.</div>
+        <div class="ref-group-title">Original publication</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tambun, A.R.Y.T. (2023, August 26). <em>Claude Lévi-Strauss and Structuralism: A Philosophical Journey, then arriving in Post-Structuralism.</em> LinkedIn.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2023, August 26). <em>Claude Lévi-Strauss and Structuralism: A Philosophical Journey, then arriving in Post-Structuralism</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/claude-l%C3%A9vi-strauss-structuralism-philosophical-journey-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/claude-l%C3%A9vi-strauss-structuralism-philosophical-journey-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
