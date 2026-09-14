@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caesar Indra: The Making of an Entrepreneurial Mindset &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Caesar Indra</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Details</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Evidence</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Implications</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Entrepreneurial Formation · A Single Case, Read Against Hofstede &nbsp;&middot;&nbsp; 29 September 2023</div>
+      <h1 class="title-main">Caesar Indra: The Making of an Entrepreneurial Mindset</h1>
+      <p class="title-thesis">The article reads one Indonesian executive as a case in how an entrepreneurial mental model is formed, and it is careful about the status of what it claims. The formative account is written in conditional verbs: a remote village in Bengkulu would have exposed him to hardship early, a disciplined Bogor high school would have taught adaptability, and the years in the United States are described as myelination, insulating the early values rather than replacing them. From that single case the article turns outward to Hofstede, where Indonesia scores 78 on power distance, 14 on individualism, and high on uncertainty avoidance, and concludes that the Western model of sporadic storytelling will not transplant. What is needed instead is a structured framework that works with the Guru-Student dynamic rather than against it, applied early enough to matter, which is during neuron pruning in childhood.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">The making of an entrepreneurial mindset is a dissertation question before it is a profile.</h2>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The author met Caesar Indra, President of Traveloka and an MIT Sloan alumnus, after earning his own affiliated alumni status with Sloan in 2018. The relationship deepened during COVID-19, when Caesar intervened to find him a place for a fourteen-day isolation on an emergency trip at a time when hotels were scarce.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>A figure like this is normally explained by what he has done at the company: the diversification beyond flights and hotels into lifestyle and financial services, the resilience that pivot bought during the pandemic. That account starts far too late to answer the question the author is actually asking.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>How did experiences from childhood onward contribute to the entrepreneurial mental model he now brings to Traveloka, and what does one case tell us about making more of them?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Formation runs from a remote village in earthquake-prone Bengkulu through a disciplined Bogor high school to the United States, where the early values were insulated rather than overwritten. The article then tests that account against Hofstede's scores for Indonesia and finds the imported model of entrepreneurship education does not fit the culture it is being applied to.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The article's own framing of its purpose</div>
+        <p>"In this article, related to my dissertation, I am writing about Caesar Indra, an alumni of MIT Sloan School of Management and now President of Traveloka"</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Formation runs Bengkulu to Bogor to Boston, and every step is stated as a likelihood rather than as a fact.</h2>
+      <p class="sec-lead">The four stages are the article's own numbering. The verbs matter as much as the stages: the article writes would have, could, and might throughout, because it is reasoning about a life from the outside rather than reporting an interview.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Rooted beginnings in Bengkulu</div>
+          <div class="arith-body">"Growing up in a remote village in the earthquake-prone province of Bengkulu would have exposed Caesar to the challenges and realities of life at an early age." The article adds that twelve hours of travel to reach Lampung, the nearest significant town, is itself a lesson: "The journey of 12 hours to reach the nearest significant town of Lampung could instill patience and the understanding that success and progress often require perseverance."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Exposure at Regina Pacis High School, Bogor</div>
+          <div class="arith-body">A disciplined and resourceful school, and in the article's reading the first melting pot: a first deep dive into other cultures, away from the familiarity of the village. The trait it is credited with is adaptability, which the article ties directly to leading a company serving varied audiences across Southeast Asia.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Myelination in the USA</div>
+          <div class="arith-body">The metaphor is neurological and the article explains it before using it: myelination insulates nerve cells for better electrical transmission. Undergraduate study and then MIT Sloan are cast as that process, in which "his foundational values from Bengkulu were insulated and amplified with global perspectives, rigorous analytical training, and a broader worldview." Boston Consulting Group is credited with honing the strategic thinking on top.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Synthesis of experiences</div>
+          <div class="arith-body">The four stages are not read as a sequence of replacements. What the article claims is a single mental model combining grassroots insight, global best practice, adaptability and cultural nuance, and it describes the resulting leader in one phrase: rooted yet global, strategic yet empathetic.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why the conditional verbs are preserved here</div>
+        <p>The deck keeps would have, could and might exactly where the article puts them. Converting them into the indicative would turn a documented inference into a claimed biography, which is a different and unsupported piece of writing.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Masterpiece creation, not mass creation, is the claim the biography is being used to support.</h2>
+      <p class="body-text">The conclusion of the formative section is a single sentence, and the whole first half of the article exists to earn it. What the author is arguing against is the idea that an entrepreneur of this kind is producible at volume.</p>
+      <p class="body-text">The evidence he assembles from the Traveloka years is about execution rather than vision. Discipline in execution is credited to the BCG training; the Southeast Asian market knowledge is credited with keeping the product user-centric and culturally attuned; the advocacy for Indonesian talent is credited to being an Indonesian who studied and worked abroad.</p>
+      <p class="body-text">The diversification is the concrete instance. Under his leadership the platform moved beyond flights and hotels into lifestyle and financial services, and that pivot is what the article says fortified the company's resilience through the pandemic.</p>
+      <p class="body-text">The logical structure is worth naming, because it is the structure of the dissertation the article belongs to. A rare formation produces a rare outcome. If the outcome is wanted at scale, the formation, and not the outcome, is what has to be worked on.</p>
+      <div class="callout">
+        <div class="callout-label">The article's conclusion, as a heading</div>
+        <p>"Caesar Indra is not a result of mass-creation, but a result of masterpiece creation"</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Three Hofstede dimensions explain why the imported model of entrepreneurship education does not transplant.</h2>
+      <p class="sec-lead">The article moves from the single case to Hofstede's cultural dimensions, positioned as a middle-range derivative of organisational theory, and reads three of the six against the conditions a startup needs.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Score of 78</div>
+          <div class="comp-name">Power distance</div>
+          <div class="comp-body">"Indonesia scores high on the power distance dimension (a score of 78)". Hierarchy is the norm and employees expect direction from superiors, which the article calls the quintessential Guru-Student dynamic. Power is centralised, so grassroots innovation is inhibited; communication is indirect, so negative feedback is hidden and the open critique a startup needs to iterate is not forthcoming.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Score of 14</div>
+          <div class="comp-name">Individualism</div>
+          <div class="comp-body">Indonesia is a collectivist society, "scoring a mere 14 on the individualism scale". Important decisions involve family and community, which slows the rapid decision-making startups require. Relationships and harmony are prioritised over strictly professional considerations. Family loyalty cuts both ways: a support system, and a set of responsibilities that makes young entrepreneurs risk-averse.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Relatively high</div>
+          <div class="comp-name">Uncertainty avoidance</div>
+          <div class="comp-body">The index measures how threatened a culture feels by ambiguity, and Indonesia scores relatively high. The consequences the article draws are risk aversion where risk is necessary for innovation, scepticism toward unorthodox solutions, and a preference for proven business models over uncharted territory.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the scores are taken to mean together</div>
+        <p>The article does not treat these as national defects. It treats them as the conditions any entrepreneurship framework in Indonesia has to be designed for, and notes that over 1,300 ethnic groups make a one-size-fits-all model a challenge in any sector.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">A framework that works with the Guru-Student dynamic will outperform one that assumes the dynamic away.</h2>
+      <p class="sec-lead">The article's practical claim is a comparison between what is being imported and what the cultural scores suggest would actually hold.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col wrong">
+          <div class="diag-header">The Western model as the article describes it</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Sporadic learning rather than structured sequence</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Motivation carried by storytelling and success stories</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>A laissez-faire approach to the learner's path</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>An assumption of low power distance and individual initiative</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Comfort with ambiguity taken as a starting condition</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">What the dimensions argue for instead</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>A structured entrepreneurship framework, not a stream of anecdotes</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Mentorship and guidance aligned to the Guru-Student dynamic</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Grassroots innovation initiatives that do not wait for top-down approval</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Community-focused incubators built on the collectivist grain</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Gradual, controlled exposure to uncertainty in educational settings</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The verdict, in the article's own words</div>
+        <p>The Western style of promoting entrepreneurship "might not be the best fit for the Indonesian context", and what the article proposes in its place is "a more structured and culturally sensitive framework might be more effective in nurturing gem-quality startups in Indonesia".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">If formation is the lever, the intervention has to start during neuron pruning, which is where the difficulty lies.</h2>
+      <p class="body-text">The closing section names the timing problem the whole article has been circling. "It takes a village to raise a child, so does to raise an entrepreneur." And then the qualifier that makes it hard: "It starts in their very early childhood, during their neuron pruning process."</p>
+      <p class="body-text">The neurological claim is stated modestly. Experiences during the pruning period are said to influence risk-taking ability, problem-solving and creativity, which is why the article's two recommendations are educational rather than economic: an early environment that encourages curiosity, creativity and critical thinking, and stimulating environments with diverse exposure.</p>
+      <p class="body-text">That timing is also what makes the policy question unanswerable at the level of a single programme. An intervention aimed at early childhood is measured over decades, in a country the article puts at 278 million people, and it requires a leader capable of moving them toward a common goal.</p>
+      <p class="body-text">The article is explicit that this is the weak point of its own argument rather than the strong one: "Hypothetically I must add: it will rely so much on such a strong leader to move 278 million people in this case." It supports that hope with the observation that the country has mobilised successfully before, when facing a common goal or enemy, and then immediately undercuts it.</p>
+      <div class="warning-callout">
+        <div class="callout-label">The line the author will not let himself rest on</div>
+        <p>"I have hope ! but hope is not a strategy."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Hope is not the strategy, but it is what a strategy would have to be built on.</h2>
+      <p class="sec-lead">The final paragraph revises the earlier line rather than repeating it, and the revision is the article's actual position.</p>
+      <blockquote>
+        <p>Hope, as I often hear , is not a strategy. However, hope can be the foundation upon which strategies are built.</p>
+        <cite>&mdash; Caesar Indra: The Making of an Entrepreneurial Mindset, 29 September 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Leadership</div>
+          <div class="arith-body">Uniting toward a shared vision the way nations unite against a common enemy; policy frameworks covering easy business registration, tax incentives for innovation-driven businesses and R&amp;D grants; and promoting successful innovation-driven entrepreneurs as role models.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Institutions</div>
+          <div class="arith-body">Education reform beyond the early years, with entrepreneurial courses, incubation centres and industry partnerships in tertiary institutions; and infrastructure, both physical innovation parks and seamless digital connectivity.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Society</div>
+          <div class="arith-body">Collective mobilisation that uses the collectivist grain rather than fighting it, through community-driven entrepreneurial hubs where knowledge, resources and support are shared, and gradual exposure to controlled uncertainty to build resilience.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What remains open</div>
+          <div class="arith-body">The article calls the path forward something it is still investigating in the dissertation, and distinguishes creating an innovation-driven entrepreneur from creating a micro, small or medium one, while allowing that the latter is not easy either.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article carries no formal reference list. Hofstede's cultural dimensions are named inline without a citation, and the scores quoted here are the article's own figures. Traveloka's founding details, investors and features are given as background without attribution. The formative account of Caesar Indra's childhood and schooling is the author's inference from a personal acquaintance, written in conditional verbs throughout, and is not sourced to an interview.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Named in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Hofstede, G. <em>Cultural dimensions theory</em> and the 6-D model. Cited inline for Indonesia's scores of 78 on power distance and 14 on individualism, and for a relatively high Uncertainty Avoidance Index. No edition or date is given.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Traveloka. Founded 2012 by Ferry Unardi, Derianto Kusuma and Albert Zhang; investors named as Expedia, East Ventures and Sequoia Capital. Given as background, without a source.</div>
+        <div class="ref-group-title">The subject</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Caesar Indra. President of Traveloka; alumnus of MIT Sloan School of Management; previously trained at Boston Consulting Group; schooled at SMA Regina Pacis, Bogor; from a village in Bengkulu province.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>The author's own account of meeting him in 2018 and of his assistance during COVID-19 isolation is first-hand and is presented as such.</div>
+        <div class="ref-group-title">Original publication</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, A.R.Y.T. (2023, September 29). <em>Caesar Indra: The Making of an Entrepreneurial Mindset.</em> LinkedIn.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T. (2023, September 29). <em>Caesar Indra: The Making of an Entrepreneurial Mindset</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/caesar-indra-making-entrepreneurial-mindset-toronata-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/caesar-indra-making-entrepreneurial-mindset-toronata-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

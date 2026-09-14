@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traditional Journalism: Trustworthy Anchor in the Digital Tide of Elections &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Traditional Journalism</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Details</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Claim</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Framework</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> The Condition</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Claim</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">The Condition</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Media · Doxa, Episteme and an Election &nbsp;&middot;&nbsp; 21 October 2023</div>
+      <h1 class="title-main">Traditional Journalism: Trustworthy Anchor in the Digital Tide of Elections</h1>
+      <p class="title-thesis">A morning newspaper ritual is the entry point to an epistemological claim rather than a nostalgic one. The article's argument is that a newspaper's layered editorial process pushes it toward episteme, meaning knowledge that has survived scrutiny, while the undifferentiated digital stream blurs the line between that and doxa, the taken-for-granted. Its prescription is not retreat into print. Mainstream media are asked to use doxa's own instruments, the short segment and the catchy headline, as a bridge to substantial content. And the stake is dated: an election is when the distinction between opinion and knowledge stops being an academic matter.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">A newspaper at six in the morning is a ritual, and the ritual is doing cognitive work.</h2>
+      <p class="body-text">The article opens on a recurring hotel stay and a crisp newspaper over breakfast, and it is careful that the appeal is not only sentimental. The tactile experience is set against what it calls the sterile swipes of a screen: grainy texture underneath the fingers, the rustle of a turning page.</p>
+      <p class="body-text">The claim attached to that is empirical rather than aesthetic. The article reports that studies have indicated tactile engagement may play a role in bolstering comprehension and in retaining what is consumed, which converts a pleasure into a mechanism.</p>
+      <p class="body-text">Two further effects are named. The absence of blue light means no eye strain and no disruption to the body's internal rhythms; and the reassuring predictability of a paper waiting at six in the morning supplies a routine, which the article treats as an anchor setting the tone of the day.</p>
+      <p class="body-text">The register in which the article holds all this is deliberate. Reading a newspaper is described as a meditation in mindfulness, commanding a deliberation that digital reading does not, at a pace it calls more human and less mechanised.</p>
+      <div class="callout">
+        <div class="callout-label">What the ritual also is</div>
+        <p>"For someone like me, a newspaper is a time machine." The article adds that it transports him to a period before the digital avalanche, when information was savoured rather than consumed.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Finite pages bound attention where the endless scroll does not.</h2>
+      <p class="sec-lead">The article's sharpest structural observation is that a newspaper's principal limitation is also its advantage, and it sets the two media against each other on that basis.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">The newspaper</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A finite number of pages, and therefore an end</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>No pop-ups competing for attention</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Room for the mind to dwell and engage deeply</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Lower cognitive load, no multitasking</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Each story demands its due, in sequence</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">The digital stream</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>An endless scroll with no boundary</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Persistent pings and notifications</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Flitting between one item and the next</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Cognitive load of continuous multitasking</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Immediacy and brevity as the default</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The paradox the article names</div>
+        <p>"The finite nature of its pages offers a boundary that digital platforms, with their endless scroll, don't." Its reading is that this limitation, paradoxically, becomes the newspaper's strength.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Claim</div>
+      <h2 class="sec-title">Editorial layers are what make a newspaper lean toward episteme rather than doxa.</h2>
+      <p class="body-text">Having established the reading experience, the article moves to the production process, and this is where the argument actually sits. Well-established newspapers come with a legacy and, more importantly, with rigorous editing involving multiple layers of checks.</p>
+      <p class="body-text">What those layers produce is a specific property: information that has been vetted, verified and viewed from several angles before it reaches a reader. The article sets that against the immediacy and brevity of many online sources, which is a difference in process rather than in medium.</p>
+      <p class="body-text">The second effect is on the reader rather than the text. A daily or weekly publication permits what the article calls reflective consumption, allowing a reader to sit back, digest and reflect rather than absorb a constant barrage of updates.</p>
+      <p class="body-text">The article is careful not to overclaim. No source is entirely free of bias or opinion, and its position is that the structured editorial process tends toward episteme rather than guaranteeing it, with reputations hinging on reliability.</p>
+      <div class="callout">
+        <div class="callout-label">What it is not arguing</div>
+        <p>The article does not dismiss social media. Its position is that balancing such platforms with vetted sources produces a more rounded perspective, and that incorporating traditional news is a conscious choice for depth and credibility rather than a nod to the past.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Foucault's episteme is an era's foundation of knowledge; Bourdieu's doxa is what a society wears without noticing.</h2>
+      <p class="sec-lead">The article traces both terms to ancient Greek philosophy and then to the two modern thinkers who reworked them.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">Episteme</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Knowledge, understanding and science, in the Greek sense</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Often paralleled to justified true belief</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Has weathered rigorous scrutiny and defends itself on rational grounds</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Anchored in evidence, reason and systematic understanding</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Foucault: the conceptual foundation of knowledge in each era</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">Doxa</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Common beliefs or opinions favoured among the masses</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>May not have undergone rigorous verification</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Exists in the realm of the taken-for-granted</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Persists because popularly accepted, not because examined</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Bourdieu: beliefs a society wears as spectacles without seeing them</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The contemporary form of episteme</div>
+        <p>The article points to the scientific method as capturing its spirit: a structured approach to inquiry with a firm emphasis on evidence-based conclusions.</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why doxa is hard to challenge</div>
+        <p>On the article's reading of Bourdieu, doxa becomes an unspoken consensus that rarely faces challenge, precisely because it is not recognised as belief but accepted as self-evident truth.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Indonesian professors stay off the platforms where their global peers publish.</h2>
+      <p class="body-text">The article's one worked case is a seasoned executive who returned to Indonesia after a period overseas, and who keeps both the newspaper ritual and an active presence on professional platforms. The deck refers to her by role rather than by name.</p>
+      <p class="body-text">The contrast she reports is institutional. At the Ivy League institutions where she studied, LinkedIn was part of the scholarly ecosystem: professors wrote their thoughts there and shared research, so that academia met the wider world rather than remaining in journals.</p>
+      <p class="body-text">In Indonesia the article finds the opposite, and it is careful that this is not a deficit of knowledge. The academic culture is rich and the knowledge plentiful; what is absent is the presence on the platform.</p>
+      <p class="body-text">Her response is what the article holds up. She treats the platform as a global stage where intellectuals from premier institutions gather to share and debate, and set out to bring the depth of Indonesian academia to that forum, in the hope that others would follow.</p>
+      <div class="callout">
+        <div class="callout-label">The observation, as written</div>
+        <p>"Professors, while revered for their expertise, seldom venture into this digital professional sphere." The article calls the contrast reflective of how differently academic cultures perceive and interact with digital platforms.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">Mainstream media must use doxa's tools to carry people to episteme, not merely move online.</h2>
+      <p class="body-text">The article's prescription is the opposite of retreat, and it is aimed at the institutions rather than at readers. The challenge for traditional newspapers is not to transition online but to adapt, evolve and compete in a stream that contests attention every second.</p>
+      <p class="body-text">The instruments it names are the ones usually blamed for the problem. Quick hits, catchy headlines and trending formats are to be used not for sensationalism but as a bridge to substantial, well-researched content.</p>
+      <p class="body-text">Its worked example is specific enough to build. A two-minute news segment that draws an audience with the appeal of bite-sized content and, by its end, delivers deeper insight.</p>
+      <p class="body-text">The responsibility that goes with the role is stated plainly: mainstream outlets are described as guardians of authentic information, which is why the article asks them to harness doxa's appeal rather than disdain it.</p>
+      <div class="callout">
+        <div class="callout-label">The instruction</div>
+        <p>Mainstream media outlets are the guardians of authentic information, the article holds, "hence they must harness the appeal of" doxa to guide audiences toward genuine knowledge.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Condition</div>
+      <h2 class="sec-title">Digital readiness is socio-cultural, and copying another country's model without tailoring it invites confusion.</h2>
+      <p class="body-text">The article separates two things usually conflated, and the separation carries its policy weight. A society is not digitally prepared because internet access is widespread or smartphones are common.</p>
+      <p class="body-text">What readiness actually requires is a change in what a population does with what it receives: discerning the content, understanding it, and using it for progress rather than consuming it.</p>
+      <p class="body-text">The precondition it names is human capital, and the article's list is unglamorous: people who are well-fed, educated, and led by leaders with vision. Digital readiness is placed downstream of nutrition and schooling.</p>
+      <p class="body-text">The article then makes an admission most treatments avoid, and treats it as productive. Lagging behind other nations is no cause for shame; it is a starting point, and the error would be to import a model built elsewhere without fitting it to a different socio-cultural fabric.</p>
+      <div class="callout">
+        <div class="callout-label">What readiness means</div>
+        <p>"True digital readiness is achieved when a population is not just consuming digital content but discerning it, understanding it, and utilizing it for progress."</p>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The warning against imitation</div>
+        <p>"Blindly emulating digital models from other countries, without tailoring them to our unique socio-cultural fabric, is a recipe for further confusion and potential pitfalls."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">An election is when the distinction stops being academic.</h2>
+      <p class="sec-lead">The article closes by naming the occasion that makes the whole argument urgent, and it names a date.</p>
+      <blockquote>
+        <p>In the din of election campaigns, the clear, reasoned voice of trustworthy journalism is not just valuable; it's indispensable.</p>
+        <cite>&mdash; Traditional Journalism: Trustworthy Anchor in the Digital Tide of Elections, 21 October 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What an election does to an information system</div>
+          <div class="arith-body">The article describes it as a hotbed for misinformation, with stakes high and emotions higher, where power dynamics shift and vested interests inundate the public sphere with half-truths and misleading narratives.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the role becomes</div>
+          <div class="arith-body">Beyond disseminating information, established newspapers and credible journalistic entities are cast as the compass by which a society finds its way through propaganda.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The test for a citizen</div>
+          <div class="arith-body">To value popular opinion with a discerning eye, understanding its limitations, while remaining vigilant and seeking verified knowledge. The article treats holding both as the actual skill.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where the argument began</div>
+          <div class="arith-body">A newspaper at six in the morning. The article's claim is that a habit which looks like nostalgia is a practice in distinguishing what has been checked from what has merely been repeated.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article carries no reference list. Two philosophers are named in the body without citation, and the studies it invokes on tactile reading and comprehension are referred to only as studies, with no source given. The executive whose account forms the evidence section is identified in the source by first name; she is a private individual and the deck refers to her by role instead. The article's in-body byline is dated 18 October 2023 while it was published on 21 October, and its cover carries the publication date; both are recorded as they stand. The same title ran as a Jakarta Post column on the day of publication, and that column carries its own deck.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Named in the article without a citation</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Foucault, M. Named for the account of episteme as the conceptual foundation of knowledge in each era, and as the bedrock on which knowledge claims and power structures stand. No work is cited.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Bourdieu, P. Named for the account of doxa as deeply ingrained beliefs a society accepts as self-evident truth. No work is cited.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Studies indicating that tactile engagement supports comprehension and retention, referred to without attribution.</div>
+        <div class="ref-group-title">The companion column</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Tambun, T. (2023, October 21). Traditional journalism: Trustworthy anchor in the digital age. <em>The Jakarta Post</em>. https://www.thejakartapost.com/opinion/2023/10/21/traditional-journalism-trustworthy-anchor-in-the-digital-age.html — published the same day under a shorter title, and carrying its own deck.</div>
+        <div class="ref-group-title">Related in the author's own archive</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span><em>Bridging Ideals and Reality: The Evolving Role of Educators in the University Setting</em> (20 December 2023) develops the observation about academics and professional platforms into a chapter of its own, reading their absence as a missed chance to be the ever-present guide. https://www.linkedin.com/pulse/bridging-ideals-reality-evolving-role-educators-setting-tambun-ursbc</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T. (2023, October 21). <em>Traditional Journalism: Trustworthy Anchor in the Digital Tide of Elections</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/traditional-journalism-trustworthy-anchor-digital-tide-tambun-ctwmc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/traditional-journalism-trustworthy-anchor-digital-tide-tambun-ctwmc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
