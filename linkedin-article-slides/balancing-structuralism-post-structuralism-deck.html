@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balancing Structuralism &amp; Post Structuralism: Result of an Open Research &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Balancing Structuralism</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Objection</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Gap</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Implications</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Details</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Objection</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Grand Theory Thread · The Capstone, and a Named Objection &nbsp;&middot;&nbsp; 27 September 2023</div>
+      <h1 class="title-main">Balancing Structuralism &amp; Post Structuralism: Result of an Open Research</h1>
+      <p class="title-thesis">This is the closing article of a seven-piece working day, and what makes it research rather than reading is a named person disagreeing. Professor PM Laksono of Universitas Gadjah Mada criticised the author's linking of Levi-Strauss to Schein, on the ground that structuralism carries a determinism and finality that Schein's model does not share. The article accepts the criticism as insightful and then answers it: Schein's deep assumptions evolve when confronted with challenges, so the two are not the same kind of structure. It then turns the objection into a method. Post-structuralism does not replace Schein's shared values but interrogates them, asking how they were constructed, whose voices dominated and whose were silenced. The conclusion is not to choose a lens but to scope each one explicitly, which is what an open research produces when it is conducted in public.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A question about national trajectory turns into a question about which theory is allowed to answer it.</h2>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The standing question is the one the whole thread serves. "In answering my query on the trajectory from a “lazy native” to an “innovative nation,” one could argue that it's the culmination of these anthropological evolutions." Culture is treated as mobile: "culture is not static; it is an evolving entity, shaped by countless forces and moments of inflection, both subtle and monumental."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>The case the author actually faces is a mismatch between expectation and condition. "I am facing a case where a nation without traits of innovation is expected to be an innovative nation (by Western's definition)." Japan, Norway and Israel succeeded, and the question is whether shared values built across generations explain it.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"If I borrow this stand, will I be a structuralist? or more like post-structuralist or simply Geert's stand?"</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>None of them alone. The position turns out to draw on structuralism for the attention to deep values, post-structuralism for the refusal of an imported standard, Geertz for the insistence on national particularity, and Hofstede for the link between values and outcomes.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Eight inflection points move a national culture, and none of them is a programme a ministry can run.</h2>
+      <p class="sec-lead">Before the theory, the article lists what actually shifts a culture, drawn from the corpus it has been analysing.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Technology and globalisation</div>
+          <div class="arith-body">The printing press for knowledge dissemination, the internet for communication. Interconnection through trade, travel and communication produces both homogenisation, "where global norms become standardized", and hybridisation, "where unique cultural blends emerge".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Visitors, and deliberate exchange</div>
+          <div class="arith-body">"Travelers, explorers, missionaries, and colonizers have historically played significant roles in introducing new beliefs, practices, and institutions to indigenous cultures", producing assimilation, resistance, or both. Student exchange and cultural festivals are the deliberate version of the same mechanism.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Economic and political change</div>
+          <div class="arith-body">Booms, recessions and the shift from agrarian to industrial economies alter values, family structures and social norms. Revolutions, regime changes and the propagation of ideologies carry cultural consequences of their own.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Disaster, and intellectual movement</div>
+          <div class="arith-body">"Events like earthquakes, tsunamis, or pandemics can lead to cultural shifts as societies re-evaluate their values, beliefs, and practices in the wake of significant upheaval." And philosophical movements from the Renaissance to postmodernism, which the article treats as inflection points in their own right.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The author's own metaphor, and the risk it names</div>
+        <p>On "jumping too much or too high": "Rapid or forced cultural change can lead to a sense of dislocation, loss, or identity crisis." Bypassing stages risks "a veneer of change without the deep-rooted transformation that genuine cultural evolution entails", leaving adopted elements "in constant tension with deeply held values and beliefs."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Objection</div>
+      <h2 class="sec-title">A professor of anthropology objected that structuralism is deterministic where Schein is not, and the objection was accepted.</h2>
+      <p class="body-text">This is the event the subtitle refers to, and it is the only place in the seven articles where a named scholar pushes back in person. "PM Laksono Ph.D (Cornell University, a prominent Anthropologist Professor from Universitas Gadjah Mada (UGM) criticized my notes of Lévi-Strauss and structuralism concerning Schein. I found his input is insightful."</p>
+      <p class="body-text">The substance of the criticism is precise. Levi-Strauss's structuralism "often tends to be deterministic, suggesting that human thought processes are governed by universal structures", which lends those structures an air of finality and stasis.</p>
+      <p class="body-text">The answer the article gives does not dispute the characterisation of Levi-Strauss. It distinguishes the two models instead: Schein's "acknowledges the dynamic nature of organizational culture, focused on change, evolution, and the interplay between different levels of culture", and his deep assumptions "can evolve, especially when confronted with challenges or anomalies".</p>
+      <p class="body-text">That distinction is the same one the day's opening article reached independently, twelve hours earlier. The difference is that here it arrives as a response to criticism rather than as an assertion, which is what converts it from a claim into a finding.</p>
+      <div class="callout">
+        <div class="callout-label">Why this belongs in the record</div>
+        <p>The article's subtitle calls it the result of an open research. The open part is that a working hypothesis was published, a specialist objected to it by name, and the objection and the response both appear in the same text rather than the hypothesis being quietly revised.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">Post-structuralism does not replace Schein's shared values; it asks who made them shared.</h2>
+      <p class="sec-lead">The article argues that a purely structuralist reading of shared values would flatten exactly what matters about them, and sets out the questions the other lens supplies.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col ">
+          <div class="diag-header">What a structuralist reading gives</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Universal patterns identified beneath observable behaviour</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Organisations treated as sharing similar foundational cultural structures</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Deep assumptions described as inherent and largely unconscious</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Comparability across contexts, since the structures are held in common</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Limited purchase on unique histories or contexts</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">What a post-structuralist reading adds</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>How have these shared values been constructed?</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Whose voices were dominant in this construction, and whose were marginalised?</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>How do power dynamics decide which values are promoted as shared?</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>How are these values reinforced through practices and discourses?</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Values as contingent and changeable rather than benign and agreed</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The conclusion the article draws from the pairing</div>
+        <p>"Using post-structuralism to explore Schein's “shared values” pushes us to recognize that these values aren't just benign elements everyone agrees upon." What follows is the licence to "question, challenge, and deconstruct taken-for-granted assumptions, leading to richer insights and more inclusive organizational practices."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">Keeping both lenses is a scoping decision, not a failure to choose.</h2>
+      <p class="sec-lead">The article gives four reasons for retaining structuralism alongside post-structuralism, and one condition attached to doing so.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Comprehensive analysis</div>
+          <div class="arith-body">Structuralism identifies the universal patterns; post-structuralism interrogates their origins, power dynamics and nuances. The article treats these as complementary operations on the same object rather than as competing accounts of it.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Historical context</div>
+          <div class="arith-body">"Structuralism played a significant role in the development of anthropology and cultural studies." Retaining it acknowledges its influence on what followed, post-structuralism included, which cannot be read without it.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Different questions need different theories</div>
+          <div class="arith-body">Identifying universal patterns within organisational cultures is one question, and understanding how those patterns were constructed and maintained is another. The choice of lens follows the question rather than preceding it.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; The condition attached</div>
+          <div class="arith-body">"While it's feasible to include both theories in your framework, it's essential to clearly define the scope and purpose of each within your research." Consistency and coherence are required, so this is a discipline rather than a licence to mix freely.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Six scholars, one shared object: what each means by an underlying assumption.</h2>
+      <p class="sec-lead">The article's base-camp section lines up Hofstede, Levi-Strauss, Geertz, Schein, Foucault and Derrida on the same four questions. All six address underlying assumptions, and no two mean the same thing by them.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Measured, and interpreted</div>
+          <div class="comp-name">Hofstede and Geertz</div>
+          <div class="comp-body">Hofstede works by quantitative cross-cultural analysis from corporate surveys, assuming "National cultures can be defined and differentiated based on measurable dimensions of values and beliefs". Geertz works by thick description, assuming the opposite: that understanding a culture requires going deep into its specific contexts "rather than seeking universal structures".</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Universal, and layered</div>
+          <div class="comp-name">Levi-Strauss and Schein</div>
+          <div class="comp-body">Levi-Strauss analyses myth, kinship and language for deep structures of the mind, assuming "All human societies share universal cognitive structures". Schein dissects organisations into artifacts, espoused values and basic assumptions, and his application is practical: helping leaders and consultants understand and shape organizational culture.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Power, and language</div>
+          <div class="comp-name">Foucault and Derrida</div>
+          <div class="comp-body">Foucault analyses discourse, assuming "There's no single underlying truth or objective reality" and that knowledge is constructed through discourse under power relations. Derrida deconstructs texts, assuming "Meanings are not fixed or stable; they are contingent, constructed, and always in flux."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the line-up establishes</div>
+        <p>"While all six scholars touch on “underlying assumptions” in some way, they do so with different methodologies, foci, and applications". The shared vocabulary across the six is what made the conflation possible in the first place, and naming the differences is what dissolves it.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">The result of the open research is a scoping rule, not a verdict on which theory wins.</h2>
+      <p class="sec-lead">The closing position is modest in form and consequential in effect, because it is what the dissertation's theoretical framework has to stand on.</p>
+      <blockquote>
+        <p>it's not about choosing one theory over the other but about leveraging the strengths of each to enhance the depth and breadth of your analysis. Including both can enrich your research, provided they're applied thoughtfully and purposefully.</p>
+        <cite>&mdash; Balancing Structuralism &amp; Post Structuralism, 27 September 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What the day produced</div>
+          <div class="arith-body">Seven articles in fourteen hours, from the opening defence of Schein at 04:23 to this piece created at 17:40. The sequence runs from a single theorist outward to two disciplines and back to a rule for using both.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the criticism changed</div>
+          <div class="arith-body">Professor Laksono's objection is the pivot. Before it, the thread is assembling a framework. After it, the thread is defending one against a specialist, which is a different and more demanding activity.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The position, in four lines</div>
+          <div class="arith-body">Deep-seated values carry shades of structuralism; questioning Western narratives resonates with post-structuralism; the focus on unique national trajectories aligns with Geertz; and recognising cultural values shaping outcomes has parallels with Hofstede.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What remains open</div>
+          <div class="arith-body">The article does not say which lens governs which chapter, only that the scope of each must be declared. The allocation itself is left to the dissertation.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">No reference list. Scholars are named inline without works or dates, and PM Laksono's criticism is reported without a citation to where it was made. The text carries two visible defects, recorded rather than repaired: a dropped capital in "ou don't have to abandon structuralism altogether", and Derrida's differance rendered as "differánce" with the explanatory gloss attached. Unedited second-person address appears in several passages, marking the text as a lightly edited conversational transcript. The closing note reproduces, for the third time that day, the evolutionary path from classical evolutionism through to Hofstede and Schein.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">The named critic</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Laksono, P. M., Ph.D. Professor of Anthropology, Universitas Gadjah Mada; doctorate from Cornell University. Criticised the author's notes linking Lévi-Strauss and structuralism to Schein. No publication or venue is cited.</div>
+        <div class="ref-group-title">Scholars compared in the base-camp section</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Hofstede, G. Quantitative cross-cultural analysis; cultural dimensions.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Lévi-Strauss, C. Structural anthropology; binary oppositions.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Geertz, C. Interpretive anthropology; thick description.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Schein, E. Organizational psychology; three levels of organizational culture.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Foucault, M. Discursive analysis; power and knowledge.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Derrida, J. Deconstruction; difference and binary oppositions.</div>
+        <div class="ref-group-title">Primary works named in the closing note</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tylor, E. B. (1871). <em>Primitive Culture</em>; Boas, F. (1911). <em>The Mind of Primitive Man</em>; Malinowski, B. (1922). <em>Argonauts of the Western Pacific</em>; Lévi-Strauss, C. (1962). <em>The Savage Mind</em>; Geertz, C. (1973). <em>The Interpretation of Cultures</em>; Hofstede, G. (1980). <em>Culture's Consequences</em>; Schein, E. (1985). <em>Organizational Culture and Leadership</em>.</div>
+        <div class="ref-group-title">Original publication</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, A.R.Y.T. (2023, September 27). <em>Balancing Structuralism &amp; Post Structuralism: Result of an Open Research.</em> LinkedIn.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2023, September 27). <em>Balancing Structuralism &amp; Post Structuralism: Result of an Open Research</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/hofstede-levi-strauss-geertz-schein-foucault-derrida-shared-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/hofstede-levi-strauss-geertz-schein-foucault-derrida-shared-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

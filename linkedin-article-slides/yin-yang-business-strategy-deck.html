@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Yin and Yang of Business Strategy: Balancing External and Internal Views &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Yin and Yang of Strategy</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Gap</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Case</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> The Objection</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Case</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">The Objection</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Strategy · Where to Compete, and How &nbsp;&middot;&nbsp; 19 September 2023</div>
+      <h1 class="title-main">The Yin and Yang of Business Strategy: Balancing External and Internal Views</h1>
+      <p class="title-thesis">The article teaches two families of strategy theory by keeping them apart until the last move. Porter looks outward, supplying five forces, the value chain, the diamond and three generic strategies, and his sharpest contribution is negative: operational effectiveness is not strategy, because best practice is copied as soon as it is demonstrated. Firm Resources Theory looks inward through VRIN, with the resource-based view a subset of it rather than a synonym, extended by dynamic capabilities into sensing, seizing and transforming. Schlumberger is then read through both lenses at once, and Airbnb is used to show where the framework fails, since the non-substitutable claim collapses once hoteliers professionalise. The closing formulation is what the whole piece is built to deliver: Porter answers where to compete and Firm Resources answers how, so a firm using only one of them has answered only half the question.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">The opening act of the lecture is catching itself in a misquotation.</h2>
+      <p class="body-text">The article was about to attribute "I know that I know nothing" to Socrates, and then checked. "I was about to write “I know that I know nothing” and pretentiously about to type “Socrates 4BC”, but then I learned the exact wording is not found anywhere in ancient texts “belonged” to Socrates."</p>
+      <p class="body-text">What it substitutes is the passage that does exist, from Plato's Apology, where Socrates concludes after questioning politicians, poets and craftsmen: "it seems that I am wiser than he is to this small extent, that I do not think that I know what I do not know."</p>
+      <p class="body-text">The correction is not decoration. It demonstrates the method the rest of the piece runs on, which is checking a claim against its source before repeating it, and it does so at the author's own expense rather than someone else's.</p>
+      <p class="body-text">The audience is named as students and aspiring entrepreneurs rather than executives, on the argument that "understanding strategy isn't just for CEOs" and that these frameworks are "applied daily by companies large and small to gain competitive advantages".</p>
+      <div class="callout">
+        <div class="callout-label">A stated blind spot, unusual in a teaching piece</div>
+        <p>"I never paid attention to the grand-theories." The twenty-three years before this article were spent on middle-range and low-range theory instead, judged by the books read and the case studies discussed, and the article adds that he attended only schools using the HBS participative case-study method.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Porter looks outward, and answers the question of where a firm should stand.</h2>
+      <p class="sec-lead">Three frameworks and one strategic choice, all concerned with the environment a firm operates in rather than with what it owns.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Five Forces</div>
+          <div class="arith-body">Competitive rivalry among existing firms; bargaining power of suppliers; bargaining power of buyers; threat of new entrants, meaning "The ease with which new competitors can enter the market"; and threat of substitutes, being "The extent to which other products or services can replace the ones offered by the firms in the industry."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; The Value Chain</div>
+          <div class="arith-body">Primary activities covering inbound logistics, operations, outbound logistics, marketing and sales, and service. Support activities covering firm infrastructure, human resource management, technology development and procurement. Used to find where value can be added or cost removed.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; The Diamond Model</div>
+          <div class="arith-body">Four attributes governing national competitive advantage: factor conditions such as skilled labour and infrastructure, demand conditions at home, related and supporting industries that are internationally competitive, and "Firm Strategy, Structure, and Rivalry", covering how companies are created, organised, managed and how fiercely they compete domestically.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Three generic strategies</div>
+          <div class="arith-body">Cost leadership, differentiation and focus, each requiring different resources, competencies and target markets. The principles attached are uniqueness against efficiency, trade-offs in how to compete, and fit among activities, since "For a strategy to be sustainable, there needs to be a good fit among the various activities in which a firm engages."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The risks the article attaches to each generic strategy</div>
+        <p>Cost leadership invites price wars and margin compression, and "maintaining that lead requires continuous cost optimization". Differentiation invites feature bloat, "A focus on adding more and more unique features can lead to complexity, higher costs, and potential alienation of the core customer base who may not need all those features."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">Operational effectiveness is not strategy, because best practice is copied the moment it works.</h2>
+      <p class="sec-lead">This is the sharpest claim in the external half, and it is stated as a negative: a great many management tools improve operations without producing any advantage that lasts.</p>
+      <blockquote>
+        <p>Strategy is about doing things differently, not simply doing them better than everyone else. And it's the key to competitive advantage.</p>
+        <cite>&mdash; The Yin and Yang of Business Strategy, 19 September 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The tools named</div>
+          <div class="arith-body">Total quality management, benchmarking, time-based competition, reengineering, change management. The article grants that "The resulting operational improvements have often been dramatic" before turning on them.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why the improvement does not hold</div>
+          <div class="arith-body">"Yet many companies have failed to translate those gains into sustainable profitability. Simply improving operational effectiveness does not provide a robust competitive advantage because rarely are “best practice” advantages sustainable."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The mechanism of erosion</div>
+          <div class="arith-body">"Once a company establishes a new best practice, its rivals tend to copy it quickly." Demonstrating that something works is what makes it imitable, so the better the improvement, the faster it spreads.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What this sets up</div>
+          <div class="arith-body">If doing the same things better cannot hold an advantage, then the advantage has to come from position or from something a rival cannot acquire. The first is Porter's answer, and the second is what the internal half of the article supplies.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Firm Resources Theory is wider than the resource-based view, and the distinction is load-bearing.</h2>
+      <p class="body-text">The article spends real effort separating two terms that are usually used interchangeably, because the hierarchy between them decides how the rest of the internal half is organised.</p>
+      <p class="body-text">Firm Resources Theory is the umbrella. It "is a broader framework that studies how firms utilize various types of resources to achieve competitive advantages", and it "can encompass multiple frameworks and perspectives, not limited to the RBV".</p>
+      <p class="body-text">The resource-based view is the specific case within it, concerned with resources that are valuable, rare, inimitable and non-substitutable. "In essence, RBV can be considered a subset of Firm Resources Theory."</p>
+      <p class="body-text">The attribution differs accordingly. RBV is linked to Jay Barney and Birger Wernerfelt, while the umbrella has no single author: "Firm Resources Theory doesn't have a single attributed developer; it is an overarching theme or area of study within strategic management that has been shaped by contributions from many scholars".</p>
+      <div class="callout">
+        <div class="callout-label">The VRIN criteria, as the article defines them</div>
+        <p>Valuable, enabling strategies that improve efficiency or effectiveness. Rare, "not controlled or possessed by many competing firms". Inimitable, difficult for competitors to copy. Non-substitutable, "Resources that cannot be easily replaced with an alternative." VRIO adds organisation, since a firm must be structured to capture the value.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Dynamic capabilities extend the internal view from what a firm has to what it can become.</h2>
+      <p class="sec-lead">The extension matters because VRIN describes a stock of resources at a moment, and markets do not hold still.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Sensing opportunities</div>
+          <div class="arith-body">"This is about recognizing changes in the external business environment. Companies with strong sensing capabilities are good at market research, customer feedback analysis, and recognizing disruptive technologies."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Seizing opportunities</div>
+          <div class="arith-body">Acting on what has been sensed, whether by developing new products, entering new markets, or taking up new technologies. The article treats this as the step most often missed by firms that saw the change coming.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Transforming resources</div>
+          <div class="arith-body">"The ability to transform or reconfigure existing resources and capabilities in response to changing conditions. Companies need to have flexible structures and processes to adapt successfully."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; The three worked examples</div>
+          <div class="arith-body">Tesla sensed electric vehicles and seized with battery technology, transforming through self-driving investment. Netflix "began as a DVD rental service but sensed the opportunity in online streaming", seizing it by rebuilding its business model and making original content. Spotify sensed a shift in consumption and used a freemium model that changed the industry's revenue structure.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The knowledge-based view, added alongside</div>
+        <p>Tacit knowledge residing in employees and hard to transfer; explicit knowledge, codified as patents; and social complexity, "the intricate relationships and culture within a firm, which are often difficult for competitors to replicate". The article notes the practical difficulty: knowledge resources resist measurement and leak.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Case</div>
+      <h2 class="sec-title">Schlumberger carries both lenses at once, which is what makes it the article's worked example.</h2>
+      <p class="body-text">One firm is analysed at length, and it is analysed twice over: once through VRIN and the resource view, once through Porter's positioning and five forces.</p>
+      <p class="body-text">On the resource side, the valuable asset is "Schlumberger's extensive reservoir monitoring and data analysis capabilities". Rarity comes from patented technologies. Inimitability comes from scale and relationships: "Their international scale and long-standing relationships with many national oil companies make them difficult to imitate." Non-substitutability rests on R&amp;D investment and specialised training.</p>
+      <p class="body-text">On the Porter side, the strategy is read as differentiation rather than cost. "Schlumberger predominantly employs a differentiation strategy", offering customised technological solutions that justify premium pricing, with focus supplied by concentrating on large enterprises and national oil companies within one sector.</p>
+      <p class="body-text">The five forces reading is mixed rather than flattering: size gives some bargaining power over suppliers, buyers retain significant leverage that differentiation only partly offsets, capital and technical expertise deter entrants, substitutes are limited while oil and gas demand persists, and rivalry is intense among a small number of major players.</p>
+      <div class="warning-callout">
+        <div class="callout-label">Disclosure the article itself does not carry</div>
+        <p>The author spent thirteen years at Schlumberger, across a career covering fifty-two countries. The article presents the case study without stating that connection, so the level of operational detail in it comes from inside the firm rather than from public sources.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Objection</div>
+      <h2 class="sec-title">Airbnb is where the author stops agreeing with the framework and says so.</h2>
+      <p class="body-text">The article applies RBV to Airbnb and then breaks off to dispute its own analysis, in the only passage of the piece written as direct disagreement.</p>
+      <p class="body-text">The objection opens bluntly: "Sorry, but the N in Airbnb is the hoteliers themselves : much more professional." If professional hoteliers can meet the same need, the resource is substitutable, and the N in VRIN does not hold.</p>
+      <p class="body-text">The second objection relocates what is genuinely inimitable. "Inimitability is within the founders and its innovation ecosystem not about strong brand, interface, rating system." Brand and interface are copyable; the founding vision and the culture around it are not.</p>
+      <p class="body-text">The rest is conceded with precision rather than wholesale. Rarity holds, "because it addresses non consuming market as opposed attacking the chain hotel's client", and value holds, but "for the clients mainly", which is a narrower claim than the framework usually makes.</p>
+      <div class="callout">
+        <div class="callout-label">What the disagreement establishes about the framework</div>
+        <p>The article's own reply concedes the point and draws the general lesson: the criteria "are not static and can evolve over time as the company and its competitive environment change". A VRIN assessment is therefore dated, and often "more easily identified in hindsight or once a company has achieved a large scale".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Porter answers where to compete and Firm Resources answers how, so either one alone answers half.</h2>
+      <p class="sec-lead">The closing synthesis is the reason the two halves were kept apart for thirty-eight pages, and it is stated as a division of labour rather than as a ranking.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col ">
+          <div class="diag-header">Porter, the macro view</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Concerned with the external business environment</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Five Forces to read the industry landscape</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Relative positioning against competitors</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Answers: where should we compete?</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Identifies the market or segment offering an edge</span></div>
+        </div>
+        <div class="diag-col ">
+          <div class="diag-header">Firm Resources, the micro view</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Concerned with internal assets and capabilities</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>VRIN and the knowledge-based view to read what a firm holds</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Which resources are most valuable and how to deploy them</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Answers: how should we compete?</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Identifies what makes the firm unique on the inside</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">How the two are meant to be used together</div>
+        <p>"For instance, a firm could use Porter's strategies to identify a niche market and then apply the VRIN framework to identify which internal resources would give them an advantage in that market." The article calls the combination a 360-degree view, sequencing the external question first and the internal question second.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article is a lecture deck rendered as prose, with slide numbers left in the text from Slide 3 to Slide 40, and several slides are images that carry no extractable text. It has no reference list. Porter's frameworks are described without citation to any of his works, and the Socrates passage is the only quotation traced to a source. The text carries unedited second-person address in places and one line of conversational residue, "Thank you for allowing me to clarify", marking it as a lightly edited transcript. One section on differentiation is duplicated across two consecutive slides.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Named in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Porter, M. E. Five Forces, the Value Chain, the Diamond Model and the three generic strategies. No works or dates cited.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Barney, J.; Wernerfelt, B. Named as significant figures in the development of the resource-based view.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Plato. <em>Apology</em> (4 BCE), quoted for the passage on Socrates and the Oracle at Delphi.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Mayo, E. for the human relations movement; Taylor, F. W. for scientific management; von Bertalanffy is not named though systems theory is described.</div>
+        <div class="ref-group-title">Firms analysed</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Schlumberger, examined at length through both RBV and Porter's frameworks.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Airbnb, examined through VRIN and then disputed by the author.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tesla, Netflix and Spotify as dynamic-capability examples; Apple, Coca-Cola, McKinsey, P&amp;G, J&amp;J listed without analysis.</div>
+        <div class="ref-group-title">Original publication</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, A.R.Y.T. (2023, September 19). <em>The Yin and Yang of Business Strategy: Balancing External and Internal Views.</em> LinkedIn.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2023, September 19). <em>The Yin and Yang of Business Strategy: Balancing External and Internal Views</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/yin-yang-business-strategy-balancing-external-internal-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/yin-yang-business-strategy-balancing-external-internal-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
