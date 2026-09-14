@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn to Crawl: Science and Philosophy of Science, Their Positioning (Stop 1 - Introduction) &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Stop 1: Learn to Crawl</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Gap</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; The Stops · Part 1 of 6 · Where the Journey Starts &nbsp;&middot;&nbsp; 8 September 2023</div>
+      <h1 class="title-main">Learn to Crawl: Science and Philosophy of Science, Their Positioning (Stop 1 - Introduction)</h1>
+      <p class="title-thesis">The article opens a six-part journey by separating two things that are habitually treated as one. Science assumes the scientific method and builds upward from it toward new discoveries. Philosophy of science takes the same method and builds downward, asking what justifies it, which means the question of whether something counts as science is not one science can settle about itself. Underneath sit three unresolved problems, induction, underdetermination and demarcation, and until they have answers even the best-confirmed findings rest on a method that has not been examined from outside. Ontology, epistemology and axiology are the instruments for that examination, and the article's argument for why a doctoral candidate needs them is not that the knowledge is impressive but that a researcher who has not chosen a position on reality, knowledge and value has inherited one without noticing.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Science builds up from the method; philosophy of science builds down to it.</h2>
+      <p class="sec-lead">The two are "often confused; people often think that they are the same thing when in fact they are very distinct", and the article's opening move is to establish the direction of travel in each.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col ">
+          <div class="diag-header">Science</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A methodology that performs experiments and explains phenomena</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Provides the theory that best fits the available evidence</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Uses inductive, deductive and abductive reasoning for justification</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Assumes the scientific method and builds up from that assumption</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Works within the bounds of science to do science</span></div>
+        </div>
+        <div class="diag-col ">
+          <div class="diag-header">Philosophy of science</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A discipline of philosophy dealing with the justification for the method itself</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Tries to build up to the scientific method rather than from it</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Gives reasons for thinking the scientific method works at all</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Deals with demarcation between what is and is not science</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Works outside those bounds to decide what fits inside them</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The consequence the article draws from the difference</div>
+        <p>"So, if you are asking the question, “Is this science?”, it is not up to science to decide. That is a job for philosophy of science." And the same holds one level further: "when you are asking whether a scientific claim is true, it is not the scientist you should ask but the philosopher of science."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">Three unanswered problems sit under every confirmed finding, and no scientist is required to look at them.</h2>
+      <p class="body-text">The article's sharpest claim concerns what science does not interrogate about itself. "So once again science assumes the scientific method is effective and bases its work on that assumption." Fields differ in how many assumptions they carry, but none carries none.</p>
+      <p class="body-text">Questioning those assumptions is where the difficulty surfaces. The discipline is in the business of "questioning those basic assumptions which give rise to problems like the problem of induction, the problem of under determination and the problem of demarcation." These are not marginal puzzles but challenges to the method itself.</p>
+      <p class="body-text">The stake is stated without hedging: "Unless solutions to these problems are found, even some of the best confirmed science is going to be invalid since its very methods are in question."</p>
+      <p class="body-text">And the division of labour is absolute. "Even the best confirmed scientific discoveries all rely on the scientific method being true and scientists never questioned whether the scientific method is effective at providing truth. That is a job for philosophers of science."</p>
+      <div class="callout">
+        <div class="callout-label">A one-line definition of the discipline</div>
+        <p>"An area of study that questions whether science is directed at truth is a way to describe philosophy of science." Not whether a particular finding is correct, but whether the enterprise is aimed at truth at all.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Four bounded courses run from philosophy down to the method, and each layer constrains the one below.</h2>
+      <p class="sec-lead">The article sets out how the journey's four subjects relate, and the hierarchy is what makes the later stops follow in the order they do.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Philosophy</div>
+          <div class="arith-body">"This is the broadest category, dealing with fundamental questions about existence, knowledge, values, reason, mind, and language. It provides the foundational structure for any intellectual inquiry." Everything below inherits from here.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Philosophy of science</div>
+          <div class="arith-body">"a branch of philosophy that scrutinizes the foundations, methods, and implications of science", concerned with the nature of scientific inquiry and the knowledge it produces. This is where ontology, epistemology and axiology do their work.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Scientific paradigms and theories</div>
+          <div class="arith-body">Overarching worldviews that guide scientific communities, with the shift from Newtonian physics to quantum mechanics given as the example. Theories are "coherent, systematic, and logically consistent explanations of phenomena", based on evidence and always open to challenge.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Scientific methods</div>
+          <div class="arith-body">Hypothesis formation, experimentation, data collection, analysis, conclusion. "The scientific method, being at the bottom, is the most direct and tangible representation of all the preceding layers in action."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why the direction matters for the rest of the journey</div>
+        <p>"In this hierarchy, the philosophy of science shapes the broader intellectual and ethical frameworks within which scientific paradigms, theories, and methods operate." A researcher who starts at the method has accepted four layers of commitments without examining any of them.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Three questions divide the whole territory: what exists, how we know, and what it is worth.</h2>
+      <p class="sec-lead">Within philosophy of science the article names three components, and they recur at every subsequent stop as the structure a researcher has to take a position on.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">What exists</div>
+          <div class="comp-name">Ontology</div>
+          <div class="comp-body">"Delves into questions about what kinds of entities exist and can be said to exist. It explores the nature of reality." The article's scientific example is quantum mechanics, where one might question the nature of a particle or of wave-particle duality.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">How we know</div>
+          <div class="comp-name">Epistemology</div>
+          <div class="comp-body">"Investigates the nature and origins of knowledge. It seeks to understand how we know what we know, questioning the reliability and validity of such knowledge." Its example is sharp: how can we be certain of the laws of physics, and under what circumstances might they be proven wrong?</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">What it is worth</div>
+          <div class="comp-name">Axiology</div>
+          <div class="comp-body">"Centers on the nature of values, addressing both ethical and aesthetic values. It inquiries into the 'worth' of things, guiding what ought to be." Applied to science, it asks whether every discovery benefits humanity, and what the ethical implications of genetic modification are.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">A doctorate is not the accumulation of information but a position on what knowledge is.</h2>
+      <p class="sec-lead">The article's answer to why any of this is required reading is the passage that sets the purpose of the whole six-part journey.</p>
+      <blockquote>
+        <p>For a PhD candidate, the journey is not merely about accruing information but understanding the very essence of knowledge.</p>
+        <cite>&mdash; Learn to Crawl (Stop 1 - Introduction), 8 September 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What it does for the research</div>
+          <div class="arith-body">Clarity on the foundations of the work, the ability to critically assess the validity and reliability of the methods chosen, and a deeper understanding of what the findings imply and what they are worth.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What it does outside the research</div>
+          <div class="arith-body">The article denies that this is a detached discipline. It helps in questioning rather than accepting information at face value, in understanding the values underpinning societal decisions in politics, economics and healthcare, and in establishing a framework for ethical research.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What it requires</div>
+          <div class="arith-body">Logic, mathematics and parts of history are named as embedded disciplines, each shaping scientific thought and practice. The journey's later stops take logic and argumentation in particular much further.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The role the article assigns the discipline</div>
+          <div class="arith-body">"The philosophy of science serves as both the conscience and the critic of scientific endeavor, ensuring that as we push the boundaries of what we know, we remain anchored to foundational principles and ethical considerations."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">This is the first of six instalments and the only one whose opening chapter is explicitly attributed: the introduction is derived from the transcript of a Carneades.org video, and the article says so rather than presenting the material as its own. It carries a formal reference list, one of two in the series. Five pages of eleven are the author's own mind-maps, which do not survive text extraction, and they carry the visual argument of the piece. Two transcription defects are recorded rather than repaired: a garbled clause reading "The last native science also deals with the demarcation", and a dropped capital in "his branch interrogates how we know what we know".</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Reference list as printed</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Carneades.org. (2015, September 6). Science Vs Philosophy Of Science (Distinction). YouTube. https://youtu.be/54rHYg71AXU</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Chalmers. (2013). <em>What Is This Thing Called Science?</em> McGraw-Hill Education (UK).</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Patton, M. F. (2015). <em>The Cartoon Introduction to Philosophy.</em> Hill and Wang.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Tambun, T. (2023). Berfilsafat menuju penciptaan ilmu. LinkedIn.</div>
+        <div class="ref-group-title">Position in the series</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Stop 1 of six. The sequence continues with Stop 2: Foundations in Philosophy, Stop 3: Core Concepts in Philosophy of Science, Stop 4: Core Concepts in Science, Stop 5: Research Methodology, and Semi-Final Stop: Saunders' Research Onion.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Note that this instalment carries its part number only in a parenthetical at the end of its title, and its pulse slug carries no number at all.</div>
+        <div class="ref-group-title">Original publication</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tambun, A.R.Y.T. (2023, September 8). <em>Learn to Crawl: Science and Philosophy of Science, Their Positioning (Stop 1 - Introduction).</em> LinkedIn.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2023, September 8). <em>Learn to Crawl: Science and Philosophy of Science, Their Positioning (Stop 1 - Introduction)</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/learn-crawl-even-crawling-science-philosophy-toronata-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/learn-crawl-even-crawling-science-philosophy-toronata-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
