@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Irreplaceable Role of Human Salesmanship in the Service Industry: For Now &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Human Salesmanship and AI in Service Sales</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Details</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Framework</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Implications</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Sales · Human Salesmanship in the Service Industry &nbsp;&middot;&nbsp; 6 August 2023</div>
+      <h1 class="title-main">The Irreplaceable Role of Human Salesmanship in the Service Industry: For Now</h1>
+      <p class="title-thesis">The article argues that sales in service industries with long sales cycles and high stakes cannot be handed to machines or third parties, because such services resist commoditisation and clients weigh trust and track record above price. It lists seven elements a seller must understand, sets out the Trusted Advisor equation of Maister et al. (2000) with a fifth term of its own, catalogues eleven tasks where robots and AI assist, and puts the human share at around 70 percent and the machine share at around 30 percent as a rough estimate. It closes on the wisdom and experience that robots, with their current capabilities, cannot replicate.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Services with long sales cycles and high stakes cannot be commoditised, so their sales cannot be handed to a machine.</h2>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The article opens on a technological claim: "chatbots and robochats have emerged as potential contenders to replace human salesmanship". It confines its answer to service industries with long sales cycles and high stakes.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>In those settings, the article says, "the human touch remains unparalleled". Services rest on specialised expertise and personalised solutions, so they resist being treated as standardised commodities. Commoditisation turns on interchangeability and price, whereas clients "prioritize factors such as quality, reliability, trust, and a track record of success over mere price considerations".</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>Can sales in the service industry be outsourced to machines or to third-party entities?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>The article says they cannot. In place of commoditising, successful providers are said to emphasise their unique value propositions and to build strong relationships with clients, which it describes as more valuable than commoditising for short-term gains.</p>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The article gives no sales data, client cases or study for this claim. Its support is argument and the frameworks it cites.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Seven elements underpin a service sale, from the buying center to the industry system around it.</h2>
+      <p class="sec-lead">The article says the success of sales is deeply rooted in understanding five elements, then numbers seven, and the deck follows the list.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; The buying center</div>
+          <div class="arith-body">The group involved in the decision inside a potential customer organisation: stakeholders, decision-makers, influencers and gatekeepers. A sales team is expected to identify each member's role and to tailor its approach.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Internal resources</div>
+          <div class="arith-body">The features and capabilities of the company's own products or services, the customer support available, the ability to deliver on promises, and any limits. Knowing them lets a team offer solutions that are realistic and achievable.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Competition</div>
+          <div class="arith-body">Research into competitors' strengths and weaknesses, pricing, unique selling points and market position, so that the team can show how its offering outperforms theirs.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Suppliers and external logistics</div>
+          <div class="arith-body">Lead times, inventory, shipping and delivery options, and bottlenecks, so that expectations about availability and timelines are set accurately.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Government regulation and the civil servants themselves</div>
+          <div class="arith-body">Industry regulations, licensing and legal frameworks. On dealing with the actors, the article says stakeholders "may have asymmetric desire of transparencies and efficiencies", then stops: "That's all I can write here."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Technical, operational and service expertise</div>
+          <div class="arith-body">Technical knowledge to answer complex inquiries, operational know-how to offer practical solutions, and exceptional service that the article says "cannot be easily replicated by a novice or ambitious undergraduate".</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; The industry system</div>
+          <div class="arith-body">The article places the seller in a larger system: stock markets, central banks, geopolitics, the nature of the industry, the interests of indigenous people, and not-for-profit organisations.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Trust rests on the four Maister qualities plus a fifth term, values held at one hundred percent.</h2>
+      <p class="sec-lead">The article takes four qualities from the Trusted Advisor equation (Maister et al., 2000), pairs each with a realm, and adds one term of its own after a period of reflection.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Credibility, the realm of words</div>
+          <div class="arith-body">Expertise, industry knowledge and a proven track record. The client can trust what the seller says.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Reliability, the realm of actions</div>
+          <div class="arith-body">Delivering on promises consistently: setting realistic expectations, following through on commitments and giving support through the sales life cycle.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Intimacy, the realm of emotions</div>
+          <div class="arith-body">Active listening, empathy and genuine care for the client's success, so that a meeting is memorable and personal.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Self-orientation, the realm of motives</div>
+          <div class="arith-body">Interest in the client's well-being ahead of the sale: the seller is there for the client's glory and not for the seller or the company. The article's numbered list calls this term the indirect function of self-interest, and its prose calls it self-orientation.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; The added term: values held at one</div>
+          <div class="arith-body">A function of the seller's purpose, an absolute commitment to a universal value such as fairness, justice, compassion, no corruption, no bribe and no shortcut, and to basic values beyond the law. The value must be 1, and the article cites Clayton Christensen: "It's easier to stay true to your values 100% of the time than it is to stay true 98% of the time. The moment you compromise, you're tempted to do it again."</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The article writes the fifth term as an integral of a function derivative from 0 to infinity and gives no derivation. The equation figure, captioned as from Maister et al. (2000) and Tambun (2022), is an image that the text extraction does not carry.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">AI can take eleven supporting tasks, about thirty percent by the article's own rough estimate.</h2>
+      <p class="sec-lead">The article lists eleven tasks where robots and AI assist, and puts their share of the work at around 30 percent against 70 percent for human sales professionals. It calls the split "only a rough estimation" that "may vary significantly based on the specific context".</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Lead generation</div>
+          <div class="arith-body">Analysing data from many sources to identify prospects and to predict customer preferences and behaviour.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Outreach and communication</div>
+          <div class="arith-body">Chatbots and email automation handle first inquiries, follow-ups and appointment scheduling.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Sales analytics</div>
+          <div class="arith-body">Processing large volumes of data on customer behaviour, market trends and sales performance.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Customer relationship management</div>
+          <div class="arith-body">Analysing interactions, purchase history and engagement, and suggesting personalised recommendations.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Sales forecasting</div>
+          <div class="arith-body">Analysing historical sales data and external factors to forecast trends.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Pricing optimisation</div>
+          <div class="arith-body">Weighing demand, competition and customer preferences to set prices that are competitive and profitable.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; Virtual sales assistants</div>
+          <div class="arith-body">Real-time information, talking points and follow-up suggestions during client meetings.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">8 &nbsp;&middot;&nbsp; Performance management</div>
+          <div class="arith-body">Assessing each representative's strengths and weaknesses and recommending training plans.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">9 &nbsp;&middot;&nbsp; Chat support</div>
+          <div class="arith-body">Chatbots answer inquiries on websites and social media and route complex issues to human representatives.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">10 &nbsp;&middot;&nbsp; Personalised content</div>
+          <div class="arith-body">Recommending articles, videos or products from customer behaviour and preferences.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">11 &nbsp;&middot;&nbsp; Administrative tasks and efficiency</div>
+          <div class="arith-body">Managing project timelines, tracking progress and sending reminders, so that human sellers can focus on client relationships and on their technical, operational and service expertise.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The article gives no method for the 70 and 30 split, and its own text says the ratio depends on the industry, the organisation and the sales process.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">The seventy percent that remains is field-earned wisdom that machines lack, for now.</h2>
+      <p class="sec-lead">The closing pages ground the human share in connection, expertise and experience, call for a balanced approach that uses the strengths of both humans and AI, and word the machine's limit as a matter of current capability.</p>
+      <blockquote>
+        <p>Time and energy invested in gaining such wisdom cannot be replaced.</p>
+        <cite>&mdash; The Irreplaceable Role of Human Salesmanship, 6 August 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Human connection</div>
+          <div class="arith-body">Human sales professionals, with emotional intelligence and empathy, are said to build trust and rapport, and to read body language, tone of voice and personal interactions.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Two kinds of intelligence</div>
+          <div class="arith-body">The article pairs fluid intelligence, quick thinking and adaptability, with crystallized intelligence, accumulated knowledge and expertise. Human sellers are said to combine them to understand client intentions, weigh cultural nuances and deal with organisational politics.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the seventy percent covers</div>
+          <div class="arith-body">The human share is said to reflect the importance of human skills in building trust, providing personalised solutions and nurturing long-term relationships. The machine share covers repetitive tasks, data analysis and lead generation.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Where machines stop</div>
+          <div class="arith-body">The limit is worded as one of present capability. The article says robots, with their current capabilities, lack the systems needed to analyse such nuances and so cannot replicate human wisdom and experience.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article's Further Reading list carries three lines. Two are complete entries. The third reads "Toronata Tambun see below:" and is followed by nothing that the text extraction carries. The equation figure's caption cites (Tambun, T., 2022), which matches no listed entry, and two footnote markers in the trust passage, "2)" and "3)", point to no note. The Christensen quotation is given without a source. Images, including the equation figure, are not carried by the text extraction.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Further reading as printed</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Amlin, J. P. (2019). <em>B2B professional sales: Theory, process, application, tools</em>. Carl Printing.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Maister, D. H., Green, C., &amp; Galford, R. (2000). <em>The trusted advisor</em> (1st Free Press paperback ed., 2004). Free Press.</div>
+        <div class="ref-group-title">Named in the body without a reference</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Clayton Christensen, quoted on staying true to one's values 100% of the time (no source given).</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Tambun, T. (2022), cited in the equation figure caption beside Maister et al. (2000), with no matching entry in the list.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Tambun, T. (2023, August 6). <em>The Irreplaceable Role of Human Salesmanship in the Service Industry: For Now</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/irreplaceable-role-human-salesmanship-service-industry-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/irreplaceable-role-human-salesmanship-service-industry-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
