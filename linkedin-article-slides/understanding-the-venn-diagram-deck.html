@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understanding the Venn Diagram "Paying Customer, Fit-Value Proposition, and Operational Excellence" &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">The Venn Diagram</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Details</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Evidence</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Entrepreneurship Teaching · Three Circles and the Question at Their Centre &nbsp;&middot;&nbsp; 17 August 2023</div>
+      <h1 class="title-main">Understanding the Venn Diagram "Paying Customer, Fit-Value Proposition, and Operational Excellence"</h1>
+      <p class="title-thesis">The article sets out how one teacher organises an entrepreneurship course, and its structure carries an argument that the syllabus alone would hide. Three circles name three competences, the paying customer, the fit value proposition and operational excellence, and each maps onto a recognised strategy tradition. But the intersection where they meet is not a fourth skill. It is a question about motive, and the article answers it in a way that excludes most of the people who ask: if the reason is money, this is not for you. Behind the diagram sits a competence rubric sorted into Heart, Home, Hands and Heads, and Heart holds what families and early childhood install, which is where the dissertation's argument about formation enters a course syllabus rather than a research paper. The technical contribution is a distinction: the Paying Customer-Based View is narrower than the Market-Based View, because it concerns only the customers who actually pay, and the first five of Aulet's twenty-four steps are read as exactly that narrowing.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">The centre of the diagram is a question about motive, not a competence.</h2>
+      <p class="sec-lead">Three circles intersect, and the article is explicit that what sits in the overlap is the thing it considers most important, and that it is not a skill.</p>
+      <blockquote>
+        <p>Comprised of 3 circles which has the intersection that is the most crucial component: "Why are you here?"</p>
+        <cite>&mdash; Understanding the Venn Diagram, 17 August 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The answer that disqualifies</div>
+          <div class="arith-body">"If the answer is money or wanting to be rich, definitely this is not for you." Stated at the start of a course rather than discovered at the end of one.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The answer that qualifies</div>
+          <div class="arith-body">"If the answer is “it is my calling that I must be a blessing to others, all races, religion and creatures “Rahmatan lil Alamin or Tikkun Olam” then this may be your cup of tea." The same two traditions appear in the axiology set out eight days later in the Berfilsafat article.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Why the diagram is taught first</div>
+          <div class="arith-body">The model "is pivotal for my understanding of what I think people need to learn first when they encounter “entrepreneurship”." It is presented as the entry point to the subject rather than as a summary of it.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the three circles correspond to</div>
+          <div class="arith-body">Each is matched to a strategy tradition. The paying customer focus belongs to someone who is "an expert of applying “market-based theory”". The fit value proposition focus belongs to someone who "can translate the jobs to be done question". And operational excellence belongs to "an expert of “resource-based theory”".</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">The competence rubric sorts into Heart, Home and Hands, and Heart is the one a course cannot teach.</h2>
+      <p class="sec-lead">Behind the diagram sits a rubric correlating Morris et al on entrepreneurial competences with Aulet's twenty-four steps, and the ordering of its categories is the argument.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">What arrives before the course</div>
+          <div class="comp-name">Heart</div>
+          <div class="comp-body">Named in the article as "Shared Values from families and early childhood". It holds tenacity and perseverance, resilience and anti-fragility, guerrilla skills described as seeing the unseen, self-efficacy in pitching, and conveying a compelling vision. These are the competences the rubric assumes rather than develops.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">What the ecosystem supplies</div>
+          <div class="comp-name">Home</div>
+          <div class="comp-body">"common language and ecosystem", covering building and using networks, mapped to steps 2, 9, 12 and 14, and resource leveraging at steps 10 and 11. This is the layer a university or an accelerator can actually provide.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">What the steps train</div>
+          <div class="comp-name">Hands</div>
+          <div class="comp-body">Opportunity recognition at step 1, which the article marks as the most time consuming. Opportunity assessment across steps 1 to 10. Risk management at steps 20, 21 and 23. Creative problem-solving at 6, 7, 22 and 24. Value creation across steps 12 to 19. And maintaining focus while adapting, mapped to all the return steps.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">The fourth category, and what sits in it</div>
+        <p>Heads and Hands holds the methods rather than the traits: PMR techniques, reflexive ethnography, the 24 steps themselves, xTeam and 4CAP+ and the Signature Leadership Framework, and embedded project management. The dissertation's own instruments appear inside a teaching rubric.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">The Paying Customer-Based View is narrower than the Market-Based View, and the narrowing is the point.</h2>
+      <p class="sec-lead">The article makes a distinction it says is deliberate, opening the section by stating that it is talking about PCBV and not MBV.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col ">
+          <div class="diag-header">Market-Based View</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Anchors its philosophy in the firm's external environment</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Competitive advantage from responding to market dynamics</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Covers customer preferences, competitor actions, industry forces</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Recognises that static advantages are ephemeral</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Leads to dynamic capabilities, continuously renewed</span></div>
+        </div>
+        <div class="diag-col right">
+          <div class="diag-header">Paying Customer-Based View</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Goes beyond general market trends</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>An intensified form of customer-centricity</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Zooms in on the segment that directly contributes revenue</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Not users or consumers but engaged, paying entities</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Mapped onto the first five of Aulet's twenty-four steps</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">How the first five steps do the narrowing</div>
+        <p>Market segmentation establishes the landscape. The beachhead market "embodies the initial set of customers that the firm believes will be its most likely paying customers." The end user profile asks what they need. Total addressable market quantifies the revenue. And the persona profiles "give a tangible face to the paying customer", which the article calls crucial for designing features and campaigns.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">The resource side is widened well past VRIN, into thirteen capabilities a founder actually needs.</h2>
+      <p class="sec-lead">The article accepts the standard resource-based view and then argues that its categories are too narrow for how modern firms actually compete.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; The standard position, stated first</div>
+          <div class="arith-body">"RBV contends that a firm's resources, both tangible and intangible, are central to achieving a competitive advantage. These resources need to be valuable, rare, inimitable, and non-substitutable". The framework "assumes that the variation in resources among firms is the primary reason for differences in firm performance."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Why intangibles now dominate</div>
+          <div class="arith-body">"In the digital age, where firms like Apple have built their empire on brand value and firms like Google leverage massive data-driven insights, the ability to manage and monetize intangible assets becomes paramount."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Team and leadership as resources</div>
+          <div class="arith-body">Team dynamics covering "collaboration, diversity of thought, adaptability, and resilience". And Ancona and Bresman's 4CAPS+ model, with sensemaking, relating, visioning and inventing, where "The “+” signifies the noble personal values a leader brings, suggesting that while collective skills are essential, a leader's integrity and purpose remains pivotal."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; The rest of the thirteen</div>
+          <div class="arith-body">Storytelling ability, because narrative "can galvanize both internal stakeholders (employees, leadership) and external ones (customers, investors)". Then fundraising and fund management, operational discipline, iterative capability, sales and customer maintenance, marketing across the 4Ps and 7Ps, business model innovation, scaling, supply chain management, corporate finance and accounting.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Alertness spots the opportunity; commitment is a separate thing and it can be irrational.</h2>
+      <p class="sec-lead">The closing section separates two ideas usually run together, and is candid about one mechanism that sustains commitment for bad reasons.</p>
+      <blockquote>
+        <p>while entrepreneurial alertness pertains to the cognitive capacity to recognize opportunities, entrepreneurial commitment relates to the willingness and dedication to pursue and actualize those opportunities.</p>
+        <cite>&mdash; Understanding the Venn Diagram, 17 August 2023</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">What raises commitment</div>
+          <div class="arith-body">Perceived feasibility, meaning belief in one's ability to execute. Perceived desirability. Resource availability. Personal investment. And social networks, where "Encouragement and support from peers, mentors, and other stakeholders can boost commitment."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The mechanism it names honestly</div>
+          <div class="arith-body">"As entrepreneurs invest more time, money, and effort into a venture, they might become more committed", and the article adds that this can be irrational, driven by not wanting the investment to go to waste. The sunk cost fallacy is listed as a driver of commitment rather than as an error to avoid.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">And path dependence alongside it</div>
+          <div class="arith-body">"initial commitments and decisions might lead to further commitment due to this path-dependent trajectory." Both mechanisms make commitment grow for reasons unrelated to whether the opportunity is still good.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The attribution it declines to make</div>
+          <div class="arith-body">On entrepreneurial commitment the article says "it's hard to pin it down to a single author or work, as multiple scholars have discussed the importance of commitment, passion, and persistence", naming Per Davidsson on the nascent entrepreneurial process rather than claiming an originator.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">This article carries the fullest reference list of the batch, with twelve entries including three of the author's own LinkedIn posts cited formally as prior work. The competence rubric it rests on is credited to a correlation between Morris et al and Aulet that the author published separately. Several diagrams, including the Venn diagram itself and the rubric table, are images that do not survive text extraction, so the central visual of the article is absent from the deck. The step numbering in the body skips from 5 to 9 and from 8 to 10 because the steps are grouped by which view they serve rather than listed in sequence.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Reference list as printed</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Ancona, D., &amp; Bresman, H. (2023). <em>X-Teams</em>, Updated Edition, with a New Preface. Harvard Business Publishing.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Aulet, B. (2013). <em>Disciplined Entrepreneurship: 24 Steps To A Successful Startup.</em> John Wiley &amp; Sons.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Cheek, P. (2023). <em>Disciplined Entrepreneurship Tactics.</em> (Pre-Order) John Wiley &amp; Sons.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Frei, F. (2020). <em>Unleashed.</em> Harvard Business Press.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Constable, G. (2014). <em>Talking to Humans</em>; (2018). <em>Testing with Humans.</em></div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Morris, M. H., Webb, J. W., Fu, J., &amp; Singhal, S. (2013). A Competency-Based Perspective on Entrepreneurship Education. <em>Journal of Small Business Management, 51</em>(3), 352-369.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Wasserman, N. (2013). <em>The Founder's Dilemmas.</em> Princeton University Press.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Spradley, J. P. (1980). <em>Participant Observation.</em> Harcourt Brace Jovanovich.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Winston, P. H. (2020). <em>Make It Clear.</em> MIT Press.</div>
+        <div class="ref-group-title">The author's own prior work, cited formally</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2022). Paying Customers, a distinguished doctrine of Bill Aulet's Discipline Entrepreneurship Framework. LinkedIn Post.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Tambun, T. (2023a). Reflexive Ethnography. LinkedIn Post.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Tambun, T. (2023b). 2 Credits turn into 26 Credit Course. LinkedIn Post. Cited as the source of the competence rubric.</div>
+        <div class="ref-group-title">Named in the body without a reference</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Davidsson, P., named for work on the nascent entrepreneurial process.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Barney and Wernerfelt are not named here, though VRIN is used; the resource-based view is described without attribution.</div>
+        <div class="ref-group-title">Original publication</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tambun, A.R.Y.T. (2023, August 17). <em>Understanding the Venn Diagram "Paying Customer, Fit-Value Proposition, and Operational Excellence".</em> LinkedIn.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Tambun, T. (2023, August 17). <em>Understanding the Venn Diagram "Paying Customer, Fit-Value Proposition, and Operational Excellence"</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/understanding-venn-diagram-paying-customer-fit-value-toronata-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/understanding-venn-diagram-paying-customer-fit-value-toronata-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
