@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applying the "Creating Shared Value (CSV)" Concept During a Pandemic or Natural Disaster. &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Creating Shared Value in a Pandemic</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Details</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Evidence</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Gap</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Implications</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Strategy · Creating Shared Value in a Disaster &nbsp;&middot;&nbsp; 25 April 2020</div>
+      <h1 class="title-main">Applying the "Creating Shared Value (CSV)" Concept During a Pandemic or Natural Disaster.</h1>
+      <p class="title-thesis">The article argues that donations made to help during a pandemic or natural disaster can create new human-made disasters, harming recipients, communities and the small businesses whose goods free supplies displace. Drawing on two Harvard Business School courses, it sets out seven modes of corporate response, from cautious charity in order of nearness to operational expertise, partnerships with universities, corporations and small suppliers, corporate venture investment and spin-outs. It closes on a disaster manager's reply, printed in full, which agrees that excess aid damages local economies, blames where aid enters and a faith-based habit of giving, and calls for three-way partnership and a professionalised aid sector.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">Well-meant donations in a pandemic can create new human-made disasters, so companies need a different way to help.</h2>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>People are trying their best to help others during the pandemic. The article says past events show that this noble intention has ended up prolonging, or even creating, new forms of human-made disaster that did not originate in the pandemic or natural disaster itself.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>Too much donation, the article says, will paralyse the individual in need, the recipient community and the existing small and medium enterprises whose products and services are outnumbered by free supplies flooding the market. It adds, without prejudice, that audits of how funds were distributed probably produced many disappointing findings on conformity and accountability.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>How can a company help during a pandemic or natural disaster without creating new harm?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>The article offers seven values from two Harvard Business School courses, "Developing a CSR Strategy" taught by Professor Kasturi Rangan and colleagues and "Creating Shared Value" taught by Professor Michael Porter, Mark Kramer and colleagues. They run from cautious charity to partnerships and spin-outs, and the article closes with a disaster manager's feedback.</p>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The article cites no study or audit for the harm that donations cause.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">A company should help through its own operations and partners, and give charity only cautiously and in order of nearness.</h2>
+      <p class="sec-lead">The article numbers seven modes of response. Its eighth point carries the disaster manager's feedback, taken up later in this deck.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Cautiously resurrect the philanthropic theatre</div>
+          <div class="arith-body">Time-critical needs must be attended to. Companies should serve the bottom of Maslow's pyramid first, for their employees, then their immediate value chain, then the neighbourhood, starting with short-term needs such as those of senior citizens and small businesses. A charity foundation might offer grants to help their children pay for what is probably a more expensive online education platform.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Focus on the operational theatre</div>
+          <div class="arith-body">Use the company's strategic intents, its core and functional expertise. The example is 3M, creator of the N95, which used surge capacity built nearly 20 years earlier, during the SARS outbreak, to double its N95 output.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Partner creatively with a university</div>
+          <div class="arith-body">The product developed need not relate to the company's core product. The example is a team from UCL and the Formula One engine maker Mercedes-AMG HPP making a CPAP breathing device.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Partner creatively with another corporation</div>
+          <div class="arith-body">The example is 3M and Ford raising production of 3M's powered air-purifying respirators, built from off-the-shelf components of Ford's F-150 truck.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Assign the corporate venture arm to outside start-ups</div>
+          <div class="arith-body">Start-ups that rely on their agility to serve the most marginalised may need capital to meet confirmed pains of captive paying customers. A corporation has leverage and access to datasets or IP from partners such as health organisations, to see where the pandemic is growing and which neighbourhoods need the most support.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Commit to buy from small and medium enterprises</div>
+          <div class="arith-body">Invest in strategic partnerships that commit to buy and absorb SME products in line with the company's core business, to meet spike demand or to distribute necessities through existing channels. The scenario, labelled hypothetical, is a textile company such as Sritex ordering extra non-medical masks or medical workers' PPE from many tailors or fashion SME centres.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; Spin out new companies</div>
+          <div class="arith-body">Spin out and spin off the required numbers of new companies from the R&amp;D pipeline or from excess capacity, whose products and services are deemed most needed during the pandemic.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Cited 2020 cases show the modes at work: 3M doubled N95 output, and a university and Mercedes built a breathing aid in under ten days.</h2>
+      <p class="sec-lead">The article takes three cases from reporting by FSG (Iyer, 2020) and the World Economic Forum (Elwell, 2020).</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">CITED A</div>
+          <div class="ev-title">3M doubles N95 production (mode 2)</div>
+          <div class="ev-body">3M used surge capacity built nearly 20 years earlier to double its N95 output. Of the 35 million respirators it was making per month in the U.S., more than 90 percent were designated for health care workers, as the article cites Iyer (2020).</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CITED B</div>
+          <div class="ev-title">UCL and Mercedes-AMG HPP build a CPAP device (mode 3)</div>
+          <div class="ev-body">The device can support patients with severe breathing problems and free up ventilators for the most critically ill. As the article cites Elwell (2020), the team reached full-scale production in under 10 days, Mercedes was to make 1,000 units a day at Brixworth, and the designs were released free and shared with more than 1,300 teams in 25 countries within a week.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">CITED C</div>
+          <div class="ev-title">3M and Ford make respirators (mode 4)</div>
+          <div class="ev-body">The two firms partnered to raise production of powered air-purifying respirators, using components from the F-150's cooled seating with 3M's existing HEPA filters. As the article cites Iyer (2020), they could offer advantages over N95s, being battery-powered and filtering airborne virus particles for up to eight hours on one swappable battery pack.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The article prints the Elwell passage with an opening quotation mark that is never closed. The figures are the cited authors' and have not been checked here.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">A disaster specialist of more than twenty years agrees that excess aid damages local economies, and blames where aid enters and a faith-based habit of giving.</h2>
+      <p class="sec-lead">The article prints a personal WhatsApp message from Dave Hodgkin as point 8. He says he has worked in disasters for more than 20 years, agrees with many of the points and disagrees with a few, and does not say which.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Where aid enters</div>
+          <div class="comp-name">The false point of injection</div>
+          <div class="comp-body">He agrees that excess donated aid can damage a local economy, mostly because of a false point of injection and not the aid itself. The commonest is handing a family a physical product, as when agency rice or instant noodles put the local rice shop out of business. Cash aid fails when households buy the poor goods on offer or spend on the aid industry's priorities.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">How aid is given</div>
+          <div class="comp-name">The faith-based aid paradigm</div>
+          <div class="comp-body">He traces the habit to a faith-based paradigm in which aid is a photo opportunity and visibility comes first. In its Christian form givers want to be seen as good Samaritans and actors answer to each other. In its Islamic form giving is for Allah and actors answer to Allah. Both expect 80 to 90 percent of donations, if not all, to reach recipients directly.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Who does the work</div>
+          <div class="comp-name">An unprofessional aid sector</div>
+          <div class="comp-body">He says the paradigm keeps the industry from professionalism. People can volunteer only so long before they burn out or quit for a paid job, young enthusiastic volunteers with little experience are in endless supply, and seasoned professionals are scarce.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The message is personal and gives no data. It does not say which points of the article it disputes, and this deck does not reproduce its remarks on the health and finances of individual aid workers.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">Smarter interventions work through existing markets and three-way partnerships, and they require a professionalised aid sector.</h2>
+      <p class="sec-lead">The message says a small, well-embedded team of trained disaster specialists could perhaps stop the mad rush to sew a million face masks, and design interventions that form lasting partnerships, are net positive and speed recovery.</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Hotels as quarantine sites</div>
+          <div class="arith-body">Government and non-government actors partner with the hospitality industry to use empty hotels and guesthouses for self-isolation and quarantine, in place of schools that were not built for it and may raise the risk of transmission.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Restaurants cooking meals</div>
+          <div class="arith-body">Instead of giving rice, government funds flow to restaurants to cook meals for people in need, who buy them at a much reduced price with their own money or, for the most vulnerable, with help from non-government actors.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Cyclone tie-down straps</div>
+          <div class="arith-body">Government halves the price of the straps, the private sector markets the idea and explains their use, hardware shop staff are trained by non-government actors to advise, and NGO vouchers discount labour and materials for the most vulnerable, such as the newly widowed.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Earthquake assessment and building materials</div>
+          <div class="arith-body">Phone-based self-assessments designed with telecom companies let households report damage by SMS within hours or days, for private engineers to assess remotely. Government works with suppliers to make 10mm deformed steel bar cheaper than 6mm plain bar, NGOs help enforce the existing building code, and funds go to contractors to take on apprentices.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Professionalise the aid sector</div>
+          <div class="arith-body">The sector needs permanent staff with ongoing professional development and long-term relationships with government, not short-term volunteers in a boom-and-bust cycle. It needs better engagement among the private, public and third sectors, and a lower share of funding going directly to beneficiaries, with a much higher share going to cleverer, hands-off tripartite interventions.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The message frames these as things that could perhaps work and reports no results from them.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Aid cannot rest on capitalism, on faith-based giving or on state direction alone, so it needs partnership among all three sectors.</h2>
+      <p class="sec-lead">The message closes on what aid cannot be based on, and on what it needs instead.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Not capitalism alone</div>
+          <div class="comp-name">Profit and greed</div>
+          <div class="comp-body">Aid cannot be based purely on capitalism, because capitalism is based too largely on a paradigm of profit and greed.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Not goodness of heart alone</div>
+          <div class="comp-name">Faith-based giving</div>
+          <div class="comp-body">It can no longer rest so heavily on giving and receiving out of goodness of heart, which the message says creates aid dependency, reduces professionalism and slows recovery.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Not the state alone</div>
+          <div class="comp-name">Predefined answers</div>
+          <div class="comp-body">It cannot rest solely on a nanny state ordaining predefined answers for all citizens, with military interventions and dogmatism. The message asks for a more professional, more nuanced aid and much bigger discussions and partnership among the three sectors.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The article prints eight points, and the eighth is a personal WhatsApp message from Dave Hodgkin, printed without a date. The message says it disagrees with a few points and does not say which. It criticises a mass effort to sew face masks, a topic near the mask scenario in point 6, and the article does not reconcile the two. It also makes a statement about the WHO's position on masks, which has no source, has not been checked and is not repeated in this deck. The deck does not reproduce the message's remarks on the health and finances of individual aid workers. The article's remark on audits is hedged and cites none. The Elwell passage opens with a quotation mark that is never closed, the case details are the cited authors' and have not been checked here, and an image caption reads Ranggan (2015), printed as found. The FSG address is printed broken, with words run together and a tracking string that is removed here. The article ends on a stray closing quotation mark.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Reference list as printed</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Rangan, K., Chase, L., &amp; Karim, S. (2015, January–February). The truth about CSR. <em>Harvard Business Review</em>, <em>93</em>(1/2), 40–49.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Porter, M. E., &amp; Kramer, M. R. (2011, January–February). Creating shared value. <em>Harvard Business Review</em>, <em>89</em>(1–2), 62–77.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Elwell, C. (2020). <em>Racing to save lives: How Mercedes F1 developed a lifesaving COVID-19 breathing aid</em>. World Economic Forum. https://www.weforum.org/agenda/2020/04/coronavirus-ucl-mercedes-covid19-cpap-health-engineering</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Iyer, L. (2020). <em>What can we learn from early corporate responses to COVID-19?</em> FSG. https://www.fsg.org/blog/what-can-we-learn-earlycorporate-responses-covid-19</div>
+        <div class="ref-group-title">Personal communication as printed</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Hodgkin, D. (2020). Feedback on your article [Personal WhatsApp message]. Printed in the article as point 8.</div>
+        <div class="ref-group-title">Named in the body without a reference</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>The Harvard Business School courses Developing a CSR Strategy (Kasturi Rangan and colleagues) and Creating Shared Value (Michael Porter, Mark Kramer and colleagues), named as the source of the values.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Sritex, a company named as printed in a scenario the article labels hypothetical.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T. (2020, April 25). <em>Applying the "Creating Shared Value (CSV)" Concept During a Pandemic or Natural Disaster.</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/applying-creating-shared-value-csv-concept-during-pandemic-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/applying-creating-shared-value-csv-concept-during-pandemic-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
