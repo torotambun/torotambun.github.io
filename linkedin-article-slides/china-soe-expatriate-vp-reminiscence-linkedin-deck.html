@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reminiscence as an Expatriate VP in a China State Owned Company : &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">An Expatriate VP in China</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> The Turns</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Field Notes</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> What It Revealed</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> What I Carry</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">The Turns</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Field Notes</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">What It Revealed</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">What I Carry</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Reflection · Working in a China State Owned Company &nbsp;&middot;&nbsp; 19 December 2017</div>
+      <h1 class="title-main">Reminiscence as an Expatriate VP in a China State Owned Company :</h1>
+      <p class="title-thesis">The author was invited as a guest speaker at IPMI to tell MBA students about his 3 years as an expatriate VP in a China state owned company. After the class explored theories on what Chinese companies want from international deals and on why China goes global, and frameworks on the cross-cultural determinants of Chinese employees and on China's national cultural values, he offered a meta-analysis: harmony is the utmost priority and a shared mind is the prerequisite of guanxi, leaders are expected to command by interpretation and to achieve without doing, and he disagrees with accepting a good result no matter which way. In his case corporate culture derived from the leader's personality, family values and previous company subdued geopolitical motives, face saving is not only Chinese, and understanding Chinese characters helps to understand Chinese values.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">A guest lecture at IPMI led the author to a meta-analysis of his three years as an expatriate VP in a China state owned company.</h2>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>The author was invited as a guest speaker at IPMI to share with its MBA students his experience working as an expatriate VP in a China state owned company. A pre-reading on the China energy industry (McFarlan, Baroutas and Manty, 2009) was provided before the class.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>After the author elaborated the milestones of his 3 years of service and the astonishing results delivered in the end despite all the dynamics, the class explored theories on what Chinese companies want from international deals (Ma et al., 2015) and on why China goes global (Enright, 2005). A class interaction then related his experience to frameworks on the cross-cultural determinants of Chinese employees (Jaw, 2006) and on China's national cultural values, explored through Hofstede's Country Comparison Tool.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>What did the author conclude from relating his experience to those theories and frameworks?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>A meta-analysis in the form of a list of observations, on harmony and guanxi, on how leaders lead, on corporate culture, on face saving and on Chinese characters.</p>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The article names no company, gives no date for the session and gives no figures for the results it calls astonishing. It names the Country Comparison Tool without an author. The attribution to Hofstede was supplied by the author when this deck was prepared and is not part of the 2017 text.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Turns</div>
+      <h2 class="sec-title">Harmony is the utmost priority, and a shared mind and shared thinking are the prerequisite of guanxi.</h2>
+      <p class="sec-lead">These are the first two observations in the author's meta-analysis.</p>
+      <div class="comp-grid-2">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Observation</div>
+          <div class="comp-name">Harmony first</div>
+          <div class="comp-body">The author says being in harmony is the utmost priority. The article backs this with a saying from the Analects, cited to Wei, Li, p. 61, that a superior person seeks harmony and not sameness, while a petty person seeks sameness and not harmony (paraphrased).</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Observation</div>
+          <div class="comp-name">Same mind, same thinking</div>
+          <div class="comp-body">The author says that having the same mind and the same thinking is the prerequisite of guanxi, and that together they are its key ingredients.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Field Notes</div>
+      <h2 class="sec-title">Leaders are expected to command by interpretation and to achieve without doing, while the author disagrees with accepting a good result no matter which way.</h2>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">What the article says leaders are expected to do</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Command is expected to be elaborated by way of interpretation</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Cleary, p. 310, is cited for a chain that runs from ruling through finding winners, strength, using the power of others and winning hearts, to self-mastery and flexibility (paraphrased)</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Leaders aim to achieve something without doing anything</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Cleary, p. 330, and Sinolingua, p. 105, are cited for managing affairs without contrivance, instructing without speaking and teaching by saying nothing (paraphrased)</span></div>
+        </div>
+        <div class="diag-col wrong">
+          <div class="diag-header">What the author does not tend to agree with</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>A case-by-case practice of accepting a good result no matter which way</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Bojun, p. 31, is cited for a saying that haste undermines thoroughness and that fixing on small advantages keeps great affairs from being completed (paraphrased)</span></div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The article does not say whether leaders in these observations means Chinese leaders, the leaders in the author's company or leaders in general. The deck says leaders and attributes nothing further.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What It Revealed</div>
+      <h2 class="sec-title">In the author's case, corporate culture derived from the leader's personality, family values and previous company subdued geopolitical motives.</h2>
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Source of culture</div>
+          <div class="comp-name">The leader's personality</div>
+          <div class="comp-body">The article says corporate culture is derived from the leader's personality.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Source of culture</div>
+          <div class="comp-name">Family values</div>
+          <div class="comp-body">It is derived also from the leader's family values.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Source of culture</div>
+          <div class="comp-name">The previous company's culture</div>
+          <div class="comp-body">And it is derived from the culture of the leader's previous company.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">In the author's case</div>
+          <div class="comp-name">Geopolitical motives subdued</div>
+          <div class="comp-body">Geopolitical motives are subdued by the corporate culture of the company, the article says, in the author's case.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Evidence note</div>
+        <p>The article does not name the leader, the previous company or the geopolitical motives, and it gives no example.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What I Carry</div>
+      <h2 class="sec-title">Face saving is not only Chinese, and understanding Chinese characters helps to understand Chinese values.</h2>
+      <p class="sec-lead">The last two observations widen the account beyond China and then narrow it to language.</p>
+      <blockquote>
+        <p>Face saving phenomenon is not exclusively applicable only in China, but everywhere in the world.</p>
+        <cite>&mdash; Reminiscence as an Expatriate VP in a China State Owned Company, 19 December 2017</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Face saving</div>
+          <div class="arith-body">The author says the phenomenon is not exclusive to China and applies everywhere in the world.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Chinese characters</div>
+          <div class="arith-body">He says that understanding Chinese characters will help to understand Chinese values and virtues.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The setting</div>
+          <div class="arith-body">The observations close a guest lecture to MBA students at IPMI and are drawn from 3 years as an expatriate VP.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">What the article does not give</div>
+          <div class="arith-body">No company name, no figures for the results and no example for any observation. The classical passages are paraphrased here.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources</h2>
+      <p class="sec-lead">The bibliography prints seven entries and is given below in APA form, with printed spellings kept: Bojun is printed with the given name last, and Shambala with one h. The classical passages are paraphrased and not reproduced. The Analects passage is cited to Wei, Li, p. 61, which matches no bibliography entry. Jaw and Ma are printed with et al., so their other authors are not given. The article names the Country Comparison Tool without an author. The attribution to Hofstede was supplied by the author when this deck was prepared and is not part of the 2017 text, and no dated entry is given for the tool. The article prints no company name, no session date and no figures. Recorded, not repaired.</p>
+      <div class="ref-section">
+        <div class="ref-group-title">Cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Bojun, Y. (2010). <em>An authority of Analects study</em> (J. Legge, Trans.). Zhonghua Book Company. (Printed as Bojun, Yang, and also naming Hangzhou Goal-Ascend Culture Co.)</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Cleary, T. (1994). <em>The Taoist classics: The collected translations of Thomas Cleary</em>. Shambala Publications. (Publisher spelling as printed.)</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Enright, M. J. (2005). <em>China goes global: The new taste of Chinese companies for foreign assets</em> [Case study]. Asia Case Research Center, The University of Hong Kong.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Jaw, B. S., et al. (2006). Cross-cultural determinants of Chinese employees' work values. <em>Asia Pacific Management Review</em>, 73-81. (Other authors and volume not printed.)</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Ma, L., et al. (2015, February 12). What Chinese companies want from international deals. <em>Harvard Business Review</em>. https://hbr.org/2015/02/what-chinese-companies-want-from-international-deals (Other authors not printed. Printed with an access date of 28 October 2016, and the URL rejoined across a line break.)</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>McFarlan, F. W., Baroutas, G., &amp; Manty, T. Y. (2009). <em>China's energy industry</em> [Case study]. Harvard Business School Publishing.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Sinolingua. (2009). <em>Lao Zi says</em>. ZI Publications.</div>
+        <div class="ref-group-title">Named in the body without a reference</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Country Comparison Tool, named in the article without an author. Attributed to Hofstede by the author when this deck was prepared, and not printed in the article.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Wei, Li, p. 61, cited for an Analects passage. No entry in the bibliography.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2017, December 19). <em>Reminiscence as an Expatriate VP in a China State Owned Company :</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/reminiscence-expatriate-vp-china-state-owned-company-toronata-tambun" target="_blank" rel="noopener">https://www.linkedin.com/pulse/reminiscence-expatriate-vp-china-state-owned-company-toronata-tambun</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
