@@ -31,8 +31,10 @@
     .controls { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 40px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
     .search-wrap { position: relative; flex: 1; min-width: 200px; }
     .search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.4; pointer-events: none; }
-    #search { width: 100%; padding: 10px 16px 10px 38px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.2s; }
+    #search { width: 100%; padding: 10px 32px 10px 38px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.2s; }
     #search:focus { border-color: var(--accent); }
+    #search-clear { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--muted); font-size: 16px; line-height: 1; padding: 2px 4px; display: none; opacity: 0.5; transition: opacity 0.15s; }
+    #search-clear:hover { opacity: 1; }
     #year-filter { padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-family: inherit; font-size: 14px; background: var(--bg); color: var(--ink); outline: none; cursor: pointer; }
     #result-count { font-size: 13px; color: var(--muted); white-space: nowrap; font-style: italic; }
     .table-wrap { padding: 32px 40px 60px; max-width: 1100px; margin: 0 auto; overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -76,6 +78,7 @@
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
     <input type="text" id="search" placeholder="Search by keyword or title…" autocomplete="off">
+    <button type="button" id="search-clear" title="Clear search" aria-label="Clear search">✕</button>
   </div>
   <select id="year-filter">
     <option value="">All years</option>
@@ -1488,6 +1491,17 @@
   searchEl.addEventListener('input', filter);
   yearEl.addEventListener('change', filter);
 
+  const clearBtn = document.getElementById('search-clear');
+  function syncClear() { clearBtn.style.display = searchEl.value ? 'block' : 'none'; }
+  searchEl.addEventListener('input', syncClear);
+  clearBtn.addEventListener('click', function() {
+    searchEl.value = '';
+    syncClear();
+    filter();
+    searchEl.focus();
+  });
+  if (searchEl.value) { syncClear(); filter(); }
+
   document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('scroll', function() {
       const y = document.documentElement.scrollTop || document.body.scrollTop;
@@ -1499,5 +1513,6 @@
     });
   });
 </script>
+<script src="deck-viewer.js" data-list="articles" defer></script>
 </body>
 </html>
