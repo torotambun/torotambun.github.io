@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRCS and the Architecture of Theory &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">GRCS and the Architecture of Theory</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Details</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Details</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Limits</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Implications</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Limits</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Governance, Risk, Compliance and Sustainability &nbsp;&middot;&nbsp; 14 September 2026</div>
+      <h1 class="title-main">GRCS and the Architecture of Theory</h1>
+      <p class="title-thesis">There is no single grand theory of GRCS. It is an applied field built from theories at three levels, and a doctoral study places its research problem at the correct level, keeps frameworks and tools below theory, and chooses a theory from the phenomenon and not from a favourite.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">There is no single grand theory of GRCS, so the task is to place a research problem at the correct theoretical level.</h2>
+      <p class="sec-lead">"What theoretical architecture sits underneath GRCS?"</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>GRCS is often taught through frameworks: agency structures and boards, ISO 31000, COSO ERM, risk registers and heat maps, regulation and controls, ESG standards and environmental indicators.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"Those are necessary." "But they are not enough for a PhD class." A doctoral student must tell apart a theory that explains a phenomenon, a framework that organizes practice, a model that represents a mechanism, and a tool that performs analysis.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>Which theories sit underneath GRCS, and at what level does each one work?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>"There is no single grand theory of GRCS." It is an applied field built from economics, psychology, sociology, organization studies, systems science, safety science, regulation and finance, and "The challenge is to locate a research problem at the correct theoretical level."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Theories sit at three levels, and the hierarchy widens as it moves downward from few grand theories to many low-range mechanisms.</h2>
+      <p class="sec-lead">"The purpose of the hierarchy is analytical." It asks how broad the phenomenon being explained is.</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Few</div>
+          <div class="comp-name">Grand theory</div>
+          <div class="comp-body">Broad assumptions about organizations, uncertainty, rationality, systems and human behaviour. "A theory that applies only to insurance underwriting or road safety would normally not qualify as a grand theory."</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">More</div>
+          <div class="comp-name">Middle-range theory</div>
+          <div class="comp-body">Explains recurring organizational mechanisms across settings, such as why organizations ignore warnings, why people remain silent, and why abnormal behaviour gradually becomes accepted as normal.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Many</div>
+          <div class="comp-name">Low-range theory or model</div>
+          <div class="comp-body">Explains a specific phenomenon, actor, risk, mechanism or context, such as why insurance coverage changes the behaviour of an insured party or why dependence on one donor affects an NGO's decisions.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Levels are not fixed</div>
+        <p>"This classification is not absolute." Resource Dependence Theory can be middle-range, and propositions derived from it about dependence on a dominant donor in NGOs may operate at the low-range level.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Four grand theories supply the foundation for risk: risk versus uncertainty, a rational benchmark, bounded rationality and systems.</h2>
+      <p class="sec-lead">"Grand theories should be few."</p>
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Knight, 1921</div>
+          <div class="comp-name">Risk and uncertainty</div>
+          <div class="comp-body">"Risk exists when possible outcomes and their probabilities can, at least in principle, be estimated." "Uncertainty exists when those probabilities cannot reliably be known." Risk can often be priced, modeled or transferred, while uncertainty may need judgment, experimentation and adaptation.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">von Neumann and Morgenstern, 1944</div>
+          <div class="comp-name">Expected utility</div>
+          <div class="comp-body">A normative account of how a rational decision maker should choose when outcomes are uncertain. "Expected Utility Theory establishes a rational benchmark." Later theories show how real people depart from it.</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Simon, 1947 and 1955</div>
+          <div class="comp-name">Bounded rationality</div>
+          <div class="comp-body">Managers lack unlimited information, cognitive capacity and time, so organizations frequently satisfice. The question moves to "What can a real organization reasonably know and process?"</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">von Bertalanffy, 1968</div>
+          <div class="comp-name">General Systems Theory</div>
+          <div class="comp-body">Attention shifts from components to relationships among them. "This becomes important because risk is often systemic rather than isolated."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Nine middle-range theories each explain a recurring organizational mechanism in risk.</h2>
+      <p class="sec-lead">Their purpose "is to explain identifiable recurring mechanisms."</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Agency Theory (Jensen and Meckling, 1976)</div>
+          <div class="arith-body">Delegation with differing interests and uneven information. It asks "Who makes the decision, who receives the benefit, and who carries the risk?"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Resource Dependence Theory (Pfeffer and Salancik, 1978)</div>
+          <div class="arith-body">Dependence on external resources creates power. "The risk lies in dependence itself."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Prospect Theory (Kahneman and Tversky, 1979)</div>
+          <div class="arith-body">People judge outcomes against reference points, and losses weigh more than equivalent gains. "Risk appetite is therefore partly psychological."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Threat-Rigidity Theory (Staw, Sandelands and Dutton, 1981)</div>
+          <div class="arith-body">Threat can restrict information processing and centralize authority. "Threat can therefore reduce the capacity to respond intelligently to risk."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Cultural Theory of Risk (Douglas and Wildavsky, 1982)</div>
+          <div class="arith-body">Risk perception is partly shaped by culture and social organization. "Risk is also socially selected."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">6 &nbsp;&middot;&nbsp; Normal Accident Theory (Perrow, 1984)</div>
+          <div class="arith-body">In complex, tightly coupled systems the structure itself can make some failures hard to anticipate. "Adding another rule does not necessarily make such systems safe."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">7 &nbsp;&middot;&nbsp; Managerial risk taking (March and Shapira, 1987)</div>
+          <div class="arith-body">Managers think about downside, survival, targets, aspirations and controllability, not variance around expected returns, so a risk committee and an operating manager may hold different conceptions of risk.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">8 &nbsp;&middot;&nbsp; High Reliability Organization research (Roberts and colleagues, from about 1990)</div>
+          <div class="arith-body">Asks how some organizations in hazardous settings avoid catastrophic failure repeatedly, where Perrow asks why complex systems fail.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">9 &nbsp;&middot;&nbsp; Organizational sensemaking (Weick, 1995)</div>
+          <div class="arith-body">"Sensemaking therefore precedes many formal risk-management processes." A risk register records a risk after someone has decided that a signal means something.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Low-range theories multiply near specific phenomena, and the specific theory changes because the mechanism changes.</h2>
+      <p class="sec-lead">"Low-range does not mean inferior." It means narrower in explanatory scope, and the level mixes genuine theories, models and specific causal mechanisms.</p>
+      <div class="comp-grid-4">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Insurance</div>
+          <div class="comp-name">Protection and information</div>
+          <div class="comp-body">Moral hazard (Arrow, 1963; Pauly, 1968), credibility theory (Bühlmann, 1967), adverse selection (Akerlof, 1970) and signaling theory (Spence, 1973).</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Transport and safety</div>
+          <div class="comp-name">Behaviour under safety pressure</div>
+          <div class="comp-body">Protection motivation (Rogers, 1975), risk compensation (Peltzman, 1975), risk homeostasis (Wilde, 1982), the Swiss Cheese Model (Reason, 1990), planned behavior (Ajzen, 1991) and migration toward boundaries (Rasmussen, 1997).</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Compliance and misconduct</div>
+          <div class="comp-name">Why people comply</div>
+          <div class="comp-body">Economic deterrence (Becker, 1968), procedural justice (Tyler, 1990), responsive regulation (Ayres and Braithwaite, 1992) and normalization of deviance (Vaughan, 1996). "The absence of catastrophe becomes mistaken for evidence of safety."</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">04</div>
+          <div class="comp-sub">Education and NGOs</div>
+          <div class="comp-name">Stress, voice and demands</div>
+          <div class="comp-body">Conservation of Resources (Hobfoll, 1989), Psychological Safety (Edmondson, 1999) and the Job Demands-Resources Model (Demerouti and colleagues, 2001).</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Limits</div>
+      <h2 class="sec-title">Frameworks and tools organize practice, but they do not explain why organizations behave as they do.</h2>
+      <p class="sec-lead">"Only after the theoretical architecture is clear should frameworks enter the discussion." The distinction is fundamental in doctoral work.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">What frameworks and tools do</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>COSO Enterprise Risk Management (2004), ISO 31000 (2009) and the IIA Three Lines Model (2020) "organize practice"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>They help determine responsibilities, processes and reporting structures</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Risk registers, risk matrices, FMEA, bow-tie analysis, Monte Carlo simulation, stress testing, key risk indicators and scenario analysis are operational methods below frameworks</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"A risk matrix helps classify risks."</span></div>
+        </div>
+        <div class="diag-col missing">
+          <div class="diag-header">What still needs a theory</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>ISO 31000 may require communication and consultation but does not explain why employees remain silent, which Psychological Safety may help explain</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>COSO may require risk identification but does not explain why management notices one signal and misses another, which Sensemaking may help explain</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>A compliance framework may specify controls but does not explain why repeated violations become accepted, which Normalization of Deviance may help explain</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"But none becomes a theory simply because it appears frequently in corporate risk management."</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">One transport case with repeated warning signals supports five theoretical lenses, and the explanatory question chooses among them.</h2>
+      <p class="sec-lead">"Theory selection should not begin with a favourite theory. It should begin with the phenomenon."</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Failure to interpret warnings</div>
+          <div class="arith-body">Sensemaking may be appropriate.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Complex system interaction</div>
+          <div class="arith-body">Normal Accident Theory may be more relevant.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Danger recognized but silence kept</div>
+          <div class="arith-body">Psychological Safety may give a better explanation.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Production pressure pushing operations toward unsafe limits</div>
+          <div class="arith-body">Rasmussen may be more appropriate.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Repeated violations accepted as practice</div>
+          <div class="arith-body">Normalization of Deviance may explain the process.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Note in the article</div>
+        <p>The proposed architecture carries the author's note that "it will be different if we approach G first then C then R then S". The deck does not develop the alternative orderings.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Theory selection should begin with the phenomenon, and frameworks and tools sit below theory.</h2>
+      <p class="sec-lead">"The same empirical case can therefore support different theoretical lenses."</p>
+      <blockquote>
+        <p>A risk matrix helps classify risks. It does not explain organizational behaviour.</p>
+        <cite>&mdash; Dr. Toronata Tambun, GRCS and the Architecture of Theory</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Grand theories</div>
+          <div class="arith-body">Knight (1921), von Neumann and Morgenstern (1944), Simon (1947, 1955) and von Bertalanffy (1968).</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Middle-range theories</div>
+          <div class="arith-body">Nine, from Jensen and Meckling (1976) to Weick (1995). Below them sit many low-range theories, models and mechanisms, "and many others."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Below theory</div>
+          <div class="arith-body">Frameworks (COSO ERM, ISO 31000, the Three Lines Model), then methods and tools (risk register, risk matrix, FMEA, bow-tie analysis, Monte Carlo simulation, stress testing, key risk indicators, scenario analysis).</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources listed in the article, reproduced as given.</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">References, as listed in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Ajzen, I. (1991). Theory of Planned Behavior.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Akerlof, G. A. (1970). Adverse Selection and Information Asymmetry.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Arrow, K. J. (1963). Moral Hazard and Insurance.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Ayres, I., &amp; Braithwaite, J. (1992). Responsive Regulation.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Becker, G. S. (1968). Economic Deterrence and the Economics of Crime.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Bühlmann, H. (1967). Credibility Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Committee of Sponsoring Organizations of the Treadway Commission [COSO]. (2004). Enterprise Risk Management Framework.</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Demerouti, E., Bakker, A. B., Nachreiner, F., &amp; Schaufeli, W. B. (2001). Job Demands-Resources Model.</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Douglas, M., &amp; Wildavsky, A. (1982). Cultural Theory of Risk.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Edmondson, A. C. (1999). Psychological Safety.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Hobfoll, S. E. (1989). Conservation of Resources Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>International Organization for Standardization [ISO]. (2009). ISO 31000 Risk Management.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Jensen, M. C., &amp; Meckling, W. H. (1976). Agency Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Kahneman, D., &amp; Tversky, A. (1979). Prospect Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Knight, F. H. (1921). Risk and Uncertainty.</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>March, J. G., &amp; Shapira, Z. (1987). Managerial Perspectives on Risk and Risk Taking.</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Pauly, M. V. (1968). Moral Hazard and Insurance.</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Peltzman, S. (1975). Risk Compensation.</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>Perrow, C. (1984). Normal Accident Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>Pfeffer, J., &amp; Salancik, G. R. (1978). Resource Dependence Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[21]</span>Rasmussen, J. (1997). Migration Toward Boundaries.</div>
+        <div class="ref-entry"><span class="ref-num">[22]</span>Reason, J. (1990). Swiss Cheese Model of Accident Causation.</div>
+        <div class="ref-entry"><span class="ref-num">[23]</span>Roberts, K. H. (1990). High Reliability Organization Research.</div>
+        <div class="ref-entry"><span class="ref-num">[24]</span>Rogers, R. W. (1975). Protection Motivation Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[25]</span>Simon, H. A. (1947, 1955). Bounded Rationality.</div>
+        <div class="ref-entry"><span class="ref-num">[26]</span>Spence, M. (1973). Signaling Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[27]</span>Staw, B. M., Sandelands, L. E., &amp; Dutton, J. E. (1981). Threat-Rigidity Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[28]</span>The Institute of Internal Auditors [IIA]. (2020). Three Lines Model.</div>
+        <div class="ref-entry"><span class="ref-num">[29]</span>Tyler, T. R. (1990). Procedural Justice and Compliance.</div>
+        <div class="ref-entry"><span class="ref-num">[30]</span>Vaughan, D. (1996). Normalization of Deviance.</div>
+        <div class="ref-entry"><span class="ref-num">[31]</span>von Bertalanffy, L. (1968). General Systems Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[32]</span>von Neumann, J., &amp; Morgenstern, O. (1944). Expected Utility Theory.</div>
+        <div class="ref-entry"><span class="ref-num">[33]</span>Weick, K. E. (1995). Organizational Sensemaking.</div>
+        <div class="ref-entry"><span class="ref-num">[34]</span>Wilde, G. J. S. (1982). Risk Homeostasis Theory.</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[35]</span>The article's reference list gives an author, a year and a short title for each entry, with no journal, publisher, volume, page or DOI details. This deck reproduces the entries as given and does not add details that the article does not state.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[36]</span>Tambun, T. (2026, September 14). <em>GRCS and the Architecture of Theory</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/grcs-architecture-theory-dr-toronata-tambun-qx4uc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/grcs-architecture-theory-dr-toronata-tambun-qx4uc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
