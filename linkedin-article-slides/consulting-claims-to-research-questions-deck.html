@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Consulting Claims to Research Questions: Learning Before Newness &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">From Consulting Claims to Research Questions</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Evidence</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Details</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Implications</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Framework</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Research Method &nbsp;&middot;&nbsp; 6 October 2026</div>
+      <h1 class="title-main">From Consulting Claims to Research Questions: Learning Before Newness</h1>
+      <p class="title-thesis">Dissecting a consulting report rather than learning its recommendations teaches doctoral students to move from a claim to a question worth answering: reconstruct the proposed relationships, compare them with theory, test them against full-text research and accept that the answer may already exist. BCG’s booklet survives as qualified and useful, and the exercise shows that learning must precede Recall, Forget and Newness, with newness earned by argument rather than asserted.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A slide deck that summarised BCG’s risk booklet missed the point, which was to examine the reasoning behind its recommendations.</h2>
+      <p class="sec-lead">"Why am I asking doctoral students to dissect a consulting report rather than simply learn its recommendations?"</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>Preparing a Governance, Risk, Compliance, and Sustainability class with ChatGPT, slides were requested on BCG’s The Art of Risk Management (Pidun et al., 2017).</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"The first treatment summarized the booklet. I wanted the class to examine the reasoning behind the recommendations and the conditions under which they might work".</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"How can they move from understanding an existing argument to developing a question whose answer would make a difference?"</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>A disciplined workflow "for comparing an article with theory, examining the resulting questions against research, and deciding what still warrants investigation."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">The workflow separates observation from causal claim, reconstructs the mechanism, then tests the resulting question against full-text research.</h2>
+      <p class="sec-lead">"This is my teaching arrangement of established scholarly practices, not a claim to have invented a new research method." It is consistent with problematization (Alvesson &amp; Sandberg, 2011).</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Separate and reconstruct</div>
+          <div class="arith-body">Distinguish an observation from a recommendation or causal explanation; ask "what action is expected to affect which outcome, through what mechanism, and under what conditions?"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; First reflection</div>
+          <div class="arith-body">Challenge the article’s assumptions or inference against relevant theory, which tests explanatory fit, not empirical validity.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Search and read in full</div>
+          <div class="arith-body">Use research libraries and tools such as scite. "Abstracts help select papers. They cannot replace examination of the complete argument and evidence."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Second reflection and decision</div>
+          <div class="arith-body">Answered within scope, partially answered, or inconclusive. Every candidate faces "the “so what?” test" and another search.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">In the BCG case, a challenge to leadership support was sharpened by existing research into a narrower question about who receives the warning.</h2>
+      <p class="sec-lead">BCG’s April 2017 booklet offers ten principles and historical company examples. The analysis "does not infer the authors’ competence, motives, or research process from the number of academic citations appearing in the booklet."</p>
+      <p class="body-text">Table 1 moved from recommendation to theoretical challenge: "Leadership support can be useful, but asking who constrains the leader exposes a possible condition on that usefulness." Table 2 then examined what research already said. "Research on reporting arrangements already exists."</p>
+      <p class="body-text">The possible next step concerns "whether the recipient of an escalated warning has sufficient independence from the same controller." If the literature answers even that, "the student should learn from the answer and revise the proposed contribution."</p>
+      <div class="warning-callout">
+        <div class="callout-label">Status of the worked example</div>
+        <p>"This worked example remains an exploratory review." The Souza, Feldman and Denrell entries remain abstract-based, and Table 2 "does not represent completion of the full-paper review required by the proposed workflow."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">The assessment of BCG is qualified and positive, because an unresolved challenge does not make advice wrong and a related paper does not make it right.</h2>
+      <p class="sec-lead">"The booklet provides useful guidance with credible theoretical connections and some relevant empirical support."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col visible">
+          <div class="diag-header">What the review supports</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Useful guidance connecting risk management with operating decisions and judgment</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Credible theoretical connections and some empirical support</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"An unresolved challenge does not make a recommendation wrong. It may identify a condition needed for the recommendation to work."</span></div>
+        </div>
+        <div class="diag-col missing">
+          <div class="diag-header">What it does not establish</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"that all ten recommendations have been validated as a complete intervention"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Universal endorsement: Landier et al. (2009) show incentives can undermine independent oversight, which "helps specify a boundary"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>What BCG’s authors knew in 2017; later studies inform only the current assessment</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">When an engagement costs millions, the client should be able to see how evidence, judgment and its own circumstances connect.</h2>
+      <p class="sec-lead">"The fee itself cannot establish the scientific strength of the recommendation."</p>
+      <p class="body-text">"BCG’s practitioner synthesis and a doctoral literature review serve different purposes. The report need not reproduce the literature review on every page." The class reconstructs that background so students can assess its application.</p>
+      <p class="body-text">The questions raised "may improve an application of the advice, while a fuller literature review may resolve some of the questions already raised." "The task is to reach a defensible conclusion, not to preserve a preferred novelty claim."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Learning must come before Recall, Forget and Newness, and a shorter citation list alone does not show that forgetting or newness occurred.</h2>
+      <p class="sec-lead">Prof. PM Laksono’s anthropological dialectic, as described in an earlier series (Tambun, 2026a, 2026b, 2026c).</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Learning</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Competence through practice</div>
+            <div class="timeline-body">"Reading and applying theory provide knowledge that can later be recalled, questioned, and revised".</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Recall</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Earlier understanding made examinable</div>
+            <div class="timeline-body">Theory helps explain a recommendation.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Forget</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Authority loosened</div>
+            <div class="timeline-body">Comparison with evidence may loosen an assumption about the recommendation’s scope.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Newness</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Revised understanding</div>
+            <div class="timeline-body">A better explanation, a more precise recommendation or a research question. "New understanding for a learner or a client is not automatically a novel contribution to scholarship".</div>
+          </div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">On BCG and the dialectic</div>
+        <p>"The booklet alone cannot establish the authors’ internal learning process, so I cannot assign BCG to a particular stage of the dialectic." The Sterman advice is given as recollection, "not a verbatim quotation."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Newness has to earn its place through an argument that stays open to further learning.</h2>
+      <p class="sec-lead">"This means that the tables are a record of developing judgment, not a certificate that thinking has finished."</p>
+      <blockquote>
+        <p>Learning supplies the material for Recall, while Forget permits its authority to be reconsidered. Newness must then earn its place through an argument that remains open to further learning.</p>
+        <cite>&mdash; Dr. Toronata Tambun, From Consulting Claims to Research Questions</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The closing questions</div>
+          <div class="arith-body">"What has been learned well enough to recall? Which assumption can now be loosened for a defensible reason? What new understanding follows, and what decision or explanation would it change?"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Analytical levels, not rankings</div>
+          <div class="arith-body">TARIF materials separate broad foundations, governance explanations and microscopic mechanisms. "They should not be treated as rigid rankings, or used to label every narrow construct a low-range theory".</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources cited in the article, in APA 7th.</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">References, as cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Aebi, V., Sabato, G., &amp; Schmid, M. (2011, January). <em>Risk management, corporate governance, and bank performance in the financial crisis</em> [Working paper]. International Risk Management Conference repository.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Aebi, V., Sabato, G., &amp; Schmid, M. (2012). Risk management, corporate governance, and bank performance in the financial crisis. <em>Journal of Banking &amp; Finance, 36</em>(12), 3213–3226. https://doi.org/10.1016/j.jbankfin.2011.10.020</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Alvesson, M., &amp; Sandberg, J. (2011). Generating research questions through problematization. <em>Academy of Management Review, 36</em>(2), 247–271. https://doi.org/10.5465/amr.2009.0188</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Denrell, J. (2003). Vicarious learning, undersampling of failure, and the myths of management. <em>Organization Science, 14</em>(3), 227–243. https://doi.org/10.1287/orsc.14.2.227.15164</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Duchek, S. (2020). Organizational resilience: A capability-based conceptualization. <em>Business Research, 13</em>(1), 215–246. https://doi.org/10.1007/s40685-019-0085-7</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Dürst, N., &amp; Kunz, J. (2026). The risk culture scale: A measurement tool to comprehensively assess banks’ risk culture. <em>Abacus, 62</em>(3), 698–752. https://doi.org/10.1111/abac.12370</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Feldman, M. S. (2000). Organizational routines as a source of continuous change. <em>Organization Science, 11</em>(6), 611–629. https://doi.org/10.1287/orsc.11.6.611.12529</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Landier, A., Sraer, D., &amp; Thesmar, D. (2009). Financial risk management: When does independence fail? <em>American Economic Review, 99</em>(2), 454–458. https://doi.org/10.1257/aer.99.2.454</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Pidun, U., Rodt, M., Roos, A., Stange, S., &amp; Tucker, J. (2017, April). <em>The art of risk management</em>. The Boston Consulting Group.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Pies, I., &amp; Valentinov, V. (2024). Trade-offs in stakeholder theory: An ordonomic perspective. <em>Social Responsibility Journal, 20</em>(5), 975–997. https://doi.org/10.1108/SRJ-06-2023-0321</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Rudin, C. (2019). Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. <em>Nature Machine Intelligence, 1</em>(5), 206–215. https://doi.org/10.1038/s42256-019-0048-x</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Souza, J. A. S. de, Bortolon, P. M., &amp; Leal, R. P. C. (2020). Related party transactions, disclosure and ownership structure in Brazil. <em>Corporate Ownership &amp; Control, 17</em>(3), 134–145. https://doi.org/10.22495/cocv17i3art10</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Tambun, T. (2026a, October 2). <em>(1 of 3) Learn to forget: The dialectic process in anthropology</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/learn-forget-dialectic-process-anthropology-learning-tambun-iscjc</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Tambun, T. (2026b, October 2). <em>(2 of 3) Conscious competence as pre-requisite before forgetting</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/2-from-conscious-competence-anthropological-dialectic-tambun-derlc</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tambun, T. (2026c, October 2). <em>(3 of 3) Learning and the anthropological dialectic</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/3-entrepreneurship-learning-anthropological-dialectic-tambun-nw1qc</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Tambun, T. (2026d, September 21). <em>Class 2 teaching package: TARIF and good corporate governance at three analytical altitudes</em> [Unpublished instructor guide accompanying the published teaching note].</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Tambun, T. (2026e, September 21). <em>TARIF and good corporate governance: From 30,000 feet to the microscopic level</em> [LinkedIn article]. LinkedIn. https://www.linkedin.com/pulse/tarif-good-corporate-governance-from-30000-feet-level-tambun-eb7pc</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Zhou, R., &amp; Yin, W. (2021). How leader narcissism links to team voice behavior: The mediating mechanisms of leader voice solicitation and team voice climate. <em>Frontiers in Psychology, 12</em>, Article 751446. https://doi.org/10.3389/fpsyg.2021.751446</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[19]</span>Tracking parameters were removed from the LinkedIn addresses printed in the article. The article’s Table 1 and Table 2 are images and are not reproduced in this deck.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[20]</span>Tambun, T. (2026, October 6). <em>From Consulting Claims to Research Questions: Learning Before Newness</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/from-consulting-claims-research-questions-learning-before-tambun-rhyvc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/from-consulting-claims-research-questions-learning-before-tambun-rhyvc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

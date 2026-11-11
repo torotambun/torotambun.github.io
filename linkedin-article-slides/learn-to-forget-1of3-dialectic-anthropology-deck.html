@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(1 of 3) Learn to Forget: The Dialectic Process in Anthropology &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Learn to Forget (1 of 3)</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Details</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Gap</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Details</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Framework</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Anthropology of Learning &nbsp;&middot;&nbsp; 2 October 2026</div>
+      <h1 class="title-main">(1 of 3) Learn to Forget: The Dialectic Process in Anthropology</h1>
+      <p class="title-thesis">Prof. PM Laksono’s “learn to forget” is not memory loss but a dialectic of Recall, Forget and Newness: prior knowledge must be recovered before its authority can be loosened, so that difference, resistance and evidence can change the person studying. The dialectic cannot stop at a label or a quotation, each encounter begins from a changed understanding, and before anything can be recalled it must first have been learned.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">“Learn to forget” turned out to describe a dialectic for changing understanding, not a statement about losing memory.</h2>
+      <p class="sec-lead">Prof. PM Laksono, trained at Leiden and Cornell, used the phrase in an STEI ITB entrepreneurship seminar years earlier.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>A guest lecture introduced a phrase not then fully understood: “learn to forget.”</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"To forget something, a person must first remember what is to be forgotten."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>What does forgetting mean if it "does not begin with absence"?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>"It begins with recall." The sequence Recall, Forget, Newness, learned from his Cornell professor James T. Siegel, "became the organising idea behind almost everything else he explained to me."</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Recall makes prior knowledge visible, Forget loosens its authority, and Newness yields an understanding the old frame could not produce.</h2>
+      <p class="sec-lead">Reflexive anthropology rejects the idea of the researcher as a neutral observer (Dietz, 2011; Markom &amp; Tošić, 2021; Feder, 2019).</p>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-num">01</div>
+          <div class="comp-sub">Recall</div>
+          <div class="comp-name">Bring assumptions into view</div>
+          <div class="comp-body">Knowledge, beliefs and past misunderstandings are made "visible enough to be examined rather than allowing it to continue operating only as an unquestioned background to interpretation."</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">02</div>
+          <div class="comp-sub">Forget</div>
+          <div class="comp-name">Make authority provisional</div>
+          <div class="comp-body">"what has been learned is retained, but its authority becomes provisional and open to reconsideration."</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-num">03</div>
+          <div class="comp-sub">Newness</div>
+          <div class="comp-name">Produce history</div>
+          <div class="comp-body">"Newness produces history because something has changed, whereas an inquiry that leaves the interpretive structure untouched merely reproduces what was already known."</div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why Recall comes first</div>
+        <p>"Forgetting without that prior recovery would amount to absence or ignorance rather than a deliberate loosening of what was previously known."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Studying other people should be able to change the person studying, which requires tolerating difference and distrusting settled labels.</h2>
+      <p class="sec-lead">A lecturer can speak Bahasa Indonesia to Indonesian students and still be misunderstood, "because sharing a language does not guarantee that meaning is shared in the same way."</p>
+      <p class="body-text">Anthropology adds "the reciprocal possibility that the lecturer has also failed to understand how the students receive, interpret, and situate those words." Prof. Laksono asked what anthropology is for if the person studying others cannot tolerate what is different. "Tolerance in this context does not require agreement or abandonment of judgment".</p>
+      <p class="body-text">Derrida’s différance, the differing and deferring through which meaning stays unfinished, warns against naming too soon. "the analytical problem begins when naming is treated as if it has exhausted understanding." Categories "should not acquire more authority than the phenomena they are intended to describe."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">When difference cannot be tolerated, interpretation turns coercive, and the Javanese moves of nggiwar and ngalah offer another path through resistance.</h2>
+      <p class="sec-lead">If difference cannot be tolerated, he said, the tendency is toward kekerasan, violence, a warning about research as well as social life.</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col missing">
+          <div class="diag-header">Interpretation as coercion</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Participants allowed to speak only within the researcher’s categories</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"An unexpected response may be reclassified as ignorance, resistance may be treated as error, and difference may be converted into deviance"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>The participant "loses the capacity to disturb, revise, or complicate the researcher’s categories."</span></div>
+        </div>
+        <div class="diag-col visible">
+          <div class="diag-header">Moving with resistance</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Nggiwar: move aside, like sharpening a saw along the form of its teeth</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Ngalah: yield, "refusing to confuse intellectual progress with domination"</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Menang tanpa ngasorake: prevail without humiliating the other</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"Resistance can therefore become analytically useful by indicating where an existing interpretation is being challenged"</span></div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">Scope of the support</div>
+        <p>"Dietz does not establish Prof. Laksono’s claim about violence, but his reflexive framework supports the methodological requirement that researchers remain alert to the authority they exercise when interpreting other people."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">The dialectic cannot stop at a quotation, which is why a question the professor himself cannot answer earns an A.</h2>
+      <p class="sec-lead">"Citations are necessary for establishing intellectual provenance", but they "do not by themselves establish that a particular concept adequately explains the phenomenon currently being studied."</p>
+      <p class="body-text">Having Derrida, Bourdieu, Geertz or Siegel available "does not remove the researcher’s obligation to continue examining the evidence, the context, and the adequacy of the interpretation." Citation can support inquiry or close it prematurely.</p>
+      <p class="body-text">An abstract earns a B; a question, however weak, earns a B; a question he cannot answer earns an A. "The A therefore does not reward ignorance for its own sake. It rewards the capacity to open a problem in a way that makes the limits of current understanding visible".</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Drawn as repeated S-curves, the dialectic shows each new encounter starting from a changed understanding rather than the same point.</h2>
+      <p class="sec-lead">"A circle, however, can also suggest that the process simply returns to the same starting point. That is not how I understand the consequence of Newness."</p>
+      <p class="body-text">Once an encounter has produced new understanding, "the researcher has changed in some respect". A later encounter may reactivate the dialectic, "but Recall now operates on a different body of accumulated understanding."</p>
+      <p class="body-text">"the loop explains how the dialectic operates within an encounter, while the S-curves show how repeated encounters can move understanding over time."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Before anything can be recalled it must first have been learned, which adds a prior condition to the dialectic.</h2>
+      <p class="sec-lead">"Only after the conversation ended did another question occur to me. If the dialectic begins with Recall, then something must already exist to be recalled."</p>
+      <blockquote>
+        <p>A person cannot reconsider knowledge that was never acquired, examine an assumption that was never formed, or loosen the authority of a framework that was never learned.</p>
+        <cite>&mdash; Dr. Toronata Tambun, Learn to Forget (1 of 3)</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Where the series goes</div>
+          <div class="arith-body">Part 2 traces how knowledge becomes competence and tacit mastery; Part 3 reconnects that learning with Recall, Forget and Newness.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources cited in the article, in APA 7th.</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">References, as cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Derrida, J. (1982). <em>Margins of philosophy</em> (A. Bass, Trans.). University of Chicago Press. https://doi.org/10.7208/chicago/9780226541075.001.0001</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Dietz, G. (2011). Towards a doubly reflexive ethnography: A proposal from the anthropology of interculturality. <em>AIBR, Revista de Antropología Iberoamericana, 6</em>(1), 3–26. https://doi.org/10.11156/aibr.060102e</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Feder, L. K. (2019). Transformative ethnography: Teaching the art of fieldwork. <em>Teaching Anthropology, 8</em>(1). https://doi.org/10.22582/ta.v8i1.433</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Markom, C., &amp; Tošić, J. (2021). The “educated teacher”: Joint (self-)reflection on translatability between anthropology and teacher education. <em>Teaching Anthropology, 10</em>(3), 46–58. https://doi.org/10.22582/ta.v10i3.611</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Ranker, J. (2021). The operation of différance in a student-produced digital video: Insights into differing and deferring signifier operations and relations in multimodal discourse. <em>Visual Communication, 23</em>(1), 72–96. https://doi.org/10.1177/14703572211044791</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Tambun, T. (2023). <em>Primary market research: Through the eyes of a few major anthropology practices</em> [LinkedIn post]. LinkedIn.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Tambun, T. (2025). <em>Tacit mastery vs. know-it-all students</em> [LinkedIn post]. LinkedIn.</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>The two LinkedIn posts are printed in the article with tracking parameters and line-wrapped addresses; the addresses are omitted here rather than reconstructed.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2026, October 2). <em>(1 of 3) Learn to Forget: The Dialectic Process in Anthropology</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/learn-forget-dialectic-process-anthropology-learning-tambun-iscjc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/learn-forget-dialectic-process-anthropology-learning-tambun-iscjc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

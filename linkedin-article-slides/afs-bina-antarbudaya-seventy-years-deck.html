@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFS Bina Antarbudaya: Seventy Years of Shaping Minds Beyond Borders &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">AFS Bina Antarbudaya at Seventy</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Opening</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> The Scene</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> What It Revealed</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Evidence</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Gap</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Evidence</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> Implications</div>
+    <div class="nav-item" data-target="slide-09"><span class="nav-num">09</span> What I Carry</div>
+    <div class="nav-item" data-target="slide-10"><span class="nav-num">10</span> Sources</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Opening</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">The Scene</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">What It Revealed</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-09"><div class="car-num">09</div><div class="car-label">What I Carry</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-10"><div class="car-num">10</div><div class="car-label">Sources</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Intercultural Learning &nbsp;&middot;&nbsp; 9 October 2026</div>
+      <h1 class="title-main">AFS Bina Antarbudaya: Seventy Years of Shaping Minds Beyond Borders</h1>
+      <p class="title-thesis">Research on how childhood forms mental models reframes a 1988 AFS exchange: adolescence offers a chance to test those models against an unfamiliar way of life, and Bina Antarbudaya has organised such encounters for seventy years. Participation figures, prominent alumni and personal recollection show that the opportunity was provided, not that it changed people, so the institution’s history should now be used to measure developmental impact.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Opening</div>
+      <h2 class="sec-title">Studying how childhood forms mental models made a 1988 exchange in Japan, and the institution behind it, demand a closer look.</h2>
+      <p class="sec-lead">"Yet, while studying the formation of human mental models, one episode from my own life began to demand a more careful examination."</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>In 1988 the AFS Short-Term Mombusho ASEAN program placed a Jakarta student with a Japanese family and at Tachikawa High School. A 2021 article recorded it as an early milestone.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"My retrospective understanding, however, was centered on what happened to me. I had given less attention to the institution that created the opportunity."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>Can AFS be examined "as an educational environment that provides opportunities for adolescents to reconsider mental models acquired during childhood"?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Distinguish "documented institutional participation from evidence of developmental change" and identify what future research must establish.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Childhood lays down the mental models adolescents carry abroad, which is why an exchange at seventeen can put them to the test.</h2>
+      <p class="sec-lead">Tambun et al. (2025) proposed five weighted influences on ethical decisions: early neural pathways 45%, cognitive biases 22%, external pressures 18%, context 10%, character 5%.</p>
+      <p class="body-text">"These percentages are analytical weights developed from a narrative literature review, rather than empirically measured shares of human behavior". The argument is that adult ethics "cannot be adequately explained through character education alone."</p>
+      <p class="body-text">Yet early research "should not be interpreted as suggesting that mental models become permanently fixed once childhood ends." Telzer et al. (2018) show adolescent responsiveness to social environments can support adaptive learning, and immersion forces assumptions to meet practices they cannot explain.</p>
+      <div class="warning-callout">
+        <div class="callout-label">On the published figure</div>
+        <p>The published pyramid labels character as 0.03, while the equation, table and discussion use 0.05; the 5% reflects rounding in the proposed halving progression.</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">The Scene</div>
+      <h2 class="sec-title">Living with the Arai family and explaining Indonesia to Japanese classmates placed familiar assumptions against another way of life.</h2>
+      <p class="sec-lead">"I was entering a functioning family environment rather than a setting specifically organized around my educational needs".</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">1987</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">A choice that nearly ended it</div>
+            <div class="timeline-body">A LIPI-TVRI science finalist withdrew from the year-program selection, then was chosen months later for the shorter Mombusho ASEAN Program, one of six Jakarta students.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">1988</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">The Arai home in Hanno</div>
+            <div class="timeline-body">Classical music, rice and miso soup, a household whose routines predated his arrival, and several train changes each morning to Tachikawa.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">1988</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Explaining Indonesia</div>
+            <div class="timeline-body">Presentations and a speech contest required examining the familiar. "familiar social arrangements are not always self-explanatory to people from different cultural backgrounds."</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">2001–2019</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">The relationship continued</div>
+            <div class="timeline-body">Visits in 2001, 2015 and 2019. "The persistence of a personal relationship should not be confused with evidence that particular developmental characteristics were produced by the exchange."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What It Revealed</div>
+      <h2 class="sec-title">Gino’s five Rebel Talent elements organise the recollection, but cannot show that the exchange created traits already present before it.</h2>
+      <p class="sec-lead">"The most defensible interpretation is that the program provided an environment in which several characteristics associated with Rebel Talent could be exercised, while the extent of its influence on their subsequent development remains uncertain."</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Novelty</div>
+          <div class="arith-body">Language, household practice, transport and school all demanded deliberate learning.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Curiosity</div>
+          <div class="arith-body">Exercised abroad, though it "should not be regarded as the origin of that interest."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Perspective</div>
+          <div class="arith-body">Explaining Indonesia required imagining listeners without that background.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Diversity</div>
+          <div class="arith-body">Lived through relationships rather than read about in materials.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">5 &nbsp;&middot;&nbsp; Authenticity</div>
+          <div class="arith-body">Adapting behaviour without abandoning values simply because they differed.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Bina Antarbudaya has sustained exchange since 1956 and extended it into scholarships, domestic leadership, STEM and teacher programs.</h2>
+      <p class="sec-lead">Figures are from the foundation’s 2026 institutional dossier. Founded on 2 May 1985, National Education Day, by Taufiq Ismail, Tanri Abeng, Irid Agoes, Dr. Kartono Mohamad and Sophie Gunawan Satari.</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">DOSSIER A</div>
+          <div class="ev-title">Seventy years of exchange</div>
+          <div class="ev-body">About 4,700 to 6,000 Indonesian students sent, more than 2,000 international students hosted, more than 1,500 volunteers in 20 chapters.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">DOSSIER B</div>
+          <div class="ev-title">Scholarships</div>
+          <div class="ev-body">KL-YES, supported by the US State Department: more than 1,700 returnees. Asia Kakehashi Project+ to Japan: more than 100 returnees.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">DOSSIER C</div>
+          <div class="ev-title">Global Future Leaders Network</div>
+          <div class="ev-body">With SKK Migas and energy operators: five virtual weeks and a Jakarta workshop, 160 participants from Natuna, Aceh, Riau, Madura, Tanimbar and Bintuni.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">DOSSIER D</div>
+          <div class="ev-title">STEM and teachers</div>
+          <div class="ev-body">AFS Global STEM Changemakers, supported by bp, and teacher programs whose reach extends to students who never travel.</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">A discrepancy to reconcile</div>
+        <p>Some dossier sections give about 4,700 to 6,000 outbound participants and another more than 6,000. "These numbers should be reconciled against administrative records before a definitive cumulative total is reported."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">Participation counts, prominent alumni and personal recollection show that opportunity was provided, not that participants changed.</h2>
+      <p class="sec-lead">"Participation figures demonstrate that educational opportunities were provided, but they cannot establish whether participants subsequently developed greater curiosity, reduced prejudice, stronger intercultural competence, or more independent judgment."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col visible">
+          <div class="diag-header">What the record establishes</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Continuity and scope of activity across seven decades</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>A national volunteer and host-family network</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Alumni in public service, education, diplomacy and business</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>A participant’s meaningful memory of the experience</span></div>
+        </div>
+        <div class="diag-col missing">
+          <div class="diag-header">What it cannot establish</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Pre- and post-participation change against a comparable group</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Durability of change into adulthood</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"the professional success of an individual does not, by itself, establish the developmental contribution of an exchange program."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>How much one exchange contributed amid prior interests and decades of later experience</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Controlled and long-term AFS studies give stronger evidence of intercultural learning, though selection effects limit what can be attributed to the exchange.</h2>
+      <p class="sec-lead">"For my own retrospective examination, these reports provide a stronger evidential foundation than personal recollection."</p>
+      <p class="body-text">Hammer (2005) used pre- and post-exchange measures, follow-up and a control group. Hansel (2008) compared alumni with peers 20 to 25 years later and reported differences in language fluency and intercultural competence. A 2021 virtual-exchange study reported nearly three times the odds of growth in positive regard against a control group.</p>
+      <p class="body-text">Applicants "may already possess characteristics that distinguish them from their peers", and long-term respondents may differ from non-respondents. "Such methodological issues do not invalidate the research, but they restrict the extent to which observed differences can be attributed to AFS participation alone."</p>
+      <div class="warning-callout">
+        <div class="callout-label">What none of the studies shows</div>
+        <p>"Neither study, however, establishes that AFS participation necessarily produces the five characteristics associated with the Rebel Talent framework".</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">Seventy years of alumni and program formats give Bina Antarbudaya the material for a research agenda on developmental impact.</h2>
+      <p class="sec-lead">"This remains a research proposition rather than an established account of how AFS participation changes mental models."</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Components, not one intervention</div>
+          <div class="arith-body">Measure change before and after, and link it to host families, peers, language, schooling, preparation and guided reflection.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Participant differences</div>
+          <div class="arith-body">Account for age, prior exposure, socioeconomic background, personality and family circumstances.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Format comparisons</div>
+          <div class="arith-body">Compare physical immersion, virtual exchange and hybrid programs on what each can reasonably achieve.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Rebel Talent as constructs</div>
+          <div class="arith-body">Operationalise novelty, curiosity, perspective, diversity and authenticity and test them over time.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-09">
+    <div class="slide-content">
+      <div class="sec-eyebrow">What I Carry</div>
+      <h2 class="sec-title">The home in Hanno and the journey to Tachikawa now sit inside a seventy-year institutional history whose effects deserve measurement.</h2>
+      <p class="sec-lead">"I believe that experience contributed to how I subsequently approached unfamiliar situations, although I cannot determine which characteristics were already present before the exchange and which developed through later experiences."</p>
+      <blockquote>
+        <p>The family home in Hanno and the daily journey to Tachikawa remain important parts of my personal history. I now place those memories within an institutional history that began in Indonesia in 1956 and has continued for seventy years.</p>
+        <cite>&mdash; Dr. Toronata Tambun, AFS Bina Antarbudaya at Seventy</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Three levels of conclusion</div>
+          <div class="arith-body">Institutional continuity is established; contact and adolescent research support the mechanism; long-term AFS studies show associations whose causal reading selection effects restrict.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">The people behind it</div>
+          <div class="arith-body">"Examining the institution has made me more conscious of the people whose contributions created the conditions for that experience."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">For universities</div>
+          <div class="arith-body">"Students who have learned to reproduce familiar explanations may understand the vocabulary of innovation without necessarily developing the inclination to examine unfamiliar alternatives."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-10">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Sources</div>
+      <h2 class="sec-title">Sources cited in the article, in APA 7th.</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">References, as cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>AFS Intercultural Programs. (2021, November 16). <em>Virtual exchange effectively fosters global competence, a new AFS study finds</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>AFS Intercultural Programs. (2024, March 5). <em>Scaling global competence: New AFS study highlights success of virtual exchanges for teens</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Gino, F. (2018). <em>Rebel talent: Why it pays to break the rules at work and in life</em>. Dey Street Books.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Hammer, M. R. (2005). <em>Assessment of the impact of the AFS study abroad experience: Executive summary of overall findings</em>. Hammer Consulting, LLC.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Hansel, B. (2008). <em>AFS long term impact study. Report 1: 20 to 25 years after the exchange experience, AFS alumni are compared with their peers</em>. AFS International.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Pettigrew, T. F., &amp; Tropp, L. R. (2006). A meta-analytic test of intergroup contact theory. <em>Journal of Personality and Social Psychology, 90</em>(5), 751–783. https://doi.org/10.1037/0022-3514.90.5.751</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Schwarzenthal, M., Juang, L. P., Schachner, M. K., van de Vijver, F. J. R., &amp; Handrick, A. (2017). From tolerance to understanding: Exploring the development of intercultural competence in multiethnic contexts from early to late adolescence. <em>Journal of Community &amp; Applied Social Psychology, 27</em>(5), 388–399. https://doi.org/10.1002/casp.2317</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Tambun, T., Yudoko, G., &amp; Aldianto, L. (2025). Neural development in early childhood and the emergence of moral cognition: A developmental perspective. <em>International Journal of Early Childhood</em>. https://doi.org/10.1007/s13158-025-00449-x</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Tambun, T. (2021a, May 2). <em>One of my early milestones: AFS exchange student in Mombusho ASEAN Program 1988</em> [LinkedIn article]. LinkedIn.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Tambun, T. (2021b). Saya masih ingat baris-baris pidato saya. In T. Ismail (Ed.), <em>Membelah tempurung menatap langit: The AFS story</em> (p. 309). Bina Antarbudaya.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Tambun, T. (2026a, October 5). The 45 percent Indonesia keeps missing. <em>The Jakarta Post</em>, 7.</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Tambun, T. (2026b, July 1). What the classroom never received. <em>The Jakarta Post</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Tambun, T., &amp; Munir, N. (2025, October 3). Why morality starts in early childhood. <em>The Jakarta Post</em>, 7.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Telzer, E. H., van Hoorn, J., Rogers, C. R., &amp; Do, K. T. (2018). Social influence on positive youth development: A developmental neuroscience perspective. <em>Advances in Child Development and Behavior, 54</em>, 215–258. https://doi.org/10.1016/bs.acdb.2017.10.003</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Yayasan Bina Antarbudaya. (2026). <em>Institutional dossier</em> [Unpublished institutional document].</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>The article prints the 2025 paper’s first author as Tambun, A. R. Y. T.; the entry follows the standing citation form Tambun, T. Web addresses for the AFS reports appear in the source article.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>Tambun, T. (2026, October 9). <em>AFS Bina Antarbudaya: Seventy Years of Shaping Minds Beyond Borders</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/afs-bina-antarbudaya-seventy-years-shaping-minds-beyond-tambun-bhqvc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/afs-bina-antarbudaya-seventy-years-shaping-minds-beyond-tambun-bhqvc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(2 of 3) Conscious Competence as Pre-Requisite Before Forgetting &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">Conscious Competence (2 of 3)</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Details</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Framework</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Details</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Gap</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Entrepreneurship Education &nbsp;&middot;&nbsp; 2 October 2026</div>
+      <h1 class="title-main">(2 of 3) Conscious Competence as Pre-Requisite Before Forgetting</h1>
+      <p class="title-thesis">Forgetting presupposes competence, so entrepreneurship education first has to move learners from uncalibrated confidence to usable, eventually tacit, knowledge. An adapted Competence-Perception Learning Loop separates actual from perceived competence and splits advanced competence into Tacit Mastery and Conscious Expertise, and because a beginner and a master can sound alike, only performance can tell them apart.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">If the dialectic begins with Recall, entrepreneurship education must first explain how knowledge becomes competence worth recalling.</h2>
+      <p class="sec-lead">Continued from Part 1, Learn to Forget.</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>Prof. Laksono’s dialectic begins with Recall, which presupposes knowledge already acquired.</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"Knowledge has first to be acquired, used, tested, and sometimes practised long enough to become automatic."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>"how does knowledge move from ignorance, to awareness, to usable competence, and eventually into tacit practice?"</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>An adapted Conscious Competence model, the Competence-Perception Learning Loop (Tambun, 2025).</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">The loop plots actual against perceived competence, adapting the Conscious Competence model rather than the Dunning-Kruger effect.</h2>
+      <p class="sec-lead">"The educational issue is therefore not confidence itself, but calibration between perceived competence and actual competence."</p>
+      <p class="body-text">Learners differ "not only in what they know but also in how accurately they can judge what they know" (Nierenberg &amp; Dahl, 2021). "However, I no longer describe my framework as Dunning-Kruger, particularly because recent work warns against treating the effect as a simple or universal law of human learning (Gignac, 2024)."</p>
+      <p class="body-text">The architecture is closer to Conscious Competence (Keeley, 2021), adapted with a transitional Framework Learner stage and two advanced forms: Tacit Mastery and Conscious Expertise.</p>
+      <div class="warning-callout">
+        <div class="callout-label">Status of the model</div>
+        <p>"The result is therefore not a standard published five-stage model. It is my teaching synthesis built on established learning concepts."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Learners move from an overconfident beginner, through humbled realisation, to a framework learner whose competence is still effortful.</h2>
+      <p class="sec-lead">"The first educational task is therefore calibration."</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Stage ①</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Overconfident Beginner</div>
+            <div class="timeline-body">"I don’t know that I don’t know." Attitude is mistaken for ability, and frameworks seem unnecessary.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Stage ②</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Humbled Realization</div>
+            <div class="timeline-body">"I know that I don’t know." Also called Awareness of Gaps, deliberately not Recall, because the learner sees knowledge not yet developed.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">Stage ③</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Framework Learner</div>
+            <div class="timeline-body">Concepts organise problems, but "Competence exists, but it remains effortful, deliberate, and explicit."</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Academic and practical expertise</div>
+        <p>"Academic expertise is genuine expertise, but it is not identical to entrepreneurial practice."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Repeated application turns declarative knowledge into procedural knowledge that grows fluent and harder to articulate.</h2>
+      <p class="sec-lead">Saks et al. (2021) distinguish declarative knowledge, what can be stated, from procedural knowledge, knowing how to perform.</p>
+      <p class="body-text">"A framework that never leaves the classroom remains primarily declarative knowledge". Politis (2005), Bell and Bell (2020) and Hägg and Kurczewska (2019) place experience at the centre of entrepreneurial learning.</p>
+      <p class="body-text">An experienced driver, mechanic or salesperson acts before explaining. Repeated customer contact, negotiation and cash-flow trouble make patterns "visible almost immediately." "I sometimes call this muscle memory in class", though procedural knowledge and tacit competence are more precise.</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Performing well and explaining why are different capabilities, so advanced competence splits into tacit mastery and conscious expertise.</h2>
+      <p class="sec-lead">"Practical competence can exist without full verbal articulation, while explicit explanation can also exist without equivalent depth of practical experience."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col neutral">
+          <div class="diag-header">④ Tacit Mastery</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"I don’t know that I know."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>High competence with little need to reconstruct knowledge before acting</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>A street entrepreneur negotiating, a fisherman reading a storm</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Limit: the knowledge may not be explicit enough for others to examine or learn</span></div>
+        </div>
+        <div class="diag-col neutral">
+          <div class="diag-header">⑤ Conscious Expert</div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"I know that I know."</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Fluent performance plus the ability to reconstruct its reasoning</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>Can move between explicit knowledge and experienced judgment</span></div>
+          <div class="diag-item"><span class="diag-icon">&#8226;</span><span>"expertise and teachability are not identical"</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why experienced founders are underestimated</div>
+        <p>"What appears unstructured from the outside may represent a substantial accumulation of practical knowledge that has become difficult to reconstruct verbally."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">The overconfident beginner and the tacit master can both say “I just do it”, so only actual performance can tell them apart.</h2>
+      <p class="sec-lead">"The similarity in language can conceal opposite underlying conditions."</p>
+      <div class="diagnosis-grid">
+        <div class="diag-col missing">
+          <div class="diag-header">The know-it-all who knows nothing</div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Too little knowledge to recognise what has not been learned</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>Dismisses frameworks before being able to evaluate them</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10007;</span><span>"uncalibrated confidence"</span></div>
+        </div>
+        <div class="diag-col visible">
+          <div class="diag-header">The tacit master</div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Years of experience compressed into automatic judgment</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>Explicit reconstruction no longer needed for every action</span></div>
+          <div class="diag-item"><span class="diag-icon">&#10003;</span><span>"proceduralised competence"</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">What the educator must look at</div>
+        <p>"Competence must eventually become visible through decisions, actions, outcomes, adaptation, and the ability to respond when assumptions fail."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Competence that becomes automatic solves one learning problem and creates the next, which Part 3 takes up.</h2>
+      <p class="sec-lead">"This sequence is not a claim that every learner follows exactly the same path. It is a conceptual map for distinguishing forms of competence that can otherwise look deceptively similar."</p>
+      <blockquote>
+        <p>Once knowledge becomes automatic, another problem appears.</p>
+        <cite>&mdash; Dr. Toronata Tambun, Conscious Competence (2 of 3)</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">The five stages</div>
+          <div class="arith-body">Overconfident Beginner, Humbled Realization, Framework Learner, then Tacit Mastery or Conscious Expertise, with movement between the two depending on context.</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources cited in the article, in APA 7th.</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">References, as cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>Bell, R., &amp; Bell, H. (2020). Applying educational theory to develop a framework to support the delivery of experiential entrepreneurship education. <em>Journal of Small Business and Enterprise Development, 27</em>(6), 987–1004. https://doi.org/10.1108/JSBED-01-2020-0012</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Dietz, G. (2011). Towards a doubly reflexive ethnography: A proposal from the anthropology of interculturality. <em>AIBR, Revista de Antropología Iberoamericana, 6</em>(1), 3–26. https://doi.org/10.11156/aibr.060102e</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Feder, L. K. (2019). Transformative ethnography: Teaching the art of fieldwork. <em>Teaching Anthropology, 8</em>(1). https://doi.org/10.22582/ta.v8i1.433</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Gignac, G. E. (2024). Rethinking the Dunning-Kruger effect: Negligible influence on a limited segment of the population. <em>Intelligence, 104</em>, 101830. https://doi.org/10.1016/j.intell.2024.101830</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Hägg, G., &amp; Kurczewska, A. (2019). Toward a learning philosophy based on experience in entrepreneurship education. <em>Entrepreneurship Education and Pedagogy, 4</em>(1), 4–29. https://doi.org/10.1177/2515127419840607</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Higgins, D., Refai, D., &amp; Keita, D. (2018). Focus point: The need for alternative insight into the entrepreneurial education paradigm. <em>Journal of Small Business &amp; Entrepreneurship, 31</em>(3), 225–242. https://doi.org/10.1080/08276331.2018.1466851</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>Keeley, C. (2021). Conscious competence model and medicine. <em>Foot &amp; Ankle Surgery: Techniques, Reports &amp; Cases, 1</em>(3), 100053. https://doi.org/10.1016/j.fastrc.2021.100053</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>Markom, C., &amp; Tošić, J. (2021). The “educated teacher”: Joint (self-)reflection on translatability between anthropology and teacher education. <em>Teaching Anthropology, 10</em>(3), 46–58. https://doi.org/10.22582/ta.v10i3.611</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Nierenberg, E., &amp; Dahl, T. I. (2021). Is information literacy ability, and metacognition of that ability, related to interest, gender, or education level? A cross-sectional study of higher education students. <em>Journal of Librarianship and Information Science, 55</em>(1), 57–69. https://doi.org/10.1177/09610006211058907</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Politis, D. (2005). The process of entrepreneurial learning: A conceptual framework. <em>Entrepreneurship Theory and Practice, 29</em>(4), 399–424. https://doi.org/10.1111/j.1540-6520.2005.00091.x</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Ranker, J. (2021). The operation of différance in a student-produced digital video: Insights into differing and deferring signifier operations and relations in multimodal discourse. <em>Visual Communication, 23</em>(1), 72–96. https://doi.org/10.1177/14703572211044791</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Saks, K., Ilves, H., &amp; Noppel, A. (2021). The impact of procedural knowledge on the formation of declarative knowledge: How accomplishing activities designed for developing learning skills impacts teachers’ knowledge of learning skills. <em>Education Sciences, 11</em>(10), 598. https://doi.org/10.3390/educsci11100598</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Tambun, T. (2025). <em>Tacit mastery vs. know-it-all students</em> [LinkedIn post]. LinkedIn.</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>The two LinkedIn posts are printed in the article with tracking parameters and line-wrapped addresses; the addresses are omitted here rather than reconstructed.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Tambun, T. (2026, October 2). <em>(2 of 3) Conscious Competence as Pre-Requisite Before Forgetting</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/2-from-conscious-competence-anthropological-dialectic-tambun-derlc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/2-from-conscious-competence-anthropological-dialectic-tambun-derlc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
