@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Many Times Can a Disaster Recur Before Someone Becomes Responsible? &mdash; Dr. Toronata Tambun</title>
+<style>
+  :root {
+    --navy: #1c2340; --blue: #5b8cff; --blue-light: #eef2ff;
+    --violet: #a78bfa; --text: #1a1a2e; --muted: #64748b;
+    --border: #e2e8f0; --sidebar-w: 260px; --train-h: 56px;
+    --green: #10b981; --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: var(--text); }
+
+  #sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy); color: #cdd5e0; display: flex; flex-direction: column; z-index: 100; overflow-y: auto; padding-bottom: 24px; }
+  #sidebar-title { padding: 72px 18px 16px; font-size: 11px; font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7a8aaa; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.5; }
+  #sidebar nav { padding: 12px 0; }
+  .nav-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 18px; cursor: pointer; font-size: 12px; font-family: Arial, sans-serif; color: #8899bb; line-height: 1.4; transition: all 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { color: #cdd5e0; background: rgba(91,140,255,0.08); }
+  .nav-item.active { color: #fff; border-left-color: var(--blue); background: rgba(91,140,255,0.12); }
+  .nav-num { font-size: 10px; opacity: 0.5; flex-shrink: 0; margin-top: 2px; font-family: monospace; }
+
+  #trainbar { position: fixed; top: 0; left: var(--sidebar-w); right: 0; height: var(--train-h); background: #111827; display: flex; align-items: center; z-index: 101; overflow-x: auto; padding: 0 16px; gap: 0; scrollbar-width: none; }
+  #trainbar::-webkit-scrollbar { display: none; }
+  .carriage { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 80px; height: 38px; padding: 0 10px; border: 1px solid #334155; border-radius: 3px; cursor: pointer; flex-shrink: 0; font-family: Arial, sans-serif; transition: all 0.2s; background: #1e293b; color: #64748b; }
+  .carriage:hover { border-color: var(--blue); color: #94a3b8; }
+  .carriage.active { background: var(--navy); color: #fff; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .car-num { font-size: 9px; letter-spacing: 0.1em; opacity: 0.6; }
+  .car-label { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .coupling { width: 12px; height: 2px; background: #334155; flex-shrink: 0; position: relative; }
+  .coupling::before, .coupling::after { content: ''; position: absolute; width: 1px; height: 6px; background: #334155; top: -2px; }
+  .coupling::before { left: 2px; } .coupling::after { right: 2px; }
+
+  #main { margin-left: var(--sidebar-w); padding-top: var(--train-h); }
+  .slide { min-height: 100vh; padding: 64px 64px 40px; max-width: 980px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+  .slide:last-child { border-bottom: none; }
+  .slide-content { flex: 1; }
+  .slide-footer { text-align: center; padding: 32px 0 8px; font-family: Arial, sans-serif; font-size: 11px; color: #94a3b8; letter-spacing: 0.05em; }
+  #slide-title .slide-footer { color: #475569; }
+
+  #slide-title { background: var(--navy); color: #fff; }
+  .title-venue { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
+  .title-main { font-size: clamp(28px, 4vw, 48px); line-height: 1.2; font-weight: 400; color: #fff; margin-bottom: 20px; }
+  .title-thesis { font-size: 16px; line-height: 1.7; color: #94a3b8; max-width: 640px; margin-bottom: 48px; font-style: italic; border-left: 3px solid var(--blue); padding-left: 20px; }
+  .title-meta { font-family: Arial, sans-serif; font-size: 13px; color: #64748b; }
+  .title-meta strong { color: #94a3b8; }
+
+  .sec-eyebrow { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .sec-title { font-size: clamp(22px, 3vw, 36px); line-height: 1.25; color: var(--navy); margin-bottom: 12px; font-weight: 400; }
+  .sec-lead { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 680px; margin-bottom: 48px; font-style: italic; }
+
+  .callout { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .callout p { font-size: 15px; line-height: 1.75; color: #1e3a6e; }
+  .callout-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; font-weight: 700; }
+
+  .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 32px 0; border-radius: 0 6px 6px 0; }
+  .warning-callout p { font-size: 15px; line-height: 1.75; color: #78350f; }
+  .warning-callout .callout-label { color: #d97706; }
+
+  blockquote { border-left: 3px solid var(--violet); padding: 12px 24px; margin: 28px 0; background: #faf5ff; }
+  blockquote p { font-style: italic; font-size: 17px; line-height: 1.75; color: #4c1d95; }
+  blockquote cite { display: block; margin-top: 8px; font-size: 12px; font-family: Arial, sans-serif; color: var(--muted); font-style: normal; }
+
+  .scqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .scqa-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .scqa-label { font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+  .scqa-card p { font-size: 14px; line-height: 1.75; }
+  .scqa-card.answer { border-color: var(--blue); background: var(--blue-light); }
+  .scqa-card.answer .scqa-label { color: var(--blue); }
+  .scqa-card.answer p { color: #1e3a6e; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .comp-grid-2, .comp-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .comp-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; background: #fff; position: relative; overflow: hidden; }
+  .comp-num { position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 700; color: #f1f5f9; font-family: Arial, sans-serif; line-height: 1; pointer-events: none; }
+  .comp-name { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 10px; }
+  .comp-sub { font-family: Arial, sans-serif; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .comp-body { font-size: 13px; line-height: 1.75; color: #475569; }
+
+  .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .evidence-card { border: 1px solid var(--border); border-radius: 6px; padding: 24px; background: #fff; }
+  .ev-tag { font-family: monospace; font-size: 11px; color: var(--blue); background: var(--blue-light); display: inline-block; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+  .ev-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--navy); }
+  .ev-body { font-size: 13px; line-height: 1.7; color: #475569; }
+
+  .arith-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 36px; }
+  .arith-card { border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; background: #fff; }
+  .arith-header { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 12px; }
+  .arith-body { font-size: 14px; line-height: 1.8; color: #374151; }
+
+  .timeline { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; align-items: stretch; }
+  .timeline-left { display: flex; flex-direction: column; align-items: center; width: 90px; flex-shrink: 0; }
+  .timeline-year { font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; color: var(--navy); background: var(--blue-light); border: 1px solid #c7d9f5; border-radius: 4px; padding: 4px 8px; text-align: center; white-space: nowrap; }
+  .timeline-line { width: 2px; flex: 1; background: var(--border); margin: 4px auto 0; min-height: 16px; }
+  .timeline-item:last-child .timeline-line { display: none; }
+  .timeline-content { padding: 2px 0 20px; flex: 1; }
+  .timeline-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; line-height: 1.65; color: #475569; }
+
+  .diagnosis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .diag-col { border-radius: 6px; padding: 28px; }
+  .diag-col.wrong, .diag-col.missing { background: #fef2f2; border: 1px solid #fecaca; }
+  .diag-col.right, .diag-col.visible { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .diag-col.neutral { background: #f8fafc; border: 1px solid var(--border); }
+  .diag-header { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .diag-col.wrong .diag-header, .diag-col.missing .diag-header { color: var(--red); }
+  .diag-col.right .diag-header, .diag-col.visible .diag-header { color: var(--green); }
+  .diag-col.neutral .diag-header { color: var(--muted); }
+  .diag-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; line-height: 1.6; }
+  .diag-icon { flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+  .diag-col.wrong .diag-icon, .diag-col.missing .diag-icon { color: var(--red); }
+  .diag-col.right .diag-icon, .diag-col.visible .diag-icon { color: var(--green); }
+  .diag-col.neutral .diag-icon { color: var(--muted); }
+
+  .rec-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+  .rec-item { display: flex; gap: 20px; align-items: flex-start; }
+  .rec-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .rec-content { flex: 1; }
+  .rec-title { font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .rec-body { font-size: 14px; line-height: 1.75; color: #374151; }
+
+  .ref-section { margin-top: 24px; }
+  .ref-group-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 24px; }
+  .ref-entry { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.7; color: #374151; }
+  .ref-entry:last-child { border-bottom: none; }
+  .ref-num { font-family: monospace; font-size: 11px; color: var(--blue); margin-right: 8px; }
+
+  .body-text { font-size: 16px; line-height: 1.85; color: #374151; max-width: 720px; }
+  .body-text + .body-text { margin-top: 20px; }
+
+  #nav-btns { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+  .nav-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: background 0.2s; }
+  .nav-btn:hover { background: #2e3a60; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #trainbar { left: 0; }
+    #main { margin-left: 0; }
+    .slide { padding: 40px 24px 40px; }
+    .scqa-grid, .comp-grid, .comp-grid-2, .comp-grid-4, .evidence-grid, .diagnosis-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div id="sidebar-title">How Many Times Can a Disaster Recur?</div>
+  <nav>
+    <div class="nav-item active" data-target="slide-title"><span class="nav-num">00</span> Title</div>
+    <div class="nav-item" data-target="slide-01"><span class="nav-num">01</span> Introduction</div>
+    <div class="nav-item" data-target="slide-02"><span class="nav-num">02</span> Framework</div>
+    <div class="nav-item" data-target="slide-03"><span class="nav-num">03</span> Gap</div>
+    <div class="nav-item" data-target="slide-04"><span class="nav-num">04</span> Evidence</div>
+    <div class="nav-item" data-target="slide-05"><span class="nav-num">05</span> Details</div>
+    <div class="nav-item" data-target="slide-06"><span class="nav-num">06</span> Implications</div>
+    <div class="nav-item" data-target="slide-07"><span class="nav-num">07</span> Conclusion</div>
+    <div class="nav-item" data-target="slide-08"><span class="nav-num">08</span> References</div>
+  </nav>
+</aside>
+
+<div id="trainbar">
+  <div class="carriage active" data-target="slide-title"><div class="car-num">00</div><div class="car-label">Title</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-01"><div class="car-num">01</div><div class="car-label">Introduction</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-02"><div class="car-num">02</div><div class="car-label">Framework</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-03"><div class="car-num">03</div><div class="car-label">Gap</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-04"><div class="car-num">04</div><div class="car-label">Evidence</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-05"><div class="car-num">05</div><div class="car-label">Details</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-06"><div class="car-num">06</div><div class="car-label">Implications</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-07"><div class="car-num">07</div><div class="car-label">Conclusion</div></div>
+  <div class="coupling"></div>
+  <div class="carriage" data-target="slide-08"><div class="car-num">08</div><div class="car-label">References</div></div>
+</div>
+
+<div id="main">
+
+  <section class="slide" id="slide-title">
+    <div class="slide-content">
+      <div class="title-venue">LinkedIn Article &nbsp;&middot;&nbsp; Haze and Accountability &nbsp;&middot;&nbsp; 20 October 2026</div>
+      <h1 class="title-main">How Many Times Can a Disaster Recur Before Someone Becomes Responsible?</h1>
+      <p class="title-thesis">A no-blame investigation earns its justification only through the corrective action that follows. The 2026 haze shows that preventive commitments existed after earlier fires, but the available record does not show whether they were implemented or worked, so recurrence is a reason to investigate, and those responsible for prevention should publish findings, assigned actions, completion records and results.</p>
+      <div class="title-meta"><strong>Dr. Toronata Tambun</strong><br>Director, Yayasan Mens et Manus</div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-01">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Introduction</div>
+      <h2 class="sec-title">A no-blame culture is justified by the corrective action that follows an investigation, and the 2026 haze tests whether that action came.</h2>
+      <p class="sec-lead">At about 1 p.m. on 16 October 2026, five photographs of Singapore under haze; at 3 p.m. central Singapore’s 24-hour PSI reached 229, Very Unhealthy (CNA, 2026).</p>
+      <div class="scqa-grid">
+        <div class="scqa-card">
+          <div class="scqa-label">Situation</div>
+          <p>"When something went wrong, we were expected to establish what happened and why before assigning personal responsibility."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Complication</div>
+          <p>"I understood its justification to be the corrective action that followed: an investigation should change the conditions that allowed the incident to occur."</p>
+        </div>
+        <div class="scqa-card">
+          <div class="scqa-label">Question</div>
+          <p>Did that learning occur after previous fires, and who must account for the result?</p>
+        </div>
+        <div class="scqa-card answer">
+          <div class="scqa-label">Answer</div>
+          <p>Evaluate what the record establishes about prevention after earlier investigations, identify what remains unproven, and ask who must explain the outcome.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-02">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Framework</div>
+      <h2 class="sec-title">Drought and drained peat made the fires foreseeable, but foreseeability alone cannot show whether a land manager met its duty.</h2>
+      <p class="sec-lead">Reuters reported severe El Niño heat and dryness; "removing water from peat makes it more vulnerable to fire" (Kopansky, 2017).</p>
+      <p class="body-text">An inquiry "needs to examine how the land became vulnerable and how it was managed before the dry season." That requires the land-management requirements, warnings, water-management records, resources and evidence of response.</p>
+      <p class="body-text">"Some fires may have exceeded reasonable containment capacity despite preventive work; others may expose omissions that were already known to be dangerous." In Indonesia, Reuters reported 283,270 respiratory illness cases linked to the fires across seven provinces as of 13 October.</p>
+      <div class="warning-callout">
+        <div class="callout-label">What the photographs can show</div>
+        <p>"My photographs record reduced visibility; they cannot measure exposure or diagnose illness."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-03">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Gap</div>
+      <h2 class="sec-title">Pointing to the oxygen and other benefits of Indonesian forests, as officials did in 2015 and 2026, answers nothing about preventable fires.</h2>
+      <p class="sec-lead">Two separate remarks, eleven years apart, "both invoked forest benefits in response to complaints about smoke."</p>
+      <p class="body-text">In 2015 a senior official suggested neighbours should be grateful for eleven months of forest benefits before seeking an apology, as recounted in Singapore’s National Day Rally. Reporting on 12 October 2026 described another official invoking the oxygen Indonesian forests supply.</p>
+      <p class="body-text">"An answer about oxygen supplies no evidence that a concession holder met its obligations or that an earlier corrective measure worked. Accepting that answer would leave the decisions governing fire risk unexamined."</p>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-04">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Evidence</div>
+      <h2 class="sec-title">Maps and notices identify concessions and companies that merit scrutiny, while none of them yet establishes who ignited a fire or breached a duty.</h2>
+      <p class="sec-lead">"The investigations identify places and relationships that merit scrutiny; responsibility depends on the duties, control and conduct established in each case."</p>
+      <div class="evidence-grid">
+        <div class="evidence-card">
+          <div class="ev-tag">RECORD A</div>
+          <div class="ev-title">Haze-source mapping</div>
+          <div class="ev-body">Greenpeace and Pantau Gambut (5 October) linked haze-source points to concessions associated with Malaysian and Singaporean interests; WALHI traced ownership behind hotspot-dense concessions.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORD B</div>
+          <div class="ev-title">What a hotspot is</div>
+          <div class="ev-body">A hotspot "represents a possible fire and may also arise from another high-temperature source." Hotspots, smoke-source points and burned areas are different observations.</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORD C</div>
+          <div class="ev-title">Company responses</div>
+          <div class="ev-body">First Resources and Bumitama Agri cited severe dry conditions and fires spreading from outside their boundaries. "Those explanations also require testing against location-specific evidence."</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ev-tag">RECORD D</div>
+          <div class="ev-title">Singapore’s notices</div>
+          <div class="ev-body">NEA issued Preventive Measure Notices to seven companies on 16 October and announced three more on 19 October. They "are preventive enforcement measures, not court findings that the recipients deliberately started fires."</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">The limit of a confirmed fire</div>
+        <p>"Even a confirmed fire inside a concession does not by itself identify who ignited it, establish negligent prevention, or prove responsibility at parent-company level."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-05">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Details</div>
+      <h2 class="sec-title">Preventive commitments have existed since 2002, but the record shows that they existed, not how consistently they were implemented or how much risk they cut.</h2>
+      <p class="sec-lead">"These records establish that preventive commitments and interventions existed; they do not establish how consistently they were implemented or how much risk they reduced."</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">2002</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">ASEAN haze agreement</div>
+            <div class="timeline-body">Articles 7–9 address monitoring, assessment and prevention, including fire-prone areas and local fire management.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">2015</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Plans required of four companies</div>
+            <div class="timeline-body">NEA required plans to extinguish fires or prevent recurrence: "an identifiable starting point for asking what was implemented, inspected and revised".</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">2016</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Peatland restoration agency</div>
+            <div class="timeline-body">Indonesia began rewetting drained areas (Kopansky, 2017).</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Emergency response</div>
+            <div class="timeline-body">Personnel, aircraft and acceptance of foreign assistance, which "cannot establish whether earlier preventive obligations were fulfilled."</div>
+          </div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">No verdict on 2015</div>
+        <p>"The sources examined here do not establish the subsequent performance of each plan, so I cannot conclude that those investigations either succeeded or failed to secure effective prevention."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-06">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Implications</div>
+      <h2 class="sec-title">An inquiry should trace each earlier finding through required action, implementation, enforcement and results under comparable conditions.</h2>
+      <p class="sec-lead">Reason (2000) separates individual errors from the conditions and safeguards around them; here it frames the inquiry and "supplies no finding about the causes of these fires".</p>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">1 &nbsp;&middot;&nbsp; Earlier finding</div>
+          <div class="arith-body">"What risk or failure was identified, and at which location?"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">2 &nbsp;&middot;&nbsp; Required action</div>
+          <div class="arith-body">"Who had to act, by when, and with what authority and resources?"</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">3 &nbsp;&middot;&nbsp; Implementation and enforcement</div>
+          <div class="arith-body">What inspections, water records, patrol logs and expenditure show, and whether sanctions and remediation followed.</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">4 &nbsp;&middot;&nbsp; Results</div>
+          <div class="arith-body">"Did the action reduce fire occurrence, spread or severity under comparable conditions, and what changed after shortcomings emerged?"</div>
+        </div>
+      </div>
+      <div class="warning-callout">
+        <div class="callout-label">A later fire is not proof of failure</div>
+        <p>"These are questions for an inquiry, not findings of non-compliance."</p>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-07">
+    <div class="slide-content">
+      <div class="sec-eyebrow">Conclusion</div>
+      <h2 class="sec-title">Recurrence is a reason to investigate rather than a measure of guilt, and responsibility for reviewing safeguards exists before the next fire.</h2>
+      <p class="sec-lead">"My professional training makes me reluctant to accuse anyone before the evidence has been examined. But responsibility for implementing and reviewing agreed safeguards exists before the next disaster occurs."</p>
+      <blockquote>
+        <p>I cannot specify how many recurring fires would make someone culpable, because recurrence is a reason to investigate, not a measure of guilt. I can ask the institutions responsible for prevention to publish the findings, assigned actions, completion records and results needed to judge whether they learned enough to reduce the next fire’s risk.</p>
+        <cite>&mdash; Dr. Toronata Tambun, How Many Times Can a Disaster Recur?</cite>
+      </blockquote>
+      <div class="arith-grid">
+        <div class="arith-card">
+          <div class="arith-header">Neglected or inadequate</div>
+          <div class="arith-body">"If the action was neglected, the inquiry concerns that omission; if it was completed but proved inadequate, the inquiry must examine its design, resources and revision."</div>
+        </div>
+        <div class="arith-card">
+          <div class="arith-header">Across borders</div>
+          <div class="arith-body">"A company’s place of incorporation or listing cannot substitute for evidence about who controlled operations and which duties applied."</div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+  <section class="slide" id="slide-08">
+    <div class="slide-content">
+      <div class="sec-eyebrow">References</div>
+      <h2 class="sec-title">Sources cited in the article, in APA 7th.</h2>
+      <div class="ref-section">
+        <div class="ref-group-title">References, as cited in the article</div>
+        <div class="ref-entry"><span class="ref-num">[1]</span>ASEAN Specialised Meteorological Centre. (2026, August 3). <em>Alert20260803: Activation of alert level 2 for the southern ASEAN region</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[2]</span>Association of Southeast Asian Nations. (2002, June 10). <em>ASEAN agreement on transboundary haze pollution</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[3]</span>Channel NewsAsia. (2026, October 16). Singapore haze: Air quality very unhealthy in three regions, PM2.5 readings high in two. <em>CNA</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[4]</span>Greenpeace Indonesia, Greenpeace Malaysia, &amp; Pantau Gambut. (2026, October 5). <em>Malaysian and Singaporean in top 20 entities linked to fires in Indonesia</em> [Press release]. Greenpeace Malaysia.</div>
+        <div class="ref-entry"><span class="ref-num">[5]</span>Kopansky, D. (2017, May 9). <em>Managing peatlands and keeping carbon dioxide under control</em>. United Nations Environment Programme.</div>
+        <div class="ref-entry"><span class="ref-num">[6]</span>Ministry of the Environment and Water Resources. (2015, September 25). <em>Singapore sends notices to four Indonesian companies and seeks information from Singapore-listed APP</em> [Press release]. National Archives of Singapore.</div>
+        <div class="ref-entry"><span class="ref-num">[7]</span>National Environment Agency. (2026a, October 19). <em>NEA issues additional notices under the Transboundary Haze Pollution Act</em> [Press release].</div>
+        <div class="ref-entry"><span class="ref-num">[8]</span>National Environment Agency. (2026b, October 16). <em>NEA issues notices under the Transboundary Haze Pollution Act</em> [Press release].</div>
+        <div class="ref-entry"><span class="ref-num">[9]</span>Ng, A. (2026, October 16). Singapore-listed First Resources, Bumitama Agri point to El Nino, say some fires began beyond their boundaries. <em>CNA</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[10]</span>Peshimam, G., &amp; Nangoy, F. (2026, October 15). Why is the haze so bad in Southeast Asia this year? <em>Reuters</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[11]</span>Prime Minister's Office Singapore. (2015, August 23). <em>National Day Rally 2015</em> [Speech transcript].</div>
+        <div class="ref-entry"><span class="ref-num">[12]</span>Reason, J. (2000). Human error: Models and management. <em>BMJ, 320</em>(7237), 768–770. https://doi.org/10.1136/bmj.320.7237.768</div>
+        <div class="ref-entry"><span class="ref-num">[13]</span>Sa'at, H. (2026, October 12). 'We send oxygen too': Indonesian official responds to concerns of Singapore, Malaysia over haze. <em>AsiaOne</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[14]</span>Teresia, A., &amp; Nangoy, F. (2026, October 16). Indonesia's president ready to accept foreign assistance to combat fires, foreign minister says. <em>Reuters</em>.</div>
+        <div class="ref-entry"><span class="ref-num">[15]</span>Wahana Lingkungan Hidup Indonesia. (2026, October 14). <em>Kajian peta aktor: Siapa di balik api?</em> [Actor mapping study: Who is behind the fires?].</div>
+        <div class="ref-group-title">Notes on this reference list</div>
+        <div class="ref-entry"><span class="ref-num">[16]</span>Web addresses appear in full in the source article; they are omitted here because the PDF wraps them across lines.</div>
+        <div class="ref-entry"><span class="ref-num">[17]</span>The article body cites the ASEAN Specialised Meteorological Centre as (n.d.) for its hotspot definition, while the reference list gives a dated alert of 3 August 2026.</div>
+        <div class="ref-group-title">Source Article</div>
+        <div class="ref-entry"><span class="ref-num">[18]</span>Tambun, T. (2026, October 20). <em>How Many Times Can a Disaster Recur Before Someone Becomes Responsible?</em> [LinkedIn article]. LinkedIn. <a href="https://www.linkedin.com/pulse/how-many-times-can-disaster-recur-before-someone-becomes-tambun-rtbcc" target="_blank" rel="noopener">https://www.linkedin.com/pulse/how-many-times-can-disaster-recur-before-someone-becomes-tambun-rtbcc</a></div>
+      </div>
+    </div>
+    <footer class="slide-footer">&copy; 2026 Dr. Toronata Tambun</footer>
+  </section>
+
+</div>
+
+<div id="nav-btns">
+  <button class="nav-btn" id="btn-up">&uarr;</button>
+  <button class="nav-btn" id="btn-down">&darr;</button>
+</div>
+
+<script>
+  const SECTIONS = ["slide-title", "slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08"];
+  let activeIdx = 0;
+  function setActive(id) {
+    const idx = SECTIONS.indexOf(id); if (idx === -1) return; activeIdx = idx;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.target === id));
+    const bar = document.getElementById('trainbar');
+    document.querySelectorAll('.carriage').forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    const activeC = bar.querySelector('.carriage.active');
+    if (activeC) bar.scrollTo({ left: activeC.offsetLeft - bar.offsetWidth/2 + activeC.offsetWidth/2, behavior: 'smooth' });
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { threshold: 0.35 });
+  SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+  document.querySelectorAll('.nav-item, .carriage').forEach(el => {
+    el.addEventListener('click', () => document.getElementById(el.dataset.target)?.scrollIntoView({ behavior: 'smooth' }));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }); }
+  });
+  document.getElementById('btn-down').addEventListener('click', () => document.getElementById(SECTIONS[Math.min(activeIdx+1,SECTIONS.length-1)])?.scrollIntoView({ behavior:'smooth' }));
+  document.getElementById('btn-up').addEventListener('click', () => document.getElementById(SECTIONS[Math.max(activeIdx-1,0)])?.scrollIntoView({ behavior:'smooth' }));
+</script>
+</body>
+</html>
